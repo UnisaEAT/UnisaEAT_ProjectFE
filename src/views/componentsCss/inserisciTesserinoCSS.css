@@ -1,0 +1,13 @@
+.formContainer
+{
+    width: 50%;
+    margin-top: 50px;
+}
+
+.submitButton
+{
+    width: 30%;
+    margin: auto;
+    margin-top: 30px;
+    display: inherit;
+}
