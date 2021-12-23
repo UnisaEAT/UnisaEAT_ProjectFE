@@ -11,6 +11,30 @@
 
 
 
+
+.h1{
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+}
+
+.containerStyle{
+  margin-left: 0;
+}
+.navbarStyle{
+  background-color: #5b646f;
+}
+
+.containerElementoStyle{
+  display: inline-flex;
+}
+
+.inserisciPersonale{
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  margin-top: 10%;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

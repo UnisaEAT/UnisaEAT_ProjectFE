@@ -1,29 +1,27 @@
 import React from 'react'
 import "../App.css"
-export function inserisciPersonale () {
+import {Container} from "react-bootstrap";
+export function RimozionePersonale () {
   return (
-      <div className="inserisciPersonale">
-        <h1 className="primary">cIAOO</h1>
+
+      <Container className="inserisciPersonale">
+        <h1 className="h1">Inserisci credenziali nuovo membro</h1>
         <form className="needs-validation" noValidate>
           <div className="form-row">
             <div className="col-md-4 mb-3">
-              <label htmlFor="validationCustom01">First name</label>
+              <label htmlFor="validationCustom01">Inserisci Nome<span className="text-danger"> *</span></label>
               <input type="text" className="form-control" id="validationCustom01" placeholder="First name" value="Mark"
                      required></input>
-              <div className="valid-feedback">
-                Looks good!
-              </div>
+              <div className="valid-feedback"></div>
             </div>
             <div className="col-md-4 mb-3">
-              <label htmlFor="validationCustom02">Last name</label>
+              <label htmlFor="validationCustom02">Inserisci Cognome</label>
               <input type="text" className="form-control" id="validationCustom02" placeholder="Last name" value="Otto"
                      required></input>
-              <div className="valid-feedback">
-                Looks good!
-              </div>
+              <div className="valid-feedback"></div>
             </div>
             <div className="col-md-4 mb-3">
-              <label htmlFor="validationCustomUsername">Username</label>
+              <label htmlFor="validationCustomUsername">Inserisci Email</label>
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="inputGroupPrepend">@</span>
@@ -74,7 +72,6 @@ export function inserisciPersonale () {
         </form>
 
         <script>
-          // Example starter JavaScript for disabling form submissions if there are invalid fields
           (function() {
           window.addEventListener('load', function() {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -92,7 +89,7 @@ export function inserisciPersonale () {
           },false)
         })();
         </script>
-      </div>
+      </Container>
   )
 }
-export default inserisciPersonale
+export default RimozionePersonale
