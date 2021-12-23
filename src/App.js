@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import navbar from "./views/navbar";
-import inserisciPersonale from "./views/inserisciPersonale";
-import { Switch, Route } from 'react-router-dom'
 import Navbar from "./views/navbar";
+import login from "./views/login";
+import { Switch, Route } from 'react-router-dom'
+
+
 class App extends Component {
   render() {
     return (
         <div>
-        <Navbar />
+          <Navbar/>
           <Switch>
-            <Route exact path={["/", "/views"]} component={navbar}/>
-            <Route exact path={["/inserisciPersonale", "/views"]} component={inserisciPersonale}/>
+            <Route exact path={["/login", "/views"]} component={login}/>
           </Switch>
         </div>
     );

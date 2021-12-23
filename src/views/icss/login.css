@@ -1,0 +1,17 @@
+.login{
+    text-align: center;
+    background-color: thistle;
+}
+
+.testo{
+    text-align: center ;
+    width: 50% !important;
+    margin: auto ;
+}
+
+.bottone {
+    background-color: blueviolet !important;
+    border-color: blueviolet !important;
+}
+
+/*input[type=text]*/
