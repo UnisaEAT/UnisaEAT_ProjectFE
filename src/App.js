@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom'
 import InserisciTesserino from "./views/inserisciTesserino";
 import Homepage from "./views/homepage";
 import NavbarApp from "./views/navbar";
+import RinnovoTesserino from "./views/rinnovoTesserino";
+
 
 
 class App extends Component {
@@ -14,10 +16,11 @@ class App extends Component {
     return (
         <div>
             <NavbarApp/>
-          <Switch>
-              <Route exact path={["/", "/views"]} component={Homepage}/>
-              <Route exact path={["/inserisciTesserino", "/views"]} component={InserisciTesserino}/>
-          </Switch>
+              <Switch>
+                  <Route exact path={["/"]} component={Homepage}/>
+                  <Route exact path={["/richiestaTesserino"]} component={InserisciTesserino}/>
+                  <Route exact path={["/rinnovoTesserino"]} component={RinnovoTesserino}/>
+              </Switch>
         </div>
     );
   }

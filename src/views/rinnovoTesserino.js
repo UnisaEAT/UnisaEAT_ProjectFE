@@ -1,9 +1,9 @@
 import React from "react";
 import {Form,Button,Col,Row} from "react-bootstrap";
 
-import './componentsCss/inserisciTesserinoCSS.css'
+import './componentsCss/rinnovoTesserinoCSS.css'
 
-export function InserisciTesserino()
+export function RinnovoTesserino()
 {
     return(
         <div className="formContainer container">
@@ -89,11 +89,11 @@ export function InserisciTesserino()
                 </Row>
 
                 <Button className="submitButton" variant="primary" type="submit">
-                    Richiedi tesserino
+                    Rinnova tesserino
                 </Button>
             </Form>
         </div>
     )
 }
 
-export default InserisciTesserino
+export default RinnovoTesserino
