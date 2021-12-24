@@ -15,76 +15,71 @@ export function InserisciTesserino()
                         <Form.Control type="text" name="nome" placeholder="Inserisci il tuo nome" />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Group as={Col}>
                         <Form.Label>Cognome</Form.Label>
-                        <Form.Control type="text" placeholder="Inserisci il tuo cognome" />
+                        <Form.Control type="text" name="cognome" placeholder="Inserisci il tuo cognome" />
                     </Form.Group>
                 </Row>
 
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col}>
                         <Form.Label>Data di nascita</Form.Label>
-                        <Form.Control type="date" placeholder="Inserisci il tuo nome" />
+                        <Form.Control type="date" name="dataDiNascita" placeholder="Inserisci il tuo nome" />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Provincia di nascita</Form.Label>
-                        <Form.Control type="text"  />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Group as={Col}>
                         <Form.Label>Comune di nascita</Form.Label>
-                        <Form.Control type="text"  />
+                        <Form.Control type="text" name="comuneDiNascita" />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Group as={Col}>
                         <Form.Label>Cittadinanza</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control type="text" name="cittadinanza"/>
                     </Form.Group>
 
                 </Row>
                 <br/>
                 <h3>Residenza</h3>
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col} >
                         <Form.Label>Indirizzo</Form.Label>
-                        <Form.Control type="text" placeholder="Inserisci il tuo indirizzo" />
+                        <Form.Control type="text" name="indirizzo" placeholder="Inserisci il tuo indirizzo" />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Group as={Col} >
                         <Form.Label>Provincia</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control type="text" name="provincia"/>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col} >
                         <Form.Label>Comune</Form.Label>
-                        <Form.Control type="text"  />
+                        <Form.Control type="text" name="comune" />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
+                    <Form.Group as={Col} >
                         <Form.Label>CAP</Form.Label>
-                        <Form.Control type="number" />
+                        <Form.Control type="number" name="cap" />
                     </Form.Group>
                 </Row>
                 <br/>
                 <h3>Recapiti</h3>
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col}>
                         <Form.Label>Cellulare</Form.Label>
-                        <Form.Control type="number" placeholder="Inserisci il tuo numero di cellulare" />
+                        <Form.Control type="number" name="telefono" placeholder="Inserisci il tuo numero di cellulare" />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col}>
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" placeholder="Inserisci la tua email" />
+                        <Form.Control type="text" name="email" placeholder="Inserisci la tua email" />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Group as={Col}>
                         <Form.Label>Conferma email</Form.Label>
-                        <Form.Control type="text" placeholder="Reinserisci la tua email" />
+                        <Form.Control type="text" name="confermaEmail" placeholder="Reinserisci la tua email" />
                     </Form.Group>
                 </Row>
 
