@@ -1,32 +1,33 @@
-import React from 'react'
-import "./icss/login.css"
-import {Form,Button} from "react-bootstrap"
+import React from "react";
+import {Form,Button,Col,Row} from "react-bootstrap";
+import '../App.css';
 
+export function Login()
+{
+    return(
+        <div className="formContainer container">
+            <Form className="test" action="http://localhost:3000/Login/login" method="POST">
+                <h3>LOGIN</h3>
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" name="email" placeholder="Inserisci la tua email" />
+                    </Form.Group>
+                </Row>
 
-export function login () {
-  return (
-   
-        <div className="login">
-            
-            <Form method="post" action="localhost:3000/api/login/login">
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control name="email" className="testo" type="email" placeholder="Enter email" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control name="password" className="testo" type="password" placeholder="Password" />
-            </Form.Group>
-            
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            
-            <Button  variant="primary" className="bottone" type="submit">
-                ACCEDI
-            </Button> 
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" name="password" placeholder="Inserisci la tua password" />
+                    </Form.Group>
+                </Row>
+                <br/>
+                <Button className="submitButton" variant="primary" type="submit">
+                    Login
+                </Button>
             </Form>
         </div>
-  )
+    )
 }
-export default login
+
+export default Login
