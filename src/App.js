@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Homepage from "./views/Homepage";
-import RimozionePersonale from "./views/RimozionePersonale";
-import InserimentoPersonale from "./views/InserimentoPersonale";
+import Homepage from "./views/components/App/Homepage";
+import InserimentoPersonale from "./views/components/GestionePersonale/InserimentoPersonale";
 import { Switch, Route } from 'react-router-dom'
-import VisualizzazioneListaPersonale from "./views/VisualizzazioneListaPersonale";
-import InfoPersonale from "./views/InfoPersonale";
+import VisualizzazioneListaPersonale from "./views/components/GestionePersonale/VisualizzazioneListaPersonale";
+import RimozionePersonale from "./views/components/GestionePersonale/RimozionePersonale";
 
 class App extends Component {
   render() {
@@ -15,7 +14,6 @@ class App extends Component {
               <Route exact path={"/VisualizzazioneListaPersonale"} component={VisualizzazioneListaPersonale}/>
               <Route exact path={"/InserimentoPersonale"} component={InserimentoPersonale}/>
               <Route exact path={"/RimozionePersonale"} component={RimozionePersonale}/>
-              <Route exact path={"/InfoPersonale"} component={InfoPersonale}/>
           </Switch>
         </div>
     );

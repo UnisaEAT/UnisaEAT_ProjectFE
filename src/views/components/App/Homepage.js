@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 import {Carousel, Image} from "react-bootstrap";
 import {useState} from "react";
 import slide1 from "../assets/slide1.jpg"
 import slide2 from "../assets/slide2.jpg"
 import slide3 from "../assets/slide3.jpg"
 
-function CarouselControl() {
+function Homepage() {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
@@ -53,4 +53,4 @@ function CarouselControl() {
     );
 }
 
-export default CarouselControl;
+export default Homepage;

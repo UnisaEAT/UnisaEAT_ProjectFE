@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Nav, Navbar, Image} from "react-bootstrap";
-import "../App.css"
-import logo from "./assets/logoUnisaEAT.png"
+import "../../../App.css"
+import logo from "../../assets/logoUnisaEAT.png"
 function NavbarAttore () {
     return (
         <Navbar className="navbarStyle" expand="lg" >

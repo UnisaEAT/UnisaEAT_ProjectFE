@@ -1,5 +1,5 @@
 import React from 'react'
-import "./styles/InserimentoPersonale.css"
+import "../../styles/InserimentoPersonale.css"
 import {Form, InputGroup} from "react-bootstrap";
 export function InserimentoPersonale () {
     return (

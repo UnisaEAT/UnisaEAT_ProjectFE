@@ -1,7 +1,7 @@
 import React from 'react'
-import "../App.css"
+import "../../../App.css"
 import {Card} from "react-bootstrap";
-export function InfoPersonale () {
+export function RimozionePersonale () {
     return(
         <div className="container-fluid px-1 py-5 mx-auto">
             <div className="row d-flex justify-content-center">
@@ -15,8 +15,9 @@ export function InfoPersonale () {
                                 <Card.Text>
                                     Il personale in questione...
                                 </Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <form>
+                                <button type="submit" className="btn-block btn-primary">Rimuovi</button>
+                                </form>
                             </Card.Body>
                         </Card>
                     </div>
@@ -25,4 +26,4 @@ export function InfoPersonale () {
         </div>
     )
 }
-export default InfoPersonale
+export default RimozionePersonale

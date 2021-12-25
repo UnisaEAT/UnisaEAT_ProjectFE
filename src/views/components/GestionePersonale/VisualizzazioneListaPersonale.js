@@ -1,9 +1,9 @@
 import React from 'react'
-import "../App.css"
+import "../../../App.css"
 import {ListGroup, Badge, Image, Button} from "react-bootstrap";
-import InfoPersonale from "./InfoPersonale";
+import RimozionePersonale from "./RimozionePersonale";
 function myOnClickFunction() {
-    document.location.href = "/InfoPersonale.js"
+    document.location.href = "/RimozionePersonale.js"
 }
 export function VisualizzazioneListaPersonale () {
     return (
