@@ -171,7 +171,7 @@
     top: 3px
 }
 
-@media only screen and (max-width:1000px) {
+@media only screen and (max-width: 1000px) {
     #companyinfo {
         width: 20%
     }
@@ -192,7 +192,7 @@
     }
 }
 
-@media only screen and (max-width:850px) {
+@media only screen and (max-width: 850px) {
     #companyinfo {
         position: relative;
         left: 3%

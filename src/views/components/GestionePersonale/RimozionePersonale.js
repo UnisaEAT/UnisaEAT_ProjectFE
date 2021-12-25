@@ -15,7 +15,7 @@ export function RimozionePersonale () {
                                 <Card.Text>
                                     Il personale in questione...
                                 </Card.Text>
-                                <form>
+                                <form action="http://localhost:3000/api/personale/remove" method="POST">
                                 <button type="submit" className="btn-block btn-primary">Rimuovi</button>
                                 </form>
                             </Card.Body>

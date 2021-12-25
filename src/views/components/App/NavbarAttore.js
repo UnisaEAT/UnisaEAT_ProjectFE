@@ -2,11 +2,12 @@ import React from 'react'
 import {Container, Nav, Navbar, Image} from "react-bootstrap";
 import "../../../App.css"
 import logo from "../../assets/logoUnisaEAT.png"
-function NavbarAttore () {
+
+function NavbarAttore() {
     return (
-        <Navbar className="navbarStyle" expand="lg" >
+        <Navbar className="navbarStyle" expand="lg">
             <Container className="containerStyle">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
 
