@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import App from "./App";
-import viewService from "./servises/view.service";
-import NavbarApp from "./views/Navbar";
+import NavbarApp from "./views/NavbarApp";
 import Footer from "./views/Footer";
+
 
 ReactDOM.render(
     <BrowserRouter>
@@ -15,4 +15,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById("root")
 );
-viewService.unregister();

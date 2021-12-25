@@ -1,5 +1,6 @@
 import React from 'react'
 import {Container, Nav, Navbar, Image} from "react-bootstrap";
+import "../App.css"
 import logo from "./assets/logoUnisaEAT.png"
 function NavbarAttore () {
     return (
@@ -13,7 +14,7 @@ function NavbarAttore () {
                             <Image src={logo}
                                    width="80"/>
                         </Nav.Link>
-                        <Container className="containerElementoStyle">
+                        <Container className="elementoNav">
                             <Nav.Link href="/InserimentoPersonale">InserimentoPersonale</Nav.Link>
                             <Nav.Link href="/RimozionePersonale">
                                 <Image src={iconaUtente}

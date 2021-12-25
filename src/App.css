@@ -2,31 +2,53 @@
   text-align: center;
 }
 .primary {
-  color : red;
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  font-family: sans-serif;
+  text-align: center;
 }
 
+* {
+  box-sizing: border-box;
+}
 
-
+body {
+  margin: 0;
+}
 
 .h1{
   font-family: Arial;
   font-weight: bold;
   text-align: center;
+  margin-top: -25px;
 }
-
+.elementoNav{
+  display: flex !important;
+}
 .containerStyle{
   margin-left: 0;
+  display: inherit;
 }
 .navbarStyle{
-  background-color: #5b646f;
+  background-color:transparent;
 }
 
-.containerElementoStyle{
-  display: inline-flex;
+.buttonStyle{
+  top: 5px !important;
+  right: 10px;
+  padding: 0px;
+  margin-top: 10px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+
+.buttonStyle:hover{
+  background: grey;
 }
 
 .inserisciPersonale{
