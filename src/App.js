@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap";
 
 import { Switch, Route } from 'react-router-dom'
 
-import Login from "./views/login";
+import Profilo from "./views/profilo";
 import NavbarApp from "./views/navbar";
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
         <div>
             <NavbarApp/>
               <Switch>
-                  <Route exact path={["/login"]} component={Login}/>
+                  <Route exact path={["/profilo"]} component={Profilo}/>
               </Switch>
         </div>
     );
