@@ -5,9 +5,9 @@ import "bootstrap/dist/js/bootstrap";
 
 import { Switch, Route } from 'react-router-dom'
 
-import InserisciTesserino from "./views/inserisciTesserino";
 import Homepage from "./views/homepage";
 import NavbarApp from "./views/navbar";
+import InserisciTesserino from "./views/inserisciTesserino";
 import RinnovoTesserino from "./views/rinnovoTesserino";
 import RicaricaTesserino from "./views/ricaricaTesserino";
 import VisualizzaSaldo from "./views/visualizzaSaldo";

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Form} from "react-bootstrap";
 import './componentsCss/ricaricaTesserinoCSS.css'
 import axios from "axios";
 
@@ -7,8 +6,7 @@ export default class RicaricaTesserino extends Component {
 
     constructor(props)
     {
-        super(props);
-
+        super(props)
 
         this.state = {
             message: '',
@@ -17,10 +15,11 @@ export default class RicaricaTesserino extends Component {
             numeroCarta: '',
             dataScadenzaCarta: '',
             cvv: '',
-            importo: ''
+            importo: 0
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // Handlers binding
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.onChangeIntestatario = this.onChangeIntestatario.bind(this)
         this.onChangeTipoCarta = this.onChangeTipoCarta.bind(this)
@@ -30,6 +29,15 @@ export default class RicaricaTesserino extends Component {
         this.onChangeImporto = this.onChangeImporto.bind(this)
     }
 
+    componentDidUpdate()
+    {
+        if(this.state.importo=='')
+        {
+
+            this.setState({importo: '0'})
+        }
+    }
+    // Handlers definition
     onChangeIntestatario(e)
     {
         this.setState({
@@ -67,13 +75,27 @@ export default class RicaricaTesserino extends Component {
 
     onChangeImporto(e)
     {
-        this.setState({
-            importo: e.target.value
-        })
-
-
+        this.setState({importo: e.target.value})
     }
 
+    handleSubmit(e)
+    {
+        e.preventDefault()
+
+        // Oggetto da passare con il POST al controller per la lettura dei campi del form
+        const ricarica = {
+            intestatario: this.state.intestatario,
+            tipoCarta: this.state.tipoCarta,
+            numeroCarta: this.state.numeroCarta,
+            dataScadenzaCarta: this.state.dataScadenzaCarta,
+            cvv: this.state.cvv,
+            importo: this.state.importo,
+        }
+
+        this.submitRicaricaForm(ricarica)
+    }
+
+    // Invio dell'oggetto @param ricarica al metodo ricaricaTesserino di controller_tesserino con una POST
     submitRicaricaForm(ricarica)
     {
         axios.post('http://localhost:3000/api/tesserino/ricaricaTesserino', ricarica)
@@ -86,27 +108,9 @@ export default class RicaricaTesserino extends Component {
             })
     }
 
-    handleSubmit(e)
-    {
-        e.preventDefault()
-
-        const ricarica = {
-            intestatario: this.state.intestatario,
-            tipoCarta: this.state.tipoCarta,
-            numeroCarta: this.state.numeroCarta,
-            dataScadenzaCarta: this.state.dataScadenzaCarta,
-            cvv: this.state.cvv,
-            importo: this.state.importo,
-        }
-
-        this.submitRicaricaForm(ricarica)
-
-    }
-
     handleClick(value){
 
-        let newAmount = this.state.inputAmount + value
-        this.setState({inputAmount : newAmount})
+        this.setState({importo : value})
     }
 
 
@@ -171,7 +175,7 @@ export default class RicaricaTesserino extends Component {
                                 </div>
                                 <div className="form-group">
                                     <p className="text-uppercase nuovoSaldoLabel">saldo da ricaricare</p>
-                                    <p className="text-uppercase nuovoSaldoAmount" id="test">{this.state.inputAmount} €</p>
+                                    <p className="text-uppercase nuovoSaldoAmount" id="test">{this.state.importo} €</p>
                                 </div>
 
 
