@@ -7,7 +7,7 @@ export function InserisciTesserino()
 {
     return(
         <div className="formContainer container">
-            <Form className="test" action="http://localhost:3000/api/tesserino/create" method="POST">
+            <Form action="http://localhost:3000/api/tesserino/create" method="POST">
                 <h3>Dati anagrafici</h3>
                 <Row className="mb-3">
                     <Form.Group as={Col}>
