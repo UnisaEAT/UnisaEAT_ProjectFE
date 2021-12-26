@@ -9,6 +9,14 @@
   pointer-events: none;
 }
 
+.sfondo{
+  margin-bottom: 10%;
+}
+
+
+.navbar{
+  background: lightblue;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

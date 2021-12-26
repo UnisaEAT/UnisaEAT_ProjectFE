@@ -29,6 +29,7 @@ export default class Profilo extends Component{
   render(){
     return (
       <div>
+        <h1>Ciao</h1>
         <h1>{this.state.utente.nome}</h1>
 
       </div>
