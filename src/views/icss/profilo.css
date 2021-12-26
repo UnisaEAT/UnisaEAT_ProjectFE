@@ -1,0 +1,14 @@
+.bottone{
+    text-align: center;
+    background-color: blueviolet;
+    color: white;
+    width: 30%;
+}
+
+.container{
+    text-align: center;
+}
+
+.form-control{
+    width:30%;
+}
