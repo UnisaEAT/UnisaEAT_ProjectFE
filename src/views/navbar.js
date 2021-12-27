@@ -9,10 +9,10 @@ function Homepage () {
           <Navbar.Brand>UNISAEAT</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">HOME</Nav.Link>
-              <Nav.Link href="/profilo">PROFILO</Nav.Link>
-              <Nav.Link href="/logout">LOGOUT</Nav.Link>
+            <Nav>
+              <Nav.Link className="navb" href="">HOME</Nav.Link>
+              <Nav.Link className="navb" href="/profilo">PROFILO</Nav.Link>
+              <Nav.Link className="navb" href="/logout">LOGOUT</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

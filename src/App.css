@@ -13,14 +13,21 @@
   margin-bottom: 10%;
 }
 
-.Label{
+.label,.control{
   text-align: center;
+  font-size: large;
 }
-.Form-Control{
-  text-align: center;
-}
+
 .navbar{
   background: lightblue;
+}
+
+.Row{
+  font-size: large;
+}
+
+.navbar-nav .nav-link {
+ color:blue;
 }
 
 @media (prefers-reduced-motion: no-preference) {
