@@ -13,7 +13,12 @@
   margin-bottom: 10%;
 }
 
-
+.Label{
+  text-align: center;
+}
+.Form-Control{
+  text-align: center;
+}
 .navbar{
   background: lightblue;
 }

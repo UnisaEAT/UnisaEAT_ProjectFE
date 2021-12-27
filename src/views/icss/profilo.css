@@ -3,12 +3,20 @@
     background-color: blueviolet;
     color: white;
     width: 30%;
+    margin-bottom: 5%;
+    margin-top:5%
 }
 
 .container{
     text-align: center;
 }
 
-.form-control{
-    width:30%;
+.Form-control{
+    width:10%;
+    margin-bottom:5%;
+}
+
+.AreaPersonale{
+    margin-top:5%;
+    margin-bottom:5%;
 }

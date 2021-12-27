@@ -2,7 +2,7 @@ import React from 'react'
 import {Navbar,Container,Nav, NavDropdown } from 'react-bootstrap'
 import '../App.css'
 
-function NavbarApp () {
+function Homepage () {
   return (
       <Navbar className="sfondo" expand="lg">
         <Container>
@@ -20,4 +20,4 @@ function NavbarApp () {
   )
 }
 
-export default NavbarApp
+export default Homepage
