@@ -1,61 +1,61 @@
 import React from 'react'
 import "../../../App.css"
-import {ListGroup, Image, Button} from "react-bootstrap";
+import {ListGroup, Image, Button, Card} from "react-bootstrap";
+import axios from "axios";
 
-export function VisualizzazioneListaPersonale() {
 
+export default class VisualizzazioneListaPersonale extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            utente: []
+    }
+    }
+    componentDidMount() {
+        axios.get("http://localhost:3000/api/personale/viewLista")
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        utente: response.data,
+                    })
+
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+ render() {
     return (
-        <div className="container-fluid px-1 py-5 mx-auto">
-            <div className="row d-flex justify-content-center">
-                <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                    <div className="card">
+        <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                         <h1 className="h1">Lista Operatori</h1>
-                        <ListGroup as="ul">
-                            <ListGroup.Item
-                                as="li"
-                                className="d-flex justify-content-between align-items-start itemStyle"
-                            >
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold">Personale 1</div>
-                                    <p className="primary">Email</p>
-                                </div>
-                                <Button className="buttonStyle" variant="light" pill>
-                                    <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
-                                           width="35"/>
-                                </Button>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                as="li"
-                                className="d-flex justify-content-between align-items-start"
-                            >
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold">Personale 2</div>
-                                    <p className="primary">Email</p>
-                                </div>
-                                <Button className="buttonStyle" variant="light" pill>
-                                    <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
-                                           width="35"/>
-                                </Button>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                as="li"
-                                className="d-flex justify-content-between align-items-start">
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold">Personale 3</div>
-                                    <p className="primary">Email</p>
-                                </div>
-                                <Button className="buttonStyle" variant="light">
-                                    <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
-                                           width="35"/>
-                                </Button>
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </div>
-                </div>
-            </div>
+            <ListGroup as="ul">
 
-        </div>
+                            {this.state.utente.map(function (oggetto, i) {
+                                return (
+
+                                    <ListGroup.Item
+                                        as="li"
+                                        className="d-flex justify-content-between align-items-start itemStyle"
+                                    >
+                                        <div className="ms-2 me-auto">
+                                    <div className="fw-bold" key={i}> {oggetto.nome} {oggetto.cognome}</div>
+                                    <p key={i}> {oggetto.email}</p>
+                                    </div>
+                                        <Button href="/RimozionePersonale" className="buttonStyle" variant="light" pill>
+                                            <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
+                                                   width="35"/>
+                                        </Button>
+                                    </ListGroup.Item>
+                                )
+                        })}
+
+            </ListGroup>
+                <Button href="/InserimentoPersonale" className="btn-block btn-primary" >Inserisci un nuovo membro</Button>
+            </Card>
     )
 }
-
-export default VisualizzazioneListaPersonale
+}

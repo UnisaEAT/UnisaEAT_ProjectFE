@@ -1,16 +1,12 @@
 import React from 'react'
 import "../../styles/InserimentoPersonale.css"
-import {Form, InputGroup} from "react-bootstrap";
+import {Form, Card, InputGroup} from "react-bootstrap";
 
 export function InserimentoPersonale() {
     return (
-        <div className="container-fluid px-1 py-5 mx-auto">
-            <div className="row d-flex justify-content-center">
-                <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                    <div className="card">
+        <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                         <h1>Inserisci credenziali nuovo membro</h1>
-                        <form className="form-card test" onSubmit="event.preventDefault()"
-                              action="http://localhost:3000/api/personale/insert" method="POST">
+                        <form className="form-card test" onSubmit="event.preventDefault()" action="http://localhost:3000/api/personale/insert" method="POST">
                             <div className="row justify-content-between text-left">
                                 <div className="form-group col-sm-6 flex-column d-flex"><label
                                     className="form-control-label px-3">Nome<span
@@ -38,7 +34,7 @@ export function InserimentoPersonale() {
                                 <div className="form-group col-sm-6 flex-column d-flex"><label
                                     className="form-control-label px-3">Data di nascita<span
                                     className="text-danger"> *</span></label>
-                                    <input type="text" name="DataDiNascita"
+                                    <input type="text" name="dataDiNascita"
                                            placeholder="Inserisci data di nascita"></input></div>
                             </div>
                             <div className="row justify-content-between text-left">
@@ -70,10 +66,7 @@ export function InserimentoPersonale() {
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </Card>
 
     )
 }

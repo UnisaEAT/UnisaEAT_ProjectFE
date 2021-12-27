@@ -8,25 +8,23 @@ import "../../../App.css"
 function NavbarApp() {
     return (
         <Navbar className="navbarStyle" expand="lg">
-            <Container className="containerStyle">
+            <Container className="elementoNav">
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link className="elementoNav" href="/">
+                        <Nav.Link className="elementoLogo" href="/">
                             <Image src={logo}
                                    width="80"/>
                         </Nav.Link>
-                        <Nav.Link className="elementoNav" href="/">
+                        <Nav.Link href="/">
                             <Image src={notifiche}
                                    width="65"/>
 
                         </Nav.Link>
-                        <Container className="containerStyle">
-                            <Nav.Link href="/">
+                            <Nav.Link className="elementoIconaUtente" href="/">
                                 <Image src={iconaUtente}
                                        width="50"/>
                             </Nav.Link>
-                        </Container>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
