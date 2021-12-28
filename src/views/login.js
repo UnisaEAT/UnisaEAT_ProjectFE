@@ -1,91 +1,81 @@
 import React from "react";
-import {Form,Button,Col,Row,Card} from "react-bootstrap";
+import {Form,Button,Card} from "react-bootstrap";
 import '../App.css';
 import './icss/login.css';
-import {axios} from 'axios';
+import axios from 'axios';
 import { Component } from "react";
+
 
 export default class Login extends Component{
    
+    
     constructor(props){
         super(props);
   
         this.state={
-            utente:{},
-            inputPassword:'',
-            inputOldPassword:'',
-            inputConfirmPassword:''
+            email:'',
+            password:'',
+            message:''
         }
-        this.onChangeinputPassword=this.onChangeinputPassword.bind(this);
-        this.inputOldPassword=this.onChangeinputOldPassword.bind(this);
-        this.inputConfirmPassword=this.onChangeConfirminputPassword.bind(this);
+        this.onChangeEmail=this.onChangeEmail.bind(this);
+        this.onChangePassword=this.onChangePassword.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
   
     }
           
   
-    onChangeinputPassword(e){
+    onChangeEmail(e){
         this.setState({
-            inputPassword: e.target.value
+            email: e.target.value
         })
     }
   
-    onChangeinputOldPassword(e){
+    onChangePassword(e){
       this.setState({
-          inputOldPassword: e.target.value
-      })
-    }
-  
-    onChangeConfirminputPassword(e){
-      this.setState({
-          inputConfirmPassword: e.target.value
+            password: e.target.value
       })
     }
   
     onSubmit(e){
         e.preventDefault();
-        const newPsw={
-        inputPassword: this.state.inputPassword,
-        inputOldPassword: this.state.inputOldPassword,
-        inputConfirmPassword: this.state.inputConfirmPassword,
+        const utente={
+            email: this.state.email,
+            password: this.state.password,
+        }
+        console.log(utente);
+        axios.post('http://localhost:8080/api/login/login', utente)
+        .then(response => {
+            this.setState({ message: response.data.message })
+            console.log(this.state.message)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
-        console.log(newPsw);
-        
-        axios.post('http://localhost:3000/api/login/login',newPsw)
-        .then(res=> console.log(res.data));
-        window.location='/';
-    }
   
   
-  
-    //se non è un cliente mostra il bottone "modifica inputPassword"
     render(){
+       
         return(
         <Card className=" mx-auto col-xl-7 justify-content-center text-center">
         <div className="row d-flex justify-content-center">
         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
         <div className="login">
-        
-            <Form className="test">
-                <h3>LOGIN</h3><br></br>
-                <Row>
-                    <Form.Group as={Col}>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" name="email" placeholder="Inserisci la tua email" />
-                    </Form.Group>
-                </Row>
-
-                <Row>
-                    <Form.Group as={Col}>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" placeholder="Inserisci la tua password" />
-                    </Form.Group>
-                </Row>
+            <h1>LOGIN</h1>
+            <Form className="test" onSubmit={this.onSubmit}>
                 <br/>
+                <Form.Label className="label">Email</Form.Label>
+                <Form.Control className="control" type="text" name="email" onChange={this.onChangeEmail} placeholder="Inserisci la tua email"/>
+
+                <Form.Label className="label">Password</Form.Label>
+                <Form.Control className="control" type="password" name="password" onChange={this.onChangePassword} placeholder="Inserisci la tua password"/>
+
                 <Button className="bottone" variant="primary" type="submit">
-                    LOGIN
+                LOGIN
                 </Button>
             </Form>
+           
+            
         </div>
         </div>
         </div>
