@@ -7,10 +7,10 @@ import { Switch, Route } from 'react-router-dom'
 
 import Homepage from "./views/homepage";
 import NavbarApp from "./views/navbar";
-import InserisciTesserino from "./views/inserisciTesserino";
-import RinnovoTesserino from "./views/rinnovoTesserino";
-import RicaricaTesserino from "./views/ricaricaTesserino";
-import VisualizzaSaldo from "./views/visualizzaSaldo";
+import RichiestaTesserino from "./views/gestioneTesserino/richiestaTesserino";
+import RinnovoTesserino from "./views/gestioneTesserino/rinnovoTesserino";
+import RicaricaTesserino from "./views/gestioneTesserino/ricaricaTesserino";
+import VisualizzaSaldo from "./views/gestioneTesserino/visualizzaSaldo";
 
 
 
@@ -21,10 +21,10 @@ class App extends Component {
             <NavbarApp/>
               <Switch>
                   <Route exact path={["/"]} component={Homepage}/>
-                  <Route exact path={["/richiestaTesserino"]} component={InserisciTesserino}/>
-                  <Route exact path={["/rinnovoTesserino"]} component={RinnovoTesserino}/>
-                  <Route exact path={["/ricaricaTesserino"]} component={RicaricaTesserino}/>
-                  <Route exact path={["/visualizzaSaldo"]} component={VisualizzaSaldo}/>
+                  <Route exact path={["/gestioneTesserino/richiestaTesserino"]} component={RichiestaTesserino}/>
+                  <Route exact path={["/gestioneTesserino/rinnovoTesserino"]} component={RinnovoTesserino}/>
+                  <Route exact path={["/gestioneTesserino/ricaricaTesserino"]} component={RicaricaTesserino}/>
+                  <Route exact path={["/gestioneTesserino/visualizzaSaldo"]} component={VisualizzaSaldo}/>
               </Switch>
         </div>
     );

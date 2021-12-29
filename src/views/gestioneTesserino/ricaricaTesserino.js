@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import './componentsCss/ricaricaTesserinoCSS.css'
+import '../componentsCss/ricaricaTesserinoCSS.css'
 import axios from "axios";
 import {Form} from "react-bootstrap";
-import Popup from "./successPopUp";
+import Popup from "../successPopUp";
 
 export default class RicaricaTesserino extends Component {
 
@@ -13,7 +13,7 @@ export default class RicaricaTesserino extends Component {
         this.state = {
             message: '',
             intestatario: '',
-            tipoCarta: 'Visa',
+            tipoCarta: '',
             numeroCarta: '',
             dataScadenzaCarta: '',
             cvv: '',
@@ -153,6 +153,10 @@ export default class RicaricaTesserino extends Component {
     handleClick(value) {
         this.refs.importoRef.value = "";
         this.setState({importo: value})
+
+        let parent = document.getElementById("importo");
+        if(parent.childNodes.length>2)
+            parent.removeChild(parent.lastElementChild)
     }
 
 
@@ -177,7 +181,10 @@ export default class RicaricaTesserino extends Component {
 
                             <div id="tipoCarta" className="form-group">
                                 <label htmlFor="name" className="text-uppercase">Tipo carta</label>
-                                <Form.Select name="tipoCarta" onChange={this.onChangeTipoCarta} aria-label="Visa">
+                                <Form.Select id="tipoCarta" name="tipoCarta" onChange={this.onChangeTipoCarta} defaultValue="">
+                                    <option value="" disabled>
+                                        Seleziona un tipo di carta
+                                    </option>
                                     <option value="Visa">Visa</option>
                                     <option value="Mastercard">Mastercard</option>
                                     <option value="AmericanExpress">American Express</option>

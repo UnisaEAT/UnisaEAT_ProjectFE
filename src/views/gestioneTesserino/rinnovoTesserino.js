@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Form,Button,Col,Row} from "react-bootstrap";
 import axios from "axios";
-import './componentsCss/rinnovoTesserinoCSS.css'
+import '../componentsCss/rinnovoTesserinoCSS.css'
 
 
 export default class RinnovoTesserino extends Component
@@ -239,7 +239,7 @@ export default class RinnovoTesserino extends Component
                 console.log(response.data)
 
                 // Se il rinnovo è andato a buon fine
-                if(response.data==true)
+                if(response.data===true)
                     window.location.reload(false);
 
                 this.setState({ message: response.data.message })
@@ -260,6 +260,9 @@ export default class RinnovoTesserino extends Component
                 return (
                     <div className="tesserinoPosseduto">
                         <h2>Non possiedi un tesserino</h2>
+                        <Button href="/gestioneTesserino/richiestaTesserino" className="buttonRinnovaTesserinoScaduto">
+                            Richiedi tesserino
+                        </Button>
                     </div>
                     )
             else if(this.state.message==="rinnovato")

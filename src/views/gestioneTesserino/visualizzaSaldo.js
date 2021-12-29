@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './componentsCss/visualizzaSaldoCSS.css'
+import '../componentsCss/visualizzaSaldoCSS.css'
 import {Button} from "react-bootstrap";
 import axios from 'axios';
 
@@ -61,6 +61,9 @@ export default class VisualizzaSaldo extends Component
                 return (
                     <div className="tesserinoPosseduto">
                         <h2>Il tuo tesserino è scaduto</h2>
+                        <Button href="/gestioneTesserino/rinnovoTesserino" className="buttonRinnovaTesserinoScaduto">
+                            Ricarica tesserino
+                        </Button>
                     </div>
                 )
         }

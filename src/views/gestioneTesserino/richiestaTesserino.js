@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {Form,Button,Col,Row} from "react-bootstrap";
-import './componentsCss/inserisciTesserinoCSS.css'
+import '../componentsCss/inserisciTesserinoCSS.css'
 import axios from "axios";
 
-export default class InserisciTesserino extends Component
+export default class RichiestaTesserino extends Component
 {
 
     constructor(props)
@@ -220,7 +220,7 @@ export default class InserisciTesserino extends Component
                 if(response.data.message==="You don't have a Tesserino!")
                     this.setState({error:true})
                 // Se la richiesta è andata a buon fine
-                else if(response.data.message==true)
+                else if(response.data.message===true)
                     window.location.reload(false);
                 else {
                     this.setState({message: response.data.message})

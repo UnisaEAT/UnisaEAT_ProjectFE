@@ -125,6 +125,12 @@ wrapper a {
     background: #2bc477;
 }
 
+.ricaricaButton:focus {
+    background: #0e9350;
+    outline: none;
+    box-shadow: none;
+}
+
 .nuovoSaldoLabel
 {
     margin-top: 35px;

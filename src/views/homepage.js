@@ -1,12 +1,13 @@
 import React from 'react'
 import "../App.css"
 import Slideshow from "./slideshow";
+import BarChart from "./barChart";
 
 export function Homepage()
 {
     return(
         <div>
-            <Slideshow/>
+            <BarChart/>
         </div>
     );
 }
