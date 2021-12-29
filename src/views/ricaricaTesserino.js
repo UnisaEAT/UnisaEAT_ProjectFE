@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import './componentsCss/ricaricaTesserinoCSS.css'
 import axios from "axios";
 import {Form} from "react-bootstrap";
@@ -133,11 +133,12 @@ export default class RicaricaTesserino extends Component {
 
     // Invio dell'oggetto @param ricarica al metodo ricaricaTesserino di controller_tesserino con una POST
     submitRicaricaForm(ricarica) {
-        <Popup/>
         axios.post('http://localhost:3000/api/tesserino/ricaricaTesserino', ricarica)
             .then(response => {
                 console.log("qui"+response.data.message)
-                if(response.data.message==true)
+
+                //Se la ricarica è andata a buon fine
+                if(response.data.message===true)
                 {
                     this.setState({popUp:true})
                 }

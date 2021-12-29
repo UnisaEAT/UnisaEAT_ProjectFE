@@ -7,13 +7,13 @@ const Popup = props => {
         <div className="popup-box">
             <div className="box">
                 <div className="upperInnerBox">
-                    <img className="checkLogo" src={CheckLogo}/>
+                    <img alt="success" className="checkLogo" src={CheckLogo}/>
                 </div>
                 <div className="bottomInnerBox">
                     <div className="bottomLabel">
                         <h3>Successo!</h3>
                         <p>Ricarica del tesserino avvenuta</p>
-                        <Button className="closeButton" onClick={props.handleClose}>Chiudi</Button>
+                        <Button className="closeButton"  onClick={props.handleClose}>Chiudi</Button>
                     </div>
                 </div>
             </div>
