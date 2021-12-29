@@ -64,11 +64,15 @@ wrapper a {
 
 .containerBottoniSaldo {
     margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     display: inline-block;
     width: 100%;
 }
 
+.dataScadenzaInput
+{
+    width: 80%;
+}
 .bottoneSaldo {
     width: 23.5%;
     margin: 2px;
