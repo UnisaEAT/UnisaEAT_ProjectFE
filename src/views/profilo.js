@@ -67,7 +67,7 @@ import './icss/profilo.css';
   }
       console.log(newPsw);
       
-      axios.post('http://localhost:8080/api/profilo/updateinputPassword',newPsw)
+      axios.post('http://localhost:8080/api/profilo/updatePassword',newPsw)
       .then(res=> console.log(res.data));
       window.location='/';
   }
@@ -92,13 +92,13 @@ import './icss/profilo.css';
             <Form className="test" onSubmit={this.onSubmit}>
               <br/>
               <Form.Label className="label">Vecchia Password</Form.Label>
-              <Form.Control className="control" type="inputPassword" name="inputOldPassword" onChange={this.onChangeinputOldPassword} placeholder="Inserisci la tua vecchia inputPassword"/>
+              <Form.Control className="control" type="password" name="inputOldPassword" onChange={this.onChangeinputOldPassword} placeholder="Inserisci la tua vecchia assword"/>
 
               <Form.Label className="label">Nuova Password</Form.Label>
-              <Form.Control className="control" type="inputPassword" name="inputPassword" onChange={this.onChangeinputPassword} placeholder="Inserisci la tua nuova inputPassword"/>
+              <Form.Control className="control" type="password" name="inputPassword" onChange={this.onChangeinputPassword} placeholder="Inserisci la tua nuova Password"/>
 
               <Form.Label className="label">Conferma Nuova Password</Form.Label>
-              <Form.Control className="control" type="inputPassword" name="inputConfirmPassword" onChange={this.onChangeConfirminputPassword} placeholder="Inserisci di nuovo la nuova inputPassword"/>
+              <Form.Control className="control" type="password" name="inputConfirmPassword" onChange={this.onChangeConfirminputPassword} placeholder="Inserisci di nuovo la nuova Password"/>
 
               <Button className="bottone" variant="primary" type="submit">
               Modifica Password
