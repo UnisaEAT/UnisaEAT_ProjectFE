@@ -121,11 +121,6 @@
     height: 280px
 }
 
-#email {
-    color: white;
-    position: relative;
-    top: -20px
-}
 
 .btn {
     position: relative;
@@ -256,12 +251,6 @@
     .social {
         position: relative;
         left: -110%;
-    }
-
-    #email,
-    .btn {
-        position: relative;
-        top: 0px
     }
 
 }

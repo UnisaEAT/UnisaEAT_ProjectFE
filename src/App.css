@@ -17,6 +17,10 @@
     box-sizing: border-box;
 }
 
+.fw-bold,p{
+    text-align: initial;
+}
+
 body {
     margin: 0;
 }
@@ -29,8 +33,21 @@ body {
 }
 
 .elementoNav {
-    width: 45px;
-    margin-top: 3px;
+    width: 90px;
+    margin-top: -9px;
+    margin-bottom: -9px;
+}
+
+.elementoLogo {
+    position: absolute;
+    left: -10px;
+}
+
+
+.elementoIconaUtente{
+    position: absolute;
+    right: -8px;
+    top: 5px;
 }
 
 .containerStyle {
