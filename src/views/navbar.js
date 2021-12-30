@@ -1,6 +1,7 @@
 import React from 'react'
 import {Navbar,Container,Nav } from 'react-bootstrap'
 import './componentsCss/navbarCSS.css'
+import '../App.css'
 
 function NavbarApp () {
   return (
@@ -21,11 +22,9 @@ function NavbarApp () {
               <Nav.Link className="elementoIconaUtente" href="/gestioneTesserino/ricaricaTesserino">
                 <h4>Ricarica tesserino</h4>
               </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-  )
-}
+			  <Nav.Link className="elementoIconaUtente" href="/profilo">
+                <h4>Profilo</h4>
+              </Nav.Link>
 
 export default NavbarApp
+

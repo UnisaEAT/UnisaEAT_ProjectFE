@@ -9,6 +9,28 @@
   pointer-events: none;
 }
 
+.sfondo{
+  margin-bottom: 10%;
+}
+
+.label,.control{
+  text-align: center;
+  font-size: large;
+}
+
+.navbar{
+  background: lightblue;
+}
+
+.Row{
+  font-size: large;
+}
+
+.navbar-nav .nav-link {
+ color:blue;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
