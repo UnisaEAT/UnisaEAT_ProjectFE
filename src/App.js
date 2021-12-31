@@ -9,7 +9,7 @@ import RichiestaTesserino from "./views/gestioneTesserino/richiestaTesserino";
 import RinnovoTesserino from "./views/gestioneTesserino/rinnovoTesserino";
 import RicaricaTesserino from "./views/gestioneTesserino/ricaricaTesserino";
 import VisualizzaSaldo from "./views/gestioneTesserino/visualizzaSaldo";
-import Profilo from "./views/profilo";
+import Profilo from "./views/gestioneProfilo/profilo";
 
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
                   <Route exact path={["/gestioneTesserino/rinnovoTesserino"]} component={RinnovoTesserino}/>
                   <Route exact path={["/gestioneTesserino/ricaricaTesserino"]} component={RicaricaTesserino}/>
                   <Route exact path={["/gestioneTesserino/visualizzaSaldo"]} component={VisualizzaSaldo}/>
-                  <Route exact path={["/profilo"]} component={Profilo}/>
+                  <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
               </Switch>
         </div>
     );

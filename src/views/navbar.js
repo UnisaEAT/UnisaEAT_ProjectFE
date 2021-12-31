@@ -22,9 +22,14 @@ function NavbarApp () {
               <Nav.Link className="elementoIconaUtente" href="/gestioneTesserino/ricaricaTesserino">
                 <h4>Ricarica tesserino</h4>
               </Nav.Link>
-			  <Nav.Link className="elementoIconaUtente" href="/profilo">
+			        <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                 <h4>Profilo</h4>
               </Nav.Link>
-
-export default NavbarApp
+            </Nav>
+            </Navbar.Collapse>
+            </Container>
+            </Navbar>
+  )
+}
+export default NavbarApp;
 
