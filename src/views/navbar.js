@@ -1,22 +1,58 @@
+
 import React from 'react'
-import {Navbar,Container,Nav, NavDropdown } from 'react-bootstrap'
+import { Component } from 'react'
+import {Navbar,Container,Nav } from 'react-bootstrap'
 import '../App.css'
 
-function NavbarApp () {
-  return (
-      <Navbar className="sfondo" expand="lg">
-        <Container>
-          <Navbar.Brand>UNISAEAT</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+export default class NavbarApp  extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      utente: ''
+  }
+  }
+ //problema da risolvere PASSAGGIO DI COMPONENTI
+  render(){
+    console.log(this.state.utente) //this.props.utente
+    if(this.state.utente===true) {
+        return(
+        <Navbar className="navbarStyle bg-black bg-opacity-10" expand="lg">
+        <Container className="elementoNav">
+          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">HOME</Nav.Link>
-              <Nav.Link href="/login">LOGIN</Nav.Link>
+              <Nav.Link className="elementoLogo" href="/">
+                <h4>Home</h4>
+              </Nav.Link>
+              <Nav.Link className="elementoIconaUtente" href="/logout">
+                <h4>Logout</h4>
+              </Nav.Link>
+              
             </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-  )
+            </Navbar.Collapse>
+            </Container>
+            </Navbar>
+        )
+    } 
+    else {  
+      return (
+          <Navbar className="navbarStyle bg-black bg-opacity-10" expand="lg">
+            <Container className="elementoNav">
+              <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link className="elementoLogo" href="/">
+                    <h4>Home</h4>
+                  </Nav.Link>
+                  <Nav.Link href="/login">
+                    <h4>Login</h4>
+                  </Nav.Link>
+                
+                </Nav>
+                </Navbar.Collapse>
+                </Container>
+                </Navbar>
+      )
+    }
+  }
 }
-
-export default NavbarApp

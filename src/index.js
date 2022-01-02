@@ -10,4 +10,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById("root")
 );
-viewService.unregister();
