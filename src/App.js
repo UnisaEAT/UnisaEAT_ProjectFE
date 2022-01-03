@@ -1,24 +1,25 @@
 import React, {Component} from "react";
 import Homepage from "./views/components/App/Homepage";
+
+//classes
 import InserimentoPersonale from "./views/components/GestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/GestionePersonale/VisualizzazioneListaPersonale";
+
+//functions
 import RimozionePersonale from "./views/components/GestionePersonale/RimozionePersonale";
-import {VisualizzazioneMenu} from "./views/components/App/GestioneMenu/VisualizzazioneMenu";
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import BrowserRouter from "react-router-dom/es/BrowserRouter";
+import VisualizzazioneMenu from "./views/components/App/GestioneMenu/VisualizzazioneMenu";
+import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <Routes>
+                <Switch>
                     <Route exact path={"/"} element={<Homepage/>}/>
-                    <Route exact path={"/VisualizzazioneListaPersonale"} element={<VisualizzazioneListaPersonale/>}/>
-                    <Route exact path={"/InserimentoPersonale"} element={<InserimentoPersonale/>}/>
-                    <Route exact path={"/RimozionePersonale"} element={<RimozionePersonale/>}/>
-                    <Route exact path={"/VisualizzazioneMenu"} element={<VisualizzazioneMenu/>}/>
-                </Routes>
-            </BrowserRouter>
+                    <Route exact path={"/VisualizzazioneListaPersonale"} component={VisualizzazioneListaPersonale}/>
+                    <Route exact path={"/InserimentoPersonale"} component={InserimentoPersonale}/>
+                    <Route exact path={"/RimozionePersonale"} component={RimozionePersonale}/>
+                    <Route exact path={"/VisualizzazioneMenu"} component={VisualizzazioneMenu}/>
+                </Switch>
         );
     }
 }
