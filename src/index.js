@@ -11,7 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
         <NavbarApp/>
         <App/>
-        {/*<Footer/>*/}
+        <Footer/>
     </BrowserRouter>,
     document.getElementById("root")
 );

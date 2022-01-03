@@ -105,6 +105,7 @@ export default class InserimentoPersonale extends React.Component {
         })
     }
 
+
     onChangePassword(e) {
         this.errorRemoverOnChange(e)
         this.setState({
@@ -139,10 +140,8 @@ export default class InserimentoPersonale extends React.Component {
 
     // Invio dell'oggetto @param personale al metodo del Back-End con una POST
     submitInserimentoForm(personale) {
-        axios.post('http://localhost:3000/api/personale/insert', personale)
+        axios.post('http://localhost:8080/api/personale/insert', personale)
             .then(response => {
-                console.log("qui" + response.data.message)
-
                 //Se l'inserimento è andato a buon fine
                 if (response.data.message === true) {
                     this.setState({popUp: true})

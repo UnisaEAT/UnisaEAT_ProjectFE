@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../../App.css"
-import {ListGroup, Image, Button, Card} from "react-bootstrap";
+import {ListGroup, Button, Card, Image} from "react-bootstrap";
 import axios from "axios";
 import RimozionePersonale from "./RimozionePersonale";
 
@@ -10,7 +10,6 @@ export default class VisualizzazioneListaPersonale extends React.Component {
 
         this.state = {
             utente: [],
-
             personale: null
         }
 
@@ -18,12 +17,11 @@ export default class VisualizzazioneListaPersonale extends React.Component {
         this.handleRimozionePersonale = this.handleRimozionePersonale.bind(this)
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         axios.get("http://localhost:8080/api/personale/viewLista")
             .then(response => {
                 console.log(response.data)
-                this.setState({utente:response.data})
+                this.setState({utente: response.data})
             })
             .catch((error) => {
                 console.log(error);
@@ -33,21 +31,18 @@ export default class VisualizzazioneListaPersonale extends React.Component {
 
     // Funzione che al click del bottone di rimozione crea l'oggetto da passare alla componente addetta alla rimozione come prop
     // settandolo come stato
-    handleRimozionePersonale(e,obj)
-    {
+    handleRimozionePersonale(e, obj) {
         // oggetto da passare che contiene il personale da rimuovere
 
-        this.setState({personale:obj})
+        this.setState({personale: obj})
     }
 
 
     render() {
 
         // Solo se è stato settato l'utente da cancellare chiama l'altra componente e gli passa lo stato
-        if(this.state.personale!=null)
-        {
+        if (this.state.personale != null) {
             console.log(this.state.personale)
-
             //Invia il prop "obj" contente il personale da rimuovere
             return (<RimozionePersonale obj={this.state.personale}/>)
         }
@@ -55,24 +50,17 @@ export default class VisualizzazioneListaPersonale extends React.Component {
             <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                 <h1 className="h1">Lista Operatori</h1>
                 <ListGroup as="ul">
-
-                    {this.state.utente.map((oggetto, i) =>{
+                    {this.state.utente.map((oggetto, i) => {
                         return (
-                            <ListGroup.Item key={i}
-                                as="li"
-                                className="d-flex justify-content-between align-items-start itemStyle"
-                            >
+                            <ListGroup.Item key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold">{oggetto.nome} {oggetto.cognome}</div>
+                                    <p>{oggetto.email}</p>
                                 </div>
-                                <button
-                                    onClick={(e) => {
-                                        this.handleRimozionePersonale(e, oggetto);
-                                    }}
-                                >
-                                    Info
-                                </button>
-
+                                <Button onClick={(e) => {this.handleRimozionePersonale(e, oggetto);}} className="buttonStyle" variant="light" pill>
+                                    <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
+                                           width="35"/>
+                                </Button>
                             </ListGroup.Item>
                         )
                     })}
