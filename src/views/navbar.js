@@ -7,10 +7,9 @@ import '../App.css'
 export default class NavbarApp  extends Component {
   constructor(props){
     super(props);
-    this.state={
-      utente: ''
+   
   }
-  }
+  
  //problema da risolvere PASSAGGIO DI COMPONENTI
   render(){
     console.log(this.state.utente) //this.props.utente

@@ -5,7 +5,7 @@ import './icss/login.css';
 import axios from 'axios';
 import { Component } from "react";
 import Popup from "../successPopUp";
-import NavbarApp from "./navbar";
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -18,22 +18,56 @@ export default class Login extends Component{
             email:'',
             password:'',
             message:'',
+            popUp:false,
+            redirect:false,
         }
         this.onChangeEmail=this.onChangeEmail.bind(this);
         this.onChangePassword=this.onChangePassword.bind(this);
         this.submitForm=this.submitForm.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
+        this.errorHandler = this.errorHandler.bind(this)
+        this.closePopUp = this.closePopUp.bind(this)
+        this.errorRemoverOnChange=this.errorRemoverOnChange.bind(this);
     }
           
-   
+    closePopUp(){
+        this.setState({popUp:false})
+        console.log(this.state.popUp)
+        this.setState({redirect:true})
+    }
+
+    // Handlers definition
+    errorHandler(err){
+        let inputError = err.name;
+        let errorMessage = err.message;
+
+        const rootElement = document.getElementById(inputError)
+
+        if(rootElement.childNodes.length<3)
+        {
+            const element = document.createElement('h1')
+            element.id = inputError
+            element.textContent = errorMessage
+            element.style = "color:red;font-size:15px"
+            rootElement.appendChild(element)
+        }
+    }
+
+    errorRemoverOnChange(e){
+        let parent = document.getElementById(e.target.id);
+        if(parent.childNodes.length>2)
+            parent.removeChild(parent.lastElementChild)
+    }
 
     onChangeEmail(e){
+        this.errorRemoverOnChange(e)
         this.setState({
             email: e.target.value
         })
     }
   
     onChangePassword(e){
+      this.errorRemoverOnChange(e)
       this.setState({
             password: e.target.value
       })
@@ -55,19 +89,24 @@ export default class Login extends Component{
         console.log(utente);
         axios.post('http://localhost:8080/api/login/login',utente)
         .then(response => {
-            if(response.data===true){
-                 window.location.reload(false);
+            console.log(response.data)
+            if(response.data.hasOwnProperty('message')){
                  this.setState({ message: response.data.message })
+                 this.errorHandler(response.data)
+            } 
+            else{
+                console.log("qual")
+                this.setState({popUp:true})
+            
 
-                 
-            }    
+            }
         })
         .catch((err) => {
             
             console.log(err);
         })
 
-        axios.get('http://localhost:8080/api/login/authChecker')
+        /*axios.get('http://localhost:8080/api/login/authChecker')
             .then(response=>{
                 console.log(response.data.message)
                 if(response.data.message=='Unauthorized')
@@ -79,38 +118,45 @@ export default class Login extends Component{
                     console.log(err);
                 })
                         
-        })
+        })*/
     }
   
   
     render(){
+        if(this.state.redirect){
+            return( <Redirect to= '/'/>)
+        }else
         return(
-        <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-        <div className="row d-flex justify-content-center">
-        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-        <div className="login">
             <div id="root"> {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-            <h1>LOGIN</h1>
-            <Form className="test" onSubmit={this.handleSubmit}>
-                <br/>
-                <Form.Label className="label">Email</Form.Label>
-                <Form.Control className="control" type="text" name="email" onChange={this.onChangeEmail} placeholder="Inserisci la tua email"/>
-        
-                <Form.Label className="label">Password</Form.Label>
-                <Form.Control className="control" type="password" name="password" onChange={this.onChangePassword} placeholder="Inserisci la tua password"/>
-
-                <Button className="bottone" variant="primary" type="submit">
-                    LOGIN
-                </Button>
-            </Form>
-           
-            
-        </div>
-        </div>
-        </div>
-        </div>
-        </Card>
+            <Card className=" mx-auto col-xl-7 justify-content-center text-center position-inherit">
+            <div className="row d-flex justify-content-center">
+            <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <div className="login">
+               
+                <h1>LOGIN</h1>
+                <Form className="test" onSubmit={this.handleSubmit}>
+                    <br/>
+                    <div id="email">
+                        <Form.Label className="label">Email</Form.Label>
+                        <Form.Control id="email" className="control" type="text" name="email" onChange={this.onChangeEmail} placeholder="Inserisci la tua email"/>
+                    </div>
+                    <div id="password">
+                        <Form.Label className="label">Password</Form.Label>
+                        <Form.Control id="password" className="control" type="password" name="password" onChange={this.onChangePassword} placeholder="Inserisci la tua password"/>
+                    </div>
+                    <Button className="bottone" variant="primary" type="submit">
+                        LOGIN
+                    </Button>
+                </Form>
+               
+                
+            </div>
+            </div>
+            </div>
+            </Card>
+            </div>
         )
+
     }
   }
 
