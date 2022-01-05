@@ -34,6 +34,7 @@ export default class Login extends Component{
         this.setState({popUp:false})
         console.log(this.state.popUp)
         this.setState({redirect:true})
+        window.location = "/profilo"
     }
 
     // Handlers definition
