@@ -6,6 +6,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import Login from "./views/login";
 import NavbarApp from "./views/navbar";
+import Profilo from "./views/profilo";
+import Logout from "./views/logout";
 
 class App extends Component {
   render() {
@@ -14,6 +16,8 @@ class App extends Component {
             <NavbarApp/>
               <Switch>
                   <Route exact path={["/login"]} component={Login}/>
+                  <Route exact path={["/profilo"]} component={Profilo}/>
+                  <Route exact path={["/logout"]} component={Logout}/>
               </Switch>
         </div>
     );

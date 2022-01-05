@@ -1,19 +1,16 @@
-
 import React from 'react'
 import { Component } from 'react'
 import {Navbar,Container,Nav } from 'react-bootstrap'
 import '../App.css'
 
 export default class NavbarApp  extends Component {
-  constructor(props){
-    super(props);
-   
-  }
+  
   
  //problema da risolvere PASSAGGIO DI COMPONENTI
   render(){
-    console.log(this.state.utente) //this.props.utente
-    if(this.state.utente===true) {
+    
+    console.log(localStorage.getItem("email")) 
+    if(localStorage.getItem("email")!==null) {
         return(
         <Navbar className="navbarStyle bg-black bg-opacity-10" expand="lg">
         <Container className="elementoNav">

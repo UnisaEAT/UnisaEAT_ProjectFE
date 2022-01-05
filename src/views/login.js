@@ -7,8 +7,6 @@ import { Component } from "react";
 import Popup from "../successPopUp";
 import { Redirect } from 'react-router-dom';
 
-
-
 export default class Login extends Component{
  
     constructor(props){
@@ -17,17 +15,19 @@ export default class Login extends Component{
         this.state={
             email:'',
             password:'',
+            ruolo:'',
             message:'',
             popUp:false,
             redirect:false,
         }
-        this.onChangeEmail=this.onChangeEmail.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);
-        this.submitForm=this.submitForm.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.onChangeEmail=this.onChangeEmail.bind(this)
+        this.onChangePassword=this.onChangePassword.bind(this)
+        this.submitForm=this.submitForm.bind(this)
+        this.handleSubmit=this.handleSubmit.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
-        this.errorRemoverOnChange=this.errorRemoverOnChange.bind(this);
+        this.errorRemoverOnChange=this.errorRemoverOnChange.bind(this)
+       
     }
           
     closePopUp(){
@@ -80,6 +80,7 @@ export default class Login extends Component{
         const utente={
             email: this.state.email,
             password: this.state.password,
+            ruolo:this.state.ruolo
         }
         this.submitForm(utente)
     }
@@ -91,40 +92,29 @@ export default class Login extends Component{
         .then(response => {
             console.log(response.data)
             if(response.data.hasOwnProperty('message')){
-                 this.setState({ message: response.data.message })
+                 this.setState({ message: response.data.message})
                  this.errorHandler(response.data)
             } 
             else{
-                console.log("qual")
+                localStorage.setItem("email", utente.email)
+                localStorage.setItem("ruolo", utente.ruolo)
                 this.setState({popUp:true})
-            
-
+                
             }
+            
         })
         .catch((err) => {
             
             console.log(err);
         })
-
-        /*axios.get('http://localhost:8080/api/login/authChecker')
-            .then(response=>{
-                console.log(response.data.message)
-                if(response.data.message=='Unauthorized')
-                    return(
-                        <NavbarApp utente={true}></NavbarApp>
         
-                    )
-                .catch((err) => {
-                    console.log(err);
-                })
-                        
-        })*/
     }
   
-  
+ 
     render(){
         if(this.state.redirect){
-            return( <Redirect to= '/'/>)
+            return( <Redirect to= '/profilo'/>) //mettere pagina Profilo
+            
         }else
         return(
             <div id="root"> {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
