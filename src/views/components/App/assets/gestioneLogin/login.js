@@ -4,7 +4,7 @@ import '../App.css';
 import './icss/login.css';
 import axios from 'axios';
 import { Component } from "react";
-import Popup from "../successPopUp";
+import Popup from "../../../../successPopUp";
 import { Redirect } from 'react-router-dom';
 
 export default class Login extends Component{
@@ -34,7 +34,7 @@ export default class Login extends Component{
         this.setState({popUp:false})
         console.log(this.state.popUp)
         this.setState({redirect:true})
-        window.location = "/profilo"
+        window.location = "/gestioneProfilo/profilo"
     }
 
     // Handlers definition

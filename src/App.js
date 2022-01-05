@@ -10,8 +10,8 @@ import RinnovoTesserino from "./views/gestioneTesserino/rinnovoTesserino";
 import RicaricaTesserino from "./views/gestioneTesserino/ricaricaTesserino";
 import VisualizzaSaldo from "./views/gestioneTesserino/visualizzaSaldo";
 import Profilo from "./views/gestioneProfilo/profilo";
-import Profilo from "./views/profilo";
 import Logout from "./views/logout";
+import Login from "./views/login";
 
 
 class App extends Component {
