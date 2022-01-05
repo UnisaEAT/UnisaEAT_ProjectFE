@@ -10,17 +10,16 @@ export default class VisualizzaSaldo extends Component
         super(props);
         this.state = {
             message: '',
-            error: '',
-            saldo: ''
+            error: false,
+            saldo: 0
         }
     }
 
     componentDidMount() {
 
-        // Controllo se l'utente possiede o ha il tesserino rinnovato
-        axios.get('http://localhost:3000/api/tesserino/isExpired')
+        // Controllo stato del tesserino dell'utente
+        axios.post('http://localhost:3000/api/tesserino/isExpired', {email: localStorage.getItem("email"), ruolo: localStorage.getItem("ruolo")})
             .then(response => {
-                console.log(response.data)
                 // Se il tesserino è scaduto
                 if(response.data.message===true)
                 {
@@ -38,7 +37,8 @@ export default class VisualizzaSaldo extends Component
             .catch((error) => {
                 console.log(error);
             })
-        axios.get('http://localhost:3000/api/tesserino/getInfoTesserino')
+
+        axios.post('http://localhost:3000/api/tesserino/getInfoTesserino', {email: localStorage.getItem("email"), ruolo: localStorage.getItem("ruolo")})
             .then(response => {
                 this.setState({ saldo: response.data.saldo })
             })
@@ -55,14 +55,17 @@ export default class VisualizzaSaldo extends Component
                 return (
                     <div className="tesserinoPosseduto">
                         <h2>Non possiedi un tesserino</h2>
+                        <Button href="/gestioneTesserino/richiestaTesserino" className="buttonRinnovaTesserinoScaduto">
+                            Richiedi tesserino
+                        </Button>
                     </div>
                 )
             else if(this.state.message==="scaduto")
                 return (
                     <div className="tesserinoPosseduto">
-                        <h2>Il tuo tesserino è scaduto</h2>
+                        <h2>Il tesserino è scaduto</h2>
                         <Button href="/gestioneTesserino/rinnovoTesserino" className="buttonRinnovaTesserinoScaduto">
-                            Ricarica tesserino
+                            Rinnova tesserino
                         </Button>
                     </div>
                 )

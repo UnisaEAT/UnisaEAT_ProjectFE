@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Form,Button,Col,Row} from "react-bootstrap";
 import axios from "axios";
 import '../componentsCss/rinnovoTesserinoCSS.css'
+import Popup from "../successPopUp";
 
 
 export default class RinnovoTesserino extends Component
@@ -25,7 +26,8 @@ export default class RinnovoTesserino extends Component
             cap: '',
             telefono: '',
             email: '',
-            confermaEmail: ''
+            confermaEmail: '',
+            popUp:false,
         }
 
         // Handlers binding
@@ -43,13 +45,15 @@ export default class RinnovoTesserino extends Component
         this.onChangeEmail = this.onChangeEmail.bind(this)
         this.onChangeConfermaEmail = this.onChangeConfermaEmail.bind(this)
 
+        this.closePopUp = this.closePopUp.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.submitForm = this.submitForm.bind(this)
     }
 
     componentDidMount()
     {
-        axios.get('http://localhost:3000/api/tesserino/isExpired')
+        //Controllo stato tesserino dell'utente
+        axios.post('http://localhost:3000/api/tesserino/isExpired',{email: localStorage.getItem("email"), ruolo: localStorage.getItem("ruolo")})
             .then(response => {
                 console.log(response.data)
                 // Se il tesserino è scaduto
@@ -58,13 +62,8 @@ export default class RinnovoTesserino extends Component
                     this.setState({error: true})
                     this.setState({message: "rinnovato"})
                 }
-                // Se il tesserino è scaduto ed è posseduto dall'utente
-                else if(response.data.message===true)
-                {
-                    this.setState({error: false})
-                }
                 // Se l'utente non possiede il tesserino
-                else
+                else if(response.data.message==="You don't have a Tesserino!")
                 {
                     this.setState({error: true})
                     this.setState({message: "non posseduto"})
@@ -226,21 +225,31 @@ export default class RinnovoTesserino extends Component
             telefono: this.state.telefono,
             email: this.state.email,
             confermaEmail: this.state.confermaEmail,
+
+            popUp:false,
+
+            emailSessione:localStorage.getItem("email"),
+            ruoloSessione: localStorage.getItem("ruolo")
         }
 
         this.submitForm(tesserino)
     }
 
+    closePopUp()
+    {
+        this.setState({popUp:false})
+        //TODO redirect to homepage
+        window.location = "/homepage"
+    }
+
     submitForm(tesserino)
     {
-
         axios.post('http://localhost:3000/api/tesserino/rinnovoTesserino', tesserino)
             .then(response => {
-                console.log(response.data)
-
                 // Se il rinnovo è andato a buon fine
-                if(response.data===true)
-                    window.location.reload(false);
+                if(response.data===true) {
+                    this.setState({popUp:true})
+                }
 
                 this.setState({ message: response.data.message })
                 this.errorHandler(response.data)
@@ -273,92 +282,96 @@ export default class RinnovoTesserino extends Component
                 )
         }
         return (
-            <div className="formContainer container">
-                <Form onSubmit={this.handleSubmit}>
-                    <h3>Dati anagrafici</h3>
-                    <Row className="mb-3">
-                        <Form.Group id="nome" as={Col}>
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control type="text" id="nome" name="nome" onChange={this.onChangeNome} placeholder="Inserisci il tuo nome"/>
-                        </Form.Group>
+            <div>
+            {/* Se popUp (boolean) è true */}
+            {this.state.popUp && <Popup message="Rinnovo avvenuto con successo" handleClose={this.closePopUp}/>}
+                <div className="formContainer container">
+                    <Form onSubmit={this.handleSubmit}>
+                        <h3>Dati anagrafici</h3>
+                        <Row className="mb-3">
+                            <Form.Group id="nome" as={Col}>
+                                <Form.Label>Nome</Form.Label>
+                                <Form.Control type="text" id="nome" name="nome" onChange={this.onChangeNome} placeholder="Inserisci il tuo nome"/>
+                            </Form.Group>
 
-                        <Form.Group id="cognome" as={Col}>
-                            <Form.Label>Cognome</Form.Label>
-                            <Form.Control type="text" id="cognome" name="cognome" onChange={this.onChangeCognome} placeholder="Inserisci il tuo cognome"/>
-                        </Form.Group>
-                    </Row>
+                            <Form.Group id="cognome" as={Col}>
+                                <Form.Label>Cognome</Form.Label>
+                                <Form.Control type="text" id="cognome" name="cognome" onChange={this.onChangeCognome} placeholder="Inserisci il tuo cognome"/>
+                            </Form.Group>
+                        </Row>
 
-                    <Row className="mb-3">
-                        <Form.Group id="dataDiNascita" as={Col}>
-                            <Form.Label>Data di nascita</Form.Label>
-                            <Form.Control type="text" id="dataDiNascita" name="dataDiNascita" onChange={this.onChangeDataDiNascita} placeholder="Inserisci il tuo nome"/>
-                        </Form.Group>
+                        <Row className="mb-3">
+                            <Form.Group id="dataDiNascita" as={Col}>
+                                <Form.Label>Data di nascita</Form.Label>
+                                <Form.Control type="text" id="dataDiNascita" name="dataDiNascita" onChange={this.onChangeDataDiNascita} placeholder="Inserisci il tuo nome"/>
+                            </Form.Group>
 
-                        <Form.Group id="comuneDiNascita" as={Col}>
-                            <Form.Label>Comune di nascita</Form.Label>
-                            <Form.Control type="text" id="comuneDiNascita" name="comuneDiNascita" onChange={this.onChangeComuneDiNascita}/>
-                        </Form.Group>
+                            <Form.Group id="comuneDiNascita" as={Col}>
+                                <Form.Label>Comune di nascita</Form.Label>
+                                <Form.Control type="text" id="comuneDiNascita" name="comuneDiNascita" onChange={this.onChangeComuneDiNascita}/>
+                            </Form.Group>
 
-                        <Form.Group id="provinciaDiNascita" as={Col}>
-                            <Form.Label>Provincia di nascita</Form.Label>
-                            <Form.Control type="text" id="provinciaDiNascita" name="provinciaDiNascita" onChange={this.onChangeProvinciaDiNascita}/>
-                        </Form.Group>
+                            <Form.Group id="provinciaDiNascita" as={Col}>
+                                <Form.Label>Provincia di nascita</Form.Label>
+                                <Form.Control type="text" id="provinciaDiNascita" name="provinciaDiNascita" onChange={this.onChangeProvinciaDiNascita}/>
+                            </Form.Group>
 
-                        <Form.Group id="cittadinanza" as={Col}>
-                            <Form.Label>Cittadinanza</Form.Label>
-                            <Form.Control type="text" id="cittadinanza" name="cittadinanza" onChange={this.onChangeCittadinanza}/>
-                        </Form.Group>
+                            <Form.Group id="cittadinanza" as={Col}>
+                                <Form.Label>Cittadinanza</Form.Label>
+                                <Form.Control type="text" id="cittadinanza" name="cittadinanza" onChange={this.onChangeCittadinanza}/>
+                            </Form.Group>
 
-                    </Row>
-                    <br/>
-                    <h3>Residenza</h3>
-                    <Row className="mb-3">
-                        <Form.Group id="indirizzo" as={Col}>
-                            <Form.Label>Indirizzo</Form.Label>
-                            <Form.Control type="text" id="indirizzo" name="indirizzo" onChange={this.onChangeIndirizzo} placeholder="Inserisci il tuo indirizzo"/>
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group id="provincia" as={Col}>
-                            <Form.Label>Provincia</Form.Label>
-                            <Form.Control type="text" id="provincia" name="provincia" onChange={this.onChangeProvincia}/>
-                        </Form.Group>
+                        </Row>
+                        <br/>
+                        <h3>Residenza</h3>
+                        <Row className="mb-3">
+                            <Form.Group id="indirizzo" as={Col}>
+                                <Form.Label>Indirizzo</Form.Label>
+                                <Form.Control type="text" id="indirizzo" name="indirizzo" onChange={this.onChangeIndirizzo} placeholder="Inserisci il tuo indirizzo"/>
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group id="provincia" as={Col}>
+                                <Form.Label>Provincia</Form.Label>
+                                <Form.Control type="text" id="provincia" name="provincia" onChange={this.onChangeProvincia}/>
+                            </Form.Group>
 
-                        <Form.Group id="comune" as={Col}>
-                            <Form.Label>Comune</Form.Label>
-                            <Form.Control type="text" id="comune" name="comune" onChange={this.onChangeComune}/>
-                        </Form.Group>
+                            <Form.Group id="comune" as={Col}>
+                                <Form.Label>Comune</Form.Label>
+                                <Form.Control type="text" id="comune" name="comune" onChange={this.onChangeComune}/>
+                            </Form.Group>
 
-                        <Form.Group id="cap" as={Col}>
-                            <Form.Label>CAP</Form.Label>
-                            <Form.Control type="number" id="cap" name="cap" onChange={this.onChangeCap}/>
-                        </Form.Group>
-                    </Row>
-                    <br/>
-                    <h3>Recapiti</h3>
-                    <Row className="mb-3">
-                        <Form.Group id="telefono" as={Col}>
-                            <Form.Label>Cellulare</Form.Label>
-                            <Form.Control type="number" id="telefono" name="telefono" onChange={this.onChangeTelefono} placeholder="Inserisci il tuo numero di cellulare" />
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group id="email" as={Col}>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" id="email" name="email" onChange={this.onChangeEmail} placeholder="Inserisci la tua email"/>
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group id="confermaEmail" as={Col}>
-                            <Form.Label>Conferma email</Form.Label>
-                            <Form.Control type="text" id="confermaEmail" name="confermaEmail" onChange={this.onChangeConfermaEmail} placeholder="Reinserisci la tua email"/>
-                        </Form.Group>
-                    </Row>
+                            <Form.Group id="cap" as={Col}>
+                                <Form.Label>CAP</Form.Label>
+                                <Form.Control type="number" id="cap" name="cap" onChange={this.onChangeCap}/>
+                            </Form.Group>
+                        </Row>
+                        <br/>
+                        <h3>Recapiti</h3>
+                        <Row className="mb-3">
+                            <Form.Group id="telefono" as={Col}>
+                                <Form.Label>Cellulare</Form.Label>
+                                <Form.Control type="number" id="telefono" name="telefono" onChange={this.onChangeTelefono} placeholder="Inserisci il tuo numero di cellulare" />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group id="email" as={Col}>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="text" id="email" name="email" onChange={this.onChangeEmail} placeholder="Inserisci la tua email"/>
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group id="confermaEmail" as={Col}>
+                                <Form.Label>Conferma email</Form.Label>
+                                <Form.Control type="text" id="confermaEmail" name="confermaEmail" onChange={this.onChangeConfermaEmail} placeholder="Reinserisci la tua email"/>
+                            </Form.Group>
+                        </Row>
 
-                    <Button className="submitButton" variant="primary" type="submit">
-                        Rinnova tesserino
-                    </Button>
-                </Form>
+                        <Button className="submitButton" variant="primary" type="submit">
+                            Rinnova tesserino
+                        </Button>
+                    </Form>
+                </div>
             </div>
         )
     }

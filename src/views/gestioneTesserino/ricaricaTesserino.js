@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import '../componentsCss/ricaricaTesserinoCSS.css'
 import axios from "axios";
-import {Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import Popup from "../successPopUp";
 
 export default class RicaricaTesserino extends Component {
@@ -18,7 +18,8 @@ export default class RicaricaTesserino extends Component {
             dataScadenzaCarta: '',
             cvv: '',
             importo: 0,
-            popUp: false
+            popUp: false,
+            error: false
         }
 
         // Handlers binding
@@ -32,6 +33,30 @@ export default class RicaricaTesserino extends Component {
         this.onChangeImporto = this.onChangeImporto.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+    }
+
+    componentDidMount() {
+
+        // Controllo se l'utente possiede o ha il tesserino rinnovato
+        axios.post('http://localhost:3000/api/tesserino/isExpired',{email: localStorage.getItem("email"), ruolo: localStorage.getItem("ruolo")})
+            .then(response => {
+                // Se il tesserino è scaduto
+                if(response.data.message===true)
+                {
+                    this.setState({error: true})
+                    this.setState({message: "scaduto"})
+                }
+                // Se l'utente non possiede il tesserino
+                else if(response.data.message==="You don't have a Tesserino!")
+                {
+                    this.setState({error: true})
+                    this.setState({message: "non posseduto"})
+                }
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     closePopUp()
@@ -126,6 +151,9 @@ export default class RicaricaTesserino extends Component {
             dataScadenzaCarta: this.state.dataScadenzaCarta,
             cvv: this.state.cvv,
             importo: this.state.importo,
+
+            email: localStorage.getItem("email"),
+            ruolo: localStorage.getItem("ruolo")
         }
 
         this.submitRicaricaForm(ricarica)
@@ -135,8 +163,6 @@ export default class RicaricaTesserino extends Component {
     submitRicaricaForm(ricarica) {
         axios.post('http://localhost:3000/api/tesserino/ricaricaTesserino', ricarica)
             .then(response => {
-                console.log("qui"+response.data.message)
-
                 //Se la ricarica è andata a buon fine
                 if(response.data.message===true)
                 {
@@ -161,11 +187,33 @@ export default class RicaricaTesserino extends Component {
 
 
     render() {
+        if(this.state.error)
+        {
+            if(this.state.message==="non posseduto")
+                return (
+                    <div className="tesserinoPosseduto">
+                        <h2>Non possiedi un tesserino</h2>
+                        <Button href="/gestioneTesserino/richiestaTesserino" className="buttonRinnovaTesserinoScaduto">
+                            Richiedi tesserino
+                        </Button>
+                    </div>
+                )
+            else if(this.state.message==="scaduto")
+                return (
+                    <div className="tesserinoPosseduto">
+                        <h2>Il tesserino è scaduto</h2>
+                        <Button href="/gestioneTesserino/rinnovoTesserino" className="buttonRinnovaTesserinoScaduto">
+                            Rinnova tesserino
+                        </Button>
+                    </div>
+                )
+        }
+
         return (
             <div id="root">
 
                 {/* Se popUp (boolean) è true */}
-                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                {this.state.popUp && <Popup message={'Ricarica di '+ this.state.importo + ' € effettuata!'} handleClose={this.closePopUp}/>}
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="containerRicarica container">
