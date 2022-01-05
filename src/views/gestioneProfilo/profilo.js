@@ -59,7 +59,7 @@ import Popup from "../successPopUp";
   }
       
   componentDidMount() {
-      axios.get('http://localhost:8080/api/profilo/findByEmail')
+      axios.get('http://localhost:3000/api/profilo/findByEmail')
         .then(res => {
     
           this.setState({
@@ -101,7 +101,7 @@ import Popup from "../successPopUp";
       inputConfirmPassword: this.state.inputConfirmPassword,
   }
       console.log(newPsw);
-      axios.post('http://localhost:8080/api/profilo/updatePassword',newPsw)
+      axios.post('http://localhost:3000/api/profilo/updatePassword',newPsw)
       .then(res=> {
         if(res.data.message===true)
         {

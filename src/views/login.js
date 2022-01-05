@@ -4,7 +4,7 @@ import '../App.css';
 import './icss/login.css';
 import axios from 'axios';
 import { Component } from "react";
-import Popup from "../successPopUp";
+import Popup from "./successPopUp";
 import { Redirect } from 'react-router-dom';
 
 export default class Login extends Component{
@@ -89,16 +89,18 @@ export default class Login extends Component{
     submitForm(utente){
        
         console.log(utente);
-        axios.post('http://localhost:8080/api/login/login',utente)
+        axios.post('http://localhost:3000/api/login/login',utente)
         .then(response => {
-            console.log(response.data)
+            console.log("response:"+response.data.ruolo)
             if(response.data.hasOwnProperty('message')){
                  this.setState({ message: response.data.message})
                  this.errorHandler(response.data)
             } 
             else{
-                localStorage.setItem("email", utente.email)
-                localStorage.setItem("ruolo", utente.ruolo)
+
+                localStorage.setItem("email", response.data.email)
+                localStorage.setItem("ruolo", response.data.ruolo)
+                console.log("QUI"+utente.ruolo)
                 this.setState({popUp:true})
                 
             }
