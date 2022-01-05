@@ -43,6 +43,13 @@ body {
     left: -10px;
 }
 
+.sfondo{
+  margin-bottom: 10%;
+}
+
+.navbar{
+  background: lightblue;
+}
 
 .elementoIconaUtente{
     position: absolute;
@@ -87,6 +94,11 @@ body {
     width: 50%;
     border: 1px solid black;
     margin-top: 10%;
+}
+
+.card{
+  position: inherit;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
