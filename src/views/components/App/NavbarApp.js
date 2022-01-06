@@ -21,7 +21,7 @@ function NavbarApp() {
                                    width="65"/>
 
                         </Nav.Link>
-                        <Nav.Link className="elementoIconaUtente" href="/">
+                        <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                             <Image src={iconaUtente}
                                    width="50"/>
                         </Nav.Link>

@@ -3,6 +3,7 @@ import {Card, Row, Col, Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import '../../styles/gestioneProfilo/profilo.css';
 import Popup from "../App/successPopUp";
+import { Redirect } from 'react-router-dom';
 
 export default class Profilo extends Component {
 
@@ -57,7 +58,7 @@ export default class Profilo extends Component {
     componentDidMount() {
         axios.get('http://localhost:8080/api/profilo/findByEmail')
             .then(res => {
-
+                    console.log(res.data)
                     this.setState({
                         utente: res.data
                     })
@@ -110,10 +111,11 @@ export default class Profilo extends Component {
     }
 
 
-    //se non è un cliente mostra il bottone "modifica inputPassword"
+    //se non è un cliente mostra il bottone "modifica Password"
     render() {
-
-        if (this.state.utente.ruolo != "Cliente") {
+        console.log(localStorage.getItem("email"))
+        if(localStorage.getItem("email")===null){  return(<Redirect to='/login'/>)}
+        else if (localStorage.getItem("ruolo")=== "admin") {
 
             return (
                 <div id="root">
@@ -164,7 +166,7 @@ export default class Profilo extends Component {
                     </Card>
                 </div>
             )
-        } else {
+        } else if (localStorage.getItem("ruolo")=== "personale"){
             return (
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
@@ -173,17 +175,79 @@ export default class Profilo extends Component {
                                 <h1>AREA PERSONALE</h1>
                                 <Col>
                                     <Row>Nome {this.state.utente.nome}</Row>
-                                    <Row>Cognome {this.state.utente.nognome}</Row>
+                                    <Row>Cognome {this.state.utente.cognome}</Row>
                                     <Row>Email {this.state.utente.email}</Row>
+                                    <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
+                                    <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
+                                    <Row>Ruolo{this.state.utente.ruolo}</Row>
+                                    <Row>Disponibilità {this.state.utente.disponibilita}</Row>
                                     <Row>Indirizzo {this.state.utente.indirizzo}</Row>
+                                </Col>
+
+                                <Form className="test" onSubmit={this.onSubmit}>
+                                        <br/>
+                                        <div id="inputOldPassword">
+                                            <Form.Label className="label">Vecchia Password</Form.Label>
+                                            <Form.Control className="control" type="password" name="inputOldPassword"
+                                                          id="inputOldPassword" onChange={this.onChangeinputOldPassword}
+                                                          placeholder="Inserisci la tua vecchia assword"/>
+                                        </div>
+
+                                        <div id="inputPassword">
+                                            <Form.Label className="label">Nuova Password</Form.Label>
+                                            <Form.Control className="control" type="password" name="inputPassword"
+                                                          id="inputPassword" onChange={this.onChangeinputPassword}
+                                                          placeholder="Inserisci la tua nuova Password"/>
+                                        </div>
+
+                                        <div id="inputConfirmPassword">
+                                            <Form.Label className="label">Conferma Nuova Password</Form.Label>
+                                            <Form.Control className="control" type="password"
+                                                          name="inputConfirmPassword" id="inputConfirmPassword"
+                                                          onChange={this.onChangeConfirminputPassword}
+                                                          placeholder="Inserisci di nuovo la nuova Password"/>
+                                        </div>
+
+                                        <Button className="bottone" variant="primary" type="submit">
+                                            Modifica Password
+                                        </Button>
+
+                                    </Form>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+                
+            )
+        } else if (localStorage.getItem("ruolo")=== "cliente"){
+            return (
+                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                    <div className="row d-flex justify-content-center">
+                        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                            <div className="AreaPersonale">
+                                <h1>AREA PERSONALE</h1>
+                                <Col>
+                                    <Row>Nome {this.state.utente.nome}</Row>
+                                    <Row>Cognome {this.state.utente.cognome}</Row>
+                                    <Row>Città {this.state.utente.citta}</Row>
+                                    <Row>Email {this.state.utente.email}</Row>
+                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>ù
+                                    <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
+                                    <Row>Provincia di nascita {this.state.utente.provinciaDiNascita}</Row>
+                                    <Row>Comune di nascita {this.state.utente.comuneDiNascita}</Row>
+                                    <Row>Cittadinanza {this.state.utente.cittadinanza}</Row>
+                                    <Row>Provincia{this.state.utente.provincia}</Row>
+                                    <Row>CAP{this.state.utente.cap}</Row>
+                                    <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
+                                    
                                 </Col>
                             </div>
                         </div>
                     </div>
                 </Card>
+                
             )
-        }
     }
 }
+}
 //export default Profilo;
-
