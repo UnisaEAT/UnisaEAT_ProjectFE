@@ -1,0 +1,189 @@
+import React, {Component} from 'react';
+import {Card, Row, Col, Form, Button} from 'react-bootstrap';
+import axios from 'axios';
+import '../../styles/gestioneProfilo/profilo.css';
+import Popup from "../App/successPopUp";
+
+export default class Profilo extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            utente: {},
+            inputPassword: '',
+            inputOldPassword: '',
+            inputConfirmPassword: '',
+            popUp: false //mettere false dopo
+
+        }
+        this.onChangeinputPassword = this.onChangeinputPassword.bind(this);
+        this.onChangeinputOldPassword = this.onChangeinputOldPassword.bind(this);
+        this.onChangeConfirminputPassword = this.onChangeConfirminputPassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.errorHandler = this.errorHandler.bind(this)
+        this.closePopUp = this.closePopUp.bind(this)
+    }
+
+    closePopUp() {
+        this.setState({popUp: false})
+        console.log(this.state.popUp)
+        window.location.reload(false);
+    }
+
+    // Handlers definition
+    errorHandler(error) {
+        let inputError = error.input;
+        let errorMessage = error.message;
+
+        console.log(inputError)
+        const rootElement = document.getElementById(inputError)
+
+        if (rootElement.childNodes.length < 3) {
+            const element = document.createElement('h1')
+            element.id = inputError
+            element.textContent = errorMessage
+            element.style = "color:red;font-size:15px"
+            rootElement.appendChild(element)
+        }
+    }
+
+    errorRemoverOnChange(e) {
+        let parent = document.getElementById(e.target.id);
+        if (parent.childNodes.length > 2)
+            parent.removeChild(parent.lastElementChild)
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:8080/api/profilo/findByEmail')
+            .then(res => {
+
+                    this.setState({
+                        utente: res.data
+                    })
+                }
+            )
+
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+    }
+
+    onChangeinputPassword(e) {
+        this.setState({
+            inputPassword: e.target.value
+        })
+    }
+
+    onChangeinputOldPassword(e) {
+        this.setState({
+            inputOldPassword: e.target.value
+        })
+    }
+
+    onChangeConfirminputPassword(e) {
+        this.setState({
+            inputConfirmPassword: e.target.value
+        })
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        const newPsw = {
+            inputPassword: this.state.inputPassword,
+            inputOldPassword: this.state.inputOldPassword,
+            inputConfirmPassword: this.state.inputConfirmPassword,
+        }
+        console.log(newPsw);
+        axios.post('http://localhost:3000/api/profilo/updatePassword', newPsw)
+            .then(res => {
+                if (res.data.message === true) {
+                    this.setState({popUp: true})
+                } else if (res.data.input != null) {
+                    console.log(res.data)
+                    this.errorHandler(res.data)
+                }
+            });
+
+    }
+
+
+    //se non è un cliente mostra il bottone "modifica inputPassword"
+    render() {
+
+        if (this.state.utente.ruolo != "Cliente") {
+
+            return (
+                <div id="root">
+                    {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                    <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                                <div className="AreaPersonale">
+                                    <h1>AREA PERSONALE</h1>
+                                    <Col>
+                                        <Row>Nome: {this.state.utente.nome}</Row>
+                                        <Row>Cognome: {this.state.utente.cognome}</Row>
+                                        <Row>Email: {this.state.utente.email}</Row>
+                                    </Col>
+
+                                    <Form className="test" onSubmit={this.onSubmit}>
+                                        <br/>
+                                        <div id="inputOldPassword">
+                                            <Form.Label className="label">Vecchia Password</Form.Label>
+                                            <Form.Control className="control" type="password" name="inputOldPassword"
+                                                          id="inputOldPassword" onChange={this.onChangeinputOldPassword}
+                                                          placeholder="Inserisci la tua vecchia assword"/>
+                                        </div>
+
+                                        <div id="inputPassword">
+                                            <Form.Label className="label">Nuova Password</Form.Label>
+                                            <Form.Control className="control" type="password" name="inputPassword"
+                                                          id="inputPassword" onChange={this.onChangeinputPassword}
+                                                          placeholder="Inserisci la tua nuova Password"/>
+                                        </div>
+
+                                        <div id="inputConfirmPassword">
+                                            <Form.Label className="label">Conferma Nuova Password</Form.Label>
+                                            <Form.Control className="control" type="password"
+                                                          name="inputConfirmPassword" id="inputConfirmPassword"
+                                                          onChange={this.onChangeConfirminputPassword}
+                                                          placeholder="Inserisci di nuovo la nuova Password"/>
+                                        </div>
+
+                                        <Button className="bottone" variant="primary" type="submit">
+                                            Modifica Password
+                                        </Button>
+
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+            )
+        } else {
+            return (
+                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                    <div className="row d-flex justify-content-center">
+                        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                            <div className="AreaPersonale">
+                                <h1>AREA PERSONALE</h1>
+                                <Col>
+                                    <Row>Nome {this.state.utente.nome}</Row>
+                                    <Row>Cognome {this.state.utente.nognome}</Row>
+                                    <Row>Email {this.state.utente.email}</Row>
+                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>
+                                </Col>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            )
+        }
+    }
+}
+//export default Profilo;
+

@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 
-.fw-bold,p{
+.fw-bold, p {
     text-align: initial;
 }
 
@@ -32,47 +32,6 @@ body {
     margin-top: -25px;
 }
 
-.elementoNav {
-    width: 90px;
-    margin-top: -9px;
-    margin-bottom: -9px;
-}
-
-.elementoLogo {
-    position: absolute;
-    left: -10px;
-}
-
-.sfondo{
-  margin-bottom: 10%;
-}
-
-.navbar{
-  background: lightblue;
-}
-
-.elementoIconaUtente{
-    position: absolute;
-    right: -8px;
-    top: 5px;
-}
-
-.containerStyle {
-    margin-left: 0;
-    display: inherit;
-}
-
-.nav-link {
-    padding: -1.5rem 1rem !important;
-
-}
-.navbar-nav{
-    padding-right: 5.5rem !important;
-}
-.navbarStyle {
-    background-color: transparent;
-    background: #3B579D;
-}
 
 .buttonStyle {
     top: 5px !important;
@@ -89,17 +48,6 @@ body {
     background: grey;
 }
 
-.inserisciPersonale {
-    margin: auto;
-    width: 50%;
-    border: 1px solid black;
-    margin-top: 10%;
-}
-
-.card{
-  position: inherit;
-
-}
 
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {

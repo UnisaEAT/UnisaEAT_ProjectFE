@@ -3,7 +3,7 @@ import {Container, Nav, Navbar, Image} from "react-bootstrap";
 import logo from "../../assets/logoUnisaEAT.png"
 import notifiche from "../../assets/Notifiche.png"
 import iconaUtente from "../../assets/iconaUtente.png"
-import "../../../App.css"
+import "../../styles/AppStyle/NavbarApp.css"
 
 function NavbarApp() {
     return (
@@ -21,10 +21,10 @@ function NavbarApp() {
                                    width="65"/>
 
                         </Nav.Link>
-                            <Nav.Link className="elementoIconaUtente" href="/">
-                                <Image src={iconaUtente}
-                                       width="50"/>
-                            </Nav.Link>
+                        <Nav.Link className="elementoIconaUtente" href="/">
+                            <Image src={iconaUtente}
+                                   width="50"/>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
