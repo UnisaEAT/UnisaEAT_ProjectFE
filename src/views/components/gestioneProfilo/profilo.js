@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Row, Col, Form, Button} from 'react-bootstrap';
+import {Card, Row, Col, Form, Button,ListGroup} from 'react-bootstrap';
 import axios from 'axios';
 import '../../styles/gestioneProfilo/profilo.css';
 import Popup from "../App/successPopUp";
@@ -11,7 +11,7 @@ export default class Profilo extends Component {
         super(props);
 
         this.state = {
-            utente: {},
+            utente: [],
             /*nome:'',
             cognome:'',
             email:'',
@@ -74,8 +74,8 @@ export default class Profilo extends Component {
         ruolo: localStorage.getItem("ruolo")})
             .then(res => {
                     console.log(res.data) //controllo
-                    this.setState({nome: res.data})
-                    console.log(this.utente+" ciao")
+                    this.setState({utente: res.data})
+                   
                 })
 
             .catch( (error) => {
@@ -115,7 +115,7 @@ export default class Profilo extends Component {
     }
 
     submitForm(newPsw) {
-        
+        console.log(this.state.utente.nome+" ciao")
         console.log(newPsw);
         axios.post('http://localhost:3000/api/profilo/updatePassword', newPsw)
             .then(response => {
@@ -146,18 +146,21 @@ export default class Profilo extends Component {
                 
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                    <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                    <Card className=" mx-auto col-xl-7 justify-content-center text-center position inherit">
                         <div className="row d-flex justify-content-center">
                             <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                                 <div className="AreaPersonale">
                                     <h1>AREA PERSONALE</h1>
-                                    
-                                    <Col>
-                                        <Row>Nome: {this.state.utente.nome}</Row>
-                                        <Row>Cognome: {this.state.utente.cognome}</Row>
-                                        <Row>Email: {this.state.utente.email}</Row>
-                                    </Col>
 
+                                    {this.state.utente.map(function(oggetto) {
+                                    return(
+                                        <Col >
+                                            <Row>Nome: {oggetto.nome}</Row>
+                                            <Row>Cognome: {oggetto.cognome}</Row>
+                                            <Row>Email: {oggetto.email}</Row>
+                                        </Col>
+                                    )})
+                                    }
                                     <Form className="test" onSubmit={this.submitForm}>
                                         <br/>
                                         <div id="inputOldPassword">
@@ -200,18 +203,20 @@ export default class Profilo extends Component {
                     <div className="row d-flex justify-content-center">
                         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                             <div className="AreaPersonale">
-                                <h1>AREA PERSONALE</h1>
-                                <Col>
-                                    <Row>Nome {this.state.utente.nome}</Row>
-                                    <Row>Cognome {this.state.utente.cognome}</Row>
-                                    <Row>Email {this.state.utente.email}</Row>
-                                    <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
-                                    <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
-                                    <Row>Ruolo{this.state.utente.ruolo}</Row>
-                                    <Row>Disponibilità {this.state.utente.disponibilita}</Row>
-                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>
-                                </Col>
-
+                            <h1>AREA PERSONALE</h1>
+                            {this.state.utente.map(function(oggetto) {
+                                return(
+                                    <Col>
+                                        <Row>Nome {this.state.utente.nome}</Row>
+                                        <Row>Cognome {this.state.utente.cognome}</Row>
+                                        <Row>Email {this.state.utente.email}</Row>
+                                        <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
+                                        <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
+                                        <Row>Ruolo{this.state.utente.ruolo}</Row>
+                                        <Row>Disponibilità {this.state.utente.disponibilita}</Row>
+                                        <Row>Indirizzo {this.state.utente.indirizzo}</Row>
+                                    </Col>
+                                )})}
                                 <Form className="test" onSubmit={this.submitForm}>
                                         <br/>
                                         <div id="inputOldPassword">
@@ -254,6 +259,8 @@ export default class Profilo extends Component {
                         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                             <div className="AreaPersonale">
                                 <h1>AREA PERSONALE</h1>
+                            {this.state.utente.map(function(oggetto) {
+                                return(
                                 <Col>
                                     <Row>Nome {this.state.utente.nome}</Row>
                                     <Row>Cognome {this.state.utente.cognome}</Row>
@@ -269,6 +276,7 @@ export default class Profilo extends Component {
                                     <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
                                     
                                 </Col>
+                                )})}
                             </div>
                         </div>
                     </div>

@@ -90,7 +90,7 @@ export default class Login extends Component {
         console.log(utente);
         axios.post('http://localhost:8080/api/login/login', utente)
             .then(response => {
-                console.log("response:" + response.data.ruolo)
+                console.log("response:" + response.data.message)
                 if (response.data.hasOwnProperty('message')) {
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
