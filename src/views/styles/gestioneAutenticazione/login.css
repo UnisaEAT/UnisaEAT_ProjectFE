@@ -3,7 +3,8 @@
     text-align: center;
 }
 
-.bottone {
+.bottoneLogin {
+    position: inherit;
     background: lightblue;
     margin-bottom: 10%;
     color: black;

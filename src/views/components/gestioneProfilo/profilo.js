@@ -73,9 +73,9 @@ export default class Profilo extends Component {
         axios.post('http://localhost:8080/api/profilo/findByEmail', {email: localStorage.getItem("email"),
         ruolo: localStorage.getItem("ruolo")})
             .then(res => {
-                    console.log(res.data.nome) //controllo
-                    this.setState({nome: res.data.nome})
-                    console.log(this.utente.nome+" ciao")
+                    console.log(res.data) //controllo
+                    this.setState({nome: res.data})
+                    console.log(this.utente+" ciao")
                 })
 
             .catch( (error) => {
@@ -259,7 +259,7 @@ export default class Profilo extends Component {
                                     <Row>Cognome {this.state.utente.cognome}</Row>
                                     <Row>Città {this.state.utente.citta}</Row>
                                     <Row>Email {this.state.utente.email}</Row>
-                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>ù
+                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>
                                     <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
                                     <Row>Provincia di nascita {this.state.utente.provinciaDiNascita}</Row>
                                     <Row>Comune di nascita {this.state.utente.comuneDiNascita}</Row>

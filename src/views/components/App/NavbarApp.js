@@ -1,10 +1,10 @@
 import React from 'react'
-import {Container, Nav, Navbar, Image} from "react-bootstrap";
+import {Container, Nav, Navbar, Image,Button} from "react-bootstrap";
 import logo from "../../assets/logoUnisaEAT.png"
 import notifiche from "../../assets/Notifiche.png"
 import iconaUtente from "../../assets/iconaUtente.png"
 import "../../styles/AppStyle/NavbarApp.css"
-
+import "../../styles/gestioneAutenticazione/login.css"
 function NavbarApp() {
     console.log(localStorage.getItem("email")) 
     if(localStorage.getItem("email")===null) {
@@ -27,10 +27,9 @@ function NavbarApp() {
                             <Image src={iconaUtente}
                                    width="50"/>
                         </Nav.Link>
-                        <Nav.Link className="elementoIconaUtente" href="/login">
-                            LOGIN
-                        </Nav.Link>
+                        
                     </Nav>
+                    <Button  href="/login">LOGIN</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
@@ -56,10 +55,8 @@ function NavbarApp() {
                                    width="50"/>
                         </Nav.Link>
                         <br></br>
-                        <Nav.Link className="elementoIconaUtente" href="/logout">
-                            LOGOUT
-                        </Nav.Link>
                     </Nav>
+                    <Button  href="/logout">LOGOUT</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

@@ -4,7 +4,7 @@ import '../../../App.css';
 import '../../styles/gestioneAutenticazione/login.css';
 import axios from 'axios';
 import {Component} from "react";
-import Popup from "../App/successPopUp";
+import Popup from "./popUp";
 import {Redirect} from 'react-router-dom';
 
 export default class Login extends Component {
@@ -34,7 +34,7 @@ export default class Login extends Component {
         this.setState({popUp: false})
         console.log(this.state.popUp)
         this.setState({redirect: true})
-        window.location = "/profilo"
+        window.location = "/gestioneProfilo/profilo"
     }
 
     // Handlers definition
@@ -137,7 +137,7 @@ export default class Login extends Component {
                                                           name="password" onChange={this.onChangePassword}
                                                           placeholder="Inserisci la tua password"/>
                                         </div>
-                                        <Button className="bottone" variant="primary" type="submit">
+                                        <Button className="bottoneLogin position-inherit" variant="primary" type="submit" >
                                             LOGIN
                                         </Button>
                                     </Form>
