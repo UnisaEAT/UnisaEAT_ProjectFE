@@ -12,6 +12,18 @@ export default class Profilo extends Component {
 
         this.state = {
             utente: {},
+            /*nome:'',
+            cognome:'',
+            email:'',
+            password:'',
+            citta:'',
+            indirizzo:'',
+            dataDiNascita:'',
+            provinciaDiNascita:'',
+            cittadinanza:'',
+            provincia:'',
+            cap:'',
+            telefono:'',*/
             inputPassword: '',
             inputOldPassword: '',
             inputConfirmPassword: '',
@@ -21,9 +33,10 @@ export default class Profilo extends Component {
         this.onChangeinputPassword = this.onChangeinputPassword.bind(this);
         this.onChangeinputOldPassword = this.onChangeinputOldPassword.bind(this);
         this.onChangeConfirminputPassword = this.onChangeConfirminputPassword.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.submitForm = this.submitForm.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     closePopUp() {
@@ -56,16 +69,16 @@ export default class Profilo extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/api/profilo/findByEmail')
+        console.log(localStorage.getItem("ruolo"))
+        axios.post('http://localhost:8080/api/profilo/findByEmail', {email: localStorage.getItem("email"),
+        ruolo: localStorage.getItem("ruolo")})
             .then(res => {
-                    console.log(res.data)
-                    this.setState({
-                        utente: res.data
-                    })
-                }
-            )
+                    console.log(res.data.nome) //controllo
+                    this.setState({nome: res.data.nome})
+                    console.log(this.utente.nome+" ciao")
+                })
 
-            .catch(function (error) {
+            .catch( (error) => {
                 console.log(error);
             })
 
@@ -90,34 +103,47 @@ export default class Profilo extends Component {
         })
     }
 
-    onSubmit(e) {
-        e.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault()
+        // Oggetto da passare con il POST al controller per la lettura dei campi del form
         const newPsw = {
             inputPassword: this.state.inputPassword,
             inputOldPassword: this.state.inputOldPassword,
             inputConfirmPassword: this.state.inputConfirmPassword,
         }
+        this.submitForm(newPsw)
+    }
+
+    submitForm(newPsw) {
+        
         console.log(newPsw);
         axios.post('http://localhost:3000/api/profilo/updatePassword', newPsw)
-            .then(res => {
-                if (res.data.message === true) {
+            .then(response => {
+                if (response.data.hasOwnProperty('message')) {
+                    this.setState({message: response.data.message})
+                    this.errorHandler(response.data)
+                } else {
                     this.setState({popUp: true})
-                } else if (res.data.input != null) {
-                    console.log(res.data)
-                    this.errorHandler(res.data)
+
                 }
-            });
+
+            })
+            .catch((err) => {
+
+                console.log(err);
+            })
 
     }
 
 
     //se non è un cliente mostra il bottone "modifica Password"
     render() {
-        console.log(localStorage.getItem("email"))
+       
         if(localStorage.getItem("email")===null){  return(<Redirect to='/login'/>)}
         else if (localStorage.getItem("ruolo")=== "admin") {
-
+            console.log("ciao "+this.state.utente.nome)
             return (
+                
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
                     <Card className=" mx-auto col-xl-7 justify-content-center text-center">
@@ -125,13 +151,14 @@ export default class Profilo extends Component {
                             <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                                 <div className="AreaPersonale">
                                     <h1>AREA PERSONALE</h1>
+                                    
                                     <Col>
                                         <Row>Nome: {this.state.utente.nome}</Row>
                                         <Row>Cognome: {this.state.utente.cognome}</Row>
                                         <Row>Email: {this.state.utente.email}</Row>
                                     </Col>
 
-                                    <Form className="test" onSubmit={this.onSubmit}>
+                                    <Form className="test" onSubmit={this.submitForm}>
                                         <br/>
                                         <div id="inputOldPassword">
                                             <Form.Label className="label">Vecchia Password</Form.Label>
@@ -158,7 +185,7 @@ export default class Profilo extends Component {
                                         <Button className="bottone" variant="primary" type="submit">
                                             Modifica Password
                                         </Button>
-
+              
                                     </Form>
                                 </div>
                             </div>
@@ -167,6 +194,7 @@ export default class Profilo extends Component {
                 </div>
             )
         } else if (localStorage.getItem("ruolo")=== "personale"){
+           
             return (
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
@@ -184,7 +212,7 @@ export default class Profilo extends Component {
                                     <Row>Indirizzo {this.state.utente.indirizzo}</Row>
                                 </Col>
 
-                                <Form className="test" onSubmit={this.onSubmit}>
+                                <Form className="test" onSubmit={this.submitForm}>
                                         <br/>
                                         <div id="inputOldPassword">
                                             <Form.Label className="label">Vecchia Password</Form.Label>

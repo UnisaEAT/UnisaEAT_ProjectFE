@@ -97,7 +97,6 @@ export default class Login extends Component {
                 } else {
                     localStorage.setItem("email", response.data.email)
                     localStorage.setItem("ruolo", response.data.ruolo)
-                    console.log("QUI" + utente.ruolo)
                     this.setState({popUp: true})
 
                 }
