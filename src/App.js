@@ -14,6 +14,7 @@ import Profilo from "./views/components/gestioneProfilo/profilo";
 import InserimentoPersonale from "./views/components/gestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/VisualizzazioneListaPersonale";
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
+import StatisticheSettimanali from "./views/components/gestioneStatistiche/statisticheSettimanali";
 
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
@@ -35,6 +36,7 @@ class App extends Component {
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
                   <Route exact path={["/login"]} component={Login}/>
                   <Route exact path={["/logout"]} component={Logout}/>
+		  <Route exact path={["/statisticheSettimanali"]} component={StatisticheSettimanali}/>
               </Switch>
         </div>
     );

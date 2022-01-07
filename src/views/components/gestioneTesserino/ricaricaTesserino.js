@@ -158,7 +158,7 @@ export default class RicaricaTesserino extends Component {
 
     // Invio dell'oggetto @param ricarica al metodo ricaricaTesserino di controller_tesserino con una POST
     submitRicaricaForm(ricarica) {
-        axios.post('http://localhost:3000/api/tesserino/ricaricaTesserino', ricarica)
+        axios.post('http://localhost:8080/api/tesserino/ricaricaTesserino', ricarica)
             .then(response => {
                 //Se la ricarica è andata a buon fine
                 if (response.data.message === true) {
