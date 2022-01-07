@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Card, Row, Col, Form, Button,ListGroup} from 'react-bootstrap';
+import {Card, Row, Col, Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import '../../styles/gestioneProfilo/profilo.css';
-import Popup from "../App/successPopUp";
 import { Redirect } from 'react-router-dom';
+import Popup from "../App/successPopUp";
 
 export default class Profilo extends Component {
 
@@ -12,22 +12,10 @@ export default class Profilo extends Component {
 
         this.state = {
             utente: [],
-            /*nome:'',
-            cognome:'',
-            email:'',
-            password:'',
-            citta:'',
-            indirizzo:'',
-            dataDiNascita:'',
-            provinciaDiNascita:'',
-            cittadinanza:'',
-            provincia:'',
-            cap:'',
-            telefono:'',*/
             inputPassword: '',
             inputOldPassword: '',
             inputConfirmPassword: '',
-            popUp: false //mettere false dopo
+            popUp: false 
 
         }
         this.onChangeinputPassword = this.onChangeinputPassword.bind(this);
@@ -41,7 +29,6 @@ export default class Profilo extends Component {
 
     closePopUp() {
         this.setState({popUp: false})
-        console.log(this.state.popUp)
         window.location.reload(false);
     }
 
@@ -110,23 +97,27 @@ export default class Profilo extends Component {
             inputPassword: this.state.inputPassword,
             inputOldPassword: this.state.inputOldPassword,
             inputConfirmPassword: this.state.inputConfirmPassword,
+            email: localStorage.getItem("email"),
+            ruolo: localStorage.getItem("ruolo"),
+            popUp: false
         }
+        console.log("PASSWORD"+newPsw);
         this.submitForm(newPsw)
     }
 
     submitForm(newPsw) {
-        console.log(this.state.utente.nome+" ciao")
-        console.log(newPsw);
-        axios.post('http://localhost:3000/api/profilo/updatePassword', newPsw)
+        console.log("PASSWORD"+newPsw);
+        axios.post('http://localhost:8080/api/profilo/updatePassword', newPsw)
             .then(response => {
+                console.log(response.data)
                 if (response.data.hasOwnProperty('message')) {
                     this.setState({message: response.data.message})
-                    this.errorHandler(response.data)
+                    this.errorHandler(response.data.message)
+                   
                 } else {
                     this.setState({popUp: true})
 
                 }
-
             })
             .catch((err) => {
 
@@ -136,14 +127,14 @@ export default class Profilo extends Component {
     }
 
 
-    //se non è un cliente mostra il bottone "modifica Password"
+    //Se non è un cliente mostra il bottone "modifica Password"
     render() {
-       
+        console.log(localStorage.getItem("ruolo"))
+        //se non c'è nessun utente loggato ritorna alla pagina di login
         if(localStorage.getItem("email")===null){  return(<Redirect to='/login'/>)}
-        else if (localStorage.getItem("ruolo")=== "admin") {
-            console.log("ciao "+this.state.utente.nome)
-            return (
-                
+
+        else if (localStorage.getItem("ruolo")==="admin") {
+            return(
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
                     <Card className=" mx-auto col-xl-7 justify-content-center text-center position inherit">
@@ -161,7 +152,7 @@ export default class Profilo extends Component {
                                         </Col>
                                     )})
                                     }
-                                    <Form className="test" onSubmit={this.submitForm}>
+                                    <Form className="test" onSubmit={this.handleSubmit}>
                                         <br/>
                                         <div id="inputOldPassword">
                                             <Form.Label className="label">Vecchia Password</Form.Label>
@@ -185,7 +176,7 @@ export default class Profilo extends Component {
                                                           placeholder="Inserisci di nuovo la nuova Password"/>
                                         </div>
 
-                                        <Button className="bottone" variant="primary" type="submit">
+                                        <Button className="bottone" variant="primary" type="submit" >
                                             Modifica Password
                                         </Button>
               
@@ -195,28 +186,31 @@ export default class Profilo extends Component {
                         </div>
                     </Card>
                 </div>
-            )
-        } else if (localStorage.getItem("ruolo")=== "personale"){
-           
-            return (
+            );
+        } else if (localStorage.getItem("ruolo")==="Personale"){
+            return(
+                <div id="root">
+                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
                         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                             <div className="AreaPersonale">
                             <h1>AREA PERSONALE</h1>
-                            {this.state.utente.map(function(oggetto) {
+                                {this.state.utente.map(function(oggetto) {
                                 return(
+                                    
                                     <Col>
-                                        <Row>Nome {this.state.utente.nome}</Row>
-                                        <Row>Cognome {this.state.utente.cognome}</Row>
-                                        <Row>Email {this.state.utente.email}</Row>
-                                        <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
-                                        <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
-                                        <Row>Ruolo{this.state.utente.ruolo}</Row>
-                                        <Row>Disponibilità {this.state.utente.disponibilita}</Row>
-                                        <Row>Indirizzo {this.state.utente.indirizzo}</Row>
+                                        <Row>Nome {oggetto.nome}</Row>
+                                        <Row>Cognome {oggetto.cognome}</Row>
+                                        <Row>Email {oggetto.email}</Row>
+                                        <Row>Numero di telefono{oggetto.numeroTelefono}</Row>
+                                        <Row>Data di nascita {oggetto.dataDiNascita}</Row>
+                                        <Row>Ruolo{oggetto.ruolo}</Row>
+                                        <Row>Disponibilità {oggetto.disponibilita}</Row>
+                                        <Row>Indirizzo {oggetto.indirizzo}</Row>
                                     </Col>
-                                )})}
+                                )})
+                                }
                                 <Form className="test" onSubmit={this.submitForm}>
                                         <br/>
                                         <div id="inputOldPassword">
@@ -250,39 +244,46 @@ export default class Profilo extends Component {
                         </div>
                     </div>
                 </Card>
-                
-            )
-        } else if (localStorage.getItem("ruolo")=== "cliente"){
-            return (
+                </div>
+            );
+        } else if (localStorage.getItem("ruolo")==="cliente"){
+            return(
+                <div id="root">
+                 {/* Se popUp (boolean) è true */}
+                 {this.state.popUp && <Popup message={'Modifica password effettuata!'} handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
                         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                             <div className="AreaPersonale">
-                                <h1>AREA PERSONALE</h1>
-                            {this.state.utente.map(function(oggetto) {
+                            <h1>AREA PERSONALE</h1>
+                            {this.state.utente.map((oggetto,i)=> {
                                 return(
+                                    <div key={i}><h2>Primo</h2>
                                 <Col>
-                                    <Row>Nome {this.state.utente.nome}</Row>
-                                    <Row>Cognome {this.state.utente.cognome}</Row>
-                                    <Row>Città {this.state.utente.citta}</Row>
-                                    <Row>Email {this.state.utente.email}</Row>
-                                    <Row>Indirizzo {this.state.utente.indirizzo}</Row>
-                                    <Row>Data di nascita {this.state.utente.dataDiNascita}</Row>
-                                    <Row>Provincia di nascita {this.state.utente.provinciaDiNascita}</Row>
-                                    <Row>Comune di nascita {this.state.utente.comuneDiNascita}</Row>
-                                    <Row>Cittadinanza {this.state.utente.cittadinanza}</Row>
-                                    <Row>Provincia{this.state.utente.provincia}</Row>
-                                    <Row>CAP{this.state.utente.cap}</Row>
-                                    <Row>Numero di telefono{this.state.utente.numeroTelefono}</Row>
+                                    <Row>Nome: {oggetto.nome}</Row>
+                                    <Row>Cognome: {oggetto.cognome}</Row>
+                                    <Row>Città: {oggetto.citta}</Row>
+                                    <Row>Email: {oggetto.email}</Row>
+                                    <Row>Indirizzo: {oggetto.indirizzo}</Row>
+                                    <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
+                                    <Row>Provincia di nascita: {oggetto.provinciaDiNascita}</Row>
+                                    <Row>Comune di nascita: {oggetto.comuneDiNascita}</Row>
+                                    <Row>Cittadinanza: {oggetto.cittadinanza}</Row>
+                                    <Row>Provincia: {oggetto.provincia}</Row>
+                                    <Row>CAP: {oggetto.cap}</Row>
+                                    <Row>Numero di telefono: {oggetto.telefono}</Row>
                                     
                                 </Col>
-                                )})}
+                                </div>
+                                )
+                            })}
+                            
                             </div>
                         </div>
                     </div>
                 </Card>
-                
-            )
+                </div>
+            );
     }
 }
 }

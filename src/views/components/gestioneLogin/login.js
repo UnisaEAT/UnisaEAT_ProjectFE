@@ -4,7 +4,7 @@ import '../../../App.css';
 import '../../styles/gestioneAutenticazione/login.css';
 import axios from 'axios';
 import {Component} from "react";
-import Popup from "./popUp";
+import Popup from "../App/successPopUp";
 import {Redirect} from 'react-router-dom';
 
 export default class Login extends Component {
@@ -116,7 +116,9 @@ export default class Login extends Component {
 
         } else
             return (
-                <div id="root"> {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                <div id="root">
+                     {/* Se popUp (boolean) è true */}
+                     {this.state.popUp && <Popup message={'Login effettuato!'} handleClose={this.closePopUp}/>}
                     <Card className=" mx-auto col-xl-7 justify-content-center text-center position-inherit">
                         <div className="row d-flex justify-content-center">
                             <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
