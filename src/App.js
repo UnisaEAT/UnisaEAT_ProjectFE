@@ -16,6 +16,10 @@ import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
 import SceltaPasti from "./views/components/gestioneOrdinePasto/sceltaPasti";
 import PagamentoPasto from "./views/components/gestioneOrdinePasto/pagamentoPasto";
+import ListaOrdini from "./views/components/gestioneOrdinePasto/listaOrdini";
+import VisualizzaOrdine from "./views/components/gestioneOrdinePasto/visualizzaOrdine";
+
+
 
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
@@ -37,6 +41,8 @@ class App extends Component {
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
                   <Route exact path={["/gestioneOrdinePasto/sceltaPasti"]} component={SceltaPasti}/>
                   <Route exact path={["/gestioneOrdinePasto/pagamentoOrdine"]} component={PagamentoPasto}/>
+                  <Route exact path={["/gestioneOrdinePasto/listaOrdini"]} component={ListaOrdini}/>
+                  <Route exact path={["/gestioneOrdinePasto/dettagliOrdine"]} component={VisualizzaOrdine}/>
 
 
                   <Route exact path={["/login"]} component={Login}/>
