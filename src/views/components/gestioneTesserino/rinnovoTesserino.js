@@ -49,7 +49,7 @@ export default class RinnovoTesserino extends Component {
 
     componentDidMount() {
         //Controllo stato tesserino dell'utente
-        axios.post('http://localhost:3000/api/tesserino/isExpired', {
+        axios.post('http://localhost:8080/api/tesserino/isExpired', {
             email: localStorage.getItem("email"),
             ruolo: localStorage.getItem("ruolo")
         })
