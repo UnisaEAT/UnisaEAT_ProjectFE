@@ -7,7 +7,6 @@ import {Button, FormSelect} from "react-bootstrap";
 export default class SceltaPasti extends React.Component {
 
 
-    //TODO GESTIRE ERRORE MENU GIORNALIERO NON DISPONIBILE
     //TODO GESTIRE L'ERRORE DELLA SESSIONE
     constructor(props) {
 
@@ -50,6 +49,7 @@ export default class SceltaPasti extends React.Component {
     }
 
 
+
     componentDidMount()
     {
 
@@ -62,9 +62,10 @@ export default class SceltaPasti extends React.Component {
                 // Controllo e stampa menu se l'utente non ha effettuato l'ordine per pranzo (selezione base della select)
                 axios.post('http://localhost:8080/api/ordine/ordinaPasti',{ruolo:localStorage.getItem("ruolo")})
                     .then(response2 => {
-                        console.log(response2.data)
+                        if(response2.data.hasOwnProperty("error"))
+                            this.handleError(response2.data.error)
                         // Ordine già effettuato per pranzo
-                        if(response.data.pranzo && response.data.cena===false)
+                        else if(response.data.pranzo && response.data.cena===false)
                             this.handleError("Oggi hai già ordinato per pranzo")
                         // Ordine disponibile per pranzo
                         else if(response.data.pranzo===false && response.data.cena)
@@ -88,7 +89,6 @@ export default class SceltaPasti extends React.Component {
     }
 
     // Nasconde il contenuto della pagina e mostra solo l'errore
-    // TODO possibile modifica futura
     handleError(errorText)
     {
         let parent = document.getElementsByClassName("root")[0]
@@ -96,8 +96,9 @@ export default class SceltaPasti extends React.Component {
 
         if(parent.childNodes.length<3) {
             let error = document.createElement('div')
+            error.id="errore"
             error.textContent = errorText
-            error.style = "font-width:800;margin-top:80px;text-align:center;font-size:25px "
+            error.style = "font-width:800;margin-top:80px;text-align:center;font-size:25px;margin-bottom:5%"
 
             parent.appendChild(error)
         }
@@ -106,19 +107,20 @@ export default class SceltaPasti extends React.Component {
     onChangeTipoMenu(e)
     {
 
-        //TODO
-        // Mostra di nuovo il contenuto della pagina al cambio dell'opzione della select
-        // che poi cambierà di nuovo in base agli ordini effettuati
-
         //TODO risolvere la deselezione del div al cambio di menu
+
+        if(document.getElementById("errore"))
+            document.getElementById("errore").remove()
 
         this.setState({boolOrdine:e.target.value})
 
         // Controllo pasti prenotabili disponibili in base alla select del tipo di menu (pranzo, cena)
         axios.post('http://localhost:8080/api/ordine/ordinaPasti',{ruolo:localStorage.getItem("ruolo")})
             .then(response => {
+                if(response.data.hasOwnProperty("error"))
+                    this.handleError(response.data.error)
                 //Nessun ordine disponibile
-                if(this.state.boolCena===true && this.state.boolPranzo===true) {
+                else if(this.state.boolCena===true && this.state.boolPranzo===true) {
                     this.setState({pasti: []})
                     this.handleError("Oggi hai già ordinato sia per pranzo che per cena")
                 }
@@ -154,7 +156,7 @@ export default class SceltaPasti extends React.Component {
                 console.log(error);
             })
 
-        //TODO risolvere flickering e messsaggio dopo il bottone di conferma
+
         let showContainer = document.getElementsByClassName("sp-selectOrderContainer")[0].style.display="block"
     }
 

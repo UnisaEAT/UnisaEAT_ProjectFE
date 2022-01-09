@@ -16,7 +16,7 @@ export default class ListaOrdini extends React.Component
         this.onClickVisualizzaOrdine = this.onClickVisualizzaOrdine.bind(this)
     }
 
-    //TODO reset localstorage pagamentoordine
+
     componentDidMount()
     {
         localStorage.removeItem("dettagliOrdine")

@@ -3,6 +3,7 @@
     width: 60%;
     margin: 0 auto;
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 .pp-riepilogoOrdine
 {
@@ -86,6 +87,7 @@
 
 .pp-buttonPagamento
 {
+    position: static!important;
     margin-top: 20px;
     margin-bottom: 20px;
 }

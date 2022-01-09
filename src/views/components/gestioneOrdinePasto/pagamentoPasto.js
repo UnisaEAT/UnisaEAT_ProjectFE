@@ -22,19 +22,21 @@ export default class PagamentoPasto extends React.Component
         this.errorHandlerSaldoInsufficiente = this.errorHandlerSaldoInsufficiente.bind(this)
     }
 
-    closePopUp()
-    {
-        this.setState({popUp:false})
-        window.location.href="/"
-    }
 
+    //TODO rimane il localstorage dell'ordine se si va in altre e pagine e si ritorna in questo
+    // possibile implementazione "carrello"?
     componentDidMount()
     {
-
         let ordine = JSON.parse(localStorage.getItem('ordine'))
         console.log(ordine)
         this.setState({ordine: ordine.nomePiatti})
         this.setState({prezzoTotale: ordine.prezzoTotale})
+    }
+
+    closePopUp()
+    {
+        this.setState({popUp:false})
+        window.location.href="/"
     }
 
     imageNameTextTransform(nomePasto)
@@ -49,6 +51,7 @@ export default class PagamentoPasto extends React.Component
         let error = document.createElement('h4')
         error.textContent="Saldo del tesserino insufficiente"
         error.style="color:red"
+
         if(el.childNodes.length<3)
         {
             el.appendChild(error)
@@ -57,9 +60,10 @@ export default class PagamentoPasto extends React.Component
 
     onClickConfermaOrdine()
     {
+
         let ordine = JSON.parse(localStorage.getItem('ordine'))
 
-        //TODO localstorage
+
         const objOrdine = {
             email : localStorage.getItem("email"),
             prezzo : ordine.prezzoTotale,
@@ -72,8 +76,7 @@ export default class PagamentoPasto extends React.Component
                 console.log(response.data)
                 if(response.data===true)
                 {
-                    //TODO localStorage
-                    //localStorage.removeItem(email)
+                    localStorage.removeItem("ordine")
                     this.setState({popUp:true})
                 }
                 else if(response.data.hasOwnProperty("error"))
@@ -90,7 +93,7 @@ export default class PagamentoPasto extends React.Component
         console.log(this.state.popUp)
         return (
             <div className="pp-centralContainer">
-                {this.state.popUp && <Popup message="Ordine effettuato" handleClose={this.closePopUp}/>}
+                {this.state.popUp && <Popup message="Recati nella pagina della lista degli ordini per visualizzare il QR code" handleClose={this.closePopUp}/>}
                 <div className="pp-riepilogoOrdine">
                     <h4>Riepilogo ordine</h4>
                     {
@@ -111,12 +114,13 @@ export default class PagamentoPasto extends React.Component
                             )
                         })
                     }
-                </div>
-                <div className="pp-pagamentoContainer">
-                    <h4>Pagamento</h4>
-                    <div className="pp-prezzoOrdineContainer">
-                        <h2>{this.state.prezzoTotale} €</h2>
-                        <Button className="pp-buttonPagamento" onClick={this.onClickConfermaOrdine}>Conferma ordine</Button>
+
+                    <div className="pp-pagamentoContainer">
+                        <h4>Pagamento</h4>
+                        <div className="pp-prezzoOrdineContainer">
+                            <h2>{this.state.prezzoTotale} €</h2>
+                            <Button className="pp-buttonPagamento" onClick={this.onClickConfermaOrdine}>Conferma ordine</Button>
+                        </div>
                     </div>
                 </div>
             </div>
