@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import axios from 'axios';
 import QRCode from "qrcode.react" //--> https://openbase.com/js/qrcode.react : link libreria
-import {ListGroup} from "react-bootstrap";
+import {ListGroup, Button} from "react-bootstrap";
 import "../../styles/gestioneOrdinePasto/listaOrdiniCSS.css"
 export default class ListaOrdini extends React.Component
 {
@@ -12,12 +12,15 @@ export default class ListaOrdini extends React.Component
         this.state = {
             ordini : [],
         }
+
+        this.onClickVisualizzaOrdine = this.onClickVisualizzaOrdine.bind(this)
     }
 
+    //TODO reset localstorage pagamentoordine
     componentDidMount()
     {
-        //TODO localStorage
-        axios.post('http://localhost:8080/api/ordine/getOrdini', {ruolo:"cliente", email:"n.cappello@studenti.unisa.it"})
+        localStorage.removeItem("dettagliOrdine")
+        axios.post('http://localhost:8080/api/ordine/getOrdini', {ruolo:localStorage.getItem("ruolo"), email:localStorage.getItem("email")})
             .then(response => {
                 console.log(response.data)
                 this.setState({ordini:response.data})
@@ -27,25 +30,45 @@ export default class ListaOrdini extends React.Component
             })
     }
 
+    onClickVisualizzaOrdine(e)
+    {
+        localStorage.setItem("dettagliOrdine",e.target.value)
+        window.location.href="/gestioneOrdinePasto/visualizzaOrdine"
+    }
+
 
     render() {
         return (
-            <div className="lo-listaContainer">
-                <ListGroup as="ol" numbered>
+            <div className="lo-listaContainerInfo">
+                <table className="lo-table">
+                    <tbody>
+                        <tr className="lo-rowInfo">
+                            <th>Data ordine</th>
+                            <th>Tipo menù</th>
+                            <th>Prezzo</th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                    <tr className="lo-rowNoOp"><td></td></tr>
                 {
                     this.state.ordini.map((ordine,i) => {
                         var boolPranzo="Cena"
                         if(ordine.boolPranzo)
                             boolPranzo="Pranzo"
 
-                        return (
-
-
-                                <ListGroup.Item as="li">{ordine.dataOrdine} {boolPranzo}</ListGroup.Item>
+                        return(
+                                <tr key={i} className="lo-rowData">
+                                    <td>02/03/2001</td>
+                                    <td>{boolPranzo}</td>
+                                    <td>- {ordine.prezzo} €</td>
+                                    <td className="lo-buttonTd">
+                                        <Button  value={JSON.stringify(ordine)} onClick={this.onClickVisualizzaOrdine} className="lo-dettagliButton">Dettagli</Button>
+                                    </td>
+                                </tr>
                         )
                     })
                 }
-                </ListGroup>
+                </table>
             </div>
         );
     }

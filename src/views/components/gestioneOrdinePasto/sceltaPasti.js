@@ -53,7 +53,6 @@ export default class SceltaPasti extends React.Component {
     componentDidMount()
     {
 
-        //TODO localstorage
         axios.post('http://localhost:8080/api/ordine/hasOrdini',{email:localStorage.getItem("email"), ruolo:localStorage.getItem("ruolo")})
             .then(response => {
                 console.log(response.data)
@@ -107,7 +106,7 @@ export default class SceltaPasti extends React.Component {
     onChangeTipoMenu(e)
     {
 
-        //TODO CONTROLLARE QUESTO
+        //TODO
         // Mostra di nuovo il contenuto della pagina al cambio dell'opzione della select
         // che poi cambierà di nuovo in base agli ordini effettuati
 
@@ -288,9 +287,6 @@ export default class SceltaPasti extends React.Component {
                 this.setState({extraPastoIDs:arrayIDs})
                 this.setState({extraPastiNomi:arrayNomi})
             }
-
-
-
         }
     }
 
@@ -393,12 +389,6 @@ export default class SceltaPasti extends React.Component {
     }
 
     render() {
-        //console.log(this.state.primoPastoID)
-        //console.log(this.state.secondoPastoID)
-        //console.log(this.state.contornoPastoID)
-        //console.log(this.state.fruttaPastoID)
-        //console.log(this.state.extraPastoID)
-
         return (
 
             //TODO sticky navPortata
