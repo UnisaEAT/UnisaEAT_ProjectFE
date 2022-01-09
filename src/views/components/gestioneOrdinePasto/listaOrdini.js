@@ -33,7 +33,7 @@ export default class ListaOrdini extends React.Component
     onClickVisualizzaOrdine(e)
     {
         localStorage.setItem("dettagliOrdine",e.target.value)
-        window.location.href="/gestioneOrdinePasto/visualizzaOrdine"
+        window.location.href="/gestioneOrdinePasto/dettagliOrdine"
     }
 
 
@@ -58,7 +58,7 @@ export default class ListaOrdini extends React.Component
 
                         return(
                                 <tr key={i} className="lo-rowData">
-                                    <td>02/03/2001</td>
+                                    <td>{ordine.dataOrdine}</td>
                                     <td>{boolPranzo}</td>
                                     <td>- {ordine.prezzo} €</td>
                                     <td className="lo-buttonTd">
