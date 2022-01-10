@@ -14,7 +14,10 @@ import Profilo from "./views/components/gestioneProfilo/profilo";
 import InserimentoPersonale from "./views/components/gestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/VisualizzazioneListaPersonale";
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
-
+import VisualizzazioneFAQ from "./views/components/gestioneFAQ/visualizzazioneFAQ";
+import InserimentoFAQ from "./views/components/gestioneFAQ/inserimentoFAQ";
+import RimozioneFAQ from "./views/components/gestioneFAQ/rimozioneFAQ";
+import ModificaFAQ from "./views/components/gestioneFAQ/modificaFAQ";
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
 import Logout from "./views/components/gestioneLogin/logout";
@@ -33,6 +36,10 @@ class App extends Component {
                   <Route exact path={["/gestionePersonale/RimozionePersonale"]} component={RimozionePersonale}/>
                   <Route exact path={["/gestionePersonale/VisualizzazioneListaPersonale"]} component={VisualizzazioneListaPersonale}/>
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
+                  <Route exact path={["/gestioneFAQ/visualizzazioneFAQ"]} component={VisualizzazioneFAQ}/>
+                  <Route exact path={["/gestioneFAQ/inserimentoFAQ"]} component={InserimentoFAQ}/>
+                  <Route exact path={["/gestioneFAQ/rimozioneFAQ"]} component={RimozioneFAQ}/>
+                  <Route exact path={["/gestioneFAQ/modificaFAQ"]} component={ModificaFAQ}/>
                   <Route exact path={["/login"]} component={Login}/>
                   <Route exact path={["/logout"]} component={Logout}/>
               </Switch>
