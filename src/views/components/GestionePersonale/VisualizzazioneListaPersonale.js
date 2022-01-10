@@ -18,7 +18,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/api/personale/viewLista")
+        axios.post("http://localhost:8080/api/personale/viewLista",{ruolo: localStorage.getItem("ruolo")})
             .then(response => {
                 console.log(response.data)
                 this.setState({utente: response.data})
@@ -52,12 +52,15 @@ export default class VisualizzazioneListaPersonale extends React.Component {
                 <ListGroup as="ul">
                     {this.state.utente.map((oggetto, i) => {
                         return (
-                            <ListGroup.Item key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
+                            <ListGroup.Item key={i} as="li"
+                                            className="d-flex justify-content-between align-items-start itemStyle">
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold">{oggetto.nome} {oggetto.cognome}</div>
                                     <p>{oggetto.email}</p>
                                 </div>
-                                <Button onClick={(e) => {this.handleRimozionePersonale(e, oggetto);}} className="buttonStyle" variant="light" pill>
+                                <Button onClick={(e) => {
+                                    this.handleRimozionePersonale(e, oggetto);
+                                }} className="buttonStyle" variant="light" pill>
                                     <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
                                            width="35"/>
                                 </Button>
@@ -65,7 +68,8 @@ export default class VisualizzazioneListaPersonale extends React.Component {
                         )
                     })}
                 </ListGroup>
-                <Button href="/InserimentoPersonale" className="btn-block btn-primary">Inserisci un nuovo membro</Button>
+                <Button href="/InserimentoPersonale" className="btn-block btn-primary">Inserisci un nuovo
+                    membro</Button>
             </Card>
         )
     }

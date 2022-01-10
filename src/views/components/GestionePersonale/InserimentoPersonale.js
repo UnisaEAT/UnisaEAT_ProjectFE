@@ -42,7 +42,6 @@ export default class InserimentoPersonale extends React.Component {
     errorHandler(error) {
         let inputError = error.name;
         let errorMessage = error.message;
-
         const rootElement = document.getElementById(inputError)
 
         if (rootElement.childNodes.length < 3) {
@@ -140,7 +139,7 @@ export default class InserimentoPersonale extends React.Component {
 
     // Invio dell'oggetto @param personale al metodo del Back-End con una POST
     submitInserimentoForm(personale) {
-        axios.post('http://localhost:8080/api/personale/insert', personale)
+        axios.post('http://localhost:8080/api/personale/insert',{ruolo: localStorage.getItem("ruolo")}, personale)
             .then(response => {
                 //Se l'inserimento è andato a buon fine
                 if (response.data.message === true) {
@@ -162,47 +161,63 @@ export default class InserimentoPersonale extends React.Component {
                     <form className="form-card test" onSubmit={this.handleSubmit}>
                         <div className="row justify-content-between text-left">
                             <div className="form-group col-sm-6 flex-column d-flex" id="nome">
-                                <label className="form-control-label px-3">Nome<span className="text-danger"> *</span></label>
-                                <input type="text" id="nome" onChange={this.onChangeNome} placeholder="Inserisci il nome"></input>
+                                <label className="form-control-label px-3">Nome<span
+                                    className="text-danger"> *</span></label>
+                                <input type="text" id="nome" onChange={this.onChangeNome}
+                                       placeholder="Inserisci il nome"></input>
                             </div>
                             <div className="form-group col-sm-6 flex-column d-flex" id="cognome">
-                                <label className="form-control-label px-3">Cognome<span className="text-danger"> *</span></label>
-                                <input type="text" id="cognome" onChange={this.onChangeCognome} placeholder="Inserisci il cognome"></input>
+                                <label className="form-control-label px-3">Cognome<span
+                                    className="text-danger"> *</span></label>
+                                <input type="text" id="cognome" onChange={this.onChangeCognome}
+                                       placeholder="Inserisci il cognome"></input>
                             </div>
                         </div>
 
                         <div className="row justify-content-between text-left">
-                                <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo">
-                                    <label className="form-control-label px-3">Indirizzo<span className="text-danger"> *</span></label>
-                                    <input type="text" id="indirizzo" onChange={this.onChangeIndirizzo} placeholder="Inserisci indirizzo"></input></div>
+                            <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo">
+                                <label className="form-control-label px-3">Indirizzo<span
+                                    className="text-danger"> *</span></label>
+                                <input type="text" id="indirizzo" onChange={this.onChangeIndirizzo}
+                                       placeholder="Inserisci indirizzo"></input></div>
 
-                                <div className="form-group col-sm-6 flex-column d-flex" id="numeroTelefono">
-                                    <label className="form-control-label px-3">Numero di telefono<span className="text-danger"> *</span></label>
-                                    <input type="text" id="numeroTelefono" onChange={this.onChangeNumeroTelefono} placeholder="Inserisci il numero di telefono"></input>
-                                </div>
+                            <div className="form-group col-sm-6 flex-column d-flex" id="numeroTelefono">
+                                <label className="form-control-label px-3">Numero di telefono<span
+                                    className="text-danger"> *</span></label>
+                                <input type="text" id="numeroTelefono" onChange={this.onChangeNumeroTelefono}
+                                       placeholder="Inserisci il numero di telefono"></input>
+                            </div>
                         </div>
 
                         <div className="row justify-content-between text-left">
                             <div className="form-group col-sm-6 flex-column d-flex" id="dataDiNascita">
-                                <label className="form-control-label px-3">Data di nascita<span className="text-danger"> *</span></label>
-                                <input type="text" id="dataDiNascita" onChange={this.onChangeDataDiNascita} placeholder="Inserisci data di nascita"></input>
+                                <label className="form-control-label px-3">Data di nascita<span
+                                    className="text-danger"> *</span></label>
+                                <input type="text" id="dataDiNascita" onChange={this.onChangeDataDiNascita}
+                                       placeholder="Inserisci data di nascita"></input>
                             </div>
 
                             <div className="form-group col-sm-6 flex-column d-flex" id="email">
                                 <label className="form-control-label px-3">Email<span className="text-danger"> *</span></label>
-                                <input type="text" id="email" onChange={this.onChangeEmail} placeholder="Inserisci una email "></input>
+                                <input type="text" id="email" onChange={this.onChangeEmail}
+                                       placeholder="Inserisci una email "></input>
                             </div>
                         </div>
 
 
                         <div className="row justify-content-between text-left">
                             <div className="form-group col-sm-6 flex-column d-flex" id="password">
-                                <label className="form-control-label px-3">Password<span className="text-danger"> *</span></label>
-                                <input type="password" id="password" onChange={this.onChangePassword} placeholder="Inserisci una password "></input>
+                                <label className="form-control-label px-3">Password<span
+                                    className="text-danger"> *</span></label>
+                                <input type="password" id="password" onChange={this.onChangePassword}
+                                       placeholder="Inserisci una password "></input>
                             </div>
 
-                            <div className="form-group col-sm-6 flex-column d-flex" id="confermapassword"><label className="form-control-label px-3">Conferma Password<span className="text-danger"> *</span></label>
-                                <input type="password" id="confermapassword" onChange={this.onChangeConfermaPassword} placeholder="Conferma la Password "></input>
+                            <div className="form-group col-sm-6 flex-column d-flex" id="confermapassword"><label
+                                className="form-control-label px-3">Conferma Password<span
+                                className="text-danger"> *</span></label>
+                                <input type="password" id="confermapassword" onChange={this.onChangeConfermaPassword}
+                                       placeholder="Conferma la Password "></input>
                             </div>
                         </div>
 

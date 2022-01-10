@@ -34,9 +34,8 @@ export default class RimozionePersonale extends React.Component{
         window.location.reload(false);
     }
 
-    rimozionePersonale(email) {
-        console.log(email)
-        axios.post("http://localhost:8080/api/personale/remove", email= this.props.obj.email)
+    rimozionePersonale() {
+        axios.post("http://localhost:8080/api/personale/remove", {email: this.props.obj.email})
             .then(response => {
                 if (response.data.message === true) {
                     this.setState({popUp: true})
@@ -62,7 +61,7 @@ export default class RimozionePersonale extends React.Component{
                         <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
                         <Card.Text>
                         </Card.Text>
-                            <button type="submit" className="btn-block btn-primary" onClick={this.rimozionePersonale(this.props.obj.email)} >Rimuovi</button>
+                            <button type="submit" className="btn-block btn-primary" onClick={this.rimozionePersonale} >Rimuovi</button>
                         </Card.Body>
                 </Card>
             </Card>

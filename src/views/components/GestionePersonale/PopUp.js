@@ -12,7 +12,6 @@ const Popup = props => {
                 <div className="bottomInnerBox">
                     <div className="bottomLabel">
                         <h3>Successo!</h3>
-                        <p>Ricarica del tesserino avvenuta</p>
                         <Button className="closeButton"  onClick={props.handleClose}>Chiudi</Button>
                     </div>
                 </div>
