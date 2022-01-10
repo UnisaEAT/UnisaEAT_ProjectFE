@@ -56,7 +56,6 @@ export default class Profilo extends Component {
     }
 
     componentDidMount() {
-        console.log(localStorage.getItem("ruolo"))
         axios.post('http://localhost:8080/api/profilo/findByEmail', {email: localStorage.getItem("email"),
         ruolo: localStorage.getItem("ruolo")})
             .then(res => {
@@ -187,7 +186,7 @@ export default class Profilo extends Component {
                     </Card>
                 </div>
             );
-        } else if (localStorage.getItem("ruolo")==="Personale"){
+        } else if ((localStorage.getItem("ruolo")==="operatore mensa")||(localStorage.getItem("ruolo")==="personale adisu")){
             return(
                 <div id="root">
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
@@ -197,17 +196,16 @@ export default class Profilo extends Component {
                             <div className="AreaPersonale">
                             <h1>AREA PERSONALE</h1>
                                 {this.state.utente.map(function(oggetto) {
+                            
                                 return(
-                                    
                                     <Col>
-                                        <Row>Nome {oggetto.nome}</Row>
-                                        <Row>Cognome {oggetto.cognome}</Row>
-                                        <Row>Email {oggetto.email}</Row>
-                                        <Row>Numero di telefono{oggetto.numeroTelefono}</Row>
-                                        <Row>Data di nascita {oggetto.dataDiNascita}</Row>
-                                        <Row>Ruolo{oggetto.ruolo}</Row>
-                                        <Row>Disponibilità {oggetto.disponibilita}</Row>
-                                        <Row>Indirizzo {oggetto.indirizzo}</Row>
+                                        <Row>Nome: {oggetto.nome}</Row>
+                                        <Row>Cognome: {oggetto.cognome}</Row>
+                                        <Row>Email: {oggetto.email}</Row>
+                                        <Row>Numero di telefono: {oggetto.numeroTelefono}</Row>
+                                        <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
+                                        <Row>Ruolo: {oggetto.ruolo}</Row>
+                                        <Row>Indirizzo: {oggetto.indirizzo}</Row>
                                     </Col>
                                 )})
                                 }
@@ -267,7 +265,6 @@ export default class Profilo extends Component {
                                     <Row>Indirizzo: {oggetto.indirizzo}</Row>
                                     <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
                                     <Row>Provincia di nascita: {oggetto.provinciaDiNascita}</Row>
-                                    <Row>Comune di nascita: {oggetto.comuneDiNascita}</Row>
                                     <Row>Cittadinanza: {oggetto.cittadinanza}</Row>
                                     <Row>Provincia: {oggetto.provincia}</Row>
                                     <Row>CAP: {oggetto.cap}</Row>
