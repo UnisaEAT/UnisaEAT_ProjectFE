@@ -50,6 +50,7 @@ export default class RimozionePersonale extends React.Component{
             })
     }
 
+    
     //Inseririre post per la rimozione che prende i campi di props.obj
     render() {
         return (
