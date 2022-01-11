@@ -72,7 +72,6 @@ export default class ModificaFAQ extends React.Component {
             domanda: this.props.obj.domanda,
             newdomanda: this.state.newdomanda,
             newrisposta: this.state.newrisposta,
-            
         }
 
         this.modificaFAQ(FAQ)

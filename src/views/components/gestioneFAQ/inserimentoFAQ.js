@@ -4,6 +4,7 @@ import axios from "axios";
 import "../../styles/gestioneFAQ/FAQ.css"
 import Popup from "../App/successPopUp";
 
+
 export default class InserimentoFAQ extends React.Component {
 
     //Costruttore di props

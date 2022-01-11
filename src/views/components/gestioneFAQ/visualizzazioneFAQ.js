@@ -15,8 +15,6 @@ export default class VisualizzazioneFAQ extends React.Component {
             faq: [],
             domanda: null
         }
-
-
         this.handleRimozioneFAQ = this.handleRimozioneFAQ.bind(this)
         this.handleModificaFAQ = this.handleModificaFAQ.bind(this)
     }
