@@ -14,6 +14,12 @@ import Profilo from "./views/components/gestioneProfilo/profilo";
 import InserimentoPersonale from "./views/components/gestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/VisualizzazioneListaPersonale";
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
+import SceltaPasti from "./views/components/gestioneOrdinePasto/sceltaPasti";
+import PagamentoPasto from "./views/components/gestioneOrdinePasto/pagamentoPasto";
+import ListaOrdini from "./views/components/gestioneOrdinePasto/listaOrdini";
+import DettagliOrdine from "./views/components/gestioneOrdinePasto/dettagliOrdine";
+
+
 
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
@@ -33,6 +39,12 @@ class App extends Component {
                   <Route exact path={["/gestionePersonale/RimozionePersonale"]} component={RimozionePersonale}/>
                   <Route exact path={["/gestionePersonale/VisualizzazioneListaPersonale"]} component={VisualizzazioneListaPersonale}/>
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
+                  <Route exact path={["/gestioneOrdinePasto/sceltaPasti"]} component={SceltaPasti}/>
+                  <Route exact path={["/gestioneOrdinePasto/pagamentoOrdine"]} component={PagamentoPasto}/>
+                  <Route exact path={["/gestioneOrdinePasto/listaOrdini"]} component={ListaOrdini}/>
+                  <Route exact path={["/gestioneOrdinePasto/dettagliOrdine"]} component={DettagliOrdine}/>
+
+
                   <Route exact path={["/login"]} component={Login}/>
                   <Route exact path={["/logout"]} component={Logout}/>
               </Switch>

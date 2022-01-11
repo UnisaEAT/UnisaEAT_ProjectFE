@@ -1,0 +1,180 @@
+.sp-selectTipoMenuContainer
+{
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.sp-selectTipoMenu
+{
+    margin-top: 30px;
+    text-align: center;
+}
+.sp-selectOrderContainer
+{
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.sp-navPortata
+{
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.sp-navPortataElement
+{
+    display: inline-block;
+    padding-right: 50px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.sp-navPortataElement a
+{
+    text-decoration: none;
+    color: #545454;
+}
+
+.sp-mainSection
+{
+    margin-top: 40px;
+}
+.sp-categoryBlock
+{
+    display: inline-block;
+    margin-top: 30px;
+    width: 100%;
+}
+.sp-categoryBlock h3
+{
+    font-weight: 700;
+}
+
+.sp-categoryBlockElement
+{
+    display: inline-block;
+    width: 31%;
+    border-style: solid;
+    border-width: 1px;
+    margin-right: 40px;
+    border-color: lightgray;
+    cursor: pointer;
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+.sp-insideBlockElement
+{
+    padding: 15px;
+    display: inline-block;
+
+}
+.sp-leftBlock
+{
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+
+.sp-rightBlock
+{
+    display: inline-block;
+    float: right;
+}
+.sp-rightBlock img
+{
+    width: 158px;
+    height: 250px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sp-elementTitle
+{
+    word-break: break-word;
+    overflow: hidden;
+    display: block;
+    color: #282c34;
+    padding-top: 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.sp-elementDescription
+{
+    word-break: break-word;
+    overflow: hidden;
+    display: block;
+    color: #545454;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.sp-elementIngredients
+{
+    word-break: break-word;
+    overflow: hidden;
+    display: block;
+    font-size: 12px;
+    color: #777777;
+}
+
+.sp-portataLabel
+{
+    margin-top: 40px;
+}
+
+.sp-buttonContainer
+{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.sp-buttonConferma
+{
+    text-align: center;
+    width: 20%;
+    height: 50px;
+    border-radius: 30px;
+    font-weight: 500;
+
+}
+@media (max-width: 1919px)
+{
+    .sp-categoryBlockElement
+    {
+        display: inline-block;
+        width: 45%;
+        border-style: solid;
+        border-width: 1px;
+        margin-right: 40px;
+        border-color: lightgray;
+        cursor: pointer;
+        margin-bottom: 40px;
+    }
+    .sp-insideBlockElement
+    {
+        padding: 15px;
+        display: inline-block;
+
+    }
+    .sp-leftBlock
+    {
+        display: inline-block;
+        float: left;
+        width: 70%;
+    }
+
+    .sp-rightBlock
+    {
+        display: inline-block;
+        float: right;
+    }
+
+    .sp-rightBlock img
+    {
+        width: 158px;
+        height: 250px;
+        object-fit: cover;
+    }
+}

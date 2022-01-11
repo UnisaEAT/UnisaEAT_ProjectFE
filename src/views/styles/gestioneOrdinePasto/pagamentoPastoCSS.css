@@ -1,0 +1,93 @@
+.pp-centralContainer
+{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.pp-riepilogoOrdine
+{
+    box-shadow: 0px 4px 16px rgb(0 0 0 / 10%);background:#F0F0F0;
+    background: #F8F8F8;
+}
+.pp-riepilogoOrdine h4
+{
+    padding: 20px;
+}
+
+.pp-pastoElement
+{
+    display: inline-block;
+    width: 31%;
+    border-style: solid;
+    border-width: 1px;
+    margin-left: 20px;
+    border-color: lightgray;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: white;
+}
+
+.pp-insideBlockElement
+{
+    margin: 0 auto;
+}
+.pp-elementTitle
+{
+
+    padding: 10px;
+    word-break: break-word;
+    overflow: hidden;
+    display: block;
+    color: #282c34;
+    padding-top: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+}
+.pp-leftBlock
+{
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+.pp-rightBlock
+{
+    display: inline-block;
+    float: right;
+}
+
+.pp-rightBlock img
+{
+    width: 88px;
+    height: 80px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.pp-pagamentoContainer
+{
+    width: 40%;
+    margin:0 auto;
+    margin-top: 20px;
+    box-shadow: 0px 4px 16px rgb(0 0 0 / 10%);background:#F0F0F0;
+    background: #F8F8F8;
+}
+
+.pp-pagamentoContainer h4
+{
+    padding: 20px;
+}
+
+.pp-prezzoOrdineContainer
+{
+    text-align: center;
+}
+
+.pp-buttonPagamento
+{
+    position: static!important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

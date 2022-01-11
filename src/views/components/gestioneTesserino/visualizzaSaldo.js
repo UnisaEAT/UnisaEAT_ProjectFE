@@ -37,7 +37,7 @@ export default class VisualizzaSaldo extends Component {
                 console.log(error);
             })
 
-        axios.post('http://localhost:3000/api/tesserino/getInfoTesserino', {
+        axios.post('http://localhost:8080/api/tesserino/getInfoTesserino', {
             email: localStorage.getItem("email"),
             ruolo: localStorage.getItem("ruolo")
         })

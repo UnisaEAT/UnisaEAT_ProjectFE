@@ -1,0 +1,90 @@
+
+.do-mainContainer
+{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.do-upContainer
+{
+    display: flex;
+}
+.do-piattiBlock
+{
+    width: 70%;
+}
+.do-detailsBlock
+{
+    width: 30%;
+}
+
+.do-pastoElement
+{
+    display: inline-block;
+    width: 60%;
+    line-height: 50px;
+    border-style: solid;
+    border-width: 1px;
+    margin-left: 20px;
+    border-color: lightgray;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: white;
+}
+
+.do-insideBlockElement
+{
+    margin: 0 auto;
+}
+.do-elementTitle
+{
+
+    padding: 10px;
+    word-break: break-word;
+    overflow: hidden;
+    display: block;
+    color: #282c34;
+    padding-top: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+}
+.do-leftBlock
+{
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+.do-rightBlock
+{
+    display: inline-block;
+    float: right;
+}
+
+.do-rightBlock img
+{
+    width: 88px;
+    height: 80px;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.do-value
+{
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.do-value-price
+{
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2bc477;
+}
+.do-qrBlock #qr
+{
+    padding-left: 50px;
+}

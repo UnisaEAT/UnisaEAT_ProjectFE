@@ -1,0 +1,69 @@
+.lo-listaContainerInfo
+{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 10%;
+}
+
+.lo-listaContainerInfo span
+{
+    padding: 10px;
+    padding-right: 20%;
+}
+
+.lo-listaContainer
+{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 10%;
+}
+
+.lo-listaContainer span
+{
+    padding: 10px;
+    padding-right: 15%;
+}
+.lo-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.lo-table td, th {
+    text-align: center;
+    padding: 10px;
+}
+.lo-rowInfo
+{
+    border: 1px solid rgba(0,0,0,.125);
+
+}
+.lo-rowData
+{
+    margin-top: 20px;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.lo-rowNoOp
+{
+    border-left: solid 1px white;
+    border-right: solid 1px white;
+}
+
+.lo-dettagliButton
+{
+    position: static !important;
+    width: 100px;
+    background: #3B579D;
+    border: none;
+    margin-right: 10px;
+
+}
+
+.lo-buttonTd
+{
+    text-align: right !important;
+}
