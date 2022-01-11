@@ -1,0 +1,44 @@
+.ss-selectWeekContainer
+{
+    margin: 0 auto;
+    width: 40%;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.ss-selectWeekContainerStarting
+{
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.ss-selectLabel
+{
+    font-size: 1.5em;
+}
+
+.ss-selectInput
+{
+    width:50%;
+    text-align: center;
+    margin: 0 auto;
+}
+.ss-topContainer
+{
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.ss-bottomContainer
+{
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
