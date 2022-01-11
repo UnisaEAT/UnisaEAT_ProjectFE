@@ -256,7 +256,7 @@ export default class Profilo extends Component {
                             <h1>AREA PERSONALE</h1>
                             {this.state.utente.map((oggetto,i)=> {
                                 return(
-                                    <div key={i}><h2>Primo</h2>
+                                   
                                 <Col>
                                     <Row>Nome: {oggetto.nome}</Row>
                                     <Row>Cognome: {oggetto.cognome}</Row>
@@ -271,7 +271,7 @@ export default class Profilo extends Component {
                                     <Row>Numero di telefono: {oggetto.telefono}</Row>
                                     
                                 </Col>
-                                </div>
+                                
                                 )
                             })}
                             

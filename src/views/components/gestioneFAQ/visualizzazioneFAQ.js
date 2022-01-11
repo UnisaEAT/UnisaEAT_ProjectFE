@@ -67,10 +67,10 @@ export default class VisualizzazioneFAQ extends React.Component {
                                     <Row> <div className="fw-bold">Domanda:</div>{oggetto.domanda}</Row>  
                                     <Row> <div className="fw-bold">Risposta:</div>{oggetto.risposta}</Row>
                                 </div>
-                                <Button  href="/gestioneFAQ/rimozioneFAQ" onClick={(e) => {
+                                <Button onClick={(e) => {
                                     this.handleRimozioneFAQ(e, oggetto);}}>Rimuovi</Button>
                                 
-                                <Button href="/gestioneFAQ/modificaFAQ" onClick={(e) => {
+                                <Button onClick={(e) => {
                                     this.handleModificaFAQ(e, oggetto);}}>Modifica</Button>
                             </Col>
                             )

@@ -42,9 +42,11 @@ export default class RimozioneFAQ extends React.Component{
             .then(response => {
                 console.log(response.data)
                 if (response.data.message === true) {
-                    this.setState({popUp: true})
-                }else
+                    this.setState({message: response.data.message})
                     this.errorHandler(response.data)
+                    
+                }else
+                    this.setState({popUp: true})
             })
             .catch((error) => {
                 console.log("ciao")
