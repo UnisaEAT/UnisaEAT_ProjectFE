@@ -58,7 +58,7 @@ export default class VisualizzazioneFAQ extends React.Component {
             )
         }
 
-        if(localStorage.getItem("ruolo")!=="Personale"){ //se l'utente loggato è uno del personale può inserire, rimuovere e modificare faq (MODIFICARE CON AGGIUNTA DI LOGIN)
+        if(localStorage.getItem("ruolo")==="personale adisu"){ //se l'utente loggato è uno del personale può inserire, rimuovere e modificare faq 
             return (
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <h1 className="h1">Lista FAQ</h1>
@@ -67,9 +67,8 @@ export default class VisualizzazioneFAQ extends React.Component {
                             return (
                                 <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
                                 <div className="ms-2 me-auto">
-                                    
-                                    <Row> <div className="fw-bold">Domanda:</div>  {oggetto.domanda} </Row>  
-                                    <Row> <div className="fw-bold">Risposta:</div> {oggetto.risposta}</Row>
+                                    <Row> <div className="fw-bold">Domanda:</div>{oggetto.domanda}</Row>  
+                                    <Row> <div className="fw-bold">Risposta:</div>{oggetto.risposta}</Row>
                                 </div>
                                 <Button  href="/gestioneFAQ/rimozioneFAQ" onClick={(e) => {
                                     this.handleRimozioneFAQ(e, oggetto);}}>Rimuovi</Button>
