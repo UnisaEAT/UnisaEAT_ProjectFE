@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+
+form .form-control::-webkit-input-placeholder {
+    color: #A9A9AC;
+}
+
+form .card-no::-webkit-input-placeholder {
+    color: #A9A9AC;
+}
+
+
+.wrapper {
+    background-color: #f4f2f7;
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.wrapper h4 {
+    font-weight: 800;
+    color: #888
+}
+
+.wrapper label {
+    font-weight: 700;
+    color: #888;
+    font-size: 12px
+}
+
+.card-no {
+    border: none;
+    outline: none;
+    width: 90%;
+    padding-left: 8px
+}
+
+
+.card-number {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 8px 2px
+}
+
+wrapper a {
+    font-size: 12px;
+    font-weight: 900;
+    margin-left: 30%
+}
+
+wrapper a {
+    text-decoration: none
+}
+
+.form-inline label {
+    font-size: 1rem
+}
+
+.focused {
+    border: 2px solid #9ab3f5
+}
+
+.containerBottoniSaldo {
+    margin: auto;
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.dataScadenzaInput {
+    width: 80%;
+}
+
+.bottoneSaldo {
+    width: 23.5%;
+    margin: 2px;
+}
+
+#form-footer a {
+    margin: 0
+}
+
+#form-footer p {
+    margin: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777
+}
+
+.containerRicarica {
+    display: flex;
+    width: 50%;
+    margin-top: 50px;
+}
+
+.pagamentoWrapper {
+    height: fit-content;
+}
+
+.pagamentoWrapper .mt-4 {
+    padding-bottom: 50px;
+}
+
+.amountWrapper {
+    margin-left: 30px;
+    width: 40%;
+    height: 50%;
+}
+
+.ricaricaButton {
+    margin: auto;
+    display: block;
+    background: #0e9350;
+    border: none;
+    width: 50%;
+    height: 45px;
+    text-align: center;
+    line-height: 15px;
+}
+
+.ricaricaButton:hover {
+    background: #2bc477;
+}
+
+.ricaricaButton:focus {
+    background: #0e9350;
+    outline: none;
+    box-shadow: none;
+}
+
+.nuovoSaldoLabel {
+    margin-top: 35px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #777;
+}
+
+.nuovoSaldoAmount {
+    margin-top: 35px;
+    font-weight: 700;
+    font-size: 35px;
+    color: black;
+    text-align: center;
+}
+
+@media (max-width: 395px) {
+    .form-inline label {
+        font-size: 12px
+    }
+
+    #form-footer p {
+        font-size: 11px
+    }
+
+    .card-no {
+        width: 85%
+    }
+}

@@ -1,0 +1,15 @@
+.login {
+    margin: 10%;
+    text-align: center;
+}
+
+.bottoneLogin {
+    position: inherit;
+    background: lightblue;
+    margin-bottom: 10%;
+    color: black;
+}
+
+.righe {
+    text-align: center;
+}

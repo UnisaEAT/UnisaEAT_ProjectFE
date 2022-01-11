@@ -14,14 +14,6 @@ body {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
 }
 
-.pippo{
-    text-align: center;
-    position: inherit;
-    font-weight: 300 bold;
-    justify-content: center;  
-    align-items: center;  
-}
-
 .blue-text {
     color: #00BCD4
 }
@@ -58,7 +50,7 @@ textarea:focus {
     font-weight: 400;
     height: 43px;
     cursor: pointer;
-    position: inherit;
+    position: relative;
 }
 
 
