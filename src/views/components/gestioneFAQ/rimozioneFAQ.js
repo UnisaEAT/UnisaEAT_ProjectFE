@@ -3,7 +3,6 @@ import "../../../App.css"
 import {Card,Button,Form} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
-import "../../styles/gestioneFAQ/FAQ.css"
 
 export default class RimozioneFAQ extends React.Component{
 

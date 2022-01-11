@@ -4,7 +4,6 @@ import {ListGroup, Button, Card, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import RimozioneFAQ from "./rimozioneFAQ";
 import ModificaFAQ from "./modificaFAQ";
-import "../../styles/gestioneFAQ/FAQ.css"
 
 export default class VisualizzazioneFAQ extends React.Component {
     //Costruttore di props

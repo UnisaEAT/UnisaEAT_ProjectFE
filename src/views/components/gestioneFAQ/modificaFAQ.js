@@ -1,7 +1,6 @@
 import React from 'react'
 import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
-import "../../styles/gestioneFAQ/FAQ.css"
 import Popup from "../App/successPopUp";
 
 export default class ModificaFAQ extends React.Component {
