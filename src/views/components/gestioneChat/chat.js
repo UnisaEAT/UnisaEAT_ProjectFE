@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../styles/gestioneChat/chatCSS.css"
 import axios from "axios";
 import {Button} from "react-bootstrap";
@@ -6,46 +6,36 @@ import paperPlane from "../../assets/paperPlane.png"
 import {io} from "socket.io-client"
 
 
-export default class Chat extends React.Component
+function Chat()
 {
 
-    constructor(props) {
-        super(props);
+        const[onlinePersonale,setOnlinePersonale] = useState([])
+        const[conversazioneID,setConversazioneID] = useState(null)
+        const[destinatarioEmail,setDestinatarioEmail] = useState(null)
+        const[destinatarioRuolo,setDestinatarioRuolo] = useState(null)
+        const[mittenteEmail,setMittenteEmail] = useState(localStorage.getItem("email"))
+        const[mittenteRuolo,setMittenteRuolo] = useState(localStorage.getItem("ruolo"))
+        const[messaggiConversazione,setMessaggiConversazione] = useState([""])
+        const[messaggioDaInviare,setMessaggioDaInviare] = useState(null)
 
-        this.state={
-            socket:null,
 
-            onlinePersonale : [],
-
-            conversazioneID : null,
-            destinatarioEmail : null,
-            destinatarioRuolo: null,
-            mittenteEmail : localStorage.getItem("email"),
-            mittenteRuolo : localStorage.getItem("ruolo"),
-            messaggiConversazione : [""],
-            messaggioDaInviare : null
-
-        }
-
-        this.onClickChangeDestinatario = this.onClickChangeDestinatario.bind(this)
+        /*this.onClickChangeDestinatario = this.onClickChangeDestinatario.bind(this)
         this.onSubmitInviaMessaggio = this.onSubmitInviaMessaggio.bind(this)
-        this.onChangeMessaggioDaInviare = this.onChangeMessaggioDaInviare.bind(this)
-
-    }
+        this.onChangeMessaggioDaInviare = this.onChangeMessaggioDaInviare.bind(this)*/
 
 
-    componentDidMount() {
-
-        this.setState({socket:io("ws://localhost:8900")})
+    //ComponentDidMount
+    useEffect(() => {
+        //this.setState({socket:io("ws://localhost:8900")})
 
         //Recupera la lista del personale disponibile a chattare
 
         if(localStorage.getItem("ruolo")=="cliente") {
             axios.post('http://localhost:8080/api/personale/viewLista', {ruolo: "admin"})
                 .then(response => {
-                    if (response.data[0]) {
-                        this.setState({onlinePersonale: response.data})
-                        this.setState({destinatarioRuolo: "personale adisu"})
+                    if(response.data[0]) {
+                        setOnlinePersonale(response.data)
+                        setDestinatarioRuolo("personale adisu")
                     }
                 })
                 .catch((error) => {
@@ -56,49 +46,48 @@ export default class Chat extends React.Component
         {
 
             const user = {
-                email : this.state.mittenteEmail,
+                email : mittenteEmail,
                 ruolo : "personale adisu"
             }
 
 
             axios.post('http://localhost:8080/api/conversazione/getConversazioni', {user:user})
                 .then(response => {
-                    console.log("qui"+response.data.membri)
-                    this.setState({onlinePersonale:response.data})
-                    this.setState({destinatarioRuolo: "cliente"})
+                    setOnlinePersonale(response.data)
+                    setDestinatarioRuolo("cliente")
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-        }
-    }
 
-    onClickChangeDestinatario(emailDest)
+        }
+    },[])
+
+
+    const onClickChangeDestinatario = (emailDest) =>
     {
         const user1 = {
-                email: this.state.mittenteEmail,
-                ruolo: this.state.mittenteRuolo
+                email: mittenteEmail,
+                ruolo: mittenteRuolo
             }
 
         const user2 = {
                 email: emailDest,
-                ruolo: this.state.destinatarioRuolo
+                ruolo: destinatarioRuolo
             }
 
         //Controllo se esiste già una conversazione avviata
         axios.post('http://localhost:8080/api/conversazione/getConversazione', {user1:user1,user2:user2})
             .then(response => {
-            console.log("qui"+response.data)
                     //Se esiste si prende i messaggi
                     if(response.data[0])
                     {
-                        console.log("esiste")
-                        this.setState({destinatarioEmail:emailDest})
-                        this.setState({conversazioneID:response.data[0].id})
+                        setDestinatarioEmail(emailDest)
+                        setConversazioneID(response.data[0].id)
 
                         axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:response.data[0].id})
                             .then(response2 => {
-                                this.setState({messaggiConversazione:response2.data})
+                                setMessaggiConversazione(response2.data)
                             })
                             .catch((error) => {
                                 console.log(error);
@@ -108,17 +97,17 @@ export default class Chat extends React.Component
                     // Se non esiste la crea
                     else
                     {
-                        this.setState({destinatarioEmail:emailDest})
-                        console.log("non esiste")
+                        setDestinatarioEmail(emailDest)
                         const sender = {
-                            email : this.state.mittenteEmail,
-                            ruolo : this.state.mittenteRuolo
+                            email : mittenteEmail,
+                            ruolo : mittenteRuolo
                         }
 
                         const receiver = {
-                            email : this.state.destinatarioEmail,
-                            ruolo : this.state.destinatarioRuolo
+                            email : emailDest,
+                            ruolo : destinatarioRuolo
                         }
+
                         axios.post('http://localhost:8080/api/conversazione/create', {sender:sender,receiver:receiver})
                             .then(response2 => {
 
@@ -136,30 +125,31 @@ export default class Chat extends React.Component
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 
-    onChangeMessaggioDaInviare(e)
+    const onChangeMessaggioDaInviare = (e) =>
     {
+        console.log("test1")
         let messaggio = e.target.value
-        this.setState({messaggioDaInviare : messaggio})
+        setMessaggioDaInviare(messaggio)
     }
 
-    onSubmitInviaMessaggio()
+    const onSubmitInviaMessaggio = () =>
     {
-
-        if(this.state.messaggioDaInviare.length==0)
+        console.log("test2")
+        if(messaggioDaInviare.length==0)
             return
 
         const messaggio = {
-            conversazioneId : this.state.conversazioneID,
-            sender: this.state.mittenteEmail,
-            testo: this.state.messaggioDaInviare,
+            conversazioneId : conversazioneID,
+            sender: mittenteEmail,
+            testo: messaggioDaInviare,
             dataInvio: new Date()
         }
 
         axios.post('http://localhost:8080/api/messaggio/create', messaggio)
             .then(response => {
-                axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:this.state.conversazioneID})
+                axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:conversazioneID})
                     .then(response => {
-                        this.setState({messaggiConversazione:response.data})
+                        setMessaggiConversazione(response.data)
                     })
                     .catch((error) => {
                         console.log(error);
@@ -170,14 +160,10 @@ export default class Chat extends React.Component
             })
 
         document.getElementById("inputTextMessaggio").value=""
-        this.setState({messaggioDaInviare:null})
+        setMessaggioDaInviare(null)
 
 
     }
-
-
-    render() {
-        console.log(this.state.onlinePersonale)
 
         return(
             <div className="c-chatContainer">
@@ -197,36 +183,33 @@ export default class Chat extends React.Component
                                     <div className="messages-box">
                                         <div className="list-group rounded-0">
                                             {
-                                               this.state.onlinePersonale.map((personale,i) => {
+                                               onlinePersonale.map((personale,i) => {
 
-
-                                                   if(this.state.mittenteRuolo=="personale adisu")
+                                                   if(mittenteRuolo=="personale adisu")
                                                    {
                                                        return(
-                                                           <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => this.onClickChangeDestinatario(personale.membri[0].email)}>
+                                                           <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => onClickChangeDestinatario(personale.membri[0].email)}>
                                                                {personale.membri[0].email}
                                                            </a>
                                                        )
                                                    }
                                                    else
-                                                    return(
-                                                    <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => this.onClickChangeDestinatario(personale.email)}>
-                                                        {personale.nome}
-                                                    </a>
-                                                    )
+                                                        return(
+                                                        <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => onClickChangeDestinatario(personale.email)}>
+                                                            {personale.nome}
+                                                        </a>
+                                                        )
                                                 })
                                             }
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            {
                             <div className="col-7 px-0">
                                 <div id="testBox"  className="px-4 py-5 chat-box bg-white">
                                     {
-                                        this.state.messaggiConversazione.map((messaggio,i) => {
-
-
+                                        messaggiConversazione.map((messaggio,i) => {
 
                                             if(messaggio=="")
                                             {
@@ -235,7 +218,7 @@ export default class Chat extends React.Component
                                                 )
 
                                             }
-                                            else if(messaggio.sender==this.state.mittenteEmail) {
+                                            else if(messaggio.sender==mittenteEmail) {
                                                 return (
                                                     <div key={i} className="media-body ml-3 rightText">
                                                         <div className="bg-primary rounded py-2 px-3 mb-2">
@@ -248,7 +231,7 @@ export default class Chat extends React.Component
                                                 )
                                             }
 
-                                            else if(messaggio.sender==this.state.destinatarioEmail) {
+                                            else if(messaggio.sender==destinatarioEmail) {
                                                 return (
 
                                                     <div key={i} className="media w-50 ml-auto mb-3">
@@ -270,11 +253,11 @@ export default class Chat extends React.Component
 
                                 <form action="#" className="bg-light">
                                     <div className="input-group">
-                                        <input type="text" id="inputTextMessaggio" onChange={this.onChangeMessaggioDaInviare} placeholder="Type a message" aria-describedby="button-addon2"
+                                        <input type="text" id="inputTextMessaggio" onChange={onChangeMessaggioDaInviare} placeholder="Type a message" aria-describedby="button-addon2"
                                                className="form-control rounded-0 border-0 py-2-2 bg-light"/>
                                             <div className="input-group-append">
                                                 <i className="fa fa-paper-plane-o"></i>
-                                                <button className="c-buttonSendMessage" id="button" type="submit" onClick={this.onSubmitInviaMessaggio}>
+                                                <button className="c-buttonSendMessage" id="button" type="submit" onClick={onSubmitInviaMessaggio}>
                                                     <img src={paperPlane} />
                                                 </button>
                                             </div>
@@ -282,12 +265,14 @@ export default class Chat extends React.Component
                                 </form>
 
                             </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         )
 
-    }
 
 }
+
+export default Chat
