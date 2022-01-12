@@ -4,7 +4,7 @@ import {useState} from "react";
 import slide1 from "../../assets/slide1.jpg"
 import slide2 from "../../assets/slide2.jpg"
 import slide3 from "../../assets/slide3.jpg"
-
+import Chat from "../gestioneChat/chat";
 function Homepage() {
     const [index, setIndex] = useState(0);
 
@@ -13,7 +13,8 @@ function Homepage() {
     };
 
     return (
-
+        <div>
+            <Chat/>
         <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
                 <Image
@@ -51,6 +52,7 @@ function Homepage() {
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
+        </div>
 
     );
 }
