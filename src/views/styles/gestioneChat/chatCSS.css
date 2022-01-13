@@ -3,61 +3,86 @@
     position: fixed; bottom:0; left:0; right:0;
 }
 
+.c-showChatButton
+{
+    width: 65px;
+    height: 65px;
+    background: orange;
+    float: right;
+    border-radius: 50%;
+    padding: 50p;
+    margin: 20px;
+    cursor: pointer;
+}
+.c-closeButton
+{
+    width: 50%;
+    right: 0;
+    margin-right: 20px;
+
+}
+.c-closeButton img
+{
+    width: 18px;
+    float: right;
+    margin: 5px;
+    cursor: pointer;
+}
 .c-chat
 {
 
-  width: 40%;right:0; position: absolute; bottom: 0; margin: 0 5px;
+width: 40%;right:0; position: absolute; bottom: 0; margin: 0 5px;
 }
 
 .rightText
 {
-    width: 50%;
-    margin-left: auto;
-    line-break: anywhere;
+width: 50%;
+margin-left: auto;
+line-break: anywhere;
 }
 .py-2-2
 {
-    padding-bottom: 8px;
+padding-bottom: 8px;
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    width: 5px;
-    background: #f5f5f5;
+width: 5px;
+background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 1em;
-    background-color: #ddd;
-    outline: 1px solid slategrey;
-    border-radius: 1rem;
+width: 1em;
+background-color: #ddd;
+outline: 1px solid slategrey;
+border-radius: 1rem;
 }
 
 .text-small {
-    font-size: 0.9rem;
+font-size: 0.9rem;
 }
 
 .messages-box,
 .chat-box {
-    height: 510px;
-    overflow-y: scroll;
+height: 510px;
+overflow-y: scroll;
 }
 
 .rounded-lg {
-    border-radius: 0.5rem;
+border-radius: 0.5rem;
 }
 
 input::placeholder {
-    font-size: 0.9rem;
-    color: #999;
+font-size: 0.9rem;
+color: #999;
 }
 .c-buttonSendMessage
 {
-    background: none;
-    border: none;
-    padding: 0px;
-    padding-right: 15px;
+background: none;
+border: none;
+padding: 0px;
+padding-right: 15px;
 }
