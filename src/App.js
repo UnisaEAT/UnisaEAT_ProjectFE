@@ -23,7 +23,8 @@ import VisualizzazioneFAQ from "./views/components/gestioneFAQ/visualizzazioneFA
 import InserimentoFAQ from "./views/components/gestioneFAQ/inserimentoFAQ";
 import RimozioneFAQ from "./views/components/gestioneFAQ/rimozioneFAQ";
 import ModificaFAQ from "./views/components/gestioneFAQ/modificaFAQ";
-
+import CompilazioneTicket from "./views/components/gestioneTicket/compilazioneTicket";
+import VisualizzazioneTicket from "./views/components/gestioneTicket/visualizzazioneTicket";
 
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
@@ -48,10 +49,12 @@ class App extends Component {
                   <Route exact path={["/gestioneOrdinePasto/listaOrdini"]} component={ListaOrdini}/>
                   <Route exact path={["/gestioneOrdinePasto/dettagliOrdine"]} component={DettagliOrdine}/>
                   <Route exact path={["/statisticheSettimanali"]} component={StatisticheSettimanali}/>
-				  <Route exact path={["/gestioneFAQ/visualizzazioneFAQ"]} component={VisualizzazioneFAQ}/>
-				  <Route exact path={["/gestioneFAQ/inserimentoFAQ"]} component={InserimentoFAQ}/>
-				  <Route exact path={["/gestioneFAQ/rimozioneFAQ"]} component={RimozioneFAQ}/>
-				  <Route exact path={["/gestioneFAQ/modificaFAQ"]} component={ModificaFAQ}/>
+                  <Route exact path={["/gestioneFAQ/visualizzazioneFAQ"]} component={VisualizzazioneFAQ}/>
+                  <Route exact path={["/gestioneFAQ/inserimentoFAQ"]} component={InserimentoFAQ}/>
+                  <Route exact path={["/gestioneFAQ/rimozioneFAQ"]} component={RimozioneFAQ}/>
+                  <Route exact path={["/gestioneFAQ/modificaFAQ"]} component={ModificaFAQ}/>
+                  <Route exact path={["/gestioneTicket/compilazioneTicket"]} component={CompilazioneTicket}/>
+                  <Route exact path={["/gestioneTicket/visualizzazioneTicket"]} component={VisualizzazioneTicket}/>
                   <Route exact path={["/login"]} component={Login}/>
                   <Route exact path={["/logout"]} component={Logout}/>
 
