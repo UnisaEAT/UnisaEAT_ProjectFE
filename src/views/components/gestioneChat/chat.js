@@ -5,6 +5,8 @@ import {Button} from "react-bootstrap";
 import paperPlane from "../../assets/paperPlane.png"
 import chatButton from "../../assets/chatButton.svg"
 import closeButton from "../../assets/closeButton.png"
+import more from "../../assets/more.png"
+import { format } from "timeago.js";
 import {io} from "socket.io-client"
 
 
@@ -12,16 +14,17 @@ function Chat()
 {
 
     const[conversazioni,setConversazioni] = useState([])
-    const[conversazioneID,setConversazioneID] = useState(null)
+    const[conversazione,setConversazione] = useState(null)
+    const[destinatarioName,setDestinatarioName] = useState(null)
     const[destinatarioEmail,setDestinatarioEmail] = useState(null)
     const[destinatarioRuolo,setDestinatarioRuolo] = useState(null)
     const[mittenteEmail,setMittenteEmail] = useState(localStorage.getItem("email"))
     const[mittenteRuolo,setMittenteRuolo] = useState(localStorage.getItem("ruolo"))
-    const[messaggiConversazione,setMessaggiConversazione] = useState([""])
     const[messaggioDaInviare,setMessaggioDaInviare] = useState(null)
     const[chatApertaBool,setChatApertaBool] = useState(false)
-
-    const[messaggi,setMessaggi] = useState("")
+    const[modificaMessaggio,setModificaMessaggio] = useState(null)
+    const[messaggioDaEliminare,setMessaggioDaEliminare] = useState(null)
+    const[messaggi,setMessaggi] = useState([""])
     const[messaggioInArrivo,setMessaggioInArrivo] = useState(null)
 
 
@@ -33,19 +36,40 @@ function Chat()
     useEffect(() => {
         socket.current = io("ws://localhost:8900")
         socket.current.on("getMessage",(data) => {
+
+            console.log("Messaggio: "+data.senderEmail+data.text)
             setMessaggioInArrivo({
-                mittenteEmail : data.senderEmail,
+                id : data.id,
+                conversazioneId: data.conversazioneId,
+                sender : data.senderEmail,
                 testo : data.text,
-                data : new Date()
+                dataInvio : new Date()
             })
+        })
+
+        socket.current.on("getDeletedMessage",(data) => {
+           setMessaggioDaEliminare(data)
+
         })
     },[])
 
+    useEffect(()=>{
+        if(messaggioDaEliminare)
+            if(conversazione?.membri[0].email===messaggioDaEliminare.senderEmail || conversazione?.membri[1].email===messaggioDaEliminare.senderEmail) {
+                let array = messaggi.filter(function (elem) {
+                    return elem.id != messaggioDaEliminare.id
+                })
+
+                setMessaggi(array)
+
+    }},[messaggioDaEliminare])
+
     useEffect(() => {
-        messaggioInArrivo &&
-        conversazioneID?.members.includes(arrivalMessage.sender) &&
-        setMessages((prev) => [...prev, arrivalMessage]);
-    }, [messaggioInArrivo, currentChat]);
+        if(messaggioInArrivo)
+            if(conversazione?.membri[0].email===messaggioInArrivo.sender || conversazione?.membri[1].email===messaggioInArrivo.sender) {
+                setMessaggi((prev) => [...prev, messaggioInArrivo]);
+            }
+    }, [messaggioInArrivo, conversazione]);
 
     useEffect(() => {
         socket.current.emit("addUser",{mittenteEmail,mittenteRuolo})
@@ -59,7 +83,6 @@ function Chat()
 
     //ComponentDidMount
     useEffect(() => {
-        //this.setState({socket:io("ws://localhost:8900")})
 
         //Recupera la lista del personale disponibile a chattare
         if(localStorage.getItem("ruolo")=="cliente") {
@@ -109,7 +132,7 @@ function Chat()
         setChatApertaBool(false)
     }
 
-    const onClickChangeDestinatario = (emailDest) =>
+    const onClickChangeDestinatario = (emailDest,nomeDest) =>
     {
         const user1 = {
             email: mittenteEmail,
@@ -121,18 +144,22 @@ function Chat()
             ruolo: destinatarioRuolo
         }
 
+        setDestinatarioName(nomeDest)
+
         //Controllo se esiste già una conversazione avviata
         axios.post('http://localhost:8080/api/conversazione/getConversazione', {user1:user1,user2:user2})
             .then(response => {
                 //Se esiste si prende i messaggi
-                if(response.data[0])
+                if(response.data[0].membri)
                 {
                     setDestinatarioEmail(emailDest)
-                    setConversazioneID(response.data[0].id)
+                    setConversazione(response.data[0])
 
                     axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:response.data[0].id})
                         .then(response2 => {
-                            setMessaggiConversazione(response2.data)
+                            setMessaggi(response2.data)
+                            var objDiv = document.getElementById("testBox");
+                            objDiv.scrollTop = objDiv.scrollHeight;
                         })
                         .catch((error) => {
                             console.log(error);
@@ -174,41 +201,90 @@ function Chat()
         setMessaggioDaInviare(messaggio)
     }
 
+    const onClickEliminaMessaggio = (idMessaggio) =>
+    {
+        axios.post('http://localhost:8080/api/messaggio/deleteMessage', {idMessaggio:idMessaggio})
+            .then(response => {
+                socket.current.emit("deleteMessage", {
+                    senderEmail : mittenteEmail,
+                    receiverEmail: destinatarioEmail,
+                    conversazioneId : conversazione.id,
+                    id : idMessaggio
+                })
+
+                let array = messaggi.filter(function (elem) {
+                    return elem.id != idMessaggio
+                })
+
+                setMessaggi(array)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    //statoModifica idMessaggio
+    const onClickModificaMessaggio = (idMessaggio,testo) =>
+    {
+       document.getElementById("inputTextMessaggio").value=testo
+       setModificaMessaggio(idMessaggio)
+    }
+
     const onSubmitInviaMessaggio = () =>
     {
         if(messaggioDaInviare.length==0)
             return
 
-        const messaggio = {
-            conversazioneId : conversazioneID,
-            sender: mittenteEmail,
-            testo: messaggioDaInviare,
-            dataInvio: new Date()
+        if(modificaMessaggio!=null)
+        {
+            axios.post('http://localhost:8080/api/messaggio/modifyMessage', {idMessaggio: modificaMessaggio, nuovoTesto:messaggioDaInviare})
+                .then(response => {
+                    setModificaMessaggio(null)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
+        else {
+            const messaggio = {
+                conversazioneId: conversazione.id,
+                sender: mittenteEmail,
+                testo: messaggioDaInviare,
+                dataInvio: new Date()
+            }
 
-        axios.post('http://localhost:8080/api/messaggio/create', messaggio)
-            .then(response => {
-                axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:conversazioneID})
-                    .then(response => {
-                        setMessaggiConversazione(response.data)
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+            axios.post('http://localhost:8080/api/messaggio/create', messaggio)
+                .then(response => {
 
+                    socket.current.emit("sendMessage", {
+                        id : response.data.id,
+                        conversazioneId : response.data.conversazioneId,
+                        senderEmail: mittenteEmail,
+                        receiverEmail: destinatarioEmail,
+                        text: messaggioDaInviare,
+                    })
+
+                    axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId: conversazione.id})
+                        .then(response => {
+                            setMessaggi(response.data)
+                            var objDiv = document.getElementById("testBox");
+                            objDiv.scrollTop = objDiv.scrollHeight;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
+
+
+
+        }
 
         document.getElementById("inputTextMessaggio").value=""
         setMessaggioDaInviare(null)
-
-        socket.current.emit("sendMessage", {
-            senderEmail : mittenteEmail,
-            receiverEmail : destinatarioEmail,
-            text : messaggioDaInviare,
-        })
 
 
     }
@@ -223,6 +299,7 @@ function Chat()
         )
     else
         return(
+
             <div className="c-chatContainer">
                 <div className="c-chat">
                     <a href="https://bootstrapious.com" className="text-white"/>
@@ -245,14 +322,14 @@ function Chat()
                                                     if(mittenteRuolo=="personale adisu")
                                                     {
                                                         return(
-                                                            <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => onClickChangeDestinatario(personale.membri[0].email)}>
+                                                            <a key={i} className="list-group-item list-group-item-action text-black rounded-0 cursor-pointer" onClick={() => onClickChangeDestinatario(personale.membri[0].email,personale.membri[0].nome)}>
                                                                 {personale.membri[0].email}
                                                             </a>
                                                         )
                                                     }
                                                     else
                                                         return(
-                                                            <a className="list-group-item list-group-item-action text-black rounded-0" onClick={() => onClickChangeDestinatario(personale.email)}>
+                                                            <a key={i} className="list-group-item list-group-item-action text-black rounded-0 cursor-pointer" onClick={() => onClickChangeDestinatario(personale.email,personale.nome)}>
                                                                 {personale.nome}
                                                             </a>
                                                         )
@@ -264,45 +341,59 @@ function Chat()
                             </div>
                             {
                                 <div className="col-7 px-0">
-                                    <div className="c-closeButton position-absolute bg-white">
-                                        <img src={closeButton} onClick={onClickCloseChat}/>
+                                    <div className="c-upperContainer position-absolute bg-white">
+                                        <div className="c-upperContainerIn">
+                                         <span>{destinatarioName}</span>
+                                         <img src={closeButton} onClick={onClickCloseChat}/>
+                                        </div>
                                     </div>
-                                    <div id="testBox" ref={scrollRef} className="px-4 py-5 chat-box bg-white">
+                                    <div id="testBox" className="px-4 py-5 chat-box bg-white">
                                         {
-                                            messaggiConversazione.map((messaggio,i) => {
 
-                                                if(messaggio=="")
-                                                {
-                                                    return(
-                                                        <h1>Seleziona chat</h1>
+                                            messaggi.map((messaggio,i) => {
+
+                                                if(!messaggio.sender)
+                                                    return (
+                                                        <h1>Seleziona una chat</h1>
                                                     )
-
-                                                }
                                                 else if(messaggio.sender==mittenteEmail) {
                                                     return (
-                                                        <div ref={scrollRef} key={i} className="media-body ml-3 rightText">
+                                                        <div key={i} className="media-body ml-3 rightText">
                                                             <div className="bg-primary rounded py-2 px-3 mb-2">
+                                                                <div className="dropdown">
+                                                                        <img className="c-moreImage" src={more} />
+                                                                        <div className="dropdown-content">
+                                                                            <div onClick={() => onClickEliminaMessaggio(messaggio.id)}>Rimuovi</div>
+                                                                            <div onClick={() => onClickModificaMessaggio(messaggio.id,messaggio.testo)}>Modifica</div>
+                                                                        </div>
+                                                                </div>
                                                                 <p className="text-small mb-0 text-white">
                                                                     {messaggio.testo}
                                                                 </p>
+                                                                <div className="c-dataMessaggio messageBottom">{format(messaggio.dataInvio)}</div>
                                                             </div>
-                                                            <p className="small text-muted">{messaggio.dataInvio}</p>
+
                                                         </div>
                                                     )
                                                 }
 
                                                 else if(messaggio.sender==destinatarioEmail) {
                                                     return (
-
                                                         <div key={i} className="media w-50 ml-auto mb-3">
-                                                            <div className="media-body">
-                                                                <div className="bg-light rounded py-2 px-3 mb-2">
-                                                                    <p className="text-small mb-0 text-black">
-                                                                        {messaggio.testo}
-                                                                    </p>
+                                                            <div className="bg-light rounded py-2 px-3 mb-2">
+                                                                <div className="dropdown">
+                                                                    <img className="c-moreImage" src={more} />
+                                                                    <div className="dropdown-content">
+                                                                        <div onClick={() => onClickEliminaMessaggio(messaggio.id)}>Rimuovi</div>
+                                                                        <div onClick={() => onClickModificaMessaggio(messaggio.id,messaggio.testo)}>Modifica</div>
+                                                                    </div>
                                                                 </div>
-                                                                <p className="small text-muted">{messaggio.dataInvio}</p>
+                                                                <p className="text-small mb-0 text-black">
+                                                                    {messaggio.testo}
+                                                                </p>
+                                                                <div className="c-dataMessaggio text-grey messageBottom">{format(messaggio.dataInvio)}</div>
                                                             </div>
+
                                                         </div>
                                                     )
                                                 }

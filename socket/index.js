@@ -26,17 +26,35 @@ io.on("connection",(socket) => {
         io.emit("getUsers",users)
     })
 
-    socket.on("sendMessage",({senderEmail,receiverEmail,text})=>{
+    socket.on("sendMessage",({id,conversazioneId,senderEmail,receiverEmail,text})=>{
         const user = getUser(receiverEmail)
         if(user) {
             console.log(user)
             io.to(user.socketId).emit("getMessage", {
+                id,
+                conversazioneId,
                 senderEmail,
-                text,
-                data
+                text
             })
         }
     })
+
+    socket.on("deleteMessage",({senderEmail,receiverEmail,conversazioneId,id})=> {
+        const user = getUser(receiverEmail)
+        if(user)
+        {
+            io.to(user.socketId).emit("getDeletedMessage", {
+                senderEmail,
+                receiverEmail,
+                conversazioneId,
+                id
+            })
+        }
+    })
+
+
+
+
 
     socket.on("disconnect",() => {
         console.log("a user disconnected")
