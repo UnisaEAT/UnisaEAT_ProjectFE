@@ -22,7 +22,6 @@ export default class VisualizzazioneTicket extends React.Component {
     }
 
     componentDidMount() {
-        console.log("ciao")
         axios.post("http://localhost:8080/api/ticket/select")
             .then(response => {
                 console.log(response.data)
