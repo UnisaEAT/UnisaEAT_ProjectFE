@@ -2,6 +2,7 @@ import React from 'react'
 import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
+import moment from 'moment'
 
 export default class RisoluzioneTicket extends React.Component {
 
@@ -94,7 +95,7 @@ export default class RisoluzioneTicket extends React.Component {
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <h1>Risoluzione ticket</h1><br></br>
                     <h4>{this.props.obj.titolo}{this.props.obj.problema}</h4> 
-                    <h5>{this.props.obj.date}</h5> 
+                    <h5>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h5> 
                     <h5>{this.props.obj.email}</h5> 
                     <Form onSubmit={this.handleSubmit}>
                             <Row className="mb-3">

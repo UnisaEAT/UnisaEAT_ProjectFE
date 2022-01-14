@@ -3,6 +3,7 @@ import "../../../App.css"
 import {ListGroup, Button, Card, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import RisoluzioneTicket from "./risoluzioneTicket";
+import moment from 'moment'
 
 export default class VisualizzazioneTicket extends React.Component {
     //Costruttore di props
@@ -42,7 +43,7 @@ export default class VisualizzazioneTicket extends React.Component {
                 <RisoluzioneTicket obj={this.state.one} />
             )
         }
-       if(localStorage.getItem("ruolo")!=="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
+       if(localStorage.getItem("ruolo")==="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
             return (
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <h1 className="h1">Lista Ticket</h1>
@@ -54,7 +55,7 @@ export default class VisualizzazioneTicket extends React.Component {
                                     <Row> <div className="fw-bold">Titolo:</div>{oggetto.titolo}</Row>  
                                     <Row> <div className="fw-bold">Problema:</div>{oggetto.problema}</Row>
                                     <Row> <div className="fw-bold">Soluzione:</div>{oggetto.soluzione}</Row>
-                                    <Row> <div className="fw-bold">Data:</div>{oggetto.date}</Row>
+                                    <Row> <div className="fw-bold">Data:</div>{moment(oggetto.date).format('DD MMM, YYYY')}</Row>
                                     <Row> <div className="fw-bold">Email:</div>{oggetto.email}</Row>
                                 </div>
                                 <Button onClick={(e) => {
@@ -64,7 +65,6 @@ export default class VisualizzazioneTicket extends React.Component {
                         })}
                     </ListGroup>
                     <br></br>
-                    <Button href="/gestioneTicket/compilazioneTicket">Inserisci un nuovo ticket</Button>
                 </Card>
             )
         }
@@ -73,14 +73,14 @@ export default class VisualizzazioneTicket extends React.Component {
             <h1 className="h1">Lista Ticket</h1>
             <ListGroup as="ul">
                 {this.state.ticket.map((oggetto, i) => {
-                if(oggetto.email!==localStorage.getItem("email")){ //cambiare in ===
+                if(oggetto.email===localStorage.getItem("email")){ 
                     return (
                         <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
                         <div className="ms-2 me-auto">
                             <Row> <div className="fw-bold">Titolo:</div>{oggetto.titolo}</Row>  
                             <Row> <div className="fw-bold">Problema:</div>{oggetto.problema}</Row>
                             <Row> <div className="fw-bold">Soluzione:</div>{oggetto.soluzione}</Row>
-                            <Row> <div className="fw-bold">Data:</div>{oggetto.date}</Row>
+                            <Row> <div className="fw-bold">Data:</div>{moment(oggetto.date).format('DD MMM, YYYY')}</Row>
                         </div>
                        
                         
