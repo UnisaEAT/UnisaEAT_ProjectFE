@@ -56,7 +56,7 @@ export default class Profilo extends Component {
                                             <Row>Nome: {oggetto.nome}</Row>
                                             <Row>Cognome: {oggetto.cognome}</Row>
                                             <Row>Email: {oggetto.email}</Row>
-                                            <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica</Button>
+                                            <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                         </Col>
                                     )})
                                     }
@@ -86,7 +86,7 @@ export default class Profilo extends Component {
                                         <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
                                         <Row>Ruolo: {oggetto.ruolo}</Row>
                                         <Row>Indirizzo: {oggetto.indirizzo}</Row>
-                                        <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica</Button>
+                                        <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                     </Col>
                                      
                                 )})
