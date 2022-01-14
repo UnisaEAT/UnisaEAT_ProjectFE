@@ -2,6 +2,7 @@ import React from 'react'
 import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export default class InserimentoFAQ extends React.Component {
@@ -13,7 +14,8 @@ export default class InserimentoFAQ extends React.Component {
         this.state = {
             domanda:'',
             risposta:'',
-            popUp: false
+            popUp: false,
+            redirect:false,
         }
 
         // Handlers binding
@@ -26,7 +28,8 @@ export default class InserimentoFAQ extends React.Component {
 
     closePopUp() {
         this.setState({popUp: false})
-        window.location.reload();
+        this.setState({redirect: true})
+        window.location = "/gestioneFAQ/visualizzazioneFAQ"
     }
 
     errorHandler(error) {
@@ -84,20 +87,23 @@ export default class InserimentoFAQ extends React.Component {
     submitInserimentoForm(FAQ) {
         axios.post('http://localhost:8080/api/faq/insertFAQ', FAQ)
             .then(response => {
-                if (response.data.message===false) {
+                if (response.data.message === true) {
+                    this.setState({popUp: true})
+                } else if (response.data.name != null)
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
-                } else {
-                    this.setState({popUp: true})
-                
-                }
             })
             .catch((error) => {
                 console.log(error);
             })
     }
 
+    
     render() {
+        if (this.state.redirect) {
+            return (<Redirect to='/gestioneFAQ/visualizzazioneFAQ'/>) 
+
+        } else
         return (
             <div id="root">
                  {/* Se popUp (boolean) è true */}
@@ -119,7 +125,7 @@ export default class InserimentoFAQ extends React.Component {
                                 </Form.Group>
                             </Row>
                             
-                            <Button className="submitButton" variant="primary" type="submit">
+                            <Button  className="submitButton" variant="primary" type="submit">
                                 INSERISCI
                             </Button>
                     </Form>

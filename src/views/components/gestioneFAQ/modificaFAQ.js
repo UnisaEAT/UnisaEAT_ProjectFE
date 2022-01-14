@@ -81,11 +81,11 @@ export default class ModificaFAQ extends React.Component {
         axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
             .then(response => {
                 console.log(response.data)
-                if (response.data.message === false) {
+                if (response.data.message === true) {
+                    this.setState({popUp: true})
+                } else if (response.data.name !== null)
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
-                }else
-                    this.setState({popUp: true})
             })
             .catch((error) => {
                 console.log("ciao")
