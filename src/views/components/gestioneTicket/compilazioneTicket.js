@@ -26,7 +26,7 @@ export default class CompilazioneTicket extends React.Component {
 
     closePopUp() {
         this.setState({popUp: false})
-        window.location.reload();
+        window.location='/gestioneTicket/visualizzazioneTicket'
     }
 
     errorHandler(error) {
@@ -117,7 +117,7 @@ export default class CompilazioneTicket extends React.Component {
                                 <Form.Control type="text" id="problema" name="problema" onChange={this.onChangeProblema} placeholder="Inserisci il problema riscontrato"/>
                             </Form.Group>
                         </Row>
-                        <Button href="gestioneTicket/visualizzazioneTicket" className="submitButton" variant="primary" type="submit">INSERISCI</Button>
+                        <Button  className="submitButton" variant="primary" type="submit">INSERISCI</Button>
                     </Form>
                 </Card>
             </div>
