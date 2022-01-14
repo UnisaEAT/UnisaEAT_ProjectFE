@@ -11,6 +11,7 @@ import RinnovoTesserino from "./views/components/gestioneTesserino/rinnovoTesser
 import VisualizzaSaldo from "./views/components/gestioneTesserino/visualizzaSaldo";
 import RicaricaTesserino from "./views/components/gestioneTesserino/ricaricaTesserino";
 import Profilo from "./views/components/gestioneProfilo/profilo";
+import ModificaPassword from "./views/components/gestioneProfilo/modificaPassword"
 import InserimentoPersonale from "./views/components/gestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/VisualizzazioneListaPersonale";
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
@@ -42,6 +43,7 @@ class App extends Component {
                   <Route exact path={["/gestionePersonale/RimozionePersonale"]} component={RimozionePersonale}/>
                   <Route exact path={["/gestionePersonale/VisualizzazioneListaPersonale"]} component={VisualizzazioneListaPersonale}/>
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
+                  <Route exact path={["/gestioneProfilo/modificaPassword"]} component={ModificaPassword}/>
                   <Route exact path={["/gestioneOrdinePasto/sceltaPasti"]} component={SceltaPasti}/>
                   <Route exact path={["/gestioneOrdinePasto/pagamentoOrdine"]} component={PagamentoPasto}/>
                   <Route exact path={["/gestioneOrdinePasto/listaOrdini"]} component={ListaOrdini}/>

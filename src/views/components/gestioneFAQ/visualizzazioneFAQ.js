@@ -54,7 +54,7 @@ export default class VisualizzazioneFAQ extends React.Component {
     
 
     handleModificaFAQ(e, obj) {
-        // oggetto da passare che contiene il personale da rimuovere
+        // oggetto da passare che contiene la FAQ da modificare
 
         this.setState({domanda: obj})
     }
@@ -63,7 +63,7 @@ export default class VisualizzazioneFAQ extends React.Component {
 
         // Solo se è stato settata la domanda da canc chiama l'altra componente e gli passa lo stato
         if (this.state.domanda != null) {
-            //Invia il prop "obj" contente la domanda da rimuovere
+            //Invia il prop "obj" contente la domanda da modificare
             return (
                 <ModificaFAQ obj={this.state.domanda} />
             )

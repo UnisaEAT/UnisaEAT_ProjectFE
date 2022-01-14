@@ -15,7 +15,6 @@ export default class ModificaFAQ extends React.Component {
         }
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeDomanda = this.onChangeDomanda.bind(this)
         this.onChangeRisposta = this.onChangeRisposta.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -81,7 +80,7 @@ export default class ModificaFAQ extends React.Component {
         axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
             .then(response => {
                 console.log(response.data)
-                if (response.data.message === true) {
+                if (response.data.message === "true") {
                     this.setState({popUp: true})
                 } else if (response.data.name !== null)
                     this.setState({message: response.data.message})
