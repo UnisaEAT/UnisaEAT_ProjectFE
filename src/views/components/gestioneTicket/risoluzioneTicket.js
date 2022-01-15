@@ -63,6 +63,7 @@ export default class RisoluzioneTicket extends React.Component {
         const Ticket = {
             titolo: this.props.obj.titolo,
             soluzione: this.state.soluzione,
+            mail: this.props.obj.email,
         }
 
         this.risoluzioneTicket(Ticket)
