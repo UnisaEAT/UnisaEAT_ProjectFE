@@ -20,9 +20,10 @@ function Chat()
     const[destinatarioRuolo,setDestinatarioRuolo] = useState(null)
     const[mittenteEmail,setMittenteEmail] = useState(localStorage.getItem("email"))
     const[mittenteRuolo,setMittenteRuolo] = useState(localStorage.getItem("ruolo"))
-    const[messaggioDaInviare,setMessaggioDaInviare] = useState(null)
+    const[messaggioDaInviare,setMessaggioDaInviare] = useState("")
     const[chatApertaBool,setChatApertaBool] = useState(false)
     const[modificaMessaggio,setModificaMessaggio] = useState(null)
+    const[messaggioDaModificare,setMessaggioDaModificare] = useState(null)
     const[messaggioDaEliminare,setMessaggioDaEliminare] = useState(null)
     const[messaggi,setMessaggi] = useState([""])
     const[messaggioInArrivo,setMessaggioInArrivo] = useState(null)
@@ -37,7 +38,6 @@ function Chat()
         socket.current = io("ws://localhost:8900")
         socket.current.on("getMessage",(data) => {
 
-            console.log("Messaggio: "+data.senderEmail+data.text)
             setMessaggioInArrivo({
                 id : data.id,
                 conversazioneId: data.conversazioneId,
@@ -47,11 +47,35 @@ function Chat()
             })
         })
 
+        socket.current.on("getModifiedMessage",(data) => {
+
+            setMessaggioDaModificare({
+                id : data.id,
+                conversazioneId: data.conversazioneId,
+                senderEmail : data.senderEmail,
+                testo : data.testo,
+            })
+        })
+
         socket.current.on("getDeletedMessage",(data) => {
            setMessaggioDaEliminare(data)
-
         })
     },[])
+
+    useEffect(()=>{
+        if(messaggioDaModificare)
+            if(conversazione?.membri[0].email===messaggioDaModificare.senderEmail || conversazione?.membri[1].email===messaggioDaModificare.senderEmail) {
+                let array = messaggi.map(function (elem) {
+                    if(elem.id === messaggioDaModificare.id)
+                    {
+                        elem.testo = messaggioDaModificare.testo
+                    }
+                    return elem
+
+                })
+                setMessaggi(array)
+
+    }},[messaggioDaModificare])
 
     useEffect(()=>{
         if(messaggioDaEliminare)
@@ -118,9 +142,6 @@ function Chat()
         }
     },[])
 
-    useEffect(()=>{
-        scrollRef.current?.scrollIntoView({behavior: "smooth"})
-    },[messaggioDaInviare])
 
     const onClickShowChat = () =>
     {
@@ -150,7 +171,7 @@ function Chat()
         axios.post('http://localhost:8080/api/conversazione/getConversazione', {user1:user1,user2:user2})
             .then(response => {
                 //Se esiste si prende i messaggi
-                if(response.data[0].membri)
+                if(response.data[0])
                 {
                     setDestinatarioEmail(emailDest)
                     setConversazione(response.data[0])
@@ -182,7 +203,7 @@ function Chat()
 
                     axios.post('http://localhost:8080/api/conversazione/create', {sender:sender,receiver:receiver})
                         .then(response2 => {
-
+                            setConversazione(response2.data)
                         })
                         .catch((error) => {
                             console.log(error);
@@ -232,14 +253,31 @@ function Chat()
 
     const onSubmitInviaMessaggio = () =>
     {
-        if(messaggioDaInviare.length==0)
-            return
 
         if(modificaMessaggio!=null)
         {
             axios.post('http://localhost:8080/api/messaggio/modifyMessage', {idMessaggio: modificaMessaggio, nuovoTesto:messaggioDaInviare})
                 .then(response => {
-                    setModificaMessaggio(null)
+                    //TODO gestire l'errore
+                    if(!(response.data.hasOwnProperty("error"))) {
+                        messaggi.forEach((el, index, arr) => {
+                            if (el.id === modificaMessaggio) {
+                                arr[index].testo = messaggioDaInviare
+                            }
+                        })
+
+                        socket.current.emit("modifyMessage", {
+                            senderEmail: mittenteEmail,
+                            receiverEmail: destinatarioEmail,
+                            conversazioneId: conversazione.id,
+                            id: modificaMessaggio,
+                            testo: messaggioDaInviare
+                        })
+
+                        setModificaMessaggio(null)
+                    }
+
+                    console.log(response.data.message)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -255,7 +293,8 @@ function Chat()
 
             axios.post('http://localhost:8080/api/messaggio/create', messaggio)
                 .then(response => {
-
+                    //TODO gestire l'errore
+                    if(!(response.data.hasOwnProperty("error"))) {
                     socket.current.emit("sendMessage", {
                         id : response.data.id,
                         conversazioneId : response.data.conversazioneId,
@@ -264,15 +303,19 @@ function Chat()
                         text: messaggioDaInviare,
                     })
 
-                    axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId: conversazione.id})
-                        .then(response => {
-                            setMessaggi(response.data)
-                            var objDiv = document.getElementById("testBox");
-                            objDiv.scrollTop = objDiv.scrollHeight;
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        })
+                        axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId: conversazione.id})
+                            .then(response => {
+                                setMessaggi(response.data)
+                                var objDiv = document.getElementById("testBox");
+                                objDiv.scrollTop = objDiv.scrollHeight;
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            })
+                }
+                else
+                    console.log(response.data.message)
+
                 })
                 .catch((error) => {
                     console.log(error);
@@ -284,7 +327,7 @@ function Chat()
         }
 
         document.getElementById("inputTextMessaggio").value=""
-        setMessaggioDaInviare(null)
+        setMessaggioDaInviare("")
 
 
     }
@@ -352,11 +395,7 @@ function Chat()
 
                                             messaggi.map((messaggio,i) => {
 
-                                                if(!messaggio.sender)
-                                                    return (
-                                                        <h1>Seleziona una chat</h1>
-                                                    )
-                                                else if(messaggio.sender==mittenteEmail) {
+                                                if(messaggio.sender==mittenteEmail) {
                                                     return (
                                                         <div key={i} className="media-body ml-3 rightText">
                                                             <div className="bg-primary rounded py-2 px-3 mb-2">

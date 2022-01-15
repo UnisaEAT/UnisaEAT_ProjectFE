@@ -52,6 +52,21 @@ io.on("connection",(socket) => {
         }
     })
 
+    socket.on("modifyMessage",({senderEmail,receiverEmail,conversazioneId,id,testo})=> {
+        const user = getUser(receiverEmail)
+
+        if(user)
+        {
+            io.to(user.socketId).emit("getModifiedMessage", {
+                senderEmail,
+                receiverEmail,
+                conversazioneId,
+                id,
+                testo
+            })
+        }
+    })
+
 
 
 

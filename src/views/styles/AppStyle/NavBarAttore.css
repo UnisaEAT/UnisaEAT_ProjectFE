@@ -1,0 +1,9 @@
+.navEsempio
+{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 50%;
+    background: #85bb65;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
