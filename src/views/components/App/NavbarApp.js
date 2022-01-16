@@ -48,13 +48,14 @@ function NavbarApp() {
     } else{
         return(
             <div className="navbarStyle">
+                <link href="css/hover.css" rel="stylesheet" media="all"/>
                     <Nav.Link className="elementoLogo" href="/">
                         <Image src={logo}
                                width="100"/>
                     </Nav.Link>
 
                 <Nav>
-                    <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore">
                             <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Ticket">
@@ -63,7 +64,7 @@ function NavbarApp() {
                         </Nav>
                     </NavItem>
 
-                    <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore">
                             <Image className="imageNavBarAttore" src={OrdinaIcon} width="50"/>
                                 <NavDropdown className="testoDropDown" title="Ordinazione" id="navbarScrollingDropdown">
@@ -74,7 +75,7 @@ function NavbarApp() {
 
                     </NavItem>
 
-                    <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
@@ -83,7 +84,7 @@ function NavbarApp() {
                         </Nav>
                     </NavItem>
 
-                    <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav.Link className="elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={TesserinoIcon} width="52"/>
                             <NavDropdown className="testoDropDown" title="Tesserino" id="navbarScrollingDropdown">
@@ -95,8 +96,8 @@ function NavbarApp() {
                         </Nav.Link>
                     </NavItem>
 
-                    <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav.Link className="elementoNavBarAttore" href="/">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav.Link className="hvr-grow elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={FaqIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="FAQ" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneFAQ/visualizzazioneFAQ">Visualizza FAQs</NavDropdown.Item>

@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
+    "hover.css": "^2.3.2",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "qrcode.react": "^1.0.1",
