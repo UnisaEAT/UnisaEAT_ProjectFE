@@ -55,12 +55,12 @@ function NavbarApp() {
 
                 <Nav>
                     <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav.Link className="elementoNavBarAttore">
+                        <Nav className="elementoNavBarAttore">
                             <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Ticket">
                                 <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
                             </NavDropdown>
-                        </Nav.Link>
+                        </Nav>
                     </NavItem>
 
                     <NavItem className="nav-item-NavBarAttore justify-content-center d-flex">

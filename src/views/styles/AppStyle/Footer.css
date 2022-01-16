@@ -1,256 +1,115 @@
-#container {
-    width: 100%;
-    height: 330px
-}
-
-#part1 {
-    width: 100%;
-    height: inherit;
-    background-color: #292929
-}
-
-#part2 {
-    width: 100%;
-    height: 50px;
-    background-color: black;
-    position: relative;
-    top: -15px
-}
-
-#companyinfo {
-    width: 14%;
-    height: 280px;
-    position: relative;
-    left: 8%;
-    top: 30px
-}
-
-#sitelink {
-    font-size: 35px;
-    color: #f44336
-}
-
-#sitelink:hover {
-    color: #e65100
-}
-
-#title {
-    color: gray;
-    position: relative;
-    top: 0px;
-    font-size: 14.1px
-}
-
-#detail {
-    color: #aaa7a7;
-    font-size: 16px
-}
-
-#explore {
-    width: 14%;
-    height: 280px;
-    position: relative;
-    top: -235px;
-    left: 29%
-}
-
-#txt1,
-#txt2,
-#txt3,
-#txt4,
-#txt5 {
+footer {
+    background: #16222A;
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    background-color: #4c4177;
+    background-image: linear-gradient(
+            359deg
+            , #4c4177 0%, #2a5470 74%);
     color: white;
-    font-size: 20px
+    margin-top:10%;
 }
 
-.link {
-    display: flex;
-    width: 90px;
-    height: 40px;
-    color: #aaa7a7;
-    background-color: transparent;
-    border-top: 2px solid white;
-    position: relative;
-    top: -10px
-}
-
-.link:hover,
-.link1:hover {
-    color: #e65100
-}
-
-#visit {
-    width: 14%;
-    height: 280px;
-    position: relative;
-    top: -515px;
-    left: 42%
-}
-
-.text {
-    color: #aaa7a7;
+footer a {
+    color: #fff;
     font-size: 14px;
-    margin-top: -10px
+    transition-duration: 0.2s;
 }
 
-#legal {
-    width: 14%;
-    height: 280px;
-    position: relative;
-    top: -800px;
-    left: 59.5%
+footer a:hover {
+    color: #FA944B;
+    text-decoration: none;
 }
 
-.link1 {
-    display: flex;
-    width: 150px;
-    height: 40px;
-    color: #aaa7a7;
-    background-color: transparent;
-    border-top: 2px solid white;
-    position: relative;
-    top: -10px;
-    margin-top: 7px
+.copy {
+    font-size: 12px;
+    padding: 10px;
+    border-top: 1px solid #FFFFFF;
 }
 
-#subscribe {
-    position: relative;
-    top: -1080px;
-    left: 78%;
-    width: 14%;
-    height: 280px
-}
-
-
-.btn {
-    position: relative;
-    top: -10px
-}
-
-#txt5 {
-    position: relative;
-    top: 0px
-}
-
-.social {
-    position: relative;
-    top: -5px;
-    margin-right: 10px;
+.footer-middle {
+    padding-top: 2em;
     color: white;
-    cursor: pointer
 }
 
-.fa-facebook-square:hover {
-    color: #3B579D
+
+/*SOCİAL İCONS*/
+
+/* footer social icons */
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0;
 }
 
-.fa-linkedin:hover {
-    color: #007BB6
+ul.social-network li {
+    display: inline;
+    margin: 0 5px;
 }
 
-.fa-twitter-square:hover {
-    color: #2CAAE1
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+    background-color: #3B5998;
 }
 
-#txt6 {
-    color: white;
+.social-network a.icoLinkedin:hover {
+    background-color: #007bb7;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i {
+    color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+    color: #44BCDD;
+}
+
+.social-circle li a {
+    display: inline-block;
     position: relative;
-    top: 13px;
-    left: 8%;
-    width: 80%;
-    color: #aaa7a7
+    margin: 0 auto 0 auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
 }
 
-.material-icons {
-    position: relative;
-    top: 3px
+.social-circle li i {
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
 }
 
-@media only screen and (max-width: 1000px) {
-    #companyinfo {
-        width: 20%
-    }
-
-    #sitelink {
-        font-size: 30px
-    }
-
-    #txt5,
-    #txt4 {
-        font-size: 17px
-    }
-
-    #txt5,
-    .social {
-        position: relative;
-        top: -5px
-    }
+.social-circle li a:hover i,
+.triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
 }
 
-@media only screen and (max-width: 850px) {
-    #companyinfo {
-        position: relative;
-        left: 3%
-    }
+.social-circle i {
+    color: #595959;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
 
-    #txt6 {
-        position: relative;
-        left: 3%
-    }
-
-    #txt1,
-    #txt2,
-    #txt3,
-    #txt4,
-    #txt5 {
-        font-size: 15px
-    }
-
-    #explore {
-        position: relative;
-        top: -240px;
-        left: 26%
-    }
-
-    #sitelink {
-        font-size: 25px
-    }
-
-    #detail {
-        font-size: 13px
-    }
-
-    .link {
-        width: 60px
-    }
-
-    #visit {
-        position: relative;
-        top: -520px;
-        left: 37%
-    }
-
-    .text {
-        font-size: 13px
-    }
-
-    #legal {
-        position: relative;
-        top: -800px;
-        left: 54%
-    }
-
-    #subscribe {
-        position: relative;
-        top: -1080px;
-        left: 76%;
-        width: 20%
-    }
-
-    #txt5,
-    .social {
-        position: relative;
-        left: -110%;
-    }
-
+.social-network a {
+    background-color: #F9F9F9;
 }

@@ -3,6 +3,9 @@ import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
 
+import "../../styles/gestioneTicket/ticketCSS.css"
+
+
 export default class CompilazioneTicket extends React.Component {
 
     //Costruttore di props
@@ -98,7 +101,7 @@ export default class CompilazioneTicket extends React.Component {
 
     render() {
         return (
-            <div id="root">
+            <div id="rootTicket">
                  {/* Se popUp (boolean) è true */}
                 {this.state.popUp && <Popup message="Inserimento avvenuto con successo!" handleClose={this.closePopUp}/>}
 

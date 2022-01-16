@@ -1,0 +1,18 @@
+
+body
+{
+
+    background-color: #ffffff;
+    background-image: linear-gradient(889deg, #ffffff 0%, #d7e1ec 84%);
+}
+.carousel-container
+{
+    width: 60%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.carousel-inner
+{
+    border-radius: 20px;
+}
