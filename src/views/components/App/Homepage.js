@@ -3,7 +3,7 @@ import {Carousel, Image} from "react-bootstrap";
 import {useState} from "react";
 import slide1 from "../../assets/slide1.jpg"
 import slide2 from "../../assets/slide2.jpg"
-import slide3 from "../../assets/slide3.jpg"
+import mensa5 from "../../assets/mensa5.jpg"
 import Chat from "../gestioneChat/chat";
 
 import "../../styles/AppStyle/Homepage.css"
@@ -43,7 +43,9 @@ function Homepage() {
                 <Carousel.Item>
                     <Image
                         className="d-block w-100"
-                        src={slide3}
+                        src={mensa5}
+                        width="100px"
+                        height="500px"
                         alt="Third slide"
                     />
 
