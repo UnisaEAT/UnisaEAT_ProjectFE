@@ -7,3 +7,53 @@
     border-radius: 20px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
+.navItemContainer
+{
+    flex-direction: column !important;
+}
+.iconeNavbar
+{
+    margin: 0 auto;
+}
+
+.elementoNavBarAttore
+{
+    color: white;
+    text-align: center;
+    flex-direction: column;
+}
+
+.elementoNavBarAttore img
+{
+    margin: 0 auto;
+}
+
+.elementoNavBarAttore:hover
+{
+    color: white;
+}
+
+.nav-item-NavBarAttore
+{
+    align-items: center;
+    margin-left: 10px;
+
+}
+
+.nav-link
+{
+    color: white;
+}
+.nav-link:hover
+{
+    color: white;
+}
+.nav-link:focus
+{
+    color: white;
+}
+
+
+
+
+
