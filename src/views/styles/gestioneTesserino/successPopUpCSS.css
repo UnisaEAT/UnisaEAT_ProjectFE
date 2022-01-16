@@ -23,7 +23,7 @@
 
 .upperInnerBox {
     height: 50%;
-    background: #3f64b0;
+    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%) !important;
 
 }
 
@@ -45,13 +45,13 @@
 }
 
 .closeButton {
-    background: #3f64b0;
+    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%) !important;
     border: none;
     margin-top: 10%;
 }
 
 .closeButton:hover {
-    background: #3f64b0;
+    background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
 }
 
 .checkLogo {

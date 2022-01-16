@@ -3,6 +3,7 @@ import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
 import moment from 'moment'
+import "../../styles/gestioneTicket/ticketCSS.css"
 
 export default class RisoluzioneTicket extends React.Component {
 
@@ -106,7 +107,7 @@ export default class RisoluzioneTicket extends React.Component {
                                 </Form.Group>
                             </Row>
                             
-                            <Button type="submit" >Risolvi</Button>
+                            <Button className="bottone" type="submit" >Risolvi</Button>
                     </Form>
                 </Card>
             </div>

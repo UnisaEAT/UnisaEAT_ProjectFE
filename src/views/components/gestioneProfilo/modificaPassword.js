@@ -2,6 +2,7 @@ import React from 'react'
 import {Form,Button,Card,Col,Row,FormGroup} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
+import '../../styles/gestioneProfilo/profilo.css';
 
 export default class ModificaPassword extends React.Component {
 

@@ -1,0 +1,13 @@
+.bottone {
+    text-align: center;
+    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
+    color: white;
+    width: 30%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    position: inherit;
+    border:none;
+}
+.bottone:hover {
+    background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
+}

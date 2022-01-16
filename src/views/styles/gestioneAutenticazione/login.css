@@ -5,11 +5,17 @@
 
 .bottoneLogin {
     position: inherit;
-    background: lightblue;
+    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
     margin-bottom: 10%;
-    color: black;
+    color: white;
+    border:none;
+    
 }
 
 .righe {
     text-align: center;
+}
+
+.bottoneLogin:hover {
+    background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
 }

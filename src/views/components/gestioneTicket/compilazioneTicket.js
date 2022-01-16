@@ -120,7 +120,7 @@ export default class CompilazioneTicket extends React.Component {
                                 <Form.Control type="text" id="problema" name="problema" onChange={this.onChangeProblema} placeholder="Inserisci il problema riscontrato"/>
                             </Form.Group>
                         </Row>
-                        <Button  className="submitButton" variant="primary" type="submit">INSERISCI</Button>
+                        <Button  className="bottone" variant="primary" type="submit">INSERISCI</Button>
                     </Form>
                 </Card>
             </div>

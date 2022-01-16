@@ -4,6 +4,7 @@ import {ListGroup, Button, Card, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import RisoluzioneTicket from "./risoluzioneTicket";
 import moment from 'moment'
+import "../../styles/gestioneTicket/ticketCSS.css"
 
 export default class VisualizzazioneTicket extends React.Component {
     //Costruttore di props
@@ -58,7 +59,7 @@ export default class VisualizzazioneTicket extends React.Component {
                                     <Row> <div className="fw-bold">Data:</div>{moment(oggetto.date).format('DD MMM, YYYY')}</Row>
                                     <Row> <div className="fw-bold">Email:</div>{oggetto.email}</Row>
                                 </div>
-                                <Button onClick={(e) => {
+                                <Button className="bottone" onClick={(e) => {
                             this.handleRisoluzioneTicket(e, oggetto);}}>Risolvi</Button>
                             </Col>
                             )
@@ -90,7 +91,7 @@ export default class VisualizzazioneTicket extends React.Component {
                 })}
             </ListGroup>
             <br></br>
-            <Button href="/gestioneTicket/compilazioneTicket">Inserisci un nuovo ticket</Button>
+            <Button className="bottone" href="/gestioneTicket/compilazioneTicket">Inserisci un nuovo ticket</Button>
         </Card>
         )
     }

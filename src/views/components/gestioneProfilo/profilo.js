@@ -44,10 +44,8 @@ export default class Profilo extends Component {
             return(
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                    <Card className=" mx-auto col-xl-7 justify-content-center text-center position inherit">
+                    <Card className=" mx-auto justify-content-center text-center position inherit">
                         <div className="row d-flex justify-content-center">
-                            <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                                <div className="AreaPersonale">
                                     <h1>AREA PERSONALE</h1>
 
                                     {this.state.utente.map((oggetto)=> {
@@ -56,13 +54,11 @@ export default class Profilo extends Component {
                                             <Row>Nome: {oggetto.nome}</Row>
                                             <Row>Cognome: {oggetto.cognome}</Row>
                                             <Row>Email: {oggetto.email}</Row>
-                                            <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
+                                            <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                         </Col>
                                     )})
                                     }
-                                
-                                </div>
-                            </div>
+                            
                         </div>
                     </Card>
                 </div>
@@ -73,8 +69,6 @@ export default class Profilo extends Component {
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
-                        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                            <div className="AreaPersonale">
                             <h1>AREA PERSONALE</h1>
                                 {this.state.utente.map((oggetto) =>{
                                 return(
@@ -86,14 +80,12 @@ export default class Profilo extends Component {
                                         <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
                                         <Row>Ruolo: {oggetto.ruolo}</Row>
                                         <Row>Indirizzo: {oggetto.indirizzo}</Row>
-                                        <Button href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
+                                        <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                     </Col>
                                      
                                 )})
                                 }
                                
-                            </div>
-                        </div>
                     </div>
                 </Card>
                 </div>
@@ -101,18 +93,13 @@ export default class Profilo extends Component {
         } else if (localStorage.getItem("ruolo")==="cliente"){
             return(
                 <div id="root">
-                 {/* Se popUp (boolean) è true */}
-                 {this.state.popUp && <Popup message={'Modifica password effettuata!'} handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
-                        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                            <div className="AreaPersonale">
                             <h1>AREA PERSONALE</h1>
                             {this.state.utente.map((oggetto)=> {
                                 return(
-                                   
                                 <Col>
-                                    <Row>Nome: {oggetto.nome}</Row>
+                                    <Row>Nome: {oggetto.nome} </Row>
                                     <Row>Cognome: {oggetto.cognome}</Row>
                                     <Row>Città: {oggetto.citta}</Row>
                                     <Row>Email: {oggetto.email}</Row>
@@ -129,8 +116,6 @@ export default class Profilo extends Component {
                                 )
                             })}
                             
-                            </div>
-                        </div>
                     </div>
                 </Card>
                 </div>

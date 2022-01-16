@@ -1,12 +1,16 @@
 .bottone {
     text-align: center;
-    background-color: blueviolet;
+    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
     color: white;
     width: 30%;
     margin-bottom: 5%;
-    margin-top: 5%
+    margin-top: 5%;
+    position: inherit;
+    border:none;
 }
-
+.bottone:hover {
+    background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
+}
 .container {
     text-align: center;
 }
@@ -16,11 +20,23 @@
     margin-bottom: 5%;
 }
 
-.AreaPersonale {
-    margin-top: 5%;
-    margin-bottom: 5%;
+.row{
+
+    font-weight: 700;
+    color: #676767;
+    display: inline-grid !important;
+    text-align: center !important;
+    padding:10px;
+    margin-inline: auto;
+    grid-gap: 50px 100px;
+    font-size: medium;
+    /*border: solid;
+    border-color: rgb(12, 48, 95);
+    border-width:1px 1px 3px 1px;
+    margin: 0 30% 1% 30%;*/
 }
 
 .card {
     position: inherit;
+    display:grid;
 }
