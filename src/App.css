@@ -48,6 +48,10 @@ body {
     background: grey;
 }
 
+.carousel
+{
+    z-index: -2;
+}
 
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {

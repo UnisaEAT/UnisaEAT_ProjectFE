@@ -1,12 +1,19 @@
-.elementoNav {
-    width: 90px;
-    margin-top: -9px;
-    margin-bottom: -9px;
+.logoutButton
+{
+    padding-top: 15px;
+
+}
+.notificheButton
+{
+    margin-bottom: 5px;
+    padding-right: 5px;
+}
+.elementoIconaUtente {
+    margin-right: -10px;
 }
 
 .elementoLogo {
-    position: absolute;
-    left: -10px;
+    margin-left: 20px;
 }
 
 .sfondo {
@@ -15,13 +22,10 @@
 
 .navbar {
     background: lightblue;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
 }
 
-.elementoIconaUtente {
-    position: absolute;
-    right: -8px;
-    top: 5px;
-}
+
 
 .containerStyle {
     margin-left: 0;
@@ -40,4 +44,12 @@
 .navbarStyle {
     background-color: transparent;
     background: #3B579D;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 10px 1px rgb(0 0 0);
+    align-items: center;
+    background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 64%);
 }
+
