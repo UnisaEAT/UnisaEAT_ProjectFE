@@ -44,80 +44,165 @@ export default class Profilo extends Component {
             return(
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                    <Card className="card-profilo mx-auto justify-content-center text-center position inherit">
-                        <div className="row d-flex justify-content-center">
-                                    <h1>AREA PERSONALE</h1>
+                        <div className="row-block justify-content-center ">
+                            {this.state.utente.map((oggetto)=> {
+                             return(
+                                <div className="cardProfile user-card-full">
+                                    <div class="row m-l-0 m-r-0">
+                                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                                            <div class="card-block text-center text-white">
+                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6> <br></br>
+                                                <h6 class="f-w-600 text-uppercase">Admin</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="card-block">
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Email:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.email}</h6>
+                                                        <p class="m-b-10 f-w-600">Nome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.nome}</h6>
+                                                        <p class="m-b-10 f-w-600">Cognome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.cognome}</h6>
+                                                    </div>
 
-                                    {this.state.utente.map((oggetto)=> {
-                                    return(
-                                        <Col >
-                                            <Row className="righe">Nome: {oggetto.nome}</Row>
-                                            <Row className="righe">Cognome: {oggetto.cognome}</Row>
-                                            <Row className="righe">Email: {oggetto.email}</Row>
-                                            <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
-                                        </Col>
-                                    )})
-                                    }
-                            
-                        </div>
-                    </Card>
+                                                </div>
+                                                <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )})
+                            }
+                    
                 </div>
-            );
+        </div>
+        );
         } else if ((localStorage.getItem("ruolo")==="operatore mensa")||(localStorage.getItem("ruolo")==="personale adisu")){
             return(
                 <div id="root">
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                <Card className="card-profilo mx-auto col-xl-7 justify-content-center text-center">
-                    <div className="row d-flex justify-content-center">
-                            <h1>AREA PERSONALE</h1>
+                    <div className="row-block justify-content-center">
                                 {this.state.utente.map((oggetto) =>{
                                 return(
-                                    <Col>
-                                        <Row className="righe">Nome: {oggetto.nome}</Row>
-                                        <Row className="righe">Cognome: {oggetto.cognome}</Row>
-                                        <Row className="righe">Email: {oggetto.email}</Row>
-                                        <Row className="righe">Numero di telefono: {oggetto.numeroTelefono}</Row>
-                                        <Row className="righe">Data di nascita: {oggetto.dataDiNascita}</Row>
-                                        <Row className="righe">Ruolo: {oggetto.ruolo}</Row>
-                                        <Row className="righe">Indirizzo: {oggetto.indirizzo}</Row>
-                                        <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
-                                    </Col>
-                                     
+                                    <div className="cardProfile user-card-full">
+                                    <div class="row m-l-0 m-r-0">
+                                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                                            <div class="card-block text-center text-white">
+                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6><br></br>
+                                                <h6 class="f-w-600 text-uppercase">{oggetto.ruolo}</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="card-block">
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Email:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.email}</h6>
+                                                        <p class="m-b-10 f-w-600">Nome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.nome}</h6>
+                                                        <p class="m-b-10 f-w-600">Cognome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.cognome}</h6>
+                                                       
+                                                    </div>
+
+                                                </div><br></br>
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Data di nascita:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.dataDiNascita}</h6>
+                                                        <p class="m-b-10 f-w-600">Indirizzo:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.indirizzo}</h6>
+                                                        <p class="m-b-10 f-w-600">Numero di telefono:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.numeroTelefono}</h6>
+                                                    </div>
+
+                                                </div>
+                                                <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 )})
                                 }
                                
                     </div>
-                </Card>
                 </div>
             );
         } else if (localStorage.getItem("ruolo")==="cliente"){
             return(
                 <div id="root">
-                <Card className="card-profilo mx-auto col-xl-7 justify-content-center text-center">
-                    <div className="row d-flex justify-content-center">
-                            <h1>AREA PERSONALE</h1>
+                    <div className="row-block justify-content-center">
                             {this.state.utente.map((oggetto)=> {
                                 return(
-                                <Col>
-                                    <Row className="righe">Nome: {oggetto.nome} </Row>
-                                    <Row className="righe">Cognome: {oggetto.cognome}</Row>
-                                    <Row className="righe">Città: {oggetto.citta}</Row>
-                                    <Row className="righe">Email: {oggetto.email}</Row>
-                                    <Row className="righe">Indirizzo: {oggetto.indirizzo}</Row>
-                                    <Row className="righe">Data di nascita: {oggetto.dataDiNascita}</Row>
-                                    <Row className="righe">Provincia di nascita: {oggetto.provinciaDiNascita}</Row>
-                                    <Row className="righe">Cittadinanza: {oggetto.cittadinanza}</Row>
-                                    <Row className="righe">Provincia: {oggetto.provincia}</Row>
-                                    <Row className="righe">CAP: {oggetto.cap}</Row>
-                                    <Row className="righe">Numero di telefono: {oggetto.telefono}</Row>
-                                    
-                                </Col>
+                                    <div className="cardProfile user-card-full">
+                                    <div class="row m-l-0 m-r-0">
+                                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                                            <div class="card-block text-center text-white">
+                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6><br></br>
+                                                <h6 class="f-w-600 text-uppercase">Cliente</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="card-block">
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Email:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.email}</h6>
+                                                        <p class="m-b-10 f-w-600">Nome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.nome}</h6>
+                                                        <p class="m-b-10 f-w-600">Cognome:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.cognome}</h6>
+                                                        <p class="m-b-10 f-w-600">Numero di telefono:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.telefono}</h6>
+                                                       
+                                                    </div>
+
+                                                </div><br></br>
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Data di nascita:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.dataDiNascita}</h6>
+                                                        <p class="m-b-10 f-w-600">Provincia di Nascita:</p>
+                                                        <h6 class="text-muted f-w-400"> {oggetto.provinciaDiNascita}</h6>
+                                                        <p class="m-b-10 f-w-600">Cittadinanza:</p>
+                                                        <h6 class="text-muted f-w-400"> {oggetto.cittadinanza}</h6>
+                                                    </div>
+
+                                                </div>
+                                                <br></br>
+                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ABITATIVE</h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="m-b-10 f-w-600">Indirizzo:</p>
+                                                        <h6 class="text-muted f-w-400">{oggetto.indirizzo}</h6>
+                                                        <p class="m-b-10 f-w-600">Città:</p>
+                                                        <h6 class="text-muted f-w-400"> {oggetto.citta}</h6>
+                                                        <p class="m-b-10 f-w-600">Provincia:</p>
+                                                        <h6 class="text-muted f-w-400"> {oggetto.provincia}</h6>
+                                                        <p class="m-b-10 f-w-600">CAP:</p>
+                                                        <h6 class="text-muted f-w-400"> {oggetto.cap}</h6>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 )
                             })}
                             
                     </div>
-                </Card>
                 </div>
             );
     }
