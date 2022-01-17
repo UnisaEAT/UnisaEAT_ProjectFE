@@ -20,7 +20,7 @@
     margin-bottom: 5%;
 }
 
-.row{
+.righe{
 
     font-weight: 700;
     color: #676767;
@@ -36,7 +36,7 @@
     margin: 0 30% 1% 30%;*/
 }
 
-.card {
+.card-profilo {
     position: inherit;
     display:grid;
 }

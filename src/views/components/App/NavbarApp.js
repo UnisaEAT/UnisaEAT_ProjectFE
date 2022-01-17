@@ -1,15 +1,19 @@
 import React from 'react'
 import {Container, Nav, Navbar, Image, Button, NavItem, NavDropdown} from "react-bootstrap";
 import logo from "../../assets/logoUnisaEAT.png"
-import notifiche from "../../assets/Notifiche.png"
-import iconaUtente from "../../assets/iconaUtente.png"
-import logoutIcon from "../../assets/logout.png"
+import notifiche from "../../assets/iconeNavbar/Notifiche.png"
+import iconaUtente from "../../assets/iconeNavbar/iconaUtente.png"
+import logoutIcon from "../../assets/iconeNavbar/logout.png"
+import loginIcon from "../../assets/iconeNavbar/login.png"
+
 
 import TicketIcon from "../../assets/iconeNavbar/ticket.png"
 import OrdinaIcon from "../../assets/iconeNavbar/ordina.png"
 import TesserinoIcon from "../../assets/iconeNavbar/tesserino.png"
 import FaqIcon from "../../assets/iconeNavbar/faq.png"
 import MenuIcon from "../../assets/iconeNavbar/menu.png"
+import GestionePersonaleIcon from "../../assets/iconeNavbar/gestionePersonale.png"
+import statisticheIcon from "../../assets/iconeNavbar/statistiche.png"
 
 import "../../styles/AppStyle/NavbarApp.css"
 import "../../styles/gestioneAutenticazione/login.css"
@@ -20,32 +24,26 @@ function NavbarApp() {
     console.log(localStorage.getItem("email")) 
     if(localStorage.getItem("email")===null) {
     return (
-        <Navbar className="navbarStyle" expand="lg">
-            <Container className="elementoNav">
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link className="elementoLogo" href="/">
-                            <Image src={logo}
-                                   width="10"/>
-                        </Nav.Link>
-                        <Nav.Link href="/">
-                            <Image src={notifiche}
-                                   width="65"/>
+        <div className="navbarStyle">
+            <link href="css/hover.css" rel="stylesheet" media="all"/>
+            <Nav.Link className="elementoLogo" href="/">
+            <Image src={logo}
+        width="100"/>
+            </Nav.Link>
 
-                        </Nav.Link>
-                        <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
-                            <Image src={iconaUtente}
-                                   width="50"/>
-                        </Nav.Link>
 
-                    </Nav>
-                    <Button  href="/login">LOGIN</Button>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <NavItem className="nav-item justify-content-end d-flex mx-lg-3">
+            <Nav.Link className="loginButton" href="/login">
+                <Image src={loginIcon}
+                       width="45"/>
+            </Nav.Link>
+        </NavItem>
+
+    </div>
     )
-    } else{
+    }
+    else if(localStorage.getItem("ruolo")==="cliente")
+    {
         return(
             <div className="navbarStyle">
                 <link href="css/hover.css" rel="stylesheet" media="all"/>
@@ -60,6 +58,7 @@ function NavbarApp() {
                             <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Ticket">
                                 <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
@@ -85,7 +84,7 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav.Link className="elementoNavBarAttore" href="/">
+                        <Nav className="elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={TesserinoIcon} width="52"/>
                             <NavDropdown className="testoDropDown" title="Tesserino" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneTesserino/richiestaTesserino">Richiedi tesserino digitale</NavDropdown.Item>
@@ -93,16 +92,16 @@ function NavbarApp() {
                                 <NavDropdown.Item href="/gestioneTesserino/ricaricaTesserino">Ricarica tesserino</NavDropdown.Item>
                                 <NavDropdown.Item href="/gestioneTesserino/visualizzaSaldo">Saldo tesserino</NavDropdown.Item>
                             </NavDropdown>
-                        </Nav.Link>
+                        </Nav>
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav.Link className="hvr-grow elementoNavBarAttore" href="/">
+                        <Nav className="hvr-grow elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={FaqIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="FAQ" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneFAQ/visualizzazioneFAQ">Visualizza FAQs</NavDropdown.Item>
                             </NavDropdown>
-                        </Nav.Link>
+                        </Nav>
                     </NavItem>
 
 
@@ -122,6 +121,187 @@ function NavbarApp() {
                                    width="32"/>
                         </Nav.Link>
                     </NavItem>
+
+
+
+            </div>
+        )
+    }
+
+    else if(localStorage.getItem("ruolo")==="personale adisu")
+    {
+        return(
+            <div className="navbarStyle">
+                <link href="css/hover.css" rel="stylesheet" media="all"/>
+                <Nav.Link className="elementoLogo" href="/">
+                    <Image src={logo}
+                           width="100"/>
+                </Nav.Link>
+
+                <Nav>
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="hvr-grow elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={GestionePersonaleIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Operatore mensa" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestionePersonale/InserimentoPersonale">Inserimento operatore</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestionePersonale/VisualizzazioneListaPersonale">Lista operatori</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="hvr-grow elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={FaqIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="FAQ" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestioneFAQ/visualizzazioneFAQ">Visualizza FAQs</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneFAQ/inserimentoFAQ">Inserisci FAQs</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+
+                </Nav>
+
+                <NavItem className="nav-item justify-content-end d-flex">
+                    <Nav.Link className="notificheButton" href="/">
+                        <Image src={notifiche}
+                               width="45"/>
+                    </Nav.Link>
+                    <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
+                        <Image src={iconaUtente}
+                               width="50"/>
+                    </Nav.Link>
+                    <Nav.Link className="logoutButton" href="/logout">
+                        <Image src={logoutIcon}
+                               width="32"/>
+                    </Nav.Link>
+                </NavItem>
+
+
+
+            </div>
+        )
+    }
+    else if(localStorage.getItem("ruolo")==="operatore mensa")
+    {
+        return(
+            <div className="navbarStyle">
+                <link href="css/hover.css" rel="stylesheet" media="all"/>
+                <Nav.Link className="elementoLogo" href="/">
+                    <Image src={logo}
+                           width="100"/>
+                </Nav.Link>
+
+                <Nav>
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Inserisci menù</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={statisticheIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Statistiche" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/statisticheSettimanali">Visualizza statistiche </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+
+                </Nav>
+
+                <NavItem className="nav-item justify-content-end d-flex">
+                    <Nav.Link className="notificheButton" href="/">
+                        <Image src={notifiche}
+                               width="45"/>
+                    </Nav.Link>
+                    <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
+                        <Image src={iconaUtente}
+                               width="50"/>
+                    </Nav.Link>
+                    <Nav.Link className="logoutButton" href="/logout">
+                        <Image src={logoutIcon}
+                               width="32"/>
+                    </Nav.Link>
+                </NavItem>
+
+
+
+            </div>
+        )
+    }
+    else if(localStorage.getItem("ruolo")==="admin")
+    {
+        return(
+            <div className="navbarStyle">
+                <link href="css/hover.css" rel="stylesheet" media="all"/>
+                <Nav.Link className="elementoLogo" href="/">
+                    <Image src={logo}
+                           width="100"/>
+                </Nav.Link>
+
+                <Nav>
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Inserisci menù</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+
+                </Nav>
+
+                <NavItem className="nav-item justify-content-end d-flex">
+                    <Nav.Link className="notificheButton" href="/">
+                        <Image src={notifiche}
+                               width="45"/>
+                    </Nav.Link>
+                    <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
+                        <Image src={iconaUtente}
+                               width="50"/>
+                    </Nav.Link>
+                    <Nav.Link className="logoutButton" href="/logout">
+                        <Image src={logoutIcon}
+                               width="32"/>
+                    </Nav.Link>
+                </NavItem>
 
 
 

@@ -20,6 +20,8 @@ function Homepage() {
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
                         className="d-block w-100"
+
+                        height="600px"
                         src={slide1}
                         alt="First slide"
                     />
@@ -31,6 +33,7 @@ function Homepage() {
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
                         className="d-block w-100"
+                        height="600px"
                         src={slide2}
                         alt="Second slide"
                     />
@@ -44,8 +47,7 @@ function Homepage() {
                     <Image
                         className="d-block w-100"
                         src={mensa5}
-                        width="100px"
-                        height="500px"
+                        height="600px"
                         alt="Third slide"
                     />
 

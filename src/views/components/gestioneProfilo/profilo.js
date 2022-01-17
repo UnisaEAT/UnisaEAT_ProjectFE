@@ -44,16 +44,16 @@ export default class Profilo extends Component {
             return(
                 <div id="root">
                     {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                    <Card className=" mx-auto justify-content-center text-center position inherit">
+                    <Card className="card-profilo mx-auto justify-content-center text-center position inherit">
                         <div className="row d-flex justify-content-center">
                                     <h1>AREA PERSONALE</h1>
 
                                     {this.state.utente.map((oggetto)=> {
                                     return(
                                         <Col >
-                                            <Row>Nome: {oggetto.nome}</Row>
-                                            <Row>Cognome: {oggetto.cognome}</Row>
-                                            <Row>Email: {oggetto.email}</Row>
+                                            <Row className="righe">Nome: {oggetto.nome}</Row>
+                                            <Row className="righe">Cognome: {oggetto.cognome}</Row>
+                                            <Row className="righe">Email: {oggetto.email}</Row>
                                             <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                         </Col>
                                     )})
@@ -67,19 +67,19 @@ export default class Profilo extends Component {
             return(
                 <div id="root">
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                <Card className="card-profilo mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
                             <h1>AREA PERSONALE</h1>
                                 {this.state.utente.map((oggetto) =>{
                                 return(
                                     <Col>
-                                        <Row>Nome: {oggetto.nome}</Row>
-                                        <Row>Cognome: {oggetto.cognome}</Row>
-                                        <Row>Email: {oggetto.email}</Row>
-                                        <Row>Numero di telefono: {oggetto.numeroTelefono}</Row>
-                                        <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
-                                        <Row>Ruolo: {oggetto.ruolo}</Row>
-                                        <Row>Indirizzo: {oggetto.indirizzo}</Row>
+                                        <Row className="righe">Nome: {oggetto.nome}</Row>
+                                        <Row className="righe">Cognome: {oggetto.cognome}</Row>
+                                        <Row className="righe">Email: {oggetto.email}</Row>
+                                        <Row className="righe">Numero di telefono: {oggetto.numeroTelefono}</Row>
+                                        <Row className="righe">Data di nascita: {oggetto.dataDiNascita}</Row>
+                                        <Row className="righe">Ruolo: {oggetto.ruolo}</Row>
+                                        <Row className="righe">Indirizzo: {oggetto.indirizzo}</Row>
                                         <Button className="bottone" href="/gestioneProfilo/modificaPassword" type="submit" >Modifica Password</Button>
                                     </Col>
                                      
@@ -93,23 +93,23 @@ export default class Profilo extends Component {
         } else if (localStorage.getItem("ruolo")==="cliente"){
             return(
                 <div id="root">
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                <Card className="card-profilo mx-auto col-xl-7 justify-content-center text-center">
                     <div className="row d-flex justify-content-center">
                             <h1>AREA PERSONALE</h1>
                             {this.state.utente.map((oggetto)=> {
                                 return(
                                 <Col>
-                                    <Row>Nome: {oggetto.nome} </Row>
-                                    <Row>Cognome: {oggetto.cognome}</Row>
-                                    <Row>Città: {oggetto.citta}</Row>
-                                    <Row>Email: {oggetto.email}</Row>
-                                    <Row>Indirizzo: {oggetto.indirizzo}</Row>
-                                    <Row>Data di nascita: {oggetto.dataDiNascita}</Row>
-                                    <Row>Provincia di nascita: {oggetto.provinciaDiNascita}</Row>
-                                    <Row>Cittadinanza: {oggetto.cittadinanza}</Row>
-                                    <Row>Provincia: {oggetto.provincia}</Row>
-                                    <Row>CAP: {oggetto.cap}</Row>
-                                    <Row>Numero di telefono: {oggetto.telefono}</Row>
+                                    <Row className="righe">Nome: {oggetto.nome} </Row>
+                                    <Row className="righe">Cognome: {oggetto.cognome}</Row>
+                                    <Row className="righe">Città: {oggetto.citta}</Row>
+                                    <Row className="righe">Email: {oggetto.email}</Row>
+                                    <Row className="righe">Indirizzo: {oggetto.indirizzo}</Row>
+                                    <Row className="righe">Data di nascita: {oggetto.dataDiNascita}</Row>
+                                    <Row className="righe">Provincia di nascita: {oggetto.provinciaDiNascita}</Row>
+                                    <Row className="righe">Cittadinanza: {oggetto.cittadinanza}</Row>
+                                    <Row className="righe">Provincia: {oggetto.provincia}</Row>
+                                    <Row className="righe">CAP: {oggetto.cap}</Row>
+                                    <Row className="righe">Numero di telefono: {oggetto.telefono}</Row>
                                     
                                 </Col>
                                 
