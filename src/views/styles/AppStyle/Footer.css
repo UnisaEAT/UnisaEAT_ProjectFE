@@ -1,7 +1,5 @@
 footer {
     background: #16222A;
-    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-    background-color: #4c4177;
     background-image: linear-gradient(889deg, #29539b 0%, #1e3b70 64%);
     color: white;
     margin-top:10%;
@@ -110,4 +108,9 @@ ul.social-network li {
 
 .social-network a {
     background-color: #F9F9F9;
+}
+
+.f-bg-dark
+{
+    background: #1a1a1a;
 }

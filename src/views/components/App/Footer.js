@@ -1,34 +1,86 @@
 import React from 'react'
 import "../../styles/AppStyle/Footer.css"
-
+import logoUnisa from "../../assets/logo_unisa.png"
+import visaIcon from "../../assets/visa-icon.png"
+import masterCardIcon from "../../assets/mastercard-icon.png"
+import instagramIcon from "../../assets/instagram.png"
+import facebookIcon from "../../assets/facebook.png"
+import twitterIcon from "../../assets/twitter.png"
+import githubIcon from "../../assets/github.png"
+import {bg} from "timeago.js/lib/lang";
 export function Footer() {
     return (
-        <footer className="mainfooter" role="contentinfo">
-            <div className="footer-middle">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3 col-sm-6">
+        <footer className="bg-white">
+            <div className="mx-5 py-3">
+                <div className="row py-4">
+                    <div className="mx-5 text-center my-5 col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <img src={logoUnisa} alt="" width="120" className="mb-3"/>
+                        <p className="text-center font-italic">Università degli studi di Salerno</p>
+                    </div>
+                    {/*TODO aggiungere links*/}
+                    <div className="mx-5 col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h6 className="text-uppercase font-weight-bold mb-4">Chi siamo</h6>
+                        <ul className="list-unstyled mb-0">
+                            <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Project Managers</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Salvatore Amideo</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Alice Vidoni</a></li>
+                            <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Team Members</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Alessandro Cavaliere</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Alessio Salzano</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Maria Rosaria Giudice</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Gerardo Sessa</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Carmine Citro</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Nicola Cappello</a></li>
+                            <li><a href="#" className="text-grey text-decoration-none">Claudio Buono</a></li>
 
-                            <div className="footer-pad">
-                                <h4>Membri</h4>
-                                <ul className="list-unstyled">
-                                    <li><a href="#">Maria</a></li>
-                                    <li><a href="#">Claudio</a></li>
-                                    <li><a href="#">Alex</a></li>
-                                    <li><a href="#">Ale</a></li>
-                                    <li><a href="#">Car</a></li>
-                                    <li><a href="#">Nick</a></li>
-                                    <li><a href="#">Gerry</a></li>
-                                </ul>
+                        </ul>
+                    </div>
+                    <div className="mx-5 col-lg-2 col-md-6 mb-4 mb-lg-0">
+                            <h6 className="text-uppercase font-weight-bold mb-4">Contatti</h6>
+                            <ul className="list-unstyled mb-0">
+                            <li className="text-grey">ADISU SALERNO</li>
+                            <li className="text-grey text-small">adisumensa@unisa.it</li>
+                            <li className="text-grey mt-2">UnisaEAT</li>
+                            <li className="text-grey text-small">unisaeat2022@unisa.it</li>
+                        </ul>
+
+                        <h6 className="text-uppercase font-weight-bold mb-2 mt-5">Modalità di pagamento</h6>
+                        <ul className="list-unstyled mb-0">
+                            <div>
+                                <img src="https://img.icons8.com/color/36/000000/visa.png"/>
+                                <img src="https://img.icons8.com/color/36/000000/mastercard.png"/>
+                                <img src="https://img.icons8.com/color/36/000000/amex.png"/>
                             </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 copy">
-                            <p className="text-center">&copy; Copyright 2022 - UnisaEAT. All rights reserved.</p>
-                        </div>
+                        </ul>
                     </div>
 
+                    <div className="mx-5 col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h6 className="text-uppercase font-weight-bold mb-4">Domande frequenti</h6>
+                        <ul className="list-unstyled mb-0">
+                            <li className="text-grey">Domanda1</li>
+                            <li className="text-grey">Risposta1</li>
+                            <li className="text-grey mt-2">Domanda2</li>
+                            <li className="text-grey">Risposta2</li>
+                            <li className="text-grey mt-2">Domanda3</li>
+                            <li className="text-grey">Risposta3</li>
+                            <li className="text-grey mt-2">Domanda4</li>
+                            <li className="text-grey">Risposta4</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+            {/*TODO aggiungere links*/}
+            <div className="f-bg-dark py-4">
+                <div className="container text-center">
+                    <span className=" text-muted mb-0 py-2">
+                        <img className="mx-3" src={instagramIcon} width="30px"/>
+                        <img className="mx-3" src={facebookIcon} width="30px"/>
+                        <img className="mx-3" src={twitterIcon} width="30px"/>
+                        <img className="mx-3" src={githubIcon} width="30px"/>
+                    </span>
 
                 </div>
             </div>
