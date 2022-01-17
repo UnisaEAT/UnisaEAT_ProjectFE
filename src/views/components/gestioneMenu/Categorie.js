@@ -1,4 +1,4 @@
-import "../../styles/VisualizzazioneMenu.css"
+import "../../styles/gestioneMenu/VisualizzazioneMenu.css"
 import React from 'react'
 
 export class Categorie extends React.Component {
@@ -12,7 +12,7 @@ export class Categorie extends React.Component {
                             type="button"
                             className="categories-btn"
                             key={i}
-                            onClick={() => this.props.filterItems(categoria)}
+                            onClick={(e) => this.props.filterItems(categoria)}
                         >
                             {categoria}
                         </button>

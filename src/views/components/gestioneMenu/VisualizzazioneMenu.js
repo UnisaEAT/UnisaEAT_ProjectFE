@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "../../styles/VisualizzazioneMenu.css"
+import "../../styles/gestioneMenu/VisualizzazioneMenu.css"
 import axios from "axios";
 import Categorie from "./Categorie";
 export class VisualizzazioneMenu extends React.Component {

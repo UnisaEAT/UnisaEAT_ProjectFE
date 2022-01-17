@@ -4,7 +4,6 @@ import logo from "../../assets/logoUnisaEAT.png"
 import notifiche from "../../assets/Notifiche.png"
 import iconaUtente from "../../assets/iconaUtente.png"
 import "../../styles/AppStyle/NavbarApp.css"
-import "../../styles/gestioneAutenticazione/login.css"
 function NavbarApp() {
     console.log(localStorage.getItem("email")) 
     if(localStorage.getItem("email")===null) {

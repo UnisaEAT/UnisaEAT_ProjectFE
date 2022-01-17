@@ -1,12 +1,13 @@
 import React from 'react'
 
-import "../../styles/InserimentoMenu.css"
+import "../../styles/gestioneMenu/InserimentoMenu.css"
 import Categorie from "./Categorie";
 import axios from "axios";
-import SendIcon from "@mui/icons-material/Send";
-import {Button} from "@mui/material";
-import Popup from "../GestionePersonale/PopUp";
+import Popup from "./PopUp";
 import {Redirect} from "react-router-dom";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 export class InserimentoMenu extends React.Component {
     constructor(props) {
@@ -115,7 +116,7 @@ export class InserimentoMenu extends React.Component {
                                         </h3>
                                     </header>
                                     <h4 className="item-text2">{menuItem.descrizione}</h4>
-                                    <p>Ingredienti:<hr/>{menuItem.ingredienti}</p>
+                                    <p>Ingredienti:{menuItem.ingredienti}</p>
 
                                 </div>
                             </article>
