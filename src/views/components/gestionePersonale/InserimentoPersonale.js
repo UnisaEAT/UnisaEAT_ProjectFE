@@ -2,11 +2,9 @@ import React from 'react'
 import "../../styles/gestionePersonale/InserimentoPersonale.css"
 import {Card} from "react-bootstrap";
 import axios from "axios";
-import Popup from "../App/successPopUp";
+import Popup from "./PopUp";
 
 export default class InserimentoPersonale extends React.Component {
-
-    //Costruttore di props
     constructor(props) {
         super(props)
 
@@ -38,19 +36,19 @@ export default class InserimentoPersonale extends React.Component {
 
     closePopUp() {
         this.setState({popUp: false})
-        window.location.reload();
+        window.location.reload(false);
     }
 
     errorHandler(error) {
         let inputError = error.name;
         let errorMessage = error.message;
-
         const rootElement = document.getElementById(inputError)
 
         if (rootElement.childNodes.length < 3) {
             const element = document.createElement('h1')
             element.id = inputError
             element.textContent = errorMessage
+            console.log("qua")
             element.style = "color:red;font-size:15px"
             rootElement.appendChild(element)
         }
@@ -134,7 +132,8 @@ export default class InserimentoPersonale extends React.Component {
             email: this.state.email,
             dataDiNascita: this.state.dataDiNascita,
             password: this.state.password,
-            confermapassword: this.state.confermapassword
+            confermapassword: this.state.confermapassword,
+            ruolo: localStorage.getItem("ruolo")
         }
 
         this.submitInserimentoForm(personale)
@@ -142,13 +141,17 @@ export default class InserimentoPersonale extends React.Component {
 
     // Invio dell'oggetto @param personale al metodo del Back-End con una POST
     submitInserimentoForm(personale) {
-        axios.post('http://localhost:8080/api/personale/insert', personale)
+        axios.post('http://localhost:8080/api/personale/insert',personale )
             .then(response => {
                 //Se l'inserimento è andato a buon fine
                 if (response.data.message === true) {
+                    console.log("1")
                     this.setState({popUp: true})
-                } else if (response.data.name != null)
+                }
+                else {
+                    console.log("3")
                     this.errorHandler(response.data)
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -163,64 +166,64 @@ export default class InserimentoPersonale extends React.Component {
                     <h1>Inserisci credenziali nuovo membro</h1>
                     <form className="form-card test" onSubmit={this.handleSubmit}>
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="nome">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="nome"name="nome">
                                 <label className="form-control-label px-3">Nome<span
                                     className="text-danger"> *</span></label>
-                                <input type="text" id="nome" onChange={this.onChangeNome}
-                                       placeholder="Inserisci il nome"/>
+                                <input type="text" id="nome" name="nome" onChange={this.onChangeNome}
+                                       placeholder="Inserisci il nome"></input>
                             </div>
-                            <div className="form-group col-sm-6 flex-column d-flex" id="cognome">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="cognome"name="cognome">
                                 <label className="form-control-label px-3">Cognome<span
                                     className="text-danger"> *</span></label>
-                                <input type="text" id="cognome" onChange={this.onChangeCognome}
-                                       placeholder="Inserisci il cognome"/>
+                                <input type="text" id="cognome" name="cognome" onChange={this.onChangeCognome}
+                                       placeholder="Inserisci il cognome"></input>
                             </div>
                         </div>
 
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo"name="indirizzo">
                                 <label className="form-control-label px-3">Indirizzo<span
                                     className="text-danger"> *</span></label>
-                                <input type="text" id="indirizzo" onChange={this.onChangeIndirizzo}
-                                       placeholder="Inserisci indirizzo"/></div>
+                                <input type="text" id="indirizzo" name="indirizzo" onChange={this.onChangeIndirizzo}
+                                       placeholder="Inserisci indirizzo"></input></div>
 
-                            <div className="form-group col-sm-6 flex-column d-flex" id="numeroTelefono">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="numeroTelefono"name="numeroTelefono">
                                 <label className="form-control-label px-3">Numero di telefono<span
                                     className="text-danger"> *</span></label>
-                                <input type="text" id="numeroTelefono" onChange={this.onChangeNumeroTelefono}
-                                       placeholder="Inserisci il numero di telefono"/>
+                                <input type="text" id="numeroTelefono" name="numeroTelefono" onChange={this.onChangeNumeroTelefono}
+                                       placeholder="Inserisci il numero di telefono"></input>
                             </div>
                         </div>
 
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="dataDiNascita">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="dataDiNascita"name="dataDiNascita">
                                 <label className="form-control-label px-3">Data di nascita<span
                                     className="text-danger"> *</span></label>
-                                <input type="text" id="dataDiNascita" onChange={this.onChangeDataDiNascita}
-                                       placeholder="Inserisci data di nascita"/>
+                                <input type="text" id="dataDiNascita" name="dataDiNascita" onChange={this.onChangeDataDiNascita}
+                                       placeholder="Inserisci data di nascita"></input>
                             </div>
 
-                            <div className="form-group col-sm-6 flex-column d-flex" id="email">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="email"name="email">
                                 <label className="form-control-label px-3">Email<span className="text-danger"> *</span></label>
-                                <input type="text" id="email" onChange={this.onChangeEmail}
-                                       placeholder="Inserisci una email "/>
+                                <input type="text" id="email" name="email" onChange={this.onChangeEmail}
+                                       placeholder="Inserisci una email "></input>
                             </div>
                         </div>
 
 
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="password">
+                            <div className="form-group col-sm-6 flex-column d-flex" id="password"name="password">
                                 <label className="form-control-label px-3">Password<span
                                     className="text-danger"> *</span></label>
-                                <input type="password" id="password" onChange={this.onChangePassword}
-                                       placeholder="Inserisci una password "/>
+                                <input type="password" id="password" name="password" onChange={this.onChangePassword}
+                                       placeholder="Inserisci una password "></input>
                             </div>
 
-                            <div className="form-group col-sm-6 flex-column d-flex" id="confermapassword"><label
+                            <div className="form-group col-sm-6 flex-column d-flex" id="confermapassword" name="confermapassword"><label
                                 className="form-control-label px-3">Conferma Password<span
                                 className="text-danger"> *</span></label>
-                                <input type="password" id="confermapassword" onChange={this.onChangeConfermaPassword}
-                                       placeholder="Conferma la Password "/>
+                                <input type="password" id="confermapassword" name="confermapassword"onChange={this.onChangeConfermaPassword}
+                                       placeholder="Conferma la Password "></input>
                             </div>
                         </div>
 

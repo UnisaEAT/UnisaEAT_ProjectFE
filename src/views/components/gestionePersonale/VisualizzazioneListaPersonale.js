@@ -5,7 +5,6 @@ import axios from "axios";
 import RimozionePersonale from "./RimozionePersonale";
 
 export default class VisualizzazioneListaPersonale extends React.Component {
-    //Costruttore di props
     constructor(props) {
         super(props);
 
@@ -19,7 +18,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/api/personale/viewLista")
+        axios.post("http://localhost:8080/api/personale/viewLista",{ruolo: localStorage.getItem("ruolo")})
             .then(response => {
                 console.log(response.data)
                 this.setState({utente: response.data})
@@ -61,7 +60,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
                                 </div>
                                 <Button onClick={(e) => {
                                     this.handleRimozionePersonale(e, oggetto);
-                                }} className="buttonStyle" variant="light">
+                                }} className="buttonStyle" variant="light" pill>
                                     <Image src="https://image.flaticon.com/icons/png/512/61/61403.png"
                                            width="35"/>
                                 </Button>
@@ -69,7 +68,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
                         )
                     })}
                 </ListGroup>
-                <Button href="/InserimentoPersonale" className="btn-block btn-primary">Inserisci un nuovo
+                <Button href="/gestionePersonale/InserimentoPersonale" className="btn-block btn-primary">Inserisci un nuovo
                     membro</Button>
             </Card>
         )

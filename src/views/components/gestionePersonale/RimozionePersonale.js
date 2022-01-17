@@ -5,7 +5,6 @@ import axios from "axios";
 import Popup from "./PopUp";
 export default class RimozionePersonale extends React.Component{
 
-    //Costruttore di props
     constructor(props) {
         super(props);
         this.state= {
@@ -35,11 +34,11 @@ export default class RimozionePersonale extends React.Component{
         window.location.reload(false);
     }
 
-    rimozionePersonale(email) {
-        console.log(email)
-        axios.post("http://localhost:8080/api/personale/remove", email =this.props.obj.email)
+    rimozionePersonale() {
+        axios.post("http://localhost:8080/api/personale/remove", {email: this.props.obj.email})
             .then(response => {
                 if (response.data.message === true) {
+                    console.log("ccc")
                     this.setState({popUp: true})
                 }else if (response.data.name != null)
                     this.errorHandler(response.data)
@@ -50,24 +49,23 @@ export default class RimozionePersonale extends React.Component{
             })
     }
 
-    
     //Inseririre post per la rimozione che prende i campi di props.obj
     render() {
         return (
             <div id="root">
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-            <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                <h1 className="h1">Informazioni di {this.props.obj.nome} {this.props.obj.cognome}</h1>
-                <Card className="align" style={{width: 'auto'}}>
-                    <Card.Body>
-                        <Card.Title >{this.props.obj.email}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
-                        <Card.Text>
-                        </Card.Text>
-                            <button type="submit" className="btn-block btn-primary" onClick={this.rimozionePersonale(this.props.obj.email)} >Rimuovi</button>
+                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                    <h1 className="h1">Informazioni di {this.props.obj.nome} {this.props.obj.cognome}</h1>
+                    <Card className="align" style={{width: 'auto'}}>
+                        <Card.Body>
+                            <Card.Title >{this.props.obj.email}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+                            <Card.Text>
+                            </Card.Text>
+                            <button type="submit" className="btn-block btn-primary" onClick={()=>this.rimozionePersonale()} >Rimuovi</button>
                         </Card.Body>
+                    </Card>
                 </Card>
-            </Card>
             </div>
         )
     }
