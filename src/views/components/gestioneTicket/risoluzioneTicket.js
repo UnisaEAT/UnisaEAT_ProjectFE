@@ -2,23 +2,23 @@ import React from 'react'
 import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
+import moment from 'moment'
+import "../../styles/gestioneTicket/ticketCSS.css"
 
-export default class ModificaFAQ extends React.Component {
+export default class RisoluzioneTicket extends React.Component {
 
      //Costruttore di props
      constructor(props) {
         super(props);
         this.state= {
-            newdomanda:'',
-            newrisposta:'',
+            soluzione:'',
             popUp: false
         }
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
-        this.onChangeDomanda = this.onChangeDomanda.bind(this)
-        this.onChangeRisposta = this.onChangeRisposta.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.modificaFAQ = this.modificaFAQ.bind(this)
+        this.onChangeSoluzione = this.onChangeSoluzione.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     closePopUp() {
@@ -49,40 +49,35 @@ export default class ModificaFAQ extends React.Component {
 
     
     // Handlers definition
-    onChangeDomanda(e) {
+    onChangeSoluzione(e) {
         this.errorRemoverOnChange(e)
         this.setState({
-            newdomanda: e.target.value
+            soluzione: e.target.value
         })
     }
 
-    onChangeRisposta(e) {
-        this.errorRemoverOnChange(e)
-        this.setState({
-            newrisposta: e.target.value
-        })
-    }
+
     handleSubmit(e) {
         e.preventDefault()
 
         // Oggetto da passare con il POST al controller per la lettura dei campi del form
-        const FAQ = {
-            domanda: this.props.obj.domanda,
-            newdomanda: this.state.newdomanda,
-            newrisposta: this.state.newrisposta,
+        const Ticket = {
+            titolo: this.props.obj.titolo,
+            soluzione: this.state.soluzione,
+            mail: this.props.obj.email,
         }
 
-        this.modificaFAQ(FAQ)
+        this.risoluzioneTicket(Ticket)
     }
 
-    modificaFAQ(FAQ) {
-        console.log(FAQ)
-        axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
+    risoluzioneTicket(Ticket) {
+        console.log(Ticket)
+        axios.post("http://localhost:8080/api/ticket/update", Ticket)
             .then(response => {
                 console.log(response.data)
                 if (response.data.message === true) {
                     this.setState({popUp: true})
-                } else if (response.data.name !== null)
+                } else if (response.data.name != null)
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
             })
@@ -93,28 +88,26 @@ export default class ModificaFAQ extends React.Component {
     }
 
     render() {
+        console.log(this.props.obj)
         return (
             <div id="root">
                  {/* Se popUp (boolean) è true */}
-                 {this.state.popUp && <Popup message="Modifica avvenuta con successo!" handleClose={this.closePopUp}/>}
+                 {this.state.popUp && <Popup message="Risoluzione avvenuta con successo!" handleClose={this.closePopUp}/>}
 
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                    <h1>Modifica Domanda</h1><br></br>
-                    <h4>{this.props.obj.domanda}</h4> 
+                    <h1>Risoluzione ticket</h1><br></br>
+                    <h4>{this.props.obj.titolo}{this.props.obj.problema}</h4> 
+                    <h5>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h5> 
+                    <h5>{this.props.obj.email}</h5> 
                     <Form onSubmit={this.handleSubmit}>
                             <Row className="mb-3">
-                                <Form.Group id="newdomanda" as={Col}>
-                                    <Form.Label>Nuova domanda</Form.Label>
-                                    <Form.Control type="text" id="newdomanda" name="newdomanda" onChange={this.onChangeDomanda} placeholder="Inserisci la nuova domanda"/>
-                                </Form.Group>
-
-                                <Form.Group id="newrisposta" as={Col}>
-                                    <Form.Label>Nuova Risposta</Form.Label>
-                                    <Form.Control type="text" id="newrisposta" name="newrisposta" onChange={this.onChangeRisposta} placeholder="Inserisci la nuova risposta"/>
+                                <Form.Group id="soluzione" as={Col}>
+                                    <Form.Label>Soluzione</Form.Label>
+                                    <Form.Control type="text" id="soluzione" name="soluzione" onChange={this.onChangeSoluzione} placeholder="Inserisci una soluzione"/>
                                 </Form.Group>
                             </Row>
                             
-                            <Button type="submit" >Modifica</Button>
+                            <Button className="bottone" type="submit" >Risolvi</Button>
                     </Form>
                 </Card>
             </div>

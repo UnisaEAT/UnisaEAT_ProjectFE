@@ -1,32 +1,111 @@
 import React from 'react'
-import {Container, Nav, Navbar, Image} from "react-bootstrap";
+import {Container, Nav, Navbar, NavDropdown,Form,Button,FormControl, Image} from "react-bootstrap";
 import "../../../App.css"
 import logo from "../../assets/logoUnisaEAT.png"
+import "../../styles/AppStyle/NavBarAttore.css"
+
+//Icone
+
 
 function NavbarAttore() {
-    return (
-        <Navbar className="navbarStyle" expand="lg">
-            <Container className="containerStyle">
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
 
-                        <Nav.Link className="elementoNav" href="/Homepage">
-                            <Image src={logo}
-                                   width="80"/>
-                        </Nav.Link>
-                        <Container className="elementoNav">
-                            <Nav.Link href="/InserimentoPersonale">InserimentoPersonale</Nav.Link>
-                            <Nav.Link href="/RimozionePersonale">
-                                <Image src={iconaUtente}
-                                       width="50"/>
-                            </Nav.Link>
-                        </Container>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+    if(localStorage.getItem("ruolo")==="cliente")
+        return (
+            <Navbar sticky="top" className="navEsempio" expand="lg">
+                <Container fluid>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="navItemContainer me-auto my-2 my-lg-0"
+                            style={{ maxHeight: '100px' }}
+                            navbarScroll
+                        >
+
+                            <p>Compila ticket</p>
+                        </Nav>
+                    </Navbar.Collapse>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="navItemContainer me-auto my-2 my-lg-0"
+                            style={{ maxHeight: '100px' }}
+                            navbarScroll
+                        >
+
+                            <p>Compila ticket</p>
+                        </Nav>
+                    </Navbar.Collapse>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="navItemContainer me-auto my-2 my-lg-0"
+                            style={{ maxHeight: '100px' }}
+                            navbarScroll
+                        >
+
+                            <p>Compila ticket</p>
+                        </Nav>
+                    </Navbar.Collapse>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="navItemContainer me-auto my-2 my-lg-0"
+                            style={{ maxHeight: '100px' }}
+                            navbarScroll
+                        >
+
+                            <p>Compila ticket</p>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        )
+    else if(localStorage.getItem("ruolo")==="personale adisu")
+        return (
+            <Navbar className="navbarStyle" expand="lg">
+                <Container className="containerStyle">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            Clienti operazioni
+                            <NavDropdown title="Ticket" id="navbarScrollingDropdown">
+
+                                <NavDropdown.Item href="#action3">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        )
+    else if(localStorage.getItem("ruolo")==="operatore mensa")
+        return (
+            <Navbar className="navbarStyle" expand="lg">
+                <Container className="containerStyle">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            Clienti operazioni
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        )
+    else if(localStorage.getItem("ruolo")==="admin")
+        return (
+            <Navbar className="navbarStyle" expand="lg">
+                <Container className="containerStyle">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            Clienti operazioni
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        )
+    else
+        return null
 }
 
 export default NavbarAttore

@@ -2,7 +2,7 @@ import React from 'react'
 import "../../../App.css"
 import {ListGroup, Button, Card, Row, Col} from "react-bootstrap";
 import axios from "axios";
-import RimozioneFAQ from "./rimozioneFAQ";
+import Popup from "../App/successPopUp";
 import ModificaFAQ from "./modificaFAQ";
 
 export default class VisualizzazioneFAQ extends React.Component {
@@ -12,16 +12,22 @@ export default class VisualizzazioneFAQ extends React.Component {
 
         this.state = {
             faq: [],
-            domanda: null
+            popUp: false,
+            domanda: null,
         }
-        this.handleRimozioneFAQ = this.handleRimozioneFAQ.bind(this)
+        this.rimozioneFAQ = this.rimozioneFAQ.bind(this)
         this.handleModificaFAQ = this.handleModificaFAQ.bind(this)
+        this.closePopUp = this.closePopUp.bind(this)
+    }
+
+    closePopUp() {
+        this.setState({popUp: false})
+        window.location.reload();
     }
 
     componentDidMount() {
         axios.post("http://localhost:8080/api/faq/selectFAQ")
             .then(response => {
-                console.log(response.data)
                 this.setState({faq: response.data})
             })
             .catch((error) => {
@@ -29,17 +35,26 @@ export default class VisualizzazioneFAQ extends React.Component {
             })
     }
 
+    
+    rimozioneFAQ(obj) {
+        // oggetto da passare che contiene la domanda da rimuovere
 
-    // Funzione che al click del bottone di rimozione crea l'oggetto da passare alla componente addetta alla rimozione come prop
-    // settandolo come stato
-    handleRimozioneFAQ(e, obj) {
-        // oggetto da passare che contiene il personale da rimuovere
-
-        this.setState({domanda: obj})
+            axios.post("http://localhost:8080/api/faq/deleteFAQ", {domanda: obj.domanda})
+                .then(response => {
+                    if (response.data.message === true) {
+                        this.setState({popUp: true})
+                    } else if (response.data.name != null)
+                        this.setState({message: response.data.message})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
     }
 
+    
+
     handleModificaFAQ(e, obj) {
-        // oggetto da passare che contiene il personale da rimuovere
+        // oggetto da passare che contiene la FAQ da modificare
 
         this.setState({domanda: obj})
     }
@@ -48,15 +63,17 @@ export default class VisualizzazioneFAQ extends React.Component {
 
         // Solo se è stato settata la domanda da canc chiama l'altra componente e gli passa lo stato
         if (this.state.domanda != null) {
-            console.log(this.state.domanda)
-            //Invia il prop "obj" contente la domanda da rimuovere
+            //Invia il prop "obj" contente la domanda da modificare
             return (
-            <><RimozioneFAQ obj={this.state.domanda} /><ModificaFAQ obj={this.state.domanda} /></>
+                <ModificaFAQ obj={this.state.domanda} />
             )
         }
 
         if(localStorage.getItem("ruolo")==="personale adisu"){ //se l'utente loggato è uno del personale può inserire, rimuovere e modificare faq 
             return (
+                <div id="root">
+                 {/* Se popUp (boolean) è true */}
+                 {this.state.popUp && <Popup message="Rimozione avvenuta con successo!" handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <h1 className="h1">Lista FAQ</h1>
                     <ListGroup as="ul">
@@ -67,8 +84,7 @@ export default class VisualizzazioneFAQ extends React.Component {
                                     <Row> <div className="fw-bold">Domanda:</div>{oggetto.domanda}</Row>  
                                     <Row> <div className="fw-bold">Risposta:</div>{oggetto.risposta}</Row>
                                 </div>
-                                <Button onClick={(e) => {
-                                    this.handleRimozioneFAQ(e, oggetto);}}>Rimuovi</Button>
+                                <Button onClick={()=>this.rimozioneFAQ(oggetto)}>Rimuovi</Button>
                                 
                                 <Button onClick={(e) => {
                                     this.handleModificaFAQ(e, oggetto);}}>Modifica</Button>
@@ -79,6 +95,7 @@ export default class VisualizzazioneFAQ extends React.Component {
                     <br></br>
                     <Button href="/gestioneFAQ/inserimentoFAQ">Inserisci una nuova faq</Button>
                 </Card>
+                </div>
             )
         }
         else return(

@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/react-spectrum": "^3.15.1",
     "@popperjs/core": "^2.11.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
+    "hover.css": "^2.3.2",
     "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-apexcharts": "^1.3.9",
@@ -17,7 +20,9 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
+    "socket.io-client": "^4.4.1",
     "stream": "^0.0.2",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

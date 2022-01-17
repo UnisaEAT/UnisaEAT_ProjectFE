@@ -1,21 +1,13 @@
-.login {
-    margin: 10%;
+.bottone {
     text-align: center;
-}
-
-.bottoneLogin {
-    position: inherit;
     background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
-    margin-bottom: 10%;
     color: white;
+    width: 30%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    position: inherit;
     border:none;
-    
 }
-
-.righe {
-    text-align: center;
-}
-
-.bottoneLogin:hover {
+.bottone:hover {
     background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
 }

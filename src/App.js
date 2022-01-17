@@ -11,6 +11,7 @@ import RinnovoTesserino from "./views/components/gestioneTesserino/rinnovoTesser
 import VisualizzaSaldo from "./views/components/gestioneTesserino/visualizzaSaldo";
 import RicaricaTesserino from "./views/components/gestioneTesserino/ricaricaTesserino";
 import Profilo from "./views/components/gestioneProfilo/profilo";
+import ModificaPassword from "./views/components/gestioneProfilo/modificaPassword"
 import InserimentoPersonale from "./views/components/gestionePersonale/InserimentoPersonale";
 import VisualizzazioneListaPersonale from "./views/components/gestionePersonale/VisualizzazioneListaPersonale";
 import RimozionePersonale from "./views/components/gestionePersonale/RimozionePersonale";
@@ -21,9 +22,9 @@ import DettagliOrdine from "./views/components/gestioneOrdinePasto/dettagliOrdin
 import StatisticheSettimanali from "./views/components/gestioneStatistiche/statisticheSettimanali";
 import VisualizzazioneFAQ from "./views/components/gestioneFAQ/visualizzazioneFAQ";
 import InserimentoFAQ from "./views/components/gestioneFAQ/inserimentoFAQ";
-import RimozioneFAQ from "./views/components/gestioneFAQ/rimozioneFAQ";
 import ModificaFAQ from "./views/components/gestioneFAQ/modificaFAQ";
-
+import CompilazioneTicket from "./views/components/gestioneTicket/compilazioneTicket";
+import VisualizzazioneTicket from "./views/components/gestioneTicket/visualizzazioneTicket";
 
 //Autenticazione
 import Login from "./views/components/gestioneLogin/login";
@@ -43,15 +44,17 @@ class App extends Component {
                   <Route exact path={["/gestionePersonale/RimozionePersonale"]} component={RimozionePersonale}/>
                   <Route exact path={["/gestionePersonale/VisualizzazioneListaPersonale"]} component={VisualizzazioneListaPersonale}/>
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>
+                  <Route exact path={["/gestioneProfilo/modificaPassword"]} component={ModificaPassword}/>
                   <Route exact path={["/gestioneOrdinePasto/sceltaPasti"]} component={SceltaPasti}/>
                   <Route exact path={["/gestioneOrdinePasto/pagamentoOrdine"]} component={PagamentoPasto}/>
                   <Route exact path={["/gestioneOrdinePasto/listaOrdini"]} component={ListaOrdini}/>
                   <Route exact path={["/gestioneOrdinePasto/dettagliOrdine"]} component={DettagliOrdine}/>
                   <Route exact path={["/statisticheSettimanali"]} component={StatisticheSettimanali}/>
-				  <Route exact path={["/gestioneFAQ/visualizzazioneFAQ"]} component={VisualizzazioneFAQ}/>
-				  <Route exact path={["/gestioneFAQ/inserimentoFAQ"]} component={InserimentoFAQ}/>
-				  <Route exact path={["/gestioneFAQ/rimozioneFAQ"]} component={RimozioneFAQ}/>
-				  <Route exact path={["/gestioneFAQ/modificaFAQ"]} component={ModificaFAQ}/>
+                  <Route exact path={["/gestioneFAQ/visualizzazioneFAQ"]} component={VisualizzazioneFAQ}/>
+                  <Route exact path={["/gestioneFAQ/inserimentoFAQ"]} component={InserimentoFAQ}/>
+                  <Route exact path={["/gestioneFAQ/modificaFAQ"]} component={ModificaFAQ}/>
+                  <Route exact path={["/gestioneTicket/compilazioneTicket"]} component={CompilazioneTicket}/>
+                  <Route exact path={["/gestioneTicket/visualizzazioneTicket"]} component={VisualizzazioneTicket}/>
                   <Route exact path={["/login"]} component={Login}/>
                   <Route exact path={["/logout"]} component={Logout}/>
 
