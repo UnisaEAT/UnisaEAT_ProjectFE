@@ -3,50 +3,50 @@
     text-align: center;
 }
 
-.bottoneLogin {
-    position: inherit;
-    background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
-    margin-bottom: 10%;
-    color: white;
-    border:none;
-    
-}
-
 .righe {
     text-align: center;
 }
 
-.bottoneLogin:hover {
-    background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
+.test{
+    align-items:center;
 }
 
-/*
 .wrapper {
-     max-width: 450px;
-     margin: 50px auto;
-     padding: 20px 30px;
-     min-height: 300px;
+     max-width: 500px;
+     margin-top: 8% !important;
+     min-height: 250px;
      background-color: #ffffff27;
-     border-top: 1px solid #ffffff6e;
-     border-left: 1px solid #ffffff6e;
-     border-radius: 15px
+     border-top: 2px solid #ffffff6e;
+     border-left: 2px solid #ffffff6e;
+     border-radius: 15px;
+     background: linear-gradient(315deg, #29539b 0%, #1e3b70 64%)
+ }
+
+ .wrapper .labelLogin{
+    color:beige;
+    font-size: 15px;
+    font-weight: normal;
  }
 
  .wrapper .h5 {
      color: #ddd
  }
-
+ .wrapper .form-group .icon {
+    color: #e8e8e8;
+    width: 10%;
+}
  .wrapper .form-group {
      border-bottom: 1px solid #ccc;
-     margin-bottom: 1.5rem
+     margin-bottom: 1%;
+     margin-top:5%;
+ }
+
+ .wrapper .form-control{
+    text-align: center;
  }
 
  .wrapper .form-group:hover {
      border-bottom: 1px solid #eee
- }
-
- .wrapper .form-group .icon {
-     color: #e8e8e8
  }
 
  .wrapper .form-group .form-control {
@@ -58,7 +58,7 @@
  }
 
  .wrapper .form-group input::placeholder {
-     color: #ccc
+     color: rgb(211, 202, 202)
  }
 
  .wrapper .form-group input:focus::placeholder {
@@ -91,50 +91,15 @@
      width: 0
  }
 
- .wrapper .checkmark {
-     position: absolute;
-     top: 3px;
-     left: 0;
-     height: 18px;
-     width: 18px;
-     background-color: inherit;
-     border: 2px solid #ccc;
-     border-radius: 2px
- }
-
- .wrapper .option input:checked~.checkmark {
-     transition: 300ms ease-in-out all
- }
-
- .wrapper .checkmark:after {
-     content: "\2713";
-     position: absolute;
-     display: none;
-     font-weight: 600;
-     color: #FFF;
-     font-size: 0.9rem
- }
-
- .wrapper .option input:checked~.checkmark:after {
-     display: block
- }
-
- .wrapper .option .checkmark:after {
-     left: 2px;
-     top: -4px;
-     width: 5px;
-     height: 10px
- }
-
  .wrapper .btn.btn-primary {
-     position: relative;
      color: #eee;
      padding: 0.3rem 1rem;
-     border-radius: 20px;
      border: 1px solid #ddd;
-     background-color: inherit;
      box-shadow: none;
-     overflow: hidden
+     overflow: hidden;
+     background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%);
+     margin-bottom: 1%;
+     margin-top:5%;
  }
 
  .wrapper .btn.btn-primary:hover {
@@ -142,88 +107,8 @@
      color: #fff
  }
 
- .wrapper .terms {
-     color: #bbb;
-     font-size: 0.85rem;
-     text-align: center
- }
 
- .wrapper .terms a {
-     text-decoration: none;
-     color: #eee
- }
 
- .wrapper .terms a:hover {
-     color: #fff
- }
-
- .wrapper .connect {
-     position: relative
- }
-
- .wrapper .connect::after {
-     content: "or";
-     position: absolute;
-     top: -12px;
-     width: 80px;
-     left: 39%;
-     text-align: center;
-     color: #eee;
-     z-index: 100;
-     background-color: rgba(255, 255, 255, 0.315);
-     background-color: #1f5588
- }
-
- .wrapper .social-links {
-     margin-top: 50px;
-     position: relative;
-     list-style: none;
-     display: flex;
-     justify-content: space-around
- }
-
- .wrapper .social-links li a {
-     font-size: 1.2rem;
-     width: 50px;
-     height: 50px;
-     background-color: #ffffff17;
-     border: 1px solid #ffffff66;
-     border-right: 1px solid #ffffff33;
-     border-bottom: 1px solid #ffffff33;
-     display: flex;
-     text-decoration: none;
-     justify-content: center;
-     align-items: center;
-     color: #fff;
-     border-radius: 6px;
-     box-shadow: 0 5px 30px #004683e0;
-     transition: 0.5s;
-     overflow: hidden
- }
-
- .wrapper .social-links li a:hover {
-     transform: translateY(-20px)
- }
-
- .wrapper .social-links li a::before,
- .wrapper .btn.btn-primary::before {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 25px;
-     height: 100%;
-     background-color: rgba(255, 255, 255, 0.6);
-     transform: skew(45deg) translateX(130px);
-     transition: .5s;
-     opacity: 0
- }
-
- .wrapper .social-links li a:hover:before,
- .wrapper .btn.btn-primary:hover::before {
-     opacity: 1;
-     transform: skew(45deg) translateX(-130px)
- }
 
  @media(max-width: 460px) {
      .wrapper {
@@ -231,14 +116,4 @@
          padding: 20px
      }
 
-     .wrapper .connect::after {
-         left: 38%
-     }
  }
-
- @media(max-width: 345px) {
-     .wrapper .connect::after {
-         left: 32%
-     }
- }
-*/
