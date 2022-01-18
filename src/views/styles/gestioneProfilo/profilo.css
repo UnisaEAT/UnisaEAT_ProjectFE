@@ -1,5 +1,4 @@
 
-
 .immagine {
     width: 100px;
     height: 100px;
@@ -39,7 +38,8 @@
     -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: 1px;
-    margin: 10% 25% 10% 25%;
+    margin: 5% 25% 10% 25%;
+    background-color:white;
     
 }
 
@@ -86,7 +86,7 @@
 }
 
 .card-block {
-    padding: 1.25rem
+    padding: 5px;
 }
 
 .b-b-default {
@@ -110,7 +110,8 @@
 }
 
 .text-muted {
-    color: #919aa3 !important
+    color: #363738 !important;
+    margin-left: 5px;
 }
 
 .b-b-default {
@@ -130,26 +131,18 @@
 }
 
 .p-b-5 {
-    padding-bottom: 5px !important
+    padding-bottom: 5px !important;
+    font-weight: bolder;
 }
 
 .m-b-10 {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    font-weight: 750;
 }
 
 .m-t-40 {
     margin-top: 20px
 }
 
-.user-card-full .social-link li {
-    display: inline-block
-}
-
-.user-card-full .social-link li a {
-    font-size: 20px;
-    margin: 0 10px 0 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out
-}
 
 

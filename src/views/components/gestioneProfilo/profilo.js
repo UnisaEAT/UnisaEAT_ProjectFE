@@ -51,14 +51,14 @@ export default class Profilo extends Component {
                                     <div class="row m-l-0 m-r-0">
                                         <div class="col-sm-4 bg-c-lite-green user-profile">
                                             <div class="card-block text-center text-white">
-                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <div class="m-b-25"> <img className="iconaUtente" src="https://img.icons8.com/bubbles/100/000000/under-computer.png" class="img-radius" alt="User-Profile-Image"></img> </div>
                                                 <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6> <br></br>
                                                 <h6 class="f-w-600 text-uppercase">Admin</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="card-block">
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Email:</p>
@@ -92,14 +92,14 @@ export default class Profilo extends Component {
                                     <div class="row m-l-0 m-r-0">
                                         <div class="col-sm-4 bg-c-lite-green user-profile">
                                             <div class="card-block text-center text-white">
-                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <div class="m-b-25"> <img className="iconaUtente" src="https://img.icons8.com/bubbles/100/000000/id-business-man-with-beard.png" class="img-radius" alt="User-Profile-Image"></img> </div>
                                                 <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6><br></br>
                                                 <h6 class="f-w-600 text-uppercase">{oggetto.ruolo}</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="card-block">
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Email:</p>
@@ -112,7 +112,7 @@ export default class Profilo extends Component {
                                                     </div>
 
                                                 </div><br></br>
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Data di nascita:</p>
@@ -145,14 +145,14 @@ export default class Profilo extends Component {
                                     <div class="row m-l-0 m-r-0">
                                         <div class="col-sm-4 bg-c-lite-green user-profile">
                                             <div class="card-block text-center text-white">
-                                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
+                                                <div class="m-b-25"> <img className="iconaUtente" src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"></img> </div>
                                                 <h6 class="f-w-600 text-uppercase">{oggetto.nome} {oggetto.cognome}</h6><br></br>
                                                 <h6 class="f-w-600 text-uppercase">Cliente</h6><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="card-block">
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ACCOUNT</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Email:</p>
@@ -167,7 +167,7 @@ export default class Profilo extends Component {
                                                     </div>
 
                                                 </div><br></br>
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI PERSONALI</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Data di nascita:</p>
@@ -180,7 +180,7 @@ export default class Profilo extends Component {
 
                                                 </div>
                                                 <br></br>
-                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ABITATIVE</h6>
+                                                <h5 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI ABITATIVE</h5>
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <p class="m-b-10 f-w-600">Indirizzo:</p>
