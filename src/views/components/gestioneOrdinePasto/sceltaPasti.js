@@ -104,10 +104,10 @@ export default class SceltaPasti extends React.Component {
         }
     }
 
+    // Funzione che gestice la selezione del tipo del menù
+    // Controllando la disponibilità in base agli ordini dell'utente odierni
     onChangeTipoMenu(e)
     {
-
-        //TODO risolvere la deselezione del div al cambio di menu
 
         if(document.getElementById("errore"))
             document.getElementById("errore").remove()
@@ -162,8 +162,15 @@ export default class SceltaPasti extends React.Component {
 
     // Selezione unica del pasto per ogni portata simulando un radio button ma con i div
     // E composizione dell'ordine da inviare alla pagina del pagamento
+    // Selezione multipla per gli extra
+    // Deselezione al click sul un pasto selezionato
     onClickSelectPasto(idPasto,nomePasto,categoria,e)
     {
+        // Controllo se è mostrato l'errore di selezione minima --> rimuove il messaggio
+        if(document.getElementById("errorPasto"))
+            document.getElementById("errorPasto").remove()
+
+        // Stili predefiniti
         var selectedStyle = "box-shadow: 0px 4px 16px rgb(0 0 0 / 30%);background:#F0F0F0;border-color:black"
         var prevStyle = "border-color:lightgrey;"
 
@@ -292,6 +299,8 @@ export default class SceltaPasti extends React.Component {
         }
     }
 
+    // Creazione dell'ordine da inviare alla pagina di pagamento
+    // Calcola il prezzo dell'ordine
     onClickConfermaComposizione()
     {
         let arrayComposizione = []
@@ -339,13 +348,14 @@ export default class SceltaPasti extends React.Component {
             arrayNomiPasti = arrayNomiPasti.concat(extrasNomi)
         }
 
-        //TODO migliorare la gestione dell'errore di selezione minima
+
         if(prezzoTotale==0) {
             let parentContainer = document.getElementsByClassName("sp-buttonContainer")[0]
 
             if(parentContainer.childNodes.length<3) {
                 let errorChild = document.createElement('h4')
-                errorChild.textContent = "Seleziona almeno un elemento dal menu"
+                errorChild.id= "errorPasto"
+                errorChild.textContent = "Seleziona almeno un pasto dal menu"
                 errorChild.style = "color:red;margin-top:10px"
                 parentContainer.appendChild(errorChild)
             }
@@ -369,11 +379,13 @@ export default class SceltaPasti extends React.Component {
         window.location.href="/gestioneOrdinePasto/pagamentoOrdine"
     }
 
+    // Funzione che trasforma il nome del pasto in un formato uguale al nome del pasto nella cartella delle immagini dei pasti
     imageNameTextTransform(nomePasto)
     {
         return nomePasto.split(' ').join('_').toLowerCase()
     }
 
+    // Funzioni per gli effetti grafici al passaggio del mouse
     onMouseEnterElement(e)
     {
         if(document.getElementById(e).style.borderColor=="black")
@@ -393,7 +405,6 @@ export default class SceltaPasti extends React.Component {
     render() {
         return (
 
-            //TODO sticky navPortata
             <div className="root">
                 <div className="sp-selectTipoMenuContainer">
                     <h3>Tipo di menù ordinabile</h3>

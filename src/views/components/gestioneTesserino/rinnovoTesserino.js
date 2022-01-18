@@ -218,7 +218,7 @@ export default class RinnovoTesserino extends Component {
     closePopUp() {
         this.setState({popUp: false})
         //TODO redirect to homepage
-        window.location = "/homepage"
+        window.location = "/"
     }
 
     submitForm(tesserino) {
@@ -283,7 +283,7 @@ export default class RinnovoTesserino extends Component {
                                 <Form.Label>Data di nascita</Form.Label>
                                 <Form.Control type="text" id="dataDiNascita" name="dataDiNascita"
                                               onChange={this.onChangeDataDiNascita}
-                                              placeholder="Inserisci il tuo nome"/>
+                                              placeholder="dd/mm/yyyy"/>
                             </Form.Group>
 
                             <Form.Group id="comuneDiNascita" as={Col}>

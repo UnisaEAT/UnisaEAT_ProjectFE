@@ -121,7 +121,6 @@
     outline: none;
     box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
     -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     max-width: 340px;
     text-overflow: ellipsis;
     overflow: hidden;

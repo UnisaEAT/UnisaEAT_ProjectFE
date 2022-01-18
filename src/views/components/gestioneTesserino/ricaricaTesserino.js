@@ -202,7 +202,6 @@ export default class RicaricaTesserino extends Component {
                     </div>
                 )
         }
-
         return (
             <div id="root">
 
@@ -212,7 +211,7 @@ export default class RicaricaTesserino extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="containerRicarica container">
-                        <div className="wrapper pagamentoWrapper">
+                        <div className="rt-wrapper pagamentoWrapper">
                             <h4 className="text-uppercase">Dettagli pagamento</h4>
 
                             <div id="intestatario" className="form-group">
@@ -263,7 +262,7 @@ export default class RicaricaTesserino extends Component {
                             </div>
                         </div>
 
-                        <div className="amountWrapper wrapper">
+                        <div className="amountWrapper rt-wrapper">
                             <h4 className="text-uppercase">Importo</h4>
                             <div id="importo" className="form-group">
                                 <label htmlFor="name" className="text-uppercase">inserisci l'importo da caricare</label>

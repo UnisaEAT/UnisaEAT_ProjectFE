@@ -9,25 +9,28 @@ form .card-no::-webkit-input-placeholder {
     color: #A9A9AC;
 }
 
+.containerRicaricaTesserino
+{
+    text-align: left;
+}
 
-.wrapper {
-    background-color: #f4f2f7;
+.rt-wrapper {
+    background-color: #29539b;
     margin: 20px auto;
     padding: 15px 20px;
     border-radius: 10px;
     font-family: 'Ubuntu', sans-serif;
+    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 80%);
+    color: white;
 }
 
-.wrapper h4 {
+.rt-wrapper h4 {
     font-weight: 800;
-    color: #888
+    color: #888;
+    color:white;
+    margin-bottom: 20px;
 }
 
-.wrapper label {
-    font-weight: 700;
-    color: #888;
-    font-size: 12px
-}
 
 .card-no {
     border: none;
@@ -41,7 +44,11 @@ form .card-no::-webkit-input-placeholder {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 5px 8px 2px
+}
+#numeroCarta
+{
+    padding: 0px!important;
+    padding-left: 5px;
 }
 
 wrapper a {
@@ -100,6 +107,14 @@ wrapper a {
     height: fit-content;
 }
 
+.pagamentoWrapper .form-group{
+    text-align: left;
+    font-weight: 700;
+    color: #c7c7c7;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 .pagamentoWrapper .mt-4 {
     padding-bottom: 50px;
 }
@@ -113,7 +128,9 @@ wrapper a {
 .ricaricaButton {
     margin: auto;
     display: block;
-    background: #0e9350;
+    background: linear-gradient(
+            350deg
+            , #3f6fc2 0%, #1e3b70 64%);
     border: none;
     width: 50%;
     height: 45px;
@@ -122,7 +139,9 @@ wrapper a {
 }
 
 .ricaricaButton:hover {
-    background: #2bc477;
+    background: linear-gradient(
+            350deg
+            , #3f6fc2 0%, #1e3b70 64%);
 }
 
 .ricaricaButton:focus {
@@ -135,14 +154,14 @@ wrapper a {
     margin-top: 35px;
     font-weight: 700;
     font-size: 15px;
-    color: #777;
+    color: white;
 }
 
 .nuovoSaldoAmount {
     margin-top: 35px;
     font-weight: 700;
     font-size: 35px;
-    color: black;
+    color: white;
     text-align: center;
 }
 
