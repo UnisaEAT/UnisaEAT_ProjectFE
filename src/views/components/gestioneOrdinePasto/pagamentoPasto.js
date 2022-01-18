@@ -23,8 +23,6 @@ export default class PagamentoPasto extends React.Component
     }
 
 
-    //TODO rimane il localstorage dell'ordine se si va in altre e pagine e si ritorna in questo
-    // possibile implementazione "carrello"?
     componentDidMount()
     {
         let ordine = JSON.parse(localStorage.getItem('ordine'))
@@ -52,7 +50,7 @@ export default class PagamentoPasto extends React.Component
         error.textContent="Saldo del tesserino insufficiente"
         error.style="color:red"
 
-        if(el.childNodes.length<3)
+        if(el.childNodes.length<4)
         {
             el.appendChild(error)
         }
@@ -90,12 +88,15 @@ export default class PagamentoPasto extends React.Component
     }
 
     render() {
-        console.log(this.state.popUp)
+        var boolPranzo="Cena"
+        if(this.state.ordine.boolPranzo)
+            boolPranzo="Pranzo"
         return (
             <div className="pp-centralContainer">
                 {this.state.popUp && <Popup message="Recati nella pagina della lista degli ordini per visualizzare il QR code" handleClose={this.closePopUp}/>}
-                <div className="pp-riepilogoOrdine">
-                    <h4>Riepilogo ordine</h4>
+                <div className="pp-centralContainerInner">
+                    <div className="pp-riepilogoOrdine">
+                    <h4>Riepilogo dell'ordine</h4>
                     {
                         this.state.ordine.map((pasto,i) => {
                             return (
@@ -114,12 +115,22 @@ export default class PagamentoPasto extends React.Component
                             )
                         })
                     }
-
+                    </div>
                     <div className="pp-pagamentoContainer">
-                        <h4>Pagamento</h4>
-                        <div className="pp-prezzoOrdineContainer">
-                            <h2>{this.state.prezzoTotale} €</h2>
-                            <Button className="pp-buttonPagamento" onClick={this.onClickConfermaOrdine}>Conferma ordine</Button>
+                        <div className="pp-pagamentoContainerInner">
+                            <h3>Pagamento</h3>
+                            <hr/>
+                            <div className="pp-prezzoOrdineContainer">
+                                <div className="d-flex justify-content-between">
+                                    <span>Tipo menù</span>
+                                    <span>{boolPranzo}</span>
+                                </div>
+                                <div className="d-flex justify-content-between">
+                                    <span className="pp-prezzoTotale">TOTALE</span>
+                                    <span className="pp-prezzoTotale">€ {this.state.prezzoTotale}</span>
+                                </div>
+                                <Button className="pp-buttonPagamento" onClick={this.onClickConfermaOrdine}>Conferma ordine</Button>
+                            </div>
                         </div>
                     </div>
                 </div>

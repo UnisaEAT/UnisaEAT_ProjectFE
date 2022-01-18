@@ -404,22 +404,22 @@ export default class SceltaPasti extends React.Component {
                 </div>
                 <div className="sp-selectOrderContainer">
                     <div className="sp-navPortata">
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#PrimoLabel">Primo</a>
                         </div>
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#SecondoLabel">Secondo</a>
                         </div>
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#ContornoLabel">Contorno</a>
                         </div>
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#FruttaLabel">Frutta</a>
                         </div>
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#ExtraLabel">Extra</a>
                         </div>
-                        <div className="sp-navPortataElement">
+                        <div className="hvr-grow sp-navPortataElement">
                             <a href="#ConfermaOrdineLabel">Conferma</a>
                         </div>
                     </div>

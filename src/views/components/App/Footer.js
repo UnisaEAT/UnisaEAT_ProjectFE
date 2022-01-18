@@ -58,13 +58,9 @@ export function Footer() {
                         <h6 className="text-uppercase font-weight-bold mb-4">Domande frequenti</h6>
                         <ul className="list-unstyled mb-0">
                             <li className="text-grey">Domanda1</li>
-                            <li className="text-grey">Risposta1</li>
                             <li className="text-grey mt-2">Domanda2</li>
-                            <li className="text-grey">Risposta2</li>
                             <li className="text-grey mt-2">Domanda3</li>
-                            <li className="text-grey">Risposta3</li>
                             <li className="text-grey mt-2">Domanda4</li>
-                            <li className="text-grey">Risposta4</li>
                         </ul>
                     </div>
 

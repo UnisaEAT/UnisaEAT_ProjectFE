@@ -215,8 +215,6 @@ export default class StatisticheSettimanali extends React.Component {
     }
 
 
-    //TODO Possibile miglioramento : visualizzazione delle statistiche dell'ultima settimana all'inizio --> metodo nel BE per la restituzione
-
     render() {
         if(this.state.newChart=== true)
             return (

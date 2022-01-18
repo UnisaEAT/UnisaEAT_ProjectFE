@@ -5,25 +5,29 @@
     margin-top: 5%;
     margin-bottom: 5%;
 }
+.pp-centralContainerInner
+{
+   display: flex;
+}
 .pp-riepilogoOrdine
 {
-    box-shadow: 0px 4px 16px rgb(0 0 0 / 10%);background:#F0F0F0;
-    background: #F8F8F8;
+    width: 80%;
 }
 .pp-riepilogoOrdine h4
 {
     padding: 20px;
+
 }
 
 .pp-pastoElement
 {
     display: inline-block;
-    width: 31%;
+    width: 55%;
     border-style: solid;
     border-width: 1px;
-    margin-left: 20px;
+    margin-left: 50px;
     border-color: lightgray;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     border-radius: 20px;
     background: white;
 }
@@ -71,23 +75,57 @@
     width: 40%;
     margin:0 auto;
     margin-top: 20px;
-    box-shadow: 0px 4px 16px rgb(0 0 0 / 10%);background:#F0F0F0;
     background: #F8F8F8;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px 2px rgb(0 0 0 / 10%);
+    height: fit-content;
 }
 
 .pp-pagamentoContainer h4
 {
     padding: 20px;
 }
-
+.pp-pagamentoContainerInner
+{
+    padding: 30px;
+}
+.pp-pagamentoContainerInner span
+{
+    padding: 10px;
+}
 .pp-prezzoOrdineContainer
 {
     text-align: center;
 }
 
+.pp-prezzoTotale
+{
+    font-weight: 500;
+    font-size: 23px;
+}
+
 .pp-buttonPagamento
 {
-    position: static!important;
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px 60px;
+    min-width: 120px;
+    color: #fff;
+    background-color: #00a082;
+    font-size: 18px;
+    border-radius: 100px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    max-width: 340px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 40px;
+    box-sizing: border-box;
 }
