@@ -54,7 +54,7 @@ function NavbarApp() {
 
                 <Nav>
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore">
+                        <Nav className="elementoNavBarAttore mt-1">
                             <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Ticket">
                                 <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
@@ -75,7 +75,7 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore" href="/">
+                        <Nav className="elementoNavBarAttore mt-2" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
@@ -95,8 +95,8 @@ function NavbarApp() {
                         </Nav>
                     </NavItem>
 
-                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="hvr-grow elementoNavBarAttore" href="/">
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex ">
+                        <Nav className="hvr-grow elementoNavBarAttore mt-1" href="/">
                             <Image className="imageNavBarAttore" src={FaqIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="FAQ" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneFAQ/visualizzazioneFAQ">Visualizza FAQs</NavDropdown.Item>
@@ -214,7 +214,7 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore" href="/">
+                        <Nav className="elementoNavBarAttore mt-2" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
@@ -277,10 +277,10 @@ function NavbarApp() {
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore" href="/">
-                            <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
-                            <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Inserisci menù</NavDropdown.Item>
+                            <Image className="imageNavBarAttore" src={GestionePersonaleIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Gestione personale ADISU" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestionePersonale/InserimentoPersonale">Inserimento operatore</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestionePersonale/VisualizzazioneListaPersonale">Lista operatori</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>

@@ -110,7 +110,7 @@ export default class Login extends Component {
         } else
             return (
                 <div id="root">
-                   <Card className="wrapper">
+                   <Card className="wrapper loginContainer">
                                 <div className="login h5 font-weight-bold text-center mb-3">
                                     <h1>LOGIN</h1>
                                     <Form className="test align-items-center" onSubmit={this.handleSubmit}>

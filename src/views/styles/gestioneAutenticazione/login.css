@@ -11,8 +11,13 @@
     align-items:center;
 }
 
+.loginContainer
+{
+    margin-bottom: 10% !important;
+}
+
 .wrapper {
-     max-width: 500px;
+     max-width: 600px;
      margin-top: 8% !important;
      min-height: 250px;
      background-color: #ffffff27;

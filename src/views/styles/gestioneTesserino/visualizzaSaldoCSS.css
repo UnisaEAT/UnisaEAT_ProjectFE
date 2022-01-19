@@ -44,5 +44,13 @@
     margin-top: 15px;
     background: rgb(255, 165, 0);
     border: none;
-    color: white;
+    color: black;
+}
+
+.buttonRinnovaTesserinoScaduto:hover {
+    background-color: rgb(238, 150, 15);
+    border-color: #FFA5006E;
+    background-image: none;
+    border: none;
+    color: black;
 }
