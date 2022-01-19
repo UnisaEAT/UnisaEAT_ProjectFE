@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/gestionePersonale/PopUp.css'
+import '../../styles/gestioneMenu/PopUp.css'
 import CheckLogo from '../../assets/check.png'
 import {Button} from "react-bootstrap";
 
