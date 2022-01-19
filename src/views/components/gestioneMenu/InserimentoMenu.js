@@ -3,9 +3,9 @@ import React from 'react'
 import "../../styles/gestioneMenu/InserimentoMenu.css"
 import Categorie from "./Categorie";
 import axios from "axios";
-import Popup from "./PopUp";
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
+import successPopUp from "../App/successPopUp";
+import {Button} from "react-bootstrap";
+
 
 
 export class InserimentoMenu extends React.Component {
@@ -94,7 +94,7 @@ export class InserimentoMenu extends React.Component {
 
         return (
             <div id="root">
-                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                {this.state.popUp && <successPopUp message="Inserimento Menu avvenuto con successo!" handleClose={this.closePopUp}/>}
             <section className="menu-section">
                 <div>
                     <h1 className="home_title">Scegli i Pasti</h1>
@@ -103,6 +103,7 @@ export class InserimentoMenu extends React.Component {
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
                     {this.state.item.map((menuItem, i) => {
+                        if(menuItem!=null)
                         return (
                             <article key={i} className="menu-item">
                                     <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
@@ -118,10 +119,13 @@ export class InserimentoMenu extends React.Component {
                                 </div>
                             </article>
                         )
+                        else{
+                            return (<h1 className="h1Style">Non sono presenti pasti per questa categoria</h1> )
+                        }
                     })}
                 </div>
             </section>
-                <Button className="buttonInsert" variant="contained" endIcon={<SendIcon />} onClick={()=>this.Inserimento()}>
+                <Button variant="outline-primary"  className="buttonInsert" onClick={()=>this.Inserimento()}>
                     Inserisci Menu
                 </Button>
             </div>
