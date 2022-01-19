@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Container, Nav, Navbar, Image, Button, NavItem, NavDropdown} from "react-bootstrap";
 import logo from "../../assets/logoUnisaEAT.png"
 import notifiche from "../../assets/iconeNavbar/Notifiche.png"
@@ -17,7 +17,21 @@ import statisticheIcon from "../../assets/iconeNavbar/statistiche.png"
 
 import "../../styles/AppStyle/NavbarApp.css"
 import "../../styles/gestioneAutenticazione/login.css"
+import "../../styles/gestioneNotifiche/VisualizzazioneNotifiche.css"
+import VisualizzazioneNotifiche from "../gestioneNotifiche/VisualizzazioneNotifiche";
 
+function Notifiche(props) {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <Nav.Link className="notificheButton" onClick={() => setOpen(!open)} >
+            <Image src={notifiche}
+                   width="45"/>
+            <span className="icon-button__badge">2</span>
+            {open && props.children}
+        </Nav.Link>
+    );
+}
 
 
 function NavbarApp() {
@@ -108,10 +122,11 @@ function NavbarApp() {
                 </Nav>
 
                     <NavItem className="nav-item justify-content-end d-flex">
-                        <Nav.Link className="notificheButton" href="/">
-                            <Image src={notifiche}
-                                   width="45"/>
-                        </Nav.Link>
+                        <Notifiche>
+                            <VisualizzazioneNotifiche/>
+                        </Notifiche>
+
+
                         <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                             <Image src={iconaUtente}
                                    width="50"/>
