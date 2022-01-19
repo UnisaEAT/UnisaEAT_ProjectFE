@@ -51,18 +51,24 @@ export default class RichiestaTesserino extends Component
 
     componentDidMount()
     {
-        axios.post('http://localhost:8080/api/tesserino/hasTesserino', {
-            email: localStorage.getItem("email"),
-            ruolo: localStorage.getItem("ruolo")
-        })
-            .then(response => {
-                if (response.data.message === true) {
-                    this.setState({error: true})
-                }
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            axios.post('http://localhost:8080/api/tesserino/hasTesserino', {
+                email: localStorage.getItem("email"),
+                ruolo: localStorage.getItem("ruolo")
             })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then(response => {
+                    if (response.data.message === true) {
+                        this.setState({error: true})
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     closePopUp() {
@@ -248,7 +254,11 @@ export default class RichiestaTesserino extends Component
 
 
     render() {
-        if(this.state.error)
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
+        else if(this.state.error)
             return (
                 <div className="tesserinoPosseduto">
                     <h2>Hai già un tesserino</h2>

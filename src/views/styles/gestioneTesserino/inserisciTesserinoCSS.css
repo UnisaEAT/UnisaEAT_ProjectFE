@@ -3,6 +3,16 @@
     margin-top: 5%;
     margin-bottom: 10%;
 }
+.formContainer h3
+{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.formContainer .col
+{
+    text-align: left;
+}
 
 .submitButton {
     width: 30%;

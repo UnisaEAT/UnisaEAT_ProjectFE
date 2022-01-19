@@ -164,7 +164,8 @@ export default class StatisticheSettimanali extends React.Component {
 
         this.state = {
             statistiche: [],
-            newChart : false
+            newChart : false,
+            error : null
         };
 
 
@@ -203,19 +204,36 @@ export default class StatisticheSettimanali extends React.Component {
 
     // GET delle statistiche di tutte le settimane salvate nel DB
     componentDidMount() {
-        axios.post('http://localhost:8080/api/statistica/findAll',{ruolo:localStorage.getItem("ruolo")})
-            .then(response => {
-                console.log(response.data)
-                this.setState({statistiche: response.data})
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+
+        //Controllo login con sessione
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+
+        }
+        else {
+            axios.post('http://localhost:8080/api/statistica/findAll', {ruolo: localStorage.getItem("ruolo")})
+                .then(response => {
+                    //Controllo errore lato be di accesso
+                    if(response.data.hasOwnProperty("error"))
+                        this.setState({error:response.data.error})
+                    else
+                        this.setState({statistiche: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
 
     render() {
-        if(this.state.newChart=== true)
+        // Unauthorized access
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
+        else if(this.state.newChart=== true)
             return (
                 <div className="ss-mainContainer">
                     <div className="ss-selectWeekContainer">
