@@ -42,6 +42,8 @@
 }
 
 .navbarStyle {
+    position: relative;
+    z-index: 1;
     background-color: transparent;
     background: #3B579D;
     display: flex;

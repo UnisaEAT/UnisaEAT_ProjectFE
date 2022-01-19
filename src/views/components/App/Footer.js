@@ -13,7 +13,7 @@ export function Footer() {
         <footer className="bg-white">
             <div className="mx-5 py-3">
                 <div className="row py-4">
-                    <div className="mx-5 text-center my-5 col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div className="mx-1 text-center my-5 col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <img src={logoUnisa} alt="" width="120" className="mb-3"/>
                         <p className="text-center font-italic">Università degli studi di Salerno</p>
                     </div>
