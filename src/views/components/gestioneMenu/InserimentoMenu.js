@@ -122,7 +122,7 @@ export class InserimentoMenu extends React.Component {
                     })}
                 </div>
             </section>
-                <Button variant="outline-primary" className="buttonInsert"  onClick={()=>this.Modifica()}>
+                <Button variant="outline-primary" className="buttonInsert"  onClick={()=>this.Inserimento()}>
                     Inserisci Menu
                 </Button>
             </div>
