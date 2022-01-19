@@ -203,8 +203,7 @@ export default class StatisticheSettimanali extends React.Component {
 
     // GET delle statistiche di tutte le settimane salvate nel DB
     componentDidMount() {
-        // TODO SESSIONE
-        axios.post('http://localhost:8080/api/statistica/findAll',{ruolo:"operatore mensa"})
+        axios.post('http://localhost:8080/api/statistica/findAll',{ruolo:localStorage.getItem("ruolo")})
             .then(response => {
                 console.log(response.data)
                 this.setState({statistiche: response.data})

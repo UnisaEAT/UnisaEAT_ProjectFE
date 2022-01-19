@@ -217,7 +217,7 @@ export default class RinnovoTesserino extends Component {
 
     closePopUp() {
         this.setState({popUp: false})
-        //TODO redirect to homepage
+
         window.location = "/"
     }
 

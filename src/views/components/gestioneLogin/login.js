@@ -27,16 +27,8 @@ export default class Login extends Component {
         this.submitForm = this.submitForm.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
-        this.closePopUp = this.closePopUp.bind(this)
         this.errorRemoverOnChange = this.errorRemoverOnChange.bind(this)
 
-    }
-
-    closePopUp() {
-        this.setState({popUp: false})
-        console.log(this.state.popUp)
-        this.setState({redirect: true})
-        window.location = "/gestioneProfilo/profilo"
     }
 
     // Handlers definition
@@ -99,8 +91,7 @@ export default class Login extends Component {
                 } else {
                     localStorage.setItem("email", response.data.email)
                     localStorage.setItem("ruolo", response.data.ruolo)
-                    this.setState({popUp: true})
-
+                    window.location = "/"
                 }
 
             })
@@ -119,22 +110,20 @@ export default class Login extends Component {
         } else
             return (
                 <div id="root">
-                     {/* Se popUp (boolean) è true */}
-                     {this.state.popUp && <Popup message={'Login effettuato!'} handleClose={this.closePopUp}/>}
-
                    <Card className="wrapper">
                                 <div className="login h5 font-weight-bold text-center mb-3">
                                     <h1>LOGIN</h1>
                                     <Form className="test align-items-center" onSubmit={this.handleSubmit}>
                                         <br/>
                                         <div className="form-group align-items-center" id="email">
-                                        <div class="icon"> <Image src={logoMail} width="30"/></div>
+                                        <div class="iconLogin">
+                                            <Image src={logoMail} width="30"/></div>
                                             <Form.Control id="email" className="form-control" type="text" name="email"
                                                           onChange={this.onChangeEmail}
                                                           placeholder="Inserisci la tua email"/>
                                         </div>
                                         <div className="form-group align-items-center" id="password">
-                                        <div class="icon"> <Image src={logoPsw} width="30"/></div>
+                                        <div class="iconLogin"> <Image src={logoPsw} width="30"/></div>
                                             <Form.Control id="password" className="form-control" type="password"
                                                           name="password" onChange={this.onChangePassword}
                                                           placeholder="Inserisci la tua password"/>

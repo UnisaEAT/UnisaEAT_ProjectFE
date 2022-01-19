@@ -21,7 +21,11 @@
      border-radius: 15px;
      background: linear-gradient(315deg, #29539b 0%, #1e3b70 64%)
  }
-
+.iconLogin
+{
+    position: absolute;
+    z-index: 0;
+}
  .wrapper .labelLogin{
     color:beige;
     font-size: 15px;

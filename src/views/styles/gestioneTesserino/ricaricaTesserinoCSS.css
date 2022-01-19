@@ -83,6 +83,14 @@ wrapper a {
 .bottoneSaldo {
     width: 23.5%;
     margin: 2px;
+    background: #1e3b70;
+    border-radius: 5px;
+    border: none;
+}
+
+.bottoneSaldo:hover
+{
+    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 80%);
 }
 
 #form-footer a {
@@ -142,12 +150,13 @@ wrapper a {
     background: linear-gradient(
             350deg
             , #3f6fc2 0%, #1e3b70 64%);
+    box-shadow: 1px 1px 5px 1px rgba(227, 222, 222, 0.8);
 }
 
+
 .ricaricaButton:focus {
-    background: #0e9350;
-    outline: none;
-    box-shadow: none;
+    border: none;
+
 }
 
 .nuovoSaldoLabel {
@@ -164,7 +173,13 @@ wrapper a {
     color: white;
     text-align: center;
 }
+@media (max-width: 1366px) {
+    .containerRicarica
+    {
+        width: 80%;
+    }
 
+}
 @media (max-width: 395px) {
     .form-inline label {
         font-size: 12px

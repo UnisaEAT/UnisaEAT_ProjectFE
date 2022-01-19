@@ -67,8 +67,7 @@ export default class RichiestaTesserino extends Component
 
     closePopUp() {
         this.setState({popUp: false})
-        // TODO redirect to homepage
-        window.location = "/homepage"
+        window.location = "/"
     }
 
     // Handlers definition
@@ -261,7 +260,6 @@ export default class RichiestaTesserino extends Component
                     {/* Se popUp (boolean) è true */}
                     {this.state.popUp && <Popup message="Richiesta avvenuta con successo" handleClose={this.closePopUp}/>}
 
-                    {/* TODO Inserire un avviso di quali campi sono obbligatori*/}
                     <div className="formContainer container">
                         <Form onSubmit={this.handleSubmit}>
                             <h3>Dati anagrafici</h3>

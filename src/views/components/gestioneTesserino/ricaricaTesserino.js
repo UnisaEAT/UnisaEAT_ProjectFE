@@ -266,7 +266,7 @@ export default class RicaricaTesserino extends Component {
                             <h4 className="text-uppercase">Importo</h4>
                             <div id="importo" className="form-group">
                                 <label htmlFor="name" className="text-uppercase">inserisci l'importo da caricare</label>
-                                <input name="importo" id="importo" type="number" autoComplete="off" min="0"
+                                <input name="importo" id="importo" type="number" autoComplete="off" min="1"
                                        className="form-control"
                                        ref="importoRef" placeholder="Digita il tuo importo"
                                        onChange={this.onChangeImporto}/></div>

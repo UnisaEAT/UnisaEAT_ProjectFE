@@ -1,10 +1,10 @@
 .saldoLabel {
-    color: #b0b0b0;
+    color: #1e3b70;
     font-weight: lighter;
 }
 
 .saldoNumberLabel {
-    color: #85bb65;
+    color: #3B579D;
     font-size: 2vw;
     margin: auto;
     width: 50%;
@@ -14,9 +14,10 @@
 
 
 .containerSaldo {
-    margin-top: 50px;
+    margin-top: 5%;
     width: 30%;
     overflow: hidden;
+    border-radius: 15px!important;
 }
 
 
@@ -25,7 +26,7 @@
     float: right;
     background: rgb(255, 165, 0);
     border: none;
-    color: black;
+    color: #484444;
 
 }
 
@@ -42,5 +43,5 @@
     margin-top: 15px;
     background: rgb(255, 165, 0);
     border: none;
-    color: black;
+    color: white;
 }
