@@ -2,7 +2,7 @@ import React from 'react'
 import "../../styles/gestionePersonale/InserimentoPersonale.css"
 import {Card} from "react-bootstrap";
 import axios from "axios";
-import Popup from "./PopUp";
+import Popup from "../App/successPopUp";
 
 export default class InserimentoPersonale extends React.Component {
     constructor(props) {

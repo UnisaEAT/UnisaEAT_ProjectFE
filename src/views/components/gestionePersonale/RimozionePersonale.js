@@ -2,7 +2,7 @@ import React from 'react'
 import "../../../App.css"
 import {Card} from "react-bootstrap";
 import axios from "axios";
-import Popup from "./PopUp";
+import Popup from "../App/successPopUp";
 export default class RimozionePersonale extends React.Component{
 
     constructor(props) {
