@@ -7,12 +7,5 @@ body
 }
 .carousel-container
 {
-    width: 60%;
-    margin: auto;
-    margin-top: 60px;
-}
-
-.carousel-inner
-{
-    border-radius: 20px;
+    margin-bottom: 0px;
 }

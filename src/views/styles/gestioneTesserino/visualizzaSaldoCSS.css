@@ -15,6 +15,7 @@
 
 .containerSaldo {
     margin-top: 5%;
+    margin-bottom: 10% !important;
     width: 30%;
     overflow: hidden;
     border-radius: 15px!important;

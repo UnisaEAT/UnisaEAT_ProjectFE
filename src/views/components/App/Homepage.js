@@ -3,7 +3,9 @@ import {Carousel, Image} from "react-bootstrap";
 import {useState} from "react";
 import slide1 from "../../assets/slide1.jpg"
 import slide2 from "../../assets/slide2.jpg"
-import mensa5 from "../../assets/mensa5.jpg"
+import slide3 from "../../assets/slide3.jpg"
+import slide5 from "../../assets/slide5.jpg"
+import slide6 from "../../assets/slide6.jpg"
 import Chat from "../gestioneChat/chat";
 
 import "../../styles/AppStyle/Homepage.css"
@@ -20,9 +22,8 @@ function Homepage() {
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
                         className="d-block w-100"
-
-                        height="600px"
                         src={slide1}
+                        height="700px"
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -33,8 +34,20 @@ function Homepage() {
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
                         className="d-block w-100"
-                        height="600px"
-                        src={slide2}
+                        src={slide5}
+                        height="700px"
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>Vivi il campus</h3>
+                        <p>App unisaEAT</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item className="carouselInnerContainer">
+                    <Image
+                        className="d-block w-100"
+                        src={slide6}
+                        height="700px"
                         alt="Second slide"
                     />
 
@@ -46,8 +59,8 @@ function Homepage() {
                 <Carousel.Item>
                     <Image
                         className="d-block w-100"
-                        src={mensa5}
-                        height="600px"
+                        src={slide2}
+                        height="700px"
                         alt="Third slide"
                     />
 
@@ -56,8 +69,19 @@ function Homepage() {
                         <p>vivi il campus</p>
                     </Carousel.Caption>
                 </Carousel.Item>
+                <Carousel.Item className="carouselInnerContainer">
+                    <Image
+                        className="d-block w-100"
+                        src={slide3}
+                        height="700px"
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>Vivi il campus</h3>
+                        <p>App unisaEAT</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
             </Carousel>
-            <Chat/>
         </div>
 
     );

@@ -104,7 +104,6 @@ function Chat()
 
 
 
-
     //ComponentDidMount
     useEffect(() => {
 
@@ -295,15 +294,19 @@ function Chat()
                 .then(response => {
                     //TODO gestire l'errore
                     if(!(response.data.hasOwnProperty("error"))) {
-                    socket.current.emit("sendMessage", {
-                        id : response.data.id,
-                        conversazioneId : response.data.conversazioneId,
-                        senderEmail: mittenteEmail,
-                        receiverEmail: destinatarioEmail,
-                        text: messaggioDaInviare,
-                    })
+                        socket.current.emit("sendMessage", {
+                            id : response.data.id,
+                            conversazioneId : response.data.conversazioneId,
+                            senderEmail: mittenteEmail,
+                            receiverEmail: destinatarioEmail,
+                            text: messaggioDaInviare,
+                        })
 
-                        axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId: conversazione.id})
+                        let array = [...messaggi,response.data]
+
+                        setMessaggi(array)
+
+                        /*axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId: conversazione.id})
                             .then(response => {
                                 setMessaggi(response.data)
                                 var objDiv = document.getElementById("testBox");
@@ -311,7 +314,7 @@ function Chat()
                             })
                             .catch((error) => {
                                 console.log(error);
-                            })
+                            })*/
                 }
                 else
                     console.log(response.data.message)
@@ -420,13 +423,6 @@ function Chat()
                                                     return (
                                                         <div key={i} className="media w-50 ml-auto mb-3">
                                                             <div className="bg-light rounded py-2 px-3 mb-2">
-                                                                <div className="dropdown">
-                                                                    <img className="c-moreImage" src={more} />
-                                                                    <div className="dropdown-content">
-                                                                        <div onClick={() => onClickEliminaMessaggio(messaggio.id)}>Rimuovi</div>
-                                                                        <div onClick={() => onClickModificaMessaggio(messaggio.id,messaggio.testo)}>Modifica</div>
-                                                                    </div>
-                                                                </div>
                                                                 <p className="text-small mb-0 text-black">
                                                                     {messaggio.testo}
                                                                 </p>
