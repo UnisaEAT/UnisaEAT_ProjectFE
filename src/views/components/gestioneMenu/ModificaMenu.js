@@ -1,13 +1,9 @@
 import React, {useState} from 'react'
-
-
 import "../../styles/gestioneMenu/InserimentoMenu.css"
 import axios from "axios";
 import Categorie from "./Categorie";
-import SendIcon from "@mui/icons-material/Send";
-import Button from "@mui/material/Button";
-import VisualizzazioneMenu from "./VisualizzazioneMenu";
-import Popup from "./PopUp";
+import successPopUp from "../App/successPopUp";
+import {Button} from "react-bootstrap";
 
 export class ModificaMenu extends React.Component {
     constructor(props) {
@@ -74,7 +70,7 @@ export class ModificaMenu extends React.Component {
 
         return (
             <div id="root">
-                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                {this.state.popUp && <successPopUp message="Modifica Menu avvenuta con successo!" handleClose={this.closePopUp}/>}
             <section className="menu-section">
                 <div>
                     <h1 className="home_title">Modifica Menu</h1>
@@ -83,6 +79,7 @@ export class ModificaMenu extends React.Component {
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
                     {this.state.item.map((menuItem, i) => {
+                        if(menuItem!=null)
                         return (
                             <article key={i} className="menu-item">
                                 <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
@@ -97,10 +94,13 @@ export class ModificaMenu extends React.Component {
                                 </div>
                             </article>
                         )
+                        else{
+                            return (<h1 className="h1Style">Non sono presenti pasti per questa categoria</h1> )
+                        }
                     })}
                 </div>
             </section>
-        <Button className="buttonInsert" variant="contained" onClick={()=>this.Modifica()}>
+        <Button variant="outline-primary" className="buttonInsert"  onClick={()=>this.Modifica()}>
             Modifica Menu
         </Button>
         </div>

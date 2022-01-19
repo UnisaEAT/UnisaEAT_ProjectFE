@@ -2,7 +2,7 @@ import React from 'react'
 import "../../../App.css"
 import {Card} from "react-bootstrap";
 import axios from "axios";
-import Popup from "../App/successPopUp";
+import SuccessPopUp from "../App/successPopUp";
 export default class RimozionePersonale extends React.Component{
 
     constructor(props) {
@@ -53,7 +53,7 @@ export default class RimozionePersonale extends React.Component{
     render() {
         return (
             <div id="root">
-                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
+                {this.state.popUp && <SuccessPopUp message="Rimozione Personale avvenuta con successo!S" handleClose={this.closePopUp}/>}
                 <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                     <h1 className="h1">Informazioni di {this.props.obj.nome} {this.props.obj.cognome}</h1>
                     <Card className="align" style={{width: 'auto'}}>

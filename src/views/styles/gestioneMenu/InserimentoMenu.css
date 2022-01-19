@@ -82,7 +82,7 @@ body {
     grid-template-columns: 570px 570px;
 }
 .buttonInsert{
-    left: 45%;
+    margin-left: 45%;
     bottom: 20px;
 }
 .menu-item {
