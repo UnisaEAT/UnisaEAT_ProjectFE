@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-import "../../styles/gestioneMenu/VisualizzazioneMenu.css"
+
+import "../../styles/gestioneMenu/InserimentoMenu.css"
 import axios from "axios";
 import Categorie from "./Categorie";
-import {Form} from "react-bootstrap";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
-import {TextField} from "@mui/material";
-import {Redirect} from "react-router-dom";
+import VisualizzazioneMenu from "./VisualizzazioneMenu";
 import Popup from "./PopUp";
+
 export class ModificaMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -16,60 +16,40 @@ export class ModificaMenu extends React.Component {
             menu: [],
             item:[],
             ritornoPasti:[],
-            nome:'',
-            descrizione:'',
-            ingredienti:'',
-            popUp: false,
+            popUp:false,
         }
         this.filterItems = this.filterItems.bind(this)
-        this.onChangeNome = this.onChangeNome.bind(this)
-        this.onChangeDescrizione = this.onChangeDescrizione.bind(this)
-        this.onChangeIngredienti = this.onChangeIngredienti.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
     }
 
     closePopUp() {
-        this.setState({popUp: true})
+        this.setState({popUp: false})
         this.setState({ritornoPasti: null})
         window.location.reload();
     }
 
-
-    onChangeNome(e,i) {
-        this.setState({
-            nome: e.target.value
-        })
-        this.state.menu[i].nome=this.state.nome
-        console.log(e.target.value)
-    }
-
-    onChangeDescrizione(e,i) {
-        this.setState({
-            descrizione: e.target.value
-        })
-        console.log(this.state.descrizione)
-        this.state.menu[i].descrizione=this.state.descrizione
-    }
-
-    onChangeIngredienti(e,i) {
-        this.setState({
-            ingredienti: e.target.value
-        })
-
-        this.state.menu[i].ingredienti=this.state.ingredienti
-    }
-
-    filterItems(e,category) {
+    filterItems(category) {
         const newItems = this.state.menu.filter((item) => item.categoria === category);
         this.setState({item: newItems})
     }
 
+    modificaPasto(pasto){
+        console.log(this.state.ritornoPasti)
+        if(this.state.ritornoPasti.includes(pasto)){
+            console.log("Pasto già inserito")
+        }
+        else{
+            this.state.ritornoPasti.push(pasto)
+            console.log(this.state.ritornoPasti.toString())
+            this.setState({prova: true})
+        }
+    }
+
     componentDidMount() {
-        axios.post("http://localhost:8080/api/menu/VisualizzaMenu",{tipo:"Pranzo"})
+        axios.get("http://localhost:8080/api/menu/SceltaMenu")
             .then(response => {
                 console.log(response.data)
-                this.setState({menu: response.data[0].pasti})
-
+                this.setState({menu: response.data})
             })
             .catch((error) => {
                 console.log(error);
@@ -78,10 +58,10 @@ export class ModificaMenu extends React.Component {
 
     Modifica() {
         console.log("uee")
-        axios.post("http://localhost:8080/api/menu/modificaMenu",{tipo:"Pranzo",pasti:this.state.menu})
+        axios.post("http://localhost:8080/api/menu/modificaMenu",{tipo:"Pranzo",pasti:this.state.ritornoPasti})
             .then(response => {
-                if(response.data.message===true){
-                    this.setState({popUp: true})
+                if(response.data.message==true){
+                    this.setState({popUp:true})
                 }
             })
             .catch((error) => {
@@ -97,7 +77,7 @@ export class ModificaMenu extends React.Component {
                 {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
             <section className="menu-section">
                 <div>
-                    <h1 className="home_title">Il Menu del giorno</h1>
+                    <h1 className="home_title">Modifica Menu</h1>
                     <div className="underLine"/>
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
@@ -106,19 +86,21 @@ export class ModificaMenu extends React.Component {
                         return (
                             <article key={i} className="menu-item">
                                 <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
-                                 <div className="item-info">
-                                     <TextField
-                                         id="outlined-textarea"
-                                         label="Descrizione Pasto" onChange={(e)=>this.onChangeDescrizione(e,i)} placeholder={menuItem.descrizione} className="title" />
-                                     <Form.Control as="textarea" rows={2} onChange={(e)=>this.onChangeIngredienti(e,i)} on placeholder={"Ingredienti: "+menuItem.ingredienti}/>
-                                </div>
+                                <div className="item-info">
+                                    <header>
+                                        <h3 className="title" >{menuItem.nome}</h3>
+                                        <button onClick={()=>this.modificaPasto(menuItem)} type="submit" className="btn-block btn-primary" >Scegli</button>
+                                    </header>
+                                    <h4 className="item-text2">{menuItem.descrizione}</h4>
+                                    <p>Ingredienti:<hr/>{menuItem.ingredienti}</p>
 
+                                </div>
                             </article>
                         )
                     })}
                 </div>
             </section>
-        <Button className="buttonInsert" variant="contained" endIcon={<SendIcon />} onClick={()=>this.Modifica()}>
+        <Button className="buttonInsert" variant="contained" onClick={()=>this.Modifica()}>
             Modifica Menu
         </Button>
         </div>

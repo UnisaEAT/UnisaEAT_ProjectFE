@@ -8,7 +8,7 @@ export class VisualizzazioneMenu extends React.Component {
         super(props);
         this.state = {
             menu: [],
-            item:[]
+            item:[],
         }
         this.filterItems = this.filterItems.bind(this)
     }
@@ -17,12 +17,14 @@ export class VisualizzazioneMenu extends React.Component {
         this.setState({item: newItems})
     }
 
+
+
     componentDidMount() {
         console.log("uee")
-        axios.post("http://localhost:8080/api/menu/VisualizzaMenu",{tipo:"Pranzo"})
+        axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:"Pranzo"})
             .then(response => {
-                console.log(response.data)
                 this.setState({menu: response.data})
+                console.log(this.state.menu)
             })
             .catch((error) => {
                 console.log(error);
@@ -31,7 +33,6 @@ export class VisualizzazioneMenu extends React.Component {
 
     render() {
         const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
-
         return (
             <section className="menu-section">
                 <div>

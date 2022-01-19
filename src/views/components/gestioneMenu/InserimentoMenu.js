@@ -4,7 +4,6 @@ import "../../styles/gestioneMenu/InserimentoMenu.css"
 import Categorie from "./Categorie";
 import axios from "axios";
 import Popup from "./PopUp";
-import {Redirect} from "react-router-dom";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -28,8 +27,6 @@ export class InserimentoMenu extends React.Component {
         this.setState({popUp: false})
         this.setState({ritornoPasti: null})
         window.location.reload();
-        return
-        (<Redirect to="/VisualizzazioneMenu"/>)
     }
 
 
