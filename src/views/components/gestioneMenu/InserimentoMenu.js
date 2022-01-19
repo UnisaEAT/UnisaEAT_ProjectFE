@@ -3,9 +3,10 @@ import React from 'react'
 import "../../styles/gestioneMenu/InserimentoMenu.css"
 import Categorie from "./Categorie";
 import axios from "axios";
-import Popup from "./PopUp";
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
+
+import successPopUp from "../App/successPopUp";
+import {Button} from "react-bootstrap";
+import Popup from "../App/successPopUp";
 
 
 export class InserimentoMenu extends React.Component {
@@ -121,7 +122,7 @@ export class InserimentoMenu extends React.Component {
                     })}
                 </div>
             </section>
-                <Button className="buttonInsert" variant="contained" endIcon={<SendIcon />} onClick={()=>this.Inserimento()}>
+                <Button variant="outline-primary" className="buttonInsert"  onClick={()=>this.Modifica()}>
                     Inserisci Menu
                 </Button>
             </div>
