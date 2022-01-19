@@ -15,43 +15,53 @@ export default class VisualizzaSaldo extends Component {
 
     componentDidMount() {
 
-        // Controllo stato del tesserino dell'utente
-        axios.post('http://localhost:8080/api/tesserino/isExpired', {
-            email: localStorage.getItem("email"),
-            ruolo: localStorage.getItem("ruolo")
-        })
-            .then(response => {
-                // Se il tesserino è scaduto
-                if (response.data.message === true) {
-                    this.setState({error: true})
-                    this.setState({message: "scaduto"})
-                }
-                // Se l'utente non possiede il tesserino
-                else if (response.data.message === "You don't have a Tesserino!") {
-                    this.setState({error: true})
-                    this.setState({message: "non posseduto"})
-                }
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            // Controllo stato del tesserino dell'utente
+            axios.post('http://localhost:8080/api/tesserino/isExpired', {
+                email: localStorage.getItem("email"),
+                ruolo: localStorage.getItem("ruolo")
+            })
+                .then(response => {
+                    // Se il tesserino è scaduto
+                    if (response.data.message === true) {
+                        this.setState({error: true})
+                        this.setState({message: "scaduto"})
+                    }
+                    // Se l'utente non possiede il tesserino
+                    else if (response.data.message === "You don't have a Tesserino!") {
+                        this.setState({error: true})
+                        this.setState({message: "non posseduto"})
+                    }
 
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
 
-        axios.post('http://localhost:8080/api/tesserino/getInfoTesserino', {
-            email: localStorage.getItem("email"),
-            ruolo: localStorage.getItem("ruolo")
-        })
-            .then(response => {
-                this.setState({saldo: response.data.saldo})
+            axios.post('http://localhost:8080/api/tesserino/getInfoTesserino', {
+                email: localStorage.getItem("email"),
+                ruolo: localStorage.getItem("ruolo")
             })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then(response => {
+                    this.setState({saldo: response.data.saldo})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
 
     render() {
-        if (this.state.error) {
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
+        else if (this.state.error) {
             if (this.state.message === "non posseduto")
                 return (
                     <div className="tesserinoPosseduto">

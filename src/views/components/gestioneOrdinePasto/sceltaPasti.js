@@ -7,7 +7,6 @@ import {Button, FormSelect} from "react-bootstrap";
 export default class SceltaPasti extends React.Component {
 
 
-    //TODO GESTIRE L'ERRORE DELLA SESSIONE
     constructor(props) {
 
         super(props);
@@ -36,6 +35,8 @@ export default class SceltaPasti extends React.Component {
             contornoIDKey: null,
             fruttaIDKey: null,
             extrasIDKeys: [],
+
+            error : false
         };
 
 
@@ -53,37 +54,44 @@ export default class SceltaPasti extends React.Component {
     componentDidMount()
     {
 
-        axios.post('http://localhost:8080/api/ordine/hasOrdini',{email:localStorage.getItem("email"), ruolo:localStorage.getItem("ruolo")})
-            .then(response => {
-                console.log(response.data)
-                this.setState({boolPranzo:response.data.pranzo})
-                this.setState({boolCena:response.data.cena})
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            axios.post('http://localhost:8080/api/ordine/hasOrdini', {
+                email: localStorage.getItem("email"),
+                ruolo: localStorage.getItem("ruolo")
+            })
+                .then(response => {
+                    console.log(response.data)
+                    this.setState({boolPranzo: response.data.pranzo})
+                    this.setState({boolCena: response.data.cena})
 
-                // Controllo e stampa menu se l'utente non ha effettuato l'ordine per pranzo (selezione base della select)
-                axios.post('http://localhost:8080/api/ordine/ordinaPasti',{ruolo:localStorage.getItem("ruolo")})
-                    .then(response2 => {
-                        if(response2.data.hasOwnProperty("error"))
-                            this.handleError(response2.data.error)
-                        // Ordine già effettuato per pranzo
-                        else if(response.data.pranzo && response.data.cena===false)
-                            this.handleError("Oggi hai già ordinato per pranzo")
-                        // Ordine disponibile per pranzo
-                        else if(response.data.pranzo===false && response.data.cena)
-                            this.setState({pasti: response2.data.pranzo})
-                        // Entrambi disponibili -> mostra quello per pranzo
-                        else if(!response.data.pranzo && !response.data.cena)
-                            this.setState({pasti: response2.data.pranzo})
-                        //Nessun ordine disponibile da poter effettuare
-                        else
-                            this.handleError("Oggi hai già ordinato sia per pranzo che per cena")
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+                    // Controllo e stampa menu se l'utente non ha effettuato l'ordine per pranzo (selezione base della select)
+                    axios.post('http://localhost:8080/api/ordine/ordinaPasti', {ruolo: localStorage.getItem("ruolo")})
+                        .then(response2 => {
+                            // Ordine già effettuato per pranzo
+                            if (response.data.pranzo && response.data.cena === false)
+                                this.handleError("Oggi hai già ordinato per pranzo")
+                            // Ordine disponibile per pranzo
+                            else if (response.data.pranzo === false && response.data.cena)
+                                this.setState({pasti: response2.data.pranzo})
+                            // Entrambi disponibili -> mostra quello per pranzo
+                            else if (!response.data.pranzo && !response.data.cena)
+                                this.setState({pasti: response2.data.pranzo})
+                            //Nessun ordine disponibile da poter effettuare
+                            else
+                                this.handleError("Oggi hai già ordinato sia per pranzo che per cena")
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
 
 
     }
@@ -403,6 +411,10 @@ export default class SceltaPasti extends React.Component {
     }
 
     render() {
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
         return (
 
             <div className="root">

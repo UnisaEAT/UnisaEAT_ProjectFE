@@ -14,26 +14,36 @@ export default class PagamentoPasto extends React.Component
             ordine: [],
             prezzoTotale: 0,
             popUp:false,
+            error:false
 
         }
         this.imageNameTextTransform = this.imageNameTextTransform.bind(this)
         this.onClickConfermaOrdine = this.onClickConfermaOrdine.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
         this.errorHandlerSaldoInsufficiente = this.errorHandlerSaldoInsufficiente.bind(this)
+        this.errorHandlerTesserino = this.errorHandlerTesserino.bind(this)
     }
 
 
     componentDidMount()
     {
-        let ordine = JSON.parse(localStorage.getItem('ordine'))
-        console.log(ordine)
-        this.setState({ordine: ordine.nomePiatti})
-        this.setState({prezzoTotale: ordine.prezzoTotale})
+        if(!localStorage.getItem("email") || !localStorage.getItem("ordine"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            let ordine = JSON.parse(localStorage.getItem('ordine'))
+            console.log(ordine)
+            this.setState({ordine: ordine.nomePiatti})
+            this.setState({prezzoTotale: ordine.prezzoTotale})
+        }
     }
+
 
     closePopUp()
     {
         this.setState({popUp:false})
+        localStorage.removeItem("ordine")
         window.location.href="/"
     }
 
@@ -42,12 +52,23 @@ export default class PagamentoPasto extends React.Component
         return nomePasto.split(' ').join('_').toLowerCase()
     }
 
-    //TODO gestire con notifica?
     errorHandlerSaldoInsufficiente()
     {
         let el = document.getElementsByClassName("pp-prezzoOrdineContainer")[0]
         let error = document.createElement('h4')
         error.textContent="Saldo del tesserino insufficiente"
+        error.style="color:red"
+
+        if(el.childNodes.length<4)
+        {
+            el.appendChild(error)
+        }
+    }
+    errorHandlerTesserino()
+    {
+        let el = document.getElementsByClassName("pp-prezzoOrdineContainer")[0]
+        let error = document.createElement('h4')
+        error.textContent="Non possiedi un tesserino"
         error.style="color:red"
 
         if(el.childNodes.length<4)
@@ -79,7 +100,10 @@ export default class PagamentoPasto extends React.Component
                 }
                 else if(response.data.hasOwnProperty("error"))
                 {
-                    this.errorHandlerSaldoInsufficiente()
+                    if(response.data.error==="Non possiedi un tesserino")
+                        this.errorHandlerTesserino()
+                    else
+                        this.errorHandlerSaldoInsufficiente()
                 }
             })
             .catch((error) => {
@@ -88,6 +112,10 @@ export default class PagamentoPasto extends React.Component
     }
 
     render() {
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
         var boolPranzo="Cena"
         if(this.state.ordine.boolPranzo)
             boolPranzo="Pranzo"

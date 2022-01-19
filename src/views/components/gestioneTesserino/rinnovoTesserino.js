@@ -48,28 +48,34 @@ export default class RinnovoTesserino extends Component {
     }
 
     componentDidMount() {
-        //Controllo stato tesserino dell'utente
-        axios.post('http://localhost:8080/api/tesserino/isExpired', {
-            email: localStorage.getItem("email"),
-            ruolo: localStorage.getItem("ruolo")
-        })
-            .then(response => {
-                console.log(response.data)
-                // Se il tesserino è scaduto
-                if (response.data.message === false) {
-                    this.setState({error: true})
-                    this.setState({message: "rinnovato"})
-                }
-                // Se l'utente non possiede il tesserino
-                else if (response.data.message === "You don't have a Tesserino!") {
-                    this.setState({error: true})
-                    this.setState({message: "non posseduto"})
-                }
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            //Controllo stato tesserino dell'utente
+            axios.post('http://localhost:8080/api/tesserino/isExpired', {
+                email: localStorage.getItem("email"),
+                ruolo: localStorage.getItem("ruolo")
+            })
+                .then(response => {
+                    console.log(response.data)
+                    // Se il tesserino è scaduto
+                    if (response.data.message === false) {
+                        this.setState({error: true})
+                        this.setState({message: "rinnovato"})
+                    }
+                    // Se l'utente non possiede il tesserino
+                    else if (response.data.message === "You don't have a Tesserino!") {
+                        this.setState({error: true})
+                        this.setState({message: "non posseduto"})
+                    }
 
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
 
@@ -240,7 +246,11 @@ export default class RinnovoTesserino extends Component {
 
 
     render() {
-        if (this.state.error) {
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
+        else if (this.state.error) {
             if (this.state.message === "non posseduto")
                 return (
                     <div className="tesserinoPosseduto">

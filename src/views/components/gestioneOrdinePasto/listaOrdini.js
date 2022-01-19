@@ -11,6 +11,7 @@ export default class ListaOrdini extends React.Component
 
         this.state = {
             ordini : [],
+            error:false
         }
 
         this.onClickVisualizzaOrdine = this.onClickVisualizzaOrdine.bind(this)
@@ -19,15 +20,24 @@ export default class ListaOrdini extends React.Component
 
     componentDidMount()
     {
-        localStorage.removeItem("dettagliOrdine")
-        axios.post('http://localhost:8080/api/ordine/getOrdini', {ruolo:localStorage.getItem("ruolo"), email:localStorage.getItem("email")})
-            .then(response => {
-                console.log(response.data)
-                this.setState({ordini:response.data})
+        if(!localStorage.getItem("email"))
+        {
+            this.setState({error:401})
+        }
+        else {
+            localStorage.removeItem("dettagliOrdine")
+            axios.post('http://localhost:8080/api/ordine/getOrdini', {
+                ruolo: localStorage.getItem("ruolo"),
+                email: localStorage.getItem("email")
             })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then(response => {
+                    console.log(response.data)
+                    this.setState({ordini: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     onClickVisualizzaOrdine(e)
@@ -38,6 +48,10 @@ export default class ListaOrdini extends React.Component
 
 
     render() {
+        if(this.state.error===401)
+        {
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        }
         return (
             <div className="lo-listaContainerInfo">
                 <table className="lo-table">

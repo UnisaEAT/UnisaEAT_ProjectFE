@@ -10,7 +10,8 @@ export default class DettagliOrdine extends React.Component
         super(props);
         this.state = {
             ordineListaPasti: [],
-            ordine: {}
+            ordine: {},
+            error: false
 
 
         }
@@ -19,9 +20,15 @@ export default class DettagliOrdine extends React.Component
 
         componentDidMount()
         {
-            let ordine = JSON.parse(localStorage.getItem("dettagliOrdine"))
-            this.setState({ordineListaPasti: ordine.listaPasti})
-            this.setState({ordine: ordine})
+            if(!localStorage.getItem("email"))
+            {
+                this.setState({error:401})
+            }
+            else {
+                let ordine = JSON.parse(localStorage.getItem("dettagliOrdine"))
+                this.setState({ordineListaPasti: ordine.listaPasti})
+                this.setState({ordine: ordine})
+            }
         }
 
         imageNameTextTransform(nomePasto)
@@ -31,6 +38,11 @@ export default class DettagliOrdine extends React.Component
 
         render()
         {
+            if(this.state.error===401)
+            {
+                return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+            }
+
             var boolPranzo="Cena"
             if(this.state.ordine.boolPranzo)
                 boolPranzo="Pranzo"
