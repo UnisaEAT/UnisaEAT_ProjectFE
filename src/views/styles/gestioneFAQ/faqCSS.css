@@ -8,6 +8,7 @@
     font-size: 30px;
     text-align: center;
     font-weight: 700;
+    margin-bottom: 50px;
 }
 
 .sezioneFaq {
@@ -25,7 +26,7 @@
     border-left: solid 4px #254a8c;
 }
 
-.faqDomanda span
+.faqDomanda .FAQlabel
 {
     margin-right: 50px;
     margin-left: 10px;
@@ -42,11 +43,108 @@
     border-left: solid 4px #545454;
 }
 
-.faqRisposta span
+.faqDomanda .FAQinfo
+{
+    position: absolute;
+    line-height: 65px;
+}
+
+.faqRisposta .FAQinfo
+{
+    position: absolute;
+    line-height: 65px;
+}
+
+.faqRisposta .FAQlabel
 {
     margin-right: 50px;
     margin-left: 12px;
     font-size: 40px;
     font-weight: 100;
 
+}
+
+.inserisciFAQcontainer
+{
+    margin-top: 5%!important;
+    margin-bottom: 10% !important;
+}
+.inserisciFAQcontainer h1
+{
+    margin-bottom: 50px !important;
+}
+.inserisciFAQcontainer h4
+{
+    margin-bottom: 50px !important;
+}
+
+.inserisciFAQcontainer #domanda
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.inserisciFAQcontainer #risposta
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.modificaFaqButtonContainer
+{
+    text-align: right;
+}
+
+.inserisciFAQcontainer #newdomanda
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.inserisciFAQcontainer #newrisposta
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.faqModificaButtons
+{
+    background: #3B579D;
+    border: none;
+    margin: 1px;
+
+}
+
+.inserisciFAQbutton
+{
+    background: #3B579D;
+    border: none;
+    width: 30%;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 30px;
+    border-radius: 20px;
+}
+
+.modificaFAQButton
+{
+    background: #3B579D;
+    border: none;
+    width: 20%;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 30px;
+    border-radius: 20px;
 }

@@ -75,25 +75,42 @@ export default class VisualizzazioneFAQ extends React.Component {
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Rimozione avvenuta con successo!" handleClose={this.closePopUp}/>}
                 <Card className="faqContainer mx-auto col-xl-7 justify-content-center text-center">
-                    <p>Frequently Asked Questions (FAQ)</p>
+                    <p >Frequently Asked Questions (FAQ)</p>
                     <ListGroup as="ul">
                         {this.state.faq.map((oggetto, i) => {
                             return (
+
                                 <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
-                                <div className="ms-2 me-auto">
-                                    <Row> <div className="fw-bold">Domanda:</div>{oggetto.domanda}</Row>  
-                                    <Row> <div className="fw-bold">Risposta:</div>{oggetto.risposta}</Row>
+
+                                <div className="sezioneFaq ms-2 me-auto">
+                                    <div className="modificaFaqButtonContainer">
+                                        <Button className="faqModificaButtons" onClick={()=>this.rimozioneFAQ(oggetto)}>Rimuovi</Button>
+                                        <Button className="faqModificaButtons" onClick={(e) => {
+                                            this.handleModificaFAQ(e, oggetto);}}>Modifica</Button>
+                                    </div>
+                                    <Row>
+                                        <div className="faqDomanda fw-bold">
+                                            <span className="FAQlabel">Q.</span>
+                                            <span className="FAQinfo">{oggetto.domanda}
+                                        </span>
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="faqRisposta fw-bold">
+                                            <span className="FAQlabel">A.</span>
+                                            <span className="FAQinfo">{oggetto.risposta}
+                                        </span>
+                                        </div>
+                                    </Row>
+
                                 </div>
-                                <Button onClick={()=>this.rimozioneFAQ(oggetto)}>Rimuovi</Button>
-                                
-                                <Button onClick={(e) => {
-                                    this.handleModificaFAQ(e, oggetto);}}>Modifica</Button>
+
                             </Col>
                             )
                         })}
                     </ListGroup>
                     <br></br>
-                    <Button href="/gestioneFAQ/inserimentoFAQ">Inserisci una nuova faq</Button>
+                    <Button className="inserisciFAQbutton" href="/gestioneFAQ/inserimentoFAQ">Inserisci una nuova FAQ</Button>
                 </Card>
                 </div>
             )
@@ -110,11 +127,16 @@ export default class VisualizzazioneFAQ extends React.Component {
                             <div className="sezioneFaq ms-2 me-auto">
                                 <Row>
                                     <div className="faqDomanda fw-bold">
-                                        <span>Q.</span>
-                                        {oggetto.domanda}
+                                        <span className="FAQlabel">Q.</span>
+                                        <span className="FAQinfo">{oggetto.domanda}
+                                        </span>
                                     </div>
+                                </Row>
+                                <Row>
                                     <div className="faqRisposta fw-bold">
-                                        <span>A.</span>{oggetto.risposta}
+                                        <span className="FAQlabel">A.</span>
+                                        <span className="FAQinfo">{oggetto.risposta}
+                                        </span>
                                     </div>
                                 </Row>
                             

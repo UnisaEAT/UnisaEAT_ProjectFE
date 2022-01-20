@@ -3,6 +3,7 @@ import {Form,Button,Col,Row,Card} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import "../../styles/gestioneFAQ/faqCSS.css"
 
 
 export default class InserimentoFAQ extends React.Component {
@@ -109,17 +110,16 @@ export default class InserimentoFAQ extends React.Component {
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Inserimento avvenuto con successo!" handleClose={this.closePopUp}/>}
 
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                    <h1>Inserisci Nuova FAQ</h1><br></br>
+                <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
+                    <h1>Inserisci una nuova FAQ</h1>
                     <Form onSubmit={this.handleSubmit}>
-                            <h3>Inserimento Domanda</h3><br></br>
                             <Row className="mb-3">
-                                <Form.Group id="domanda" as={Col}>
+                                <Form.Group id="domanda" as={Row}>
                                     <Form.Label>Domanda</Form.Label>
                                     <Form.Control type="text" id="domanda" name="domanda" onChange={this.onChangeDomanda} placeholder="Inserisci la domanda"/>
                                 </Form.Group>
 
-                                <Form.Group id="risposta" as={Col}>
+                                <Form.Group id="risposta" as={Row}>
                                     <Form.Label>Risposta</Form.Label>
                                     <Form.Control type="text" id="risposta" name="risposta" onChange={this.onChangeRisposta} placeholder="Inserisci la risposta"/>
                                 </Form.Group>

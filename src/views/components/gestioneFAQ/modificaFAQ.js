@@ -98,23 +98,23 @@ export default class ModificaFAQ extends React.Component {
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Modifica avvenuta con successo!" handleClose={this.closePopUp}/>}
 
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
                     <h1>Modifica Domanda</h1><br></br>
-                    <h4>{this.props.obj.domanda}</h4> 
+                    <h4>{this.props.obj.domanda}</h4>
                     <Form onSubmit={this.handleSubmit}>
                             <Row className="mb-3">
-                                <Form.Group id="newdomanda" as={Col}>
+                                <Form.Group id="newdomanda" as={Row}>
                                     <Form.Label>Nuova domanda</Form.Label>
                                     <Form.Control type="text" id="newdomanda" name="newdomanda" onChange={this.onChangeDomanda} placeholder="Inserisci la nuova domanda"/>
                                 </Form.Group>
 
-                                <Form.Group id="newrisposta" as={Col}>
+                                <Form.Group id="newrisposta" as={Row}>
                                     <Form.Label>Nuova Risposta</Form.Label>
                                     <Form.Control type="text" id="newrisposta" name="newrisposta" onChange={this.onChangeRisposta} placeholder="Inserisci la nuova risposta"/>
                                 </Form.Group>
                             </Row>
                             
-                            <Button type="submit" >Modifica</Button>
+                            <Button className="modificaFAQButton" type="submit" >Modifica</Button>
                     </Form>
                 </Card>
             </div>
