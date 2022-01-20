@@ -48,10 +48,13 @@ export default class RinnovoTesserino extends Component {
     }
 
     componentDidMount() {
+        // Controlli sessione
+        // error 400 : login non effettuato
+        // error 401 : accesso non autorizzato per questo ruolo
         if(!localStorage.getItem("email"))
-        {
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")!="cliente")
             this.setState({error:401})
-        }
         else {
             //Controllo stato tesserino dell'utente
             axios.post('http://localhost:8080/api/tesserino/isExpired', {
@@ -246,10 +249,10 @@ export default class RinnovoTesserino extends Component {
 
 
     render() {
-        if(this.state.error===401)
-        {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
             return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
-        }
         else if (this.state.error) {
             if (this.state.message === "non posseduto")
                 return (

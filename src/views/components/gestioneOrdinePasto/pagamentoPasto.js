@@ -28,9 +28,9 @@ export default class PagamentoPasto extends React.Component
     componentDidMount()
     {
         if(!localStorage.getItem("email") || !localStorage.getItem("ordine"))
-        {
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")!="cliente")
             this.setState({error:401})
-        }
         else {
             let ordine = JSON.parse(localStorage.getItem('ordine'))
             console.log(ordine)
@@ -112,10 +112,10 @@ export default class PagamentoPasto extends React.Component
     }
 
     render() {
-        if(this.state.error===401)
-        {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
             return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
-        }
         var boolPranzo="Cena"
         if(this.state.ordine.boolPranzo)
             boolPranzo="Pranzo"

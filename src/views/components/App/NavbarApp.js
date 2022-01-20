@@ -75,7 +75,7 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore mt-2" href="/">
+                        <Nav className="elementoNavBarAttore mt-1" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneMenu/VisualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
@@ -214,7 +214,7 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore mt-2" href="/">
+                        <Nav className="elementoNavBarAttore " href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestioneMenu/VisualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
