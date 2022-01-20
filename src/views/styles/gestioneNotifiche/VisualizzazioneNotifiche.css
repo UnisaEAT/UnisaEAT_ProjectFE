@@ -9,7 +9,18 @@
 }
 
 /* Dropdown Menu */
+.elementoNotifica{
+    text-decoration: none;
+    color: white;
+}
+.elementoNotifica:hover{
+    text-decoration: none;
+    color: white;
+}
 
+.nessunaNotifica{
+    text-align: center;
+}
 .dropdownMenu {
     position: absolute;
     top: 80px;
@@ -50,6 +61,7 @@
 }
 
 .icon-right {
+    position: inherit;
     margin-left: auto;
 }
 

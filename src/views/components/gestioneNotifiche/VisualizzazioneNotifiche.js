@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
+import close from "../../assets/close.png"
 
 export default function VisualizzazioneNotifiche() {
     const [notifiche,setNotifiche] = useState([]);
@@ -11,43 +12,61 @@ export default function VisualizzazioneNotifiche() {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
     }, [])
 
-    useEffect(()=>{
+    useEffect(() =>{
         axios.post('http://localhost:8080/api/notifiche/visualizzaLista',{reciverEmail: localStorage.getItem("email")})
             .then(response => {
-                console.log(response.data)
+
                setNotifiche(response.data)
+                console.log("post"+notifiche)
             })
             .catch((error) => {
                 console.log(error);
             })
-    })
-    function DropdownItem(props) {
-        return (
-            <a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-                <span className="icon-button">{props.leftIcon}</span>
-                {props.children}
-                <span className="icon-right">{props.rightIcon}</span>
-            </a>
-        );
+    }, [])
+
+    const RimozioneNotifica = (id) =>{
+        console.log(id)
+        axios.post('http://localhost:8080/api/notifiche/rimuoviNotifica',{idnot: id})
+            .then(response => {
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
+    function DropdownItem(props) {
+        return (
+            <div className="menu-item elementoNotifica" >
+                    <a>
+                        {props.children}
+                    </a>
+                <img src={close} width="10px" onClick={()=>RimozioneNotifica(props.id)} className="icon-right"></img>
+            </div>
+        );
+    }
+console.log(notifiche)
+    if(notifiche.length>0)
     return (
         <div className="dropdownMenu" >
                 <div className="menu">
-                    <DropdownItem>ccc</DropdownItem>
-                    <DropdownItem
-                        leftIcon="🦧"
-                        rightIcon="🦧"
-                        goToMenu="settings">
-                        Settings
-                    </DropdownItem>
-                    <DropdownItem
-                        leftIcon="🦧"
-                        rightIcon="🦧"
-                        goToMenu="animals">
-                        Animals
-                    </DropdownItem>
+                    { notifiche.map((notifica,i)=> {
+                        return(
+                        <DropdownItem key={i} goToMenu="animals" id={notifica.id}>
+                            {notifica.titolo}
+                        </DropdownItem>
+                        )
+                    })}
                 </div>
         </div>
     )
+    else{
+        return (
+            <div className="dropdownMenu" >
+                <div className="menu">
+                    <p className="nessunaNotifica">Nessuna notifica per te</p>
+                </div>
+            </div>
+        )
+    }
 }
