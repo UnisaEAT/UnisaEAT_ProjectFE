@@ -38,7 +38,7 @@
     width: 100%;
 }
 
-.menu-item {
+.menu-item-notifiche {
     height: 50px;
     display: flex;
     align-items: center;
@@ -47,16 +47,16 @@
     padding: 0.5rem;
 }
 
-.menu-item .icon-button {
+.menu-item-notifiche .icon-button {
     margin-right: 0.5rem;
 }
 
 
-.menu-item .icon-button:hover {
+.menu-item-notifiche .icon-button:hover {
     filter: none;
 }
 
-.menu-item:hover {
+.menu-item-notifiche:hover {
     background-color: #525357;
 }
 

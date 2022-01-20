@@ -37,15 +37,14 @@ export default function VisualizzazioneNotifiche() {
 
     function DropdownItem(props) {
         return (
-            <div className="menu-item elementoNotifica" >
-                    <a>
+            <div className="menu-item-notifiche elementoNotifica" >
+                    <a >
                         {props.children}
                     </a>
                 <img src={close} width="10px" onClick={()=>RimozioneNotifica(props.id)} className="icon-right"></img>
             </div>
         );
     }
-console.log(notifiche)
     if(notifiche.length>0)
     return (
         <div className="dropdownMenu" >

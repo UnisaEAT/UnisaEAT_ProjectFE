@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import {Container, Nav, Navbar, Image, Button, NavItem, NavDropdown} from "react-bootstrap";
+import {Nav, Image, NavItem, NavDropdown} from "react-bootstrap";
+import axios from "axios";
+
+//import function VisualizzazioneNotifiche
+import VisualizzazioneNotifiche from "../gestioneNotifiche/VisualizzazioneNotifiche";
+
+//Icone Navbar
 import logo from "../../assets/logoUnisaEAT.png"
 import notificheIcon from "../../assets/iconeNavbar/Notifiche.png"
 import iconaUtente from "../../assets/iconeNavbar/iconaUtente.png"
 import logoutIcon from "../../assets/iconeNavbar/logout.png"
 import loginIcon from "../../assets/iconeNavbar/login.png"
-
-
 import TicketIcon from "../../assets/iconeNavbar/ticket.png"
 import OrdinaIcon from "../../assets/iconeNavbar/ordina.png"
 import TesserinoIcon from "../../assets/iconeNavbar/tesserino.png"
@@ -15,17 +19,16 @@ import MenuIcon from "../../assets/iconeNavbar/menu.png"
 import GestionePersonaleIcon from "../../assets/iconeNavbar/gestionePersonale.png"
 import statisticheIcon from "../../assets/iconeNavbar/statistiche.png"
 
+//import file CSS
 import "../../styles/AppStyle/NavbarApp.css"
 import "../../styles/gestioneAutenticazione/login.css"
 import "../../styles/gestioneNotifiche/VisualizzazioneNotifiche.css"
-import VisualizzazioneNotifiche from "../gestioneNotifiche/VisualizzazioneNotifiche";
-import axios from "axios";
+
 
 function Notifiche(props) {
     const [open, setOpen] = useState(false)
     const [notifiche, setNotifiche] =useState([])
-
-
+    
     useEffect(() =>{
         axios.post('http://localhost:8080/api/notifiche/visualizzaLista',{reciverEmail: localStorage.getItem("email")})
             .then(response => {
