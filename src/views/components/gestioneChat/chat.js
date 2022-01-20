@@ -177,6 +177,7 @@ function Chat()
 
                     axios.post('http://localhost:8080/api/messaggio/getMessages', {conversazioneId:response.data[0].id})
                         .then(response2 => {
+                            console.log(response2.data)
                             setMessaggi(response2.data)
                             var objDiv = document.getElementById("testBox");
                             objDiv.scrollTop = objDiv.scrollHeight;
@@ -255,7 +256,7 @@ function Chat()
 
         if(modificaMessaggio!=null)
         {
-            axios.post('http://localhost:8080/api/messaggio/modifyMessage', {idMessaggio: modificaMessaggio, nuovoTesto:messaggioDaInviare})
+            axios.post('http://localhost:8080/api/messaggio/modifyMessage', {idMessaggio: modificaMessaggio, nuovoTesto:messaggioDaInviare, email:localStorage.getItem("email"), ruolo:localStorage.getItem("ruolo")})
                 .then(response => {
                     //TODO gestire l'errore
                     if(!(response.data.hasOwnProperty("error"))) {
@@ -285,14 +286,15 @@ function Chat()
         else {
             const messaggio = {
                 conversazioneId: conversazione.id,
-                sender: mittenteEmail,
+                sender: {email:mittenteEmail,ruolo:mittenteRuolo},
                 testo: messaggioDaInviare,
                 dataInvio: new Date()
             }
-
+            console.log("qui"+messaggio.sender)
             axios.post('http://localhost:8080/api/messaggio/create', messaggio)
                 .then(response => {
                     //TODO gestire l'errore
+                    console.log(response.data)
                     if(!(response.data.hasOwnProperty("error"))) {
                         socket.current.emit("sendMessage", {
                             id : response.data.id,
@@ -395,10 +397,16 @@ function Chat()
                                     </div>
                                     <div id="testBox" className="px-4 py-5 chat-box bg-white">
                                         {
-
                                             messaggi.map((messaggio,i) => {
+                                                if(conversazione===null || messaggio==="") {
+                                                    let el = document.getElementById("containerInviaMessaggio")
+                                                    console.log(el)
+                                                    return (
+                                                        <h2 key={i}>Seleziona una chat</h2>
+                                                    )
 
-                                                if(messaggio.sender==mittenteEmail) {
+                                                }
+                                                else if(messaggio.sender.email==mittenteEmail) {
                                                     return (
                                                         <div key={i} className="media-body ml-3 rightText">
                                                             <div className="bg-primary rounded py-2 px-3 mb-2">
@@ -419,7 +427,7 @@ function Chat()
                                                     )
                                                 }
 
-                                                else if(messaggio.sender==destinatarioEmail) {
+                                                else if(messaggio.sender.email==destinatarioEmail) {
                                                     return (
                                                         <div key={i} className="media w-50 ml-auto mb-3">
                                                             <div className="bg-light rounded py-2 px-3 mb-2">
@@ -435,10 +443,8 @@ function Chat()
                                             })
                                         }
                                     </div>
-
-
                                     <form action="#" className="bg-light">
-                                        <div className="input-group">
+                                        <div className="input-group" id="containerInviaMessaggio">
                                             <input type="text" id="inputTextMessaggio" onChange={onChangeMessaggioDaInviare} placeholder="Type a message" aria-describedby="button-addon2"
                                                    className="form-control rounded-0 border-0 py-2-2 bg-light"/>
                                             <div className="input-group-append">
@@ -449,7 +455,6 @@ function Chat()
                                             </div>
                                         </div>
                                     </form>
-
                                 </div>
                             }
                         </div>

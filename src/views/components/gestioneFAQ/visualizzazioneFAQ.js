@@ -4,7 +4,7 @@ import {ListGroup, Button, Card, Row, Col} from "react-bootstrap";
 import axios from "axios";
 import Popup from "../App/successPopUp";
 import ModificaFAQ from "./modificaFAQ";
-
+import "../../styles/gestioneFAQ/faqCSS.css"
 export default class VisualizzazioneFAQ extends React.Component {
     //Costruttore di props
     constructor(props) {
@@ -74,8 +74,8 @@ export default class VisualizzazioneFAQ extends React.Component {
                 <div id="root">
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Rimozione avvenuta con successo!" handleClose={this.closePopUp}/>}
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                    <h1 className="h1">Lista FAQ</h1>
+                <Card className="faqContainer mx-auto col-xl-7 justify-content-center text-center">
+                    <p>Frequently Asked Questions (FAQ)</p>
                     <ListGroup as="ul">
                         {this.state.faq.map((oggetto, i) => {
                             return (
@@ -98,17 +98,25 @@ export default class VisualizzazioneFAQ extends React.Component {
                 </div>
             )
         }
-        else return(
-            <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-            <h1 className="h1">Lista FAQ</h1>
+        else
+            return(
+            <Card className="faqContainer mx-auto col-xl-7 justify-content-center text-center">
+            <p>Frequently Asked Questions (FAQ)</p>
             <br></br>
             <ListGroup as="ul">
                 {this.state.faq.map((oggetto, i) => {
                     return (
                          <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
-                            <div className="ms-2 me-auto">
-                                <Row> <div className="fw-bold">Domanda:</div>  {oggetto.domanda} 
-                                      <div className="fw-bold">Risposta:</div> {oggetto.risposta}</Row>  
+                            <div className="sezioneFaq ms-2 me-auto">
+                                <Row>
+                                    <div className="faqDomanda fw-bold">
+                                        <span>Q.</span>
+                                        {oggetto.domanda}
+                                    </div>
+                                    <div className="faqRisposta fw-bold">
+                                        <span>A.</span>{oggetto.risposta}
+                                    </div>
+                                </Row>
                             
                             </div>
                         </Col>

@@ -18,7 +18,7 @@ function Homepage() {
 
     return (
         <div className="carousel-container">
-            <Carousel interval={4000} activeIndex={index} onSelect={handleSelect}>
+            <Carousel interval={3000} activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
                         className="d-block w-100"

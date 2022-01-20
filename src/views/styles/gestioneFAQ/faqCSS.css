@@ -1,0 +1,52 @@
+.faqContainer {
+    margin-top: 3% !important;
+    margin-bottom: 10% !important;
+    box-shadow: none !important;
+}
+
+.faqContainer p {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.sezioneFaq {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.faqDomanda {
+    width: 100%;
+    padding: 10px;
+    color: #484444;
+    font-size: 16px;
+    font-weight: 700;
+    background: #f6f5f5;
+    border-left: solid 4px #254a8c;
+}
+
+.faqDomanda span
+{
+    margin-right: 50px;
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: 100;
+    color: #254a8c;
+}
+
+.faqRisposta {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 50px;
+    color: #545454;
+    border-left: solid 4px #545454;
+}
+
+.faqRisposta span
+{
+    margin-right: 50px;
+    margin-left: 12px;
+    font-size: 40px;
+    font-weight: 100;
+
+}
