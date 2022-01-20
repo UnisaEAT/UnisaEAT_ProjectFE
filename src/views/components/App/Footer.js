@@ -24,7 +24,7 @@ export function Footer() {
                             <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Project Managers</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Salvatore Amideo</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alice Vidoni</a></li>
-                            <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Team Members</a></li>
+                            <li className="mb-2 mt-2"><a href="#" className="text-grey text-white text-decoration-none">Team Members</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alessandro Cavaliere</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alessio Salzano</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Maria Rosaria Giudice</a></li>

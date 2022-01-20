@@ -14,6 +14,7 @@ export default class VisualizzazioneFAQ extends React.Component {
             faq: [],
             popUp: false,
             domanda: null,
+            error:false
         }
         this.rimozioneFAQ = this.rimozioneFAQ.bind(this)
         this.handleModificaFAQ = this.handleModificaFAQ.bind(this)
@@ -26,13 +27,19 @@ export default class VisualizzazioneFAQ extends React.Component {
     }
 
     componentDidMount() {
-        axios.post("http://localhost:8080/api/faq/selectFAQ")
-            .then(response => {
-                this.setState({faq: response.data})
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")=="operatore mensa")
+            this.setState({error:401})
+        else {
+            axios.post("http://localhost:8080/api/faq/selectFAQ")
+                .then(response => {
+                    this.setState({faq: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     
@@ -60,9 +67,12 @@ export default class VisualizzazioneFAQ extends React.Component {
     }
 
     render() {
-
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
         // Solo se è stato settata la domanda da canc chiama l'altra componente e gli passa lo stato
-        if (this.state.domanda != null) {
+        else if (this.state.domanda != null) {
             //Invia il prop "obj" contente la domanda da modificare
             return (
                 <ModificaFAQ obj={this.state.domanda} />

@@ -11,7 +11,9 @@ export default class ModificaFAQ extends React.Component {
         this.state= {
             newdomanda:'',
             newrisposta:'',
-            popUp: false
+            domanda:'',
+            popUp: false,
+            error: false
         }
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
@@ -19,6 +21,19 @@ export default class ModificaFAQ extends React.Component {
         this.onChangeRisposta = this.onChangeRisposta.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.modificaFAQ = this.modificaFAQ.bind(this)
+
+
+    }
+
+    componentDidMount() {
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")!="personale adisu")
+            this.setState({error:401})
+        else
+        {
+            this.setState({domanda:this.props.obj.domanda})
+        }
     }
 
     closePopUp() {
@@ -76,7 +91,6 @@ export default class ModificaFAQ extends React.Component {
     }
 
     modificaFAQ(FAQ) {
-        console.log("qio"+FAQ)
         axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
             .then(response => {
                 console.log("qui"+response.data.message)
@@ -92,32 +106,44 @@ export default class ModificaFAQ extends React.Component {
             })
     }
 
-    render() {
-        return (
-            <div id="root">
-                 {/* Se popUp (boolean) è true */}
-                 {this.state.popUp && <Popup message="Modifica avvenuta con successo!" handleClose={this.closePopUp}/>}
 
-                <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
-                    <h1>Modifica Domanda</h1><br></br>
-                    <h4>{this.props.obj.domanda}</h4>
-                    <Form onSubmit={this.handleSubmit}>
+    render() {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        else{
+            return (
+                <div id="root">
+                    {/* Se popUp (boolean) è true */}
+                    {this.state.popUp &&
+                        <Popup message="Modifica avvenuta con successo!" handleClose={this.closePopUp}/>}
+
+                    <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
+                        <h1>Modifica Domanda</h1><br></br>
+                        <h4>{this.state.domanda}</h4>
+                        <Form onSubmit={this.handleSubmit}>
                             <Row className="mb-3">
                                 <Form.Group id="newdomanda" as={Row}>
                                     <Form.Label>Nuova domanda</Form.Label>
-                                    <Form.Control type="text" id="newdomanda" name="newdomanda" onChange={this.onChangeDomanda} placeholder="Inserisci la nuova domanda"/>
+                                    <Form.Control type="text" id="newdomanda" name="newdomanda"
+                                                  onChange={this.onChangeDomanda}
+                                                  placeholder="Inserisci la nuova domanda"/>
                                 </Form.Group>
 
                                 <Form.Group id="newrisposta" as={Row}>
                                     <Form.Label>Nuova Risposta</Form.Label>
-                                    <Form.Control type="text" id="newrisposta" name="newrisposta" onChange={this.onChangeRisposta} placeholder="Inserisci la nuova risposta"/>
+                                    <Form.Control type="text" id="newrisposta" name="newrisposta"
+                                                  onChange={this.onChangeRisposta}
+                                                  placeholder="Inserisci la nuova risposta"/>
                                 </Form.Group>
                             </Row>
-                            
-                            <Button className="modificaFAQButton" type="submit" >Modifica</Button>
-                    </Form>
-                </Card>
-            </div>
-        )
+
+                            <Button className="modificaFAQButton" type="submit">Modifica</Button>
+                        </Form>
+                    </Card>
+                </div>
+            )
+        }
     }
 }

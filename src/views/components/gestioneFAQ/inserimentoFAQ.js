@@ -17,6 +17,7 @@ export default class InserimentoFAQ extends React.Component {
             risposta:'',
             popUp: false,
             redirect:false,
+            error:false
         }
 
         // Handlers binding
@@ -25,6 +26,13 @@ export default class InserimentoFAQ extends React.Component {
         this.onChangeRisposta = this.onChangeRisposta.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+    }
+
+    componentDidMount() {
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")!="personale adisu")
+            this.setState({error:401})
     }
 
     closePopUp() {
@@ -102,7 +110,11 @@ export default class InserimentoFAQ extends React.Component {
 
     
     render() {
-        if (this.state.redirect) {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        else if (this.state.redirect) {
             return (<Redirect to='/gestioneFAQ/visualizzazioneFAQ'/>) 
 
         } else
