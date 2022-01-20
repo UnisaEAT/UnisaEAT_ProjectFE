@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Container, Nav, Navbar, Image, Button, NavItem, NavDropdown} from "react-bootstrap";
 import logo from "../../assets/logoUnisaEAT.png"
-import notifiche from "../../assets/iconeNavbar/Notifiche.png"
+import notificheIcon from "../../assets/iconeNavbar/Notifiche.png"
 import iconaUtente from "../../assets/iconeNavbar/iconaUtente.png"
 import logoutIcon from "../../assets/iconeNavbar/logout.png"
 import loginIcon from "../../assets/iconeNavbar/login.png"
@@ -17,7 +17,45 @@ import statisticheIcon from "../../assets/iconeNavbar/statistiche.png"
 
 import "../../styles/AppStyle/NavbarApp.css"
 import "../../styles/gestioneAutenticazione/login.css"
+import "../../styles/gestioneNotifiche/VisualizzazioneNotifiche.css"
+import VisualizzazioneNotifiche from "../gestioneNotifiche/VisualizzazioneNotifiche";
+import axios from "axios";
 
+function Notifiche(props) {
+    const [open, setOpen] = useState(false)
+    const [notifiche, setNotifiche] =useState([])
+
+
+    useEffect(() =>{
+        axios.post('http://localhost:8080/api/notifiche/visualizzaLista',{reciverEmail: localStorage.getItem("email")})
+            .then(response => {
+
+                setNotifiche(response.data)
+                console.log("post"+notifiche)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }, [])
+
+    if(notifiche.length>0) {
+        return (
+            <Nav.Link className="notificheButton" onClick={() => setOpen(!open)}>
+                <Image src={notificheIcon}
+                       width="45"/>
+
+                <span className="icon-button__badge">{notifiche.length}</span>
+                {open && props.children}
+            </Nav.Link>
+        );
+    } else return(
+        <Nav.Link className="notificheButton" onClick={() => setOpen(!open)}>
+            <Image src={notificheIcon}
+                   width="45"/>
+            {open && props.children}
+        </Nav.Link>
+    )
+}
 
 
 function NavbarApp() {
@@ -108,10 +146,11 @@ function NavbarApp() {
                 </Nav>
 
                     <NavItem className="nav-item justify-content-end d-flex">
-                        <Nav.Link className="notificheButton" href="/">
-                            <Image src={notifiche}
-                                   width="45"/>
-                        </Nav.Link>
+                        <Notifiche>
+                            <VisualizzazioneNotifiche/>
+                        </Notifiche>
+
+
                         <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                             <Image src={iconaUtente}
                                    width="50"/>
@@ -173,10 +212,9 @@ function NavbarApp() {
                 </Nav>
 
                 <NavItem className="nav-item justify-content-end d-flex">
-                    <Nav.Link className="notificheButton" href="/">
-                        <Image src={notifiche}
-                               width="45"/>
-                    </Nav.Link>
+                    <Notifiche>
+                        <VisualizzazioneNotifiche/>
+                    </Notifiche>
                     <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                         <Image src={iconaUtente}
                                width="50"/>
@@ -236,10 +274,9 @@ function NavbarApp() {
                 </Nav>
 
                 <NavItem className="nav-item justify-content-end d-flex">
-                    <Nav.Link className="notificheButton" href="/">
-                        <Image src={notifiche}
-                               width="45"/>
-                    </Nav.Link>
+                    <Notifiche>
+                        <VisualizzazioneNotifiche/>
+                    </Notifiche>
                     <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                         <Image src={iconaUtente}
                                width="50"/>
@@ -289,10 +326,10 @@ function NavbarApp() {
                 </Nav>
 
                 <NavItem className="nav-item justify-content-end d-flex">
-                    <Nav.Link className="notificheButton" href="/">
-                        <Image src={notifiche}
-                               width="45"/>
-                    </Nav.Link>
+                    <Notifiche>
+                        <VisualizzazioneNotifiche/>
+                    </Notifiche>
+
                     <Nav.Link className="elementoIconaUtente" href="/gestioneProfilo/profilo">
                         <Image src={iconaUtente}
                                width="50"/>
