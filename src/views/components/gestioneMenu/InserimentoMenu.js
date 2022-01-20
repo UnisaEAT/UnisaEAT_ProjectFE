@@ -28,13 +28,13 @@ export class InserimentoMenu extends React.Component {
 
     closeFailurePopUp(){
         this.setState({failurePopUp: false})
-       console.log("baaaaad")
+        window.location.reload()
     }
 
     closePopUp() {
         this.setState({popUp: false})
         this.setState({ritornoPasti: null})
-        console.log("goooood")
+        window.location.reload()
     }
 
 
@@ -90,7 +90,9 @@ export class InserimentoMenu extends React.Component {
         const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
         return (
             <div id="root">
-                {this.state.popUp && <SuccessPopUp message="Inserimento Menu avvenuto con successo!" handleClose={this.closePopUp()}/>}
+                {this.state.failurePopUp && <FailurePopUp message="Impossibile inserire il menu, è già presente per questa data." handleClose={this.closeFailurePopUp}/>}
+                {this.state.popUp && <SuccessPopUp message="Inserimento Menu avvenuto con successo!" handleClose={this.closePopUp}/>}
+
                    <section className="menu-section">
                 <div>
                     <h1 className="home_title">Scegli i Pasti</h1>

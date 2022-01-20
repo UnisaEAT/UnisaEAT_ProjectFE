@@ -83,7 +83,7 @@ export class ModificaMenu extends React.Component {
         return (
             <div id="root">
                 {this.state.popUp && <SuccessPopUp message="Modifica Menu avvenuta con successo!" handleClose={this.closePopUp}/>}
-                {this.state.failurePopUp && <FailurePopUp message="Impossibile modificare il menu perchè il menu non è presente per questa data." handleClose={this.closeFailurePopUp()}/>}
+                {this.state.failurePopUp && <FailurePopUp message="Impossibile modificare il menu perchè il menu non è presente per questa data." handleClose={this.closeFailurePopUp}/>}
                 <section className="menu-section">
                 <div>
                     <h1 className="home_title">Modifica Menu</h1>

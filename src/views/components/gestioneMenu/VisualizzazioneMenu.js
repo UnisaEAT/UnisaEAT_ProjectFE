@@ -15,6 +15,12 @@ export class VisualizzazioneMenu extends React.Component {
             failurePopUp:false
         }
         this.filterItems = this.filterItems.bind(this)
+        this.closeFailurePopUp= this.closeFailurePopUp.bind(this)
+    }
+
+    closeFailurePopUp(){
+        this.setState({failurePopUp: false})
+        window.location.reload()
     }
 
     filterItems(category) {
@@ -35,7 +41,12 @@ export class VisualizzazioneMenu extends React.Component {
         console.log(this.state.value)
         axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:this.state.value})
             .then(response => {
-                this.setState({menu: response.data})
+                if(response.data!=null){
+                    console.log("ciao")
+                this.setState({menu: response.data})}
+                else{
+                    this.setState({failurePopUp:true})
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -47,6 +58,7 @@ export class VisualizzazioneMenu extends React.Component {
 
         return (
             <div>
+                {this.state.failurePopUp && <FailurePopUp message={"Nessun Menu presente per la tipologia: "+this.state.value} handleClose={this.closeFailurePopUp}/>}
                 <section className="menu-section">
                 <div>
                     <h1 className="home_title">Il Menu del giorno</h1>
