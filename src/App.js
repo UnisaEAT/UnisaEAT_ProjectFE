@@ -31,7 +31,8 @@ import Logout from "./views/components/gestioneLogin/logout";
 import InserimentoMenu from "./views/components/gestioneMenu/InserimentoMenu";
 import ModificaMenu from "./views/components/gestioneMenu/ModificaMenu";
 import VisualizzazioneMenu from "./views/components/gestioneMenu/VisualizzazioneMenu";
-import SceltaTipologia from "./views/components/gestioneMenu/SceltaTipologia";
+import SceltaTipologiaInserimento from "./views/components/gestioneMenu/SceltaTipologiaInserimento";
+import SceltaTipologiaModifica from "./views/components/gestioneMenu/SceltaTipologiaModifica";
 
 class App extends Component {
   render() {
@@ -45,9 +46,10 @@ class App extends Component {
                   <Route exact path={["/gestioneTesserino/visualizzaSaldo"]} component={VisualizzaSaldo}/>
                   <Route exact path={["/gestionePersonale/InserimentoPersonale"]} component={InserimentoPersonale}/>
                   <Route exact path={["/gestionePersonale/RimozionePersonale"]} component={RimozionePersonale}/>
+                  <Route exact path={["/gestioneMenu/SceltaTipologiaInserimento"]} component={SceltaTipologiaInserimento}/>
+                  <Route exact path={["/gestioneMenu/SceltaTipologiaModifica"]} component={SceltaTipologiaModifica}/>
                   <Route exact path={["/gestioneMenu/InserimentoMenu"]} component={InserimentoMenu}/>
                   <Route exact path={["/gestioneMenu/ModificaMenu"]} component={ModificaMenu}/>
-                  <Route exact path={["/gestioneMenu/SceltaTipologia"]} component={SceltaTipologia}/>
                   <Route exact path={["/gestioneMenu/VisualizzazioneMenu"]} component={VisualizzazioneMenu}/>
                   <Route exact path={["/gestionePersonale/VisualizzazioneListaPersonale"]} component={VisualizzazioneListaPersonale}/>
                   <Route exact path={["/gestioneProfilo/profilo"]} component={Profilo}/>

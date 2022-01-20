@@ -3,13 +3,13 @@ import React from 'react'
 import "../../styles/gestioneMenu/InserimentoMenu.css"
 import Categorie from "./Categorie";
 import axios from "axios";
-
-import successPopUp from "../App/successPopUp";
+import FailurePopUp from "../App/failurePopUp"
+import SuccessPopUp from "../App/successPopUp";
 import {Button} from "react-bootstrap";
-import Popup from "../App/successPopUp";
 
 
 export class InserimentoMenu extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -17,17 +17,24 @@ export class InserimentoMenu extends React.Component {
             item: [],
             ritornoPasti: [],
             popUp:false,
+            failurePopUp: false,
             prova:true,
+            value:props.location.state.value
         }
         this.filterItems = this.filterItems.bind(this)
-        this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+        this.closeFailurePopUp= this.closeFailurePopUp.bind(this)
+    }
+
+    closeFailurePopUp(){
+        this.setState({failurePopUp: false})
+       console.log("baaaaad")
     }
 
     closePopUp() {
         this.setState({popUp: false})
         this.setState({ritornoPasti: null})
-        window.location.reload();
+        console.log("goooood")
     }
 
 
@@ -60,29 +67,18 @@ export class InserimentoMenu extends React.Component {
             })
     }
 
-    errorHandler(error) {
-        let inputError = error.name;
-        let errorMessage = error.message;
-        const rootElement = document.getElementById(inputError)
-
-        if (rootElement.childNodes.length < 3) {
-            const element = document.createElement('h1')
-            element.id = inputError
-            element.textContent = errorMessage
-            element.style = "color:red;font-size:15px"
-            rootElement.appendChild(element)
-        }
-    }
-
     Inserimento(){
         console.log(this.state.ritornoPasti)
-        axios.post("http://localhost:8080/api/menu/InserisciMenu",{tipo:"Pranzo",pasti:this.state.ritornoPasti})
+        axios.post("http://localhost:8080/api/menu/InserisciMenu",{tipo:this.state.value,pasti:this.state.ritornoPasti})
             .then(response => {
                 console.log(response.data)
                 if (response.data.message === true) {
+                    console.log("GOOD")
                     this.setState({popUp: true})
-                } else if (response.data.name != null)
-                    this.errorHandler(response.data)
+                } else {
+                    console.log("BAD")
+                    this.setState({failurePopUp: true})
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -92,11 +88,10 @@ export class InserimentoMenu extends React.Component {
 
     render() {
         const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
-
         return (
             <div id="root">
-                {this.state.popUp && <Popup handleClose={this.closePopUp}/>}
-            <section className="menu-section">
+                {this.state.popUp && <SuccessPopUp message="Inserimento Menu avvenuto con successo!" handleClose={this.closePopUp()}/>}
+                   <section className="menu-section">
                 <div>
                     <h1 className="home_title">Scegli i Pasti</h1>
                     <div className="underLine"/>

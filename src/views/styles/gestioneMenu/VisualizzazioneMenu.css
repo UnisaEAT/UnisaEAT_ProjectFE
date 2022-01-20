@@ -115,3 +115,12 @@ h4.title {
 .item-text {
     padding-top: 5px;
 }
+
+.h1Menu{
+    position: absolute;
+    bottom: 355px;
+}
+.DropDownMenu{
+    margin-left: 45%;
+    margin-bottom: 10%;
+}

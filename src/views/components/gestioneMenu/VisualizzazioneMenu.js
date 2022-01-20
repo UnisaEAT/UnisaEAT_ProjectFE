@@ -3,28 +3,39 @@ import React from 'react'
 import "../../styles/gestioneMenu/VisualizzazioneMenu.css"
 import axios from "axios";
 import Categorie from "./Categorie";
+import {Dropdown,DropdownButton} from "react-bootstrap";
+import FailurePopUp from "../App/failurePopUp";
 export class VisualizzazioneMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             menu: [],
             item:[],
+            value:'',
+            failurePopUp:false
         }
         this.filterItems = this.filterItems.bind(this)
     }
+
     filterItems(category) {
-        const newItems = this.state.menu[0].pasti.filter((item) => item.categoria === category);
+        let newItems = this.state.menu[0].pasti.filter((item) => item.categoria === category);
+        if(newItems.length==0){
+            newItems=[null]
+        }
         this.setState({item: newItems})
     }
 
+    someFunc(x) {
+        if(x) this.state.value="Pranzo"
+        else this.state.value="Cena"
+        this.Visualizza()
+    }
 
-
-    componentDidMount() {
-        console.log("uee")
-        axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:"Pranzo"})
+    Visualizza() {
+        console.log(this.state.value)
+        axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:this.state.value})
             .then(response => {
                 this.setState({menu: response.data})
-                console.log(this.state.menu)
             })
             .catch((error) => {
                 console.log(error);
@@ -33,8 +44,10 @@ export class VisualizzazioneMenu extends React.Component {
 
     render() {
         const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
+
         return (
-            <section className="menu-section">
+            <div>
+                <section className="menu-section">
                 <div>
                     <h1 className="home_title">Il Menu del giorno</h1>
                     <div className="underLine"/>
@@ -42,6 +55,11 @@ export class VisualizzazioneMenu extends React.Component {
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
                     {this.state.item.map((menuItem, i) => {
+                        if(menuItem==null){
+                            return(
+                                <h1 className="h1Menu">Non ci sono pasti per questa categoria.</h1>
+                            )
+                        }
                         return (
                             <article key={i} className="menu-item">
                                 <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
@@ -58,6 +76,11 @@ export class VisualizzazioneMenu extends React.Component {
                     })}
                 </div>
             </section>
+        <DropdownButton className="DropDownMenu" id="dropdown-item-button" title="Tipologia Menu">
+            <Dropdown.Item onClick={()=>this.someFunc(true)} las="button">Pranzo</Dropdown.Item>
+            <Dropdown.Item onClick={()=>this.someFunc(false)} las="button">Cena</Dropdown.Item>
+        </DropdownButton>
+        </div>
         );
     }
 }

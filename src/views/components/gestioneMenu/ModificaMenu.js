@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import "../../styles/gestioneMenu/InserimentoMenu.css"
 import axios from "axios";
 import Categorie from "./Categorie";
-import successPopUp from "../App/successPopUp";
+import SuccessPopUp from "../App/successPopUp";
 import {Button} from "react-bootstrap";
+import FailurePopUp from "../App/failurePopUp";
 
 export class ModificaMenu extends React.Component {
     constructor(props) {
@@ -13,9 +14,17 @@ export class ModificaMenu extends React.Component {
             item:[],
             ritornoPasti:[],
             popUp:false,
+            failurePopUp: false,
+            value:props.location.state.value
         }
         this.filterItems = this.filterItems.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+        this.closeFailurePopUp=this.closeFailurePopUp.bind(this)
+    }
+
+    closeFailurePopUp(){
+        this.setState({failurePopUp: false})
+        window.location.reload();
     }
 
     closePopUp() {
@@ -54,10 +63,13 @@ export class ModificaMenu extends React.Component {
 
     Modifica() {
         console.log("uee")
-        axios.post("http://localhost:8080/api/menu/modificaMenu",{tipo:"Pranzo",pasti:this.state.ritornoPasti})
+        axios.post("http://localhost:8080/api/menu/modificaMenu",{tipo:this.state.value,pasti:this.state.ritornoPasti})
             .then(response => {
                 if(response.data.message==true){
                     this.setState({popUp:true})
+                }
+                else{
+                    this.setState({failurePopUp:true})
                 }
             })
             .catch((error) => {
@@ -70,8 +82,9 @@ export class ModificaMenu extends React.Component {
 
         return (
             <div id="root">
-                {this.state.popUp && <successPopUp message="Modifica Menu avvenuta con successo!" handleClose={this.closePopUp}/>}
-            <section className="menu-section">
+                {this.state.popUp && <SuccessPopUp message="Modifica Menu avvenuta con successo!" handleClose={this.closePopUp}/>}
+                {this.state.failurePopUp && <FailurePopUp message="Impossibile modificare il menu perchè il menu non è presente per questa data." handleClose={this.closeFailurePopUp()}/>}
+                <section className="menu-section">
                 <div>
                     <h1 className="home_title">Modifica Menu</h1>
                     <div className="underLine"/>
@@ -79,7 +92,6 @@ export class ModificaMenu extends React.Component {
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
                     {this.state.item.map((menuItem, i) => {
-                        if(menuItem!=null)
                         return (
                             <article key={i} className="menu-item">
                                 <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
@@ -89,14 +101,10 @@ export class ModificaMenu extends React.Component {
                                         <button onClick={()=>this.modificaPasto(menuItem)} type="submit" className="btn-block btn-primary" >Scegli</button>
                                     </header>
                                     <h4 className="item-text2">{menuItem.descrizione}</h4>
-                                    <p>Ingredienti:<hr/>{menuItem.ingredienti}</p>
-
+                                    <p>Ingredienti:{menuItem.ingredienti}</p>
                                 </div>
                             </article>
                         )
-                        else{
-                            return (<h1 className="h1Style">Non sono presenti pasti per questa categoria</h1> )
-                        }
                     })}
                 </div>
             </section>
