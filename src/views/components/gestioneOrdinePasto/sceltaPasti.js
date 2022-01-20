@@ -71,8 +71,10 @@ export default class SceltaPasti extends React.Component {
                     // Controllo e stampa menu se l'utente non ha effettuato l'ordine per pranzo (selezione base della select)
                     axios.post('http://localhost:8080/api/ordine/ordinaPasti', {ruolo: localStorage.getItem("ruolo")})
                         .then(response2 => {
+                            if(response2.data.error==="Menu' giornaliero non disponibile")
+                                this.handleError("Menu' giornaliero non disponibile")
                             // Ordine già effettuato per pranzo
-                            if (response.data.pranzo && response.data.cena === false)
+                            else if (response.data.pranzo && response.data.cena === false)
                                 this.handleError("Oggi hai già ordinato per pranzo")
                             // Ordine disponibile per pranzo
                             else if (response.data.pranzo === false && response.data.cena)

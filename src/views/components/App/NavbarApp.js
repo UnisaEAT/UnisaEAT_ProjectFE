@@ -78,7 +78,7 @@ function NavbarApp() {
                         <Nav className="elementoNavBarAttore mt-2" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneMenu/VisualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
@@ -217,8 +217,8 @@ function NavbarApp() {
                         <Nav className="elementoNavBarAttore mt-2" href="/">
                             <Image className="imageNavBarAttore" src={MenuIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Menù" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneMenu/visualizzazioneMenu">Inserisci menù</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneMenu/VisualizzazioneMenu">Menù giornaliero</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneMenu/InserimentoMenu">Inserisci menù</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
