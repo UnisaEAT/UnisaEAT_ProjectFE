@@ -162,18 +162,18 @@ export default class InserimentoPersonale extends React.Component {
         return (
             <div id="root">
                 {this.state.popUp && <SuccessPopUp message="Inserimento Personale avvenuto con successo!" handleClose={this.closePopUp}/>}
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center">
                     <h1>Inserisci credenziali nuovo membro</h1>
-                    <form className="form-card test" onSubmit={this.handleSubmit}>
+                    <form className="mt-4 form-card test" onSubmit={this.handleSubmit}>
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="nome"name="nome">
-                                <label className="form-control-label px-3">Nome<span
+                            <div className="form-group col-sm-6 flex-column d-flex" id="nome" name="nome">
+                                <label className="align-left mt-3 form-control-label">Nome<span
                                     className="text-danger"> *</span></label>
                                 <input type="text" id="nome" name="nome" onChange={this.onChangeNome}
                                        placeholder="Inserisci il nome"></input>
                             </div>
-                            <div className="form-group col-sm-6 flex-column d-flex" id="cognome"name="cognome">
-                                <label className="form-control-label px-3">Cognome<span
+                            <div className="form-group col-sm-6 flex-column d-flex" id="cognome" name="cognome">
+                                <label className="align-left mt-3 form-control-label">Cognome<span
                                     className="text-danger"> *</span></label>
                                 <input type="text" id="cognome" name="cognome" onChange={this.onChangeCognome}
                                        placeholder="Inserisci il cognome"></input>
@@ -181,14 +181,14 @@ export default class InserimentoPersonale extends React.Component {
                         </div>
 
                         <div className="row justify-content-between text-left">
-                            <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo"name="indirizzo">
-                                <label className="form-control-label px-3">Indirizzo<span
+                            <div className="form-group col-sm-6 flex-column d-flex" id="indirizzo" name="indirizzo">
+                                <label className="align-left mt-3 form-control-label">Indirizzo<span
                                     className="text-danger"> *</span></label>
                                 <input type="text" id="indirizzo" name="indirizzo" onChange={this.onChangeIndirizzo}
                                        placeholder="Inserisci indirizzo"></input></div>
 
                             <div className="form-group col-sm-6 flex-column d-flex" id="numeroTelefono"name="numeroTelefono">
-                                <label className="form-control-label px-3">Numero di telefono<span
+                                <label className="align-left mt-3 form-control-label">Numero di telefono<span
                                     className="text-danger"> *</span></label>
                                 <input type="text" id="numeroTelefono" name="numeroTelefono" onChange={this.onChangeNumeroTelefono}
                                        placeholder="Inserisci il numero di telefono"></input>
@@ -197,14 +197,14 @@ export default class InserimentoPersonale extends React.Component {
 
                         <div className="row justify-content-between text-left">
                             <div className="form-group col-sm-6 flex-column d-flex" id="dataDiNascita"name="dataDiNascita">
-                                <label className="form-control-label px-3">Data di nascita<span
+                                <label className="align-left mt-3 form-control-label">Data di nascita<span
                                     className="text-danger"> *</span></label>
                                 <input type="text" id="dataDiNascita" name="dataDiNascita" onChange={this.onChangeDataDiNascita}
                                        placeholder="Inserisci data di nascita"></input>
                             </div>
 
                             <div className="form-group col-sm-6 flex-column d-flex" id="email"name="email">
-                                <label className="form-control-label px-3">Email<span className="text-danger"> *</span></label>
+                                <label className="align-left mt-3 form-control-label">Email<span className="text-danger"> *</span></label>
                                 <input type="text" id="email" name="email" onChange={this.onChangeEmail}
                                        placeholder="Inserisci una email "></input>
                             </div>
@@ -213,14 +213,14 @@ export default class InserimentoPersonale extends React.Component {
 
                         <div className="row justify-content-between text-left">
                             <div className="form-group col-sm-6 flex-column d-flex" id="password"name="password">
-                                <label className="form-control-label px-3">Password<span
+                                <label className="align-left mt-3 form-control-label px-3">Password<span
                                     className="text-danger"> *</span></label>
                                 <input type="password" id="password" name="password" onChange={this.onChangePassword}
                                        placeholder="Inserisci una password "></input>
                             </div>
 
                             <div className="form-group col-sm-6 flex-column d-flex" id="confermapassword" name="confermapassword"><label
-                                className="form-control-label px-3">Conferma Password<span
+                                className="align-left mt-3 form-control-label px-3">Conferma Password<span
                                 className="text-danger"> *</span></label>
                                 <input type="password" id="confermapassword" name="confermapassword"onChange={this.onChangeConfermaPassword}
                                        placeholder="Conferma la Password "></input>
@@ -228,8 +228,8 @@ export default class InserimentoPersonale extends React.Component {
                         </div>
 
                         <div className="row justify-content-end">
-                            <div className="form-group col-sm-6">
-                                <button type="submit" className="btn-block btn-primary">Inserisci</button>
+                            <div className="form-group">
+                                <button type="submit" className="mt-4 btn-block btn-primary">Inserisci</button>
                             </div>
                         </div>
                     </form>

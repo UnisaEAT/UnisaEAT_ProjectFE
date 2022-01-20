@@ -90,9 +90,10 @@ export default class InserimentoFAQ extends React.Component {
             .then(response => {
                 if (response.data.message === true) {
                     this.setState({popUp: true})
-                } else if (response.data.name != null)
+                } else if (response.data.message != true)
+                    console.log(response.data.message)
                     this.setState({message: response.data.message})
-                    this.errorHandler(response.data)
+                    this.errorHandler(response.data.message)
             })
             .catch((error) => {
                 console.log(error);

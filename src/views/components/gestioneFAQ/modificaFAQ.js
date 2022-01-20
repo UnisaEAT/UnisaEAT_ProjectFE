@@ -76,10 +76,10 @@ export default class ModificaFAQ extends React.Component {
     }
 
     modificaFAQ(FAQ) {
-        console.log(FAQ)
+        console.log("qio"+FAQ)
         axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
             .then(response => {
-                console.log(response.data)
+                console.log("qui"+response.data.message)
                 if (response.data.message === true) {
                     this.setState({popUp: true})
                 } else if (response.data.name !== null)
