@@ -41,8 +41,7 @@ export class VisualizzazioneMenu extends React.Component {
         console.log(this.state.value)
         axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:this.state.value})
             .then(response => {
-                if(response.data!=null){
-                    console.log("ciao")
+                if(response.data.message==true){
                 this.setState({menu: response.data})}
                 else{
                     this.setState({failurePopUp:true})
@@ -66,6 +65,7 @@ export class VisualizzazioneMenu extends React.Component {
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
+                    <h1 className="h1Menu">Scegli la categoria del Menu da visualizzare.</h1>
                     {this.state.item.map((menuItem, i) => {
                         if(menuItem==null){
                             return(
