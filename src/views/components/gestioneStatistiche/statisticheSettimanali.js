@@ -210,7 +210,7 @@ export default class StatisticheSettimanali extends React.Component {
         // error 401 : accesso non autorizzato per questo ruolo
         if(!localStorage.getItem("email"))
             this.setState({error:400})
-        else if(localStorage.getItem("ruolo")!="cliente")
+        else if(localStorage.getItem("ruolo")!="operatore mensa")
             this.setState({error:401})
         else {
             axios.post('http://localhost:8080/api/statistica/findAll', {ruolo: localStorage.getItem("ruolo")})
