@@ -44,12 +44,23 @@
     box-shadow: 0 2px 8px 2px rgb(0 0 0 / 10%);
 
 }
+
+.lo-rowInfo th
+{
+    font-size: 18px;
+}
+
 .lo-rowData
 {
     margin-top: 20px;
 
     background: white;
     box-shadow: 0 2px 8px 2px rgb(0 0 0 / 10%);
+}
+
+.lo-rowData td
+{
+    font-size: 18px;
 }
 .lo-rowNoOp
 {

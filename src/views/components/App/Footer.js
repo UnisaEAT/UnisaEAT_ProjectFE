@@ -24,7 +24,7 @@ export function Footer() {
                             <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Project Managers</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Salvatore Amideo</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alice Vidoni</a></li>
-                            <li className="mb-2"><a href="#" className="text-grey text-white text-decoration-none">Team Members</a></li>
+                            <li className="mb-2 mt-2"><a href="#" className="text-grey text-white text-decoration-none">Team Members</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alessandro Cavaliere</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Alessio Salzano</a></li>
                             <li><a href="#" className="text-grey text-decoration-none">Maria Rosaria Giudice</a></li>
@@ -57,10 +57,10 @@ export function Footer() {
                     <div className="mx-5 col-lg-2 col-md-6 mb-4 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Domande frequenti</h6>
                         <ul className="list-unstyled mb-0">
-                            <li className="text-grey">Domanda1</li>
-                            <li className="text-grey mt-2">Domanda2</li>
-                            <li className="text-grey mt-2">Domanda3</li>
-                            <li className="text-grey mt-2">Domanda4</li>
+                            <li className="text-grey"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come prenotare un pasto</a></li>
+                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come richiedere il tesserino</a></li>
+                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare ADISU</a></li>
+                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare un admin</a></li>
                         </ul>
                     </div>
 

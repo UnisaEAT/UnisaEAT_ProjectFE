@@ -3,8 +3,8 @@
 {
     width: 60%;
     margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 .do-upContainer
 {
@@ -30,7 +30,7 @@
     border-color: lightgray;
     margin-top: 10px;
     border-radius: 20px;
-    background: white;
+    background: #fdfdfd;
 }
 
 .do-insideBlockElement

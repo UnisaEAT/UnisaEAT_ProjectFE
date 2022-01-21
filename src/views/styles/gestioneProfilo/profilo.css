@@ -1,4 +1,8 @@
-
+.my-10
+{
+    margin-top: 5% !important;
+    margin-bottom: 10% !important;
+}
 .immagine {
     width: 100px;
     height: 100px;
@@ -142,6 +146,29 @@
 
 .m-t-40 {
     margin-top: 20px
+}
+
+#inputOldPassword
+{
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+#inputPassword
+{
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+#inputConfirmPassword
+{
+    width: 70%;
+    margin: 0 auto;
+}
+.labelPassword
+{
+    margin-left: 14%;
+    text-align: left;
 }
 
 
