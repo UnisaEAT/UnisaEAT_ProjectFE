@@ -12,6 +12,7 @@ export default class ModificaFAQ extends React.Component {
             newdomanda:'',
             newrisposta:'',
             domanda:'',
+            risposta:'',
             popUp: false,
             error: false
         }
@@ -33,6 +34,7 @@ export default class ModificaFAQ extends React.Component {
         else
         {
             this.setState({domanda:this.props.obj.domanda})
+            this.setState({risposta:this.props.obj.risposta})
         }
     }
 
@@ -85,6 +87,8 @@ export default class ModificaFAQ extends React.Component {
             domanda: this.props.obj.domanda,
             newdomanda: this.state.newdomanda,
             newrisposta: this.state.newrisposta,
+            email: localStorage.getItem("email"),
+            ruolo: localStorage.getItem("ruolo")
         }
 
         this.modificaFAQ(FAQ)
@@ -93,15 +97,15 @@ export default class ModificaFAQ extends React.Component {
     modificaFAQ(FAQ) {
         axios.post("http://localhost:8080/api/faq/updateFAQ", FAQ)
             .then(response => {
-                console.log("qui"+response.data.message)
-                if (response.data.message === true) {
+                console.log(response.data)
+                if (response.data.message === "Modifica avvenuta con successo") {
                     this.setState({popUp: true})
-                } else if (response.data.name !== null)
+                }
+                else if (response.data.message != true)
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
             })
             .catch((error) => {
-                console.log("ciao")
                 console.log(error);
             })
     }
@@ -122,7 +126,8 @@ export default class ModificaFAQ extends React.Component {
                     <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
                         <h1>Modifica Domanda</h1><br></br>
                         <h4>{this.state.domanda}</h4>
-                        <Form onSubmit={this.handleSubmit}>
+                        <h5>{this.state.risposta}</h5>
+                        <Form  className="mt-5" onSubmit={this.handleSubmit}>
                             <Row className="mb-3">
                                 <Form.Group id="newdomanda" as={Row}>
                                     <Form.Label>Nuova domanda</Form.Label>

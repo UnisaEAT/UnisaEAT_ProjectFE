@@ -86,6 +86,8 @@ export default class InserimentoFAQ extends React.Component {
         const FAQ = {
             domanda: this.state.domanda,
             risposta: this.state.risposta,
+            email: localStorage.getItem("email"),
+            ruolo: localStorage.getItem("ruolo")
             
         }
 
@@ -96,12 +98,17 @@ export default class InserimentoFAQ extends React.Component {
     submitInserimentoForm(FAQ) {
         axios.post('http://localhost:8080/api/faq/insertFAQ', FAQ)
             .then(response => {
-                if (response.data.message === true) {
+                console.log(response.data)
+                if (response.data.message === "Inserimento avvenuto con successo.") {
                     this.setState({popUp: true})
-                } else if (response.data.message != true)
+                }
+                else if (response.data.message === false) {
+                    this.errorHandler({name:"errorFAQ",message:"Titolo della FAQ già presente"})
+                }
+                else if (response.data.message != true)
                     console.log(response.data.message)
                     this.setState({message: response.data.message})
-                    this.errorHandler(response.data.message)
+                    this.errorHandler(response.data)
             })
             .catch((error) => {
                 console.log(error);
@@ -141,6 +148,10 @@ export default class InserimentoFAQ extends React.Component {
                             <Button  className="submitButton" variant="primary" type="submit">
                                 INSERISCI
                             </Button>
+                        <Form.Group id="errorFAQ" as={Row}>
+                            <Form.Label></Form.Label>
+                            <Form.Label></Form.Label>
+                        </Form.Group>
                     </Form>
                 </Card>
             </div>
