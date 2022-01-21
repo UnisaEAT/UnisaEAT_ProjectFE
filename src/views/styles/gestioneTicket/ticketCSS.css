@@ -11,3 +11,50 @@
 .bottone:hover {
     background: linear-gradient(360deg, #d6d9df 0%, #1e3b70 50%);
 }
+
+.ticketContainer #titolo
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.ticketContainer #problema
+{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.ticketTH th
+{
+    text-align: left!important;
+}
+.ticketTD
+{
+    text-align: left!important;
+}
+
+.ticketButton
+{
+    text-align: right!important;
+}
+
+.gt-buttonTd
+{
+    text-align: right!important;
+}
+
+.ticketListContainer
+{
+    width: 70%;
+}
+
+.inputSoluzioneTicket
+{
+    width: 50%;
+    margin: 0 auto;
+}

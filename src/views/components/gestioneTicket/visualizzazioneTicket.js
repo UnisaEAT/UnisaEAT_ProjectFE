@@ -14,6 +14,7 @@ export default class VisualizzazioneTicket extends React.Component {
         this.state = {
             ticket: [],
             one: null,
+            error: false
         }
     }
 
@@ -24,19 +25,39 @@ export default class VisualizzazioneTicket extends React.Component {
     }
 
     componentDidMount() {
-        axios.post("http://localhost:8080/api/ticket/select")
-            .then(response => {
-                console.log(response.data)
-                this.setState({ticket: response.data})
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+
+        if (!localStorage.getItem("email"))
+            this.setState({error: 400})
+
+        else if(localStorage.getItem("ruolo")==="admin") {
+
+            axios.post("http://localhost:8080/api/ticket/select")
+                .then(response => {
+                    this.setState({ticket: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+        else
+        {
+            axios.post("http://localhost:8080/api/ticket/utente", {email: localStorage.getItem("email")})
+                .then(response => {
+                    this.setState({ticket: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
     render() {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
          // Solo se è stato settata il titolo, chiama l'altra componente e gli passa lo stato
-         if (this.state.one!==null) {
+        else if (this.state.one!==null) {
             console.log(this.state.one)
             //Invia il prop "obj" contente il titolo del ticket da risolvere
            
@@ -44,55 +65,71 @@ export default class VisualizzazioneTicket extends React.Component {
                 <RisoluzioneTicket obj={this.state.one} />
             )
         }
-       if(localStorage.getItem("ruolo")==="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
+       else if(localStorage.getItem("ruolo")==="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
             return (
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+
+                <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
                     <h1 className="h1">Lista Ticket</h1>
-                    <ListGroup as="ul">
+                    <table className="lo-table mt-4">
+                        <tbody>
+                        <tr className="lo-rowInfo ticketTH">
+                            <th>Titolo</th>
+                            <th>Utente</th>
+                            <th>Data</th>
+                            <th></th>
+                        </tr>
+                        </tbody>
+                        <tr className="lo-rowNoOp"><td></td></tr>
                         {this.state.ticket.map((oggetto, i) => {
-                            return (
-                                <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
-                                <div className="ms-2 me-auto">
-                                    <Row> <div className="fw-bold">Titolo:</div>{oggetto.titolo}</Row>  
-                                    <Row> <div className="fw-bold">Problema:</div>{oggetto.problema}</Row>
-                                    <Row> <div className="fw-bold">Soluzione:</div>{oggetto.soluzione}</Row>
-                                    <Row> <div className="fw-bold">Data:</div>{moment(oggetto.date).format('DD MMM, YYYY')}</Row>
-                                    <Row> <div className="fw-bold">Email:</div>{oggetto.email}</Row>
-                                </div>
-                                <Button className="bottone" onClick={(e) => {
-                            this.handleRisoluzioneTicket(e, oggetto);}}>Risolvi</Button>
-                            </Col>
+                            return(
+                            <tr key={i} className="lo-rowData ">
+                                <td className="ticketTD">{oggetto.titolo}</td>
+                                <td className="ticketTD">{oggetto.email}</td>
+                                <td className="ticketTD">{moment(oggetto.date).format('DD MMM, YYYY')}</td>
+                                <td className="gt-buttonTd">
+                                    <Button className="lo-dettagliButton" onClick={(e) => {
+                                        this.handleRisoluzioneTicket(e, oggetto);}}>Visualizza</Button>
+                                </td>
+                            </tr>
                             )
+
                         })}
-                    </ListGroup>
+                    </table>
                     <br></br>
                 </Card>
             )
         }
         else return(
-            <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-            <h1 className="h1">Lista Ticket</h1>
-            <ListGroup as="ul">
-                {this.state.ticket.map((oggetto, i) => {
-                if(oggetto.email===localStorage.getItem("email")){ 
-                    return (
-                        <Col key={i} as="li" className="d-flex justify-content-between align-items-start itemStyle">
-                        <div className="ms-2 me-auto">
-                            <Row> <div className="fw-bold">Titolo:</div>{oggetto.titolo}</Row>  
-                            <Row> <div className="fw-bold">Problema:</div>{oggetto.problema}</Row>
-                            <Row> <div className="fw-bold">Soluzione:</div>{oggetto.soluzione}</Row>
-                            <Row> <div className="fw-bold">Data:</div>{moment(oggetto.date).format('DD MMM, YYYY')}</Row>
-                        </div>
-                       
-                        
-                    </Col>
-                    )
-                    }else return( <h2></h2>)
-                })}
-            </ListGroup>
-            <br></br>
-            <Button className="bottone" href="/gestioneTicket/compilazioneTicket">Inserisci un nuovo ticket</Button>
-        </Card>
+           <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
+               <h1 className="h1">Lista Ticket</h1>
+               <table className="lo-table mt-4">
+                   <tbody>
+                   <tr className="lo-rowInfo ticketTH">
+                       <th>Titolo</th>
+                       <th>Utente</th>
+                       <th>Data</th>
+                       <th></th>
+                   </tr>
+                   </tbody>
+                   <tr className="lo-rowNoOp"><td></td></tr>
+                   {this.state.ticket.map((oggetto, i) => {
+                       if(oggetto.email===localStorage.getItem("email")){
+                           return(
+                           <tr key={i} className="lo-rowData ">
+                               <td className="ticketTD">{oggetto.titolo}</td>
+                               <td className="ticketTD">{oggetto.email}</td>
+                               <td className="ticketTD">{moment(oggetto.date).format('DD MMM, YYYY')}</td>
+                               <td className="gt-buttonTd">
+                                   <Button className="lo-dettagliButton" onClick={(e) => {
+                                       this.handleRisoluzioneTicket(e, oggetto);}}>Visualizza</Button>
+                               </td>
+                           </tr>
+                       )
+
+                   }})}
+               </table>
+               <br></br>
+           </Card>
         )
     }
 }

@@ -12,7 +12,7 @@ export default class RisoluzioneTicket extends React.Component {
         super(props);
         this.state= {
             soluzione:'',
-            popUp: false
+            popUp: false,
         }
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
@@ -65,6 +65,8 @@ export default class RisoluzioneTicket extends React.Component {
             titolo: this.props.obj.titolo,
             soluzione: this.state.soluzione,
             mail: this.props.obj.email,
+            email: localStorage.getItem("email"),
+            ruolo: localStorage.getItem("ruolo")
         }
 
         this.risoluzioneTicket(Ticket)
@@ -75,7 +77,7 @@ export default class RisoluzioneTicket extends React.Component {
         axios.post("http://localhost:8080/api/ticket/update", Ticket)
             .then(response => {
                 console.log(response.data)
-                if (response.data.message === true) {
+                if (response.data.message === "Soluzione del ticket avvenuta con successo") {
                     this.setState({popUp: true})
                 } else if (response.data.name != null)
                     this.setState({message: response.data.message})
@@ -88,22 +90,26 @@ export default class RisoluzioneTicket extends React.Component {
     }
 
     render() {
+
         console.log(this.props.obj)
+        if(localStorage.getItem("ruolo")==="admin")
         return (
             <div id="root">
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Risoluzione avvenuta con successo!" handleClose={this.closePopUp}/>}
 
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
+                <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center">
                     <h1>Risoluzione ticket</h1><br></br>
-                    <h4>{this.props.obj.titolo}{this.props.obj.problema}</h4> 
-                    <h5>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h5> 
-                    <h5>{this.props.obj.email}</h5> 
+                    <h6>{this.props.obj.email}</h6>
+                    <h6>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h6>
+                    <h3 className="mt-5">{this.props.obj.titolo}</h3>
+                    <h5>{this.props.obj.problema}</h5>
+
                     <Form onSubmit={this.handleSubmit}>
-                            <Row className="mb-3">
+                            <Row className="mb-3 mt-5">
                                 <Form.Group id="soluzione" as={Col}>
                                     <Form.Label>Soluzione</Form.Label>
-                                    <Form.Control type="text" id="soluzione" name="soluzione" onChange={this.onChangeSoluzione} placeholder="Inserisci una soluzione"/>
+                                    <Form.Control className="inputSoluzioneTicket" as="textarea" rows={4} id="soluzione" name="soluzione" onChange={this.onChangeSoluzione} placeholder="Inserisci una soluzione"/>
                                 </Form.Group>
                             </Row>
                             
@@ -112,5 +118,40 @@ export default class RisoluzioneTicket extends React.Component {
                 </Card>
             </div>
         )
+        else
+        {
+            if(this.props.obj.soluzione)
+            {
+                return (
+                    <div id="root">
+                        <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center">
+                            <h1>Ticket selezionato</h1><br></br>
+                            <h6>{this.props.obj.email}</h6>
+                            <h6>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h6>
+                            <h3 className="mt-5">{this.props.obj.titolo}</h3>
+                            <h5>{this.props.obj.problema}</h5>
+
+                            <h5 className="mt-5"><b>Soluzione</b></h5>
+                            <h5 className="mt-2">{this.props.obj.soluzione}</h5>
+
+                        </Card>
+                    </div>
+                )
+            }
+            else
+            {
+                return (
+                    <div id="root">
+                        <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center">
+                            <h1>Ticket selezionato</h1><br></br>
+                            <h6>{this.props.obj.email}</h6>
+                            <h6>{moment(this.props.obj.date).format('DD MMM, YYYY')}</h6>
+                            <h3 className="mt-5">{this.props.obj.titolo}</h3>
+                            <h5>{this.props.obj.problema}</h5>
+                        </Card>
+                    </div>
+                )
+            }
+        }
     }
 }

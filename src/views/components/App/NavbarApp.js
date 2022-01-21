@@ -94,12 +94,15 @@ function NavbarApp() {
                     </Nav.Link>
 
                 <Nav>
+
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore mt-1">
-                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
-                            <NavDropdown className="testoDropDown" title="Ticket">
-                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
+                        <Nav className="elementoNavBarAttore" href="/">
+                            <Image className="imageNavBarAttore" src={TesserinoIcon} width="52"/>
+                            <NavDropdown className="testoDropDown" title="Tesserino" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="/gestioneTesserino/richiestaTesserino">Richiedi tesserino digitale</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTesserino/rinnovoTesserino">Rinnova tesserino</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTesserino/ricaricaTesserino">Ricarica tesserino</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTesserino/visualizzaSaldo">Saldo tesserino</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
@@ -125,13 +128,11 @@ function NavbarApp() {
                     </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore" href="/">
-                            <Image className="imageNavBarAttore" src={TesserinoIcon} width="52"/>
-                            <NavDropdown className="testoDropDown" title="Tesserino" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/gestioneTesserino/richiestaTesserino">Richiedi tesserino digitale</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTesserino/rinnovoTesserino">Rinnova tesserino</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTesserino/ricaricaTesserino">Ricarica tesserino</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTesserino/visualizzaSaldo">Saldo tesserino</NavDropdown.Item>
+                        <Nav className="elementoNavBarAttore mt-1">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket" >
+                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
@@ -181,15 +182,6 @@ function NavbarApp() {
                 </Nav.Link>
 
                 <Nav>
-                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore">
-                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
-                            <NavDropdown className="testoDropDown" title="Ticket">
-                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                    </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="hvr-grow elementoNavBarAttore" href="/">
@@ -200,7 +192,15 @@ function NavbarApp() {
                             </NavDropdown>
                         </Nav>
                     </NavItem>
-
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="hvr-grow elementoNavBarAttore" href="/">
                             <Image className="imageNavBarAttore" src={FaqIcon} width="45"/>
@@ -244,15 +244,6 @@ function NavbarApp() {
                 </Nav.Link>
 
                 <Nav>
-                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore">
-                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
-                            <NavDropdown className="testoDropDown" title="Ticket">
-                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
-                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                    </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore " href="/">
@@ -269,6 +260,16 @@ function NavbarApp() {
                             <Image className="imageNavBarAttore" src={statisticheIcon} width="45"/>
                             <NavDropdown className="testoDropDown" title="Statistiche" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/statisticheSettimanali">Visualizza statistiche </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/compilazioneTicket">Compila ticket</NavDropdown.Item>
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>
@@ -306,14 +307,6 @@ function NavbarApp() {
                 </Nav.Link>
 
                 <Nav>
-                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
-                        <Nav className="elementoNavBarAttore">
-                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
-                            <NavDropdown className="testoDropDown" title="Ticket">
-                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                    </NavItem>
 
                     <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
                         <Nav className="elementoNavBarAttore" href="/">
@@ -321,6 +314,15 @@ function NavbarApp() {
                             <NavDropdown className="testoDropDown" title="Gestione personale ADISU" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/gestionePersonale/InserimentoPersonale">Inserimento operatore</NavDropdown.Item>
                                 <NavDropdown.Item href="/gestionePersonale/VisualizzazioneListaPersonale">Lista operatori</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </NavItem>
+
+                    <NavItem className="hvr-float-shadow nav-item-NavBarAttore justify-content-center d-flex">
+                        <Nav className="elementoNavBarAttore">
+                            <Image className="imageNavBarAttore" src={TicketIcon} width="45"/>
+                            <NavDropdown className="testoDropDown" title="Ticket">
+                                <NavDropdown.Item href="/gestioneTicket/visualizzazioneTicket">Visualizza lista ticket</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </NavItem>

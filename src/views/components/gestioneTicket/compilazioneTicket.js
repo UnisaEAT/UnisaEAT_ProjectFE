@@ -15,7 +15,8 @@ export default class CompilazioneTicket extends React.Component {
         this.state = {
             titolo:'',
             problema:'',
-            popUp:false
+            popUp:false,
+            error:false
         }
 
         // Handlers binding
@@ -27,6 +28,13 @@ export default class CompilazioneTicket extends React.Component {
         this.errorRemoverOnChange=this.errorRemoverOnChange.bind(this)
     }
 
+    componentDidMount() {
+        if (!localStorage.getItem("email"))
+            this.setState({error: 400})
+        else if (localStorage.getItem("ruolo") == "admin")
+            this.setState({error: 401})
+
+    }
     closePopUp() {
         this.setState({popUp: false})
         window.location='/gestioneTicket/visualizzazioneTicket'
@@ -77,7 +85,8 @@ export default class CompilazioneTicket extends React.Component {
         const Ticket = {
             titolo: this.state.titolo,
             problema: this.state.problema,
-            email:localStorage.getItem("email")
+            email:localStorage.getItem("email"),
+            ruolo:localStorage.getItem("ruolo")
         }
 
         this.submitInserimentoForm(Ticket)
@@ -85,12 +94,18 @@ export default class CompilazioneTicket extends React.Component {
 
     // Invio dell'oggetto @param Ticket al metodo del Back-End con una POST
     submitInserimentoForm(Ticket) {
+        console.log(Ticket)
         axios.post('http://localhost:8080/api/ticket/insert', Ticket)
             .then(response => {
                 console.log(response.data)
-                if (response.data.message === true) {
+                if (response.data.message === "Compilazione del ticket avvenuta con successo") {
                     this.setState({popUp: true})
-                } else if (response.data.name != null)
+                }
+                else if(response.data.message===false)
+                {
+                    this.errorHandler({name:"errorTicket",message:"Ticket già presente con questo titolo"})
+                }
+                else if (response.data.name != null)
                     this.setState({message: response.data.message})
                     this.errorHandler(response.data)
             })
@@ -100,27 +115,35 @@ export default class CompilazioneTicket extends React.Component {
     }
 
     render() {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+
         return (
             <div id="rootTicket">
                  {/* Se popUp (boolean) è true */}
                 {this.state.popUp && <Popup message="Inserimento avvenuto con successo!" handleClose={this.closePopUp}/>}
 
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                    <h1>Inserimento Ticket</h1><br></br>
+                <Card  className="ticketContainer my-10 mx-auto col-xl-7 justify-content-center text-center">
+                    <h1>Compila il Ticket</h1><br></br>
                     <Form onSubmit={this.handleSubmit}>
-                        <h3>Inserisci il titolo del ticket</h3><br></br>
                         <Row className="mb-3">
-                            <Form.Group id="titolo" as={Col}>
+                            <Form.Group className="mt-3" id="titolo" as={Row}>
                                 <Form.Label>Titolo</Form.Label>
                                 <Form.Control type="text" id="titolo" name="titolo" onChange={this.onChangeTitolo} placeholder="Inserisci il titolo"/>
                             </Form.Group>
                             <br></br>
-                            <Form.Group id="problema" as={Col}>
+                            <Form.Group id="problema" as={Row}>
                             <Form.Label>Descrivici il problema riscontrato</Form.Label>
-                                <Form.Control type="text" id="problema" name="problema" onChange={this.onChangeProblema} placeholder="Inserisci il problema riscontrato"/>
+                                <Form.Control as="textarea" rows={5} id="problema" name="problema" onChange={this.onChangeProblema} placeholder="Inserisci il problema riscontrato..."/>
                             </Form.Group>
                         </Row>
-                        <Button  className="bottone" variant="primary" type="submit">INSERISCI</Button>
+                        <Button className="bottone" variant="primary" type="submit">INSERISCI</Button>
+                        <Form.Group id="errorTicket" as={Row}>
+                            <Form.Label></Form.Label>
+                            <Form.Label></Form.Label>
+                        </Form.Group>
                     </Form>
                 </Card>
             </div>
