@@ -25,13 +25,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Roboto", sans-serif;
-    background: var(--clr-white);
-    color: var(--clr-primary-1);
-    line-height: 1.5;
-    font-size: 0.875rem;
-}
 
 .menu-section {
     padding: 50px 0 50px 0;

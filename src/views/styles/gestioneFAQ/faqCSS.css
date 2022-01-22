@@ -46,13 +46,15 @@
 .faqDomanda .FAQinfo
 {
     position: absolute;
-    line-height: 65px;
+    width: 40%;
+    margin-top: 20px;
 }
 
 .faqRisposta .FAQinfo
 {
     position: absolute;
-    line-height: 65px;
+    width: 40%;
+    margin-top: 20px;
 }
 
 .faqRisposta .FAQlabel
@@ -63,6 +65,8 @@
     font-weight: 100;
 
 }
+
+
 
 .inserisciFAQcontainer
 {

@@ -25,13 +25,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Roboto", sans-serif;
-    background: var(--clr-white);
-    color: var(--clr-primary-1);
-    line-height: 1.5;
-    font-size: 0.875rem;
-}
 .btn-block {
     display: inline-block;
     text-transform: uppercase;
