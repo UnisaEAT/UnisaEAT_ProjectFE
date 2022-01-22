@@ -66,6 +66,7 @@ export default class VisualizzazioneTicket extends React.Component {
             )
         }
        else if(localStorage.getItem("ruolo")==="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
+           if(this.state.ticket.length>0)
             return (
 
                 <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
@@ -98,15 +99,23 @@ export default class VisualizzazioneTicket extends React.Component {
                     <br></br>
                 </Card>
             )
+           else
+               return(
+                   <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
+                       <h1 className="h1">Lista Ticket</h1>
+                       <h3 className="mt-5">Nessun ticket disponibile</h3>
+                       <br></br>
+                   </Card>
+               )
         }
-        else return(
+        else if(this.state.ticket.length>0)
+            return(
            <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
                <h1 className="h1">Lista Ticket</h1>
-               <table className="lo-table mt-4">
+               <table className="lo-table mt-5 mb-5">
                    <tbody>
                    <tr className="lo-rowInfo ticketTH">
                        <th>Titolo</th>
-                       <th>Utente</th>
                        <th>Data</th>
                        <th></th>
                    </tr>
@@ -116,8 +125,7 @@ export default class VisualizzazioneTicket extends React.Component {
                        if(oggetto.email===localStorage.getItem("email")){
                            return(
                            <tr key={i} className="lo-rowData ">
-                               <td className="ticketTD">{oggetto.titolo}</td>
-                               <td className="ticketTD">{oggetto.email}</td>
+                               <td className="ticketTDTitolo">{oggetto.titolo}</td>
                                <td className="ticketTD">{moment(oggetto.date).format('DD MMM, YYYY')}</td>
                                <td className="gt-buttonTd">
                                    <Button className="lo-dettagliButton" onClick={(e) => {
@@ -128,8 +136,15 @@ export default class VisualizzazioneTicket extends React.Component {
 
                    }})}
                </table>
-               <br></br>
            </Card>
         )
+        else
+            return(
+                <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
+                    <h1 className="h1">Lista Ticket</h1>
+                    <h3 className="mt-5">Nessun ticket inviato</h3>
+                    <br></br>
+                </Card>
+            )
     }
 }

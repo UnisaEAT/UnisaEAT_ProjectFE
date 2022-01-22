@@ -55,6 +55,7 @@ export default class ListaOrdini extends React.Component
             return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
         else if(this.state.error===401)
             return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
+        else if(this.state.ordini.length>0)
         return (
             <div className="lo-listaContainerInfo">
                 <table className="lo-table">
@@ -88,5 +89,11 @@ export default class ListaOrdini extends React.Component
                 </table>
             </div>
         );
+        else
+            return (
+                <div className="my-15 lo-listaContainerInfo">
+                    <h3 className="text-center">Non hai ordini precedenti</h3>
+                </div>
+            );
     }
 }
