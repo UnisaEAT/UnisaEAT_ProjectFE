@@ -41,7 +41,7 @@ eseguire correttamente il sistema.
 
 #### Node.js server running: ####
 
-1.1. Eseguire il comando: npm start nella directory 'UnisaEAT_ProjectBE'
+1. Eseguire il comando: npm start nella directory 'UnisaEAT_ProjectBE'
 2. Eseguire il commando: npm start nella directory 'UnisaEAT_ProjectFE'
 
 
