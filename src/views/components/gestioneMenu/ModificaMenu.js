@@ -92,6 +92,7 @@ export class ModificaMenu extends React.Component {
                 <section className="menu-section">
                 <div>
                     <h1 className="home_title">Modifica Menu</h1>
+                    <h5 className="home_title_2">Clicca sui pasti per inserirli nel nuovo menù</h5>
                     <div className="underLine"/>
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
@@ -99,11 +100,10 @@ export class ModificaMenu extends React.Component {
                     {this.state.item.map((menuItem, i) => {
                         return (
                             <article key={i} className="menu-item">
-                                <img src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo"/>
+                                <img onClick={()=>this.modificaPasto(menuItem)} src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo cursor-pointer"/>
                                 <div className="item-info">
                                     <header>
                                         <h3 className="title" >{menuItem.nome}</h3>
-                                        <button onClick={()=>this.modificaPasto(menuItem)} type="submit" className="btn-block btn-primary" >Scegli</button>
                                     </header>
                                     <p className="item-text2">{menuItem.descrizione}</p>
                                     <p>Ingredienti:{menuItem.ingredienti}</p>

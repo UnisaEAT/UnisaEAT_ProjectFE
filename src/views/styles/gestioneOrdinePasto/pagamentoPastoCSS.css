@@ -48,6 +48,7 @@
     font-weight: 600;
     font-size: 16px;
     text-align: center;
+    line-height: 50px;
 }
 .pp-leftBlock
 {
@@ -127,4 +128,10 @@
     margin: 0 auto;
     margin-top: 40px;
     box-sizing: border-box;
+}
+
+.pp-buttonPagamento:hover
+{
+    color: #fff;
+    background-color: #20c2a2;
 }

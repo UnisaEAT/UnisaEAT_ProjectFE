@@ -105,18 +105,19 @@ export class InserimentoMenu extends React.Component {
                    <section className="menu-section">
                 <div>
                     <h1 className="home_title">Scegli i Pasti</h1>
+                    <h5 className="home_title_2">Clicca sui pasti per inserirli nel menù</h5>
                     <div className="underLine"/>
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
+
                     {this.state.item.map((menuItem, i) => {
                         return (
                             <article key={i} className="menu-item">
-                                <img src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo"/>
+                                <img onClick={()=>this.insertPasto(menuItem)} src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo cursor-pointer"/>
                                 <div className="item-info">
                                     <header>
                                         <h3 className="title" >{menuItem.nome}
-                                            <button onClick={()=>this.insertPasto(menuItem)} type="submit" className="btn-blockMenu btn-primary" >Inserisci</button>
                                         </h3>
                                     </header>
                                     <p className="item-text2">{menuItem.descrizione}</p>
