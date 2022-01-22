@@ -12,6 +12,7 @@ export class VisualizzazioneMenu extends React.Component {
             menu: [],
             item:[],
             value:'',
+            error:false,
             failurePopUp:false
         }
         this.filterItems = this.filterItems.bind(this)
@@ -24,40 +25,57 @@ export class VisualizzazioneMenu extends React.Component {
     }
 
     filterItems(category) {
+        console.log(this.state.menu[0].pasti)
         let newItems = this.state.menu[0].pasti.filter((item) => item.categoria === category);
         if(newItems.length==0){
             newItems=[null]
         }
+        console.log(newItems)
         this.setState({item: newItems})
     }
 
     someFunc(x) {
-        if(x) this.state.value="Pranzo"
-        else this.state.value="Cena"
+        if(x) this.state.value="pranzo"
+        else this.state.value="cena"
         this.Visualizza()
+    }
+    componentDidMount() {
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        if(localStorage.getItem("ruolo")!="cliente" && localStorage.getItem("ruolo")!="operatore mensa")
+            this.setState({error:401})
     }
 
     Visualizza() {
-        console.log(this.state.value)
-        axios.post("http://localhost:8080/api/menu/visualizzaMenu",{tipo:this.state.value})
-            .then(response => {
-                if(response.data.message==true){
-                this.setState({menu: response.data})}
-                else{
-                    this.setState({failurePopUp:true})
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+            axios.post("http://localhost:8080/api/menu/visualizzaMenu", {tipo: this.state.value})
+                .then(response => {
+                    console.log("Visualizza:" + response.data)
+                    if (response.data.message != false) {
+                        this.setState({menu: response.data})
+                    } else {
+                        console.log("bha")
+                        this.setState({failurePopUp: true})
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+    }
+
+    imageNameTextTransform(nomePasto)
+    {
+        return nomePasto.split(' ').join('_').toLowerCase()
     }
 
     render() {
-        const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
-
+        const categorie = ["primo", "secondo", "contorno", "extra"]
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
         return (
             <div>
-                {this.state.failurePopUp && <FailurePopUp message={"Nessun Menu presente per la tipologia: "+this.state.value} handleClose={this.closeFailurePopUp}/>}
+                {this.state.failurePopUp && <FailurePopUp message={"Nessun menu per la tipologia "+this.state.value.toUpperCase()+ " è presente per questa data." } handleClose={this.closeFailurePopUp}/>}
                 <section className="menu-section">
                 <div>
                     <h1 className="home_title">Il Menu del giorno</h1>
@@ -65,7 +83,7 @@ export class VisualizzazioneMenu extends React.Component {
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
                 <div className="section-center">
-                    <h1 className="h1Menu">Scegli la categoria del Menu da visualizzare.</h1>
+
                     {this.state.item.map((menuItem, i) => {
                         if(menuItem==null){
                             return(
@@ -74,13 +92,13 @@ export class VisualizzazioneMenu extends React.Component {
                         }
                         return (
                             <article key={i} className="menu-item">
-                                <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
+                                <img src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo"/>
                                 <div className="item-info">
                                     <header>
                                         <h3 className="title" >{menuItem.nome}</h3>
                                     </header>
-                                    <h4 className="item-text2">{menuItem.descrizione}</h4>
-                                    <p>Ingredienti:<hr/>{menuItem.ingredienti}</p>
+                                    <p className="item-text2">{menuItem.descrizione}</p>
+                                    <p>Ingredienti:{menuItem.ingredienti}</p>
 
                                 </div>
                             </article>

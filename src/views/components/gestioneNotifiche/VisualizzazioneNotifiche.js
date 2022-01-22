@@ -51,7 +51,6 @@ export default function VisualizzazioneNotifiche() {
                     <div className="menu">
                         {notifiche.map((notifica, i) => {
                             return (
-
                                 <DropdownItem key={i} goToMenu="info" id={notifica.id}>
                                     {notifica.titolo}
                                 </DropdownItem>

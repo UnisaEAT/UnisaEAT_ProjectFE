@@ -62,24 +62,29 @@ export class ModificaMenu extends React.Component {
     }
 
     Modifica() {
-        console.log("uee")
-        axios.post("http://localhost:8080/api/menu/modificaMenu",{tipo:this.state.value,pasti:this.state.ritornoPasti})
-            .then(response => {
-                if(response.data.message==true){
-                    this.setState({popUp:true})
-                }
-                else{
-                    this.setState({failurePopUp:true})
-                }
+            axios.post("http://localhost:8080/api/menu/modificaMenu", {
+                tipo: this.state.value,
+                pasti: this.state.ritornoPasti
             })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then(response => {
+                    if (response.data.message == true) {
+                        this.setState({popUp: true})
+                    } else {
+                        this.setState({failurePopUp: true})
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+    }
+
+    imageNameTextTransform(nomePasto)
+    {
+        return nomePasto.split(' ').join('_').toLowerCase()
     }
 
     render() {
-        const categorie = ["Primo", "Secondo", "Contorno", "Dolce"]
-
+        const categorie = ["primo", "secondo", "contorno", "extra"]
         return (
             <div id="root">
                 {this.state.popUp && <SuccessPopUp message="Modifica Menu avvenuta con successo!" handleClose={this.closePopUp}/>}
@@ -94,13 +99,13 @@ export class ModificaMenu extends React.Component {
                     {this.state.item.map((menuItem, i) => {
                         return (
                             <article key={i} className="menu-item">
-                                <img src={"../ImmaginiPasti/"+menuItem.nome+".jpg"} alt={menuItem.categoria} className="photo"/>
+                                <img src={"../immaginiPasti/"+this.imageNameTextTransform(menuItem.nome)+".jpg"} alt={menuItem.categoria} className="photo"/>
                                 <div className="item-info">
                                     <header>
                                         <h3 className="title" >{menuItem.nome}</h3>
                                         <button onClick={()=>this.modificaPasto(menuItem)} type="submit" className="btn-block btn-primary" >Scegli</button>
                                     </header>
-                                    <h4 className="item-text2">{menuItem.descrizione}</h4>
+                                    <p className="item-text2">{menuItem.descrizione}</p>
                                     <p>Ingredienti:{menuItem.ingredienti}</p>
                                 </div>
                             </article>
@@ -108,7 +113,7 @@ export class ModificaMenu extends React.Component {
                     })}
                 </div>
             </section>
-        <Button variant="outline-primary" className="buttonInsert"  onClick={()=>this.Modifica()}>
+        <Button variant="outline-primary" className="buttonInsert mt-5 mb-5"  onClick={()=>this.Modifica()}>
             Modifica Menu
         </Button>
         </div>

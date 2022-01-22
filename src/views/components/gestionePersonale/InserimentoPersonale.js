@@ -17,7 +17,8 @@ export default class InserimentoPersonale extends React.Component {
             email: '',
             password: '',
             confermapassword: '',
-            popUp: false
+            popUp: false,
+            error:false
         }
 
         // Handlers binding
@@ -139,26 +140,36 @@ export default class InserimentoPersonale extends React.Component {
         this.submitInserimentoForm(personale)
     }
 
+    componentDidMount() {
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        if(localStorage.getItem("ruolo")!="admin" && localStorage.getItem("ruolo")!="personale adisu")
+            this.setState({error:401})
+    }
+
     // Invio dell'oggetto @param personale al metodo del Back-End con una POST
     submitInserimentoForm(personale) {
-        axios.post('http://localhost:8080/api/personale/insert',personale )
-            .then(response => {
-                //Se l'inserimento è andato a buon fine
-                if (response.data.message === true) {
-                    console.log("1")
-                    this.setState({popUp: true})
-                }
-                else {
-                    console.log("3")
-                    this.errorHandler(response.data)
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+            axios.post('http://localhost:8080/api/personale/insert', personale)
+                .then(response => {
+                    //Se l'inserimento è andato a buon fine
+                    if (response.data.message === true) {
+                        console.log("1")
+                        this.setState({popUp: true})
+                    } else {
+                        console.log("3")
+                        this.errorHandler(response.data)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
     }
 
     render() {
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
         return (
             <div id="root">
                 {this.state.popUp && <SuccessPopUp message="Inserimento Personale avvenuto con successo!" handleClose={this.closePopUp}/>}

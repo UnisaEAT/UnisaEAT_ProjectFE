@@ -23,7 +23,6 @@ export default class Profilo extends Component {
             .then(res => {
                     console.log(res.data) //controllo
                     this.setState({utente: res.data})
-                   
                 })
 
             .catch( (error) => {

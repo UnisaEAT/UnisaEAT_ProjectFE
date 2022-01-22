@@ -7,3 +7,12 @@
 .buttonStyleTip{
     margin-left: 45%;
 }
+.tipologiaContainer{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.rootContainer{
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+}

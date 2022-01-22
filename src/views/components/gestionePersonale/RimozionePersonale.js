@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../../App.css"
-import {Card} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import axios from "axios";
 import SuccessPopUp from "../App/successPopUp";
 export default class RimozionePersonale extends React.Component{
@@ -10,23 +10,7 @@ export default class RimozionePersonale extends React.Component{
         this.state= {
             popUp: false
         }
-        this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
-    }
-
-    errorHandler(error) {
-        let inputError = error.name;
-        let errorMessage = error.message;
-
-        const rootElement = document.getElementById(inputError)
-
-        if (rootElement.childNodes.length < 3) {
-            const element = document.createElement('h1')
-            element.id = inputError
-            element.textContent = errorMessage
-            element.style = "color:red;font-size:15px"
-            rootElement.appendChild(element)
-        }
     }
 
     closePopUp() {
@@ -34,11 +18,10 @@ export default class RimozionePersonale extends React.Component{
         window.location.reload(false);
     }
 
-    rimozionePersonale() {
-        axios.post("http://localhost:8080/api/personale/remove", {email: this.props.obj.email})
+    rimozionePersonale(email) {
+        axios.post("http://localhost:8080/api/personale/remove", {email: email})
             .then(response => {
                 if (response.data.message === true) {
-                    console.log("ccc")
                     this.setState({popUp: true})
                 }else if (response.data.name != null)
                     this.errorHandler(response.data)
@@ -53,20 +36,46 @@ export default class RimozionePersonale extends React.Component{
     render() {
         return (
             <div id="root">
-                {this.state.popUp && <SuccessPopUp message="Rimozione Personale avvenuta con successo!S" handleClose={this.closePopUp}/>}
-                <Card className=" mx-auto col-xl-7 justify-content-center text-center">
-                    <h1 className="h1">Informazioni di {this.props.obj.nome} {this.props.obj.cognome}</h1>
-                    <Card className="align" style={{width: 'auto'}}>
-                        <Card.Body>
-                            <Card.Title >{this.props.obj.email}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
-                            <Card.Text>
-                            </Card.Text>
-                            <button type="submit" className="btn-block btn-primary" onClick={()=>this.rimozionePersonale()} >Rimuovi</button>
-                        </Card.Body>
-                    </Card>
-                </Card>
-            </div>
+                {this.state.popUp && <SuccessPopUp message="Rimozione Personale avvenuta con successo!" handleClose={this.closePopUp}/>}
+                    <div className="row-block justify-content-center ">
+                                <div className="cardProfile user-card-full">
+                                    <div className="row m-l-0 m-r-0">
+                                        <div className="col-sm-4 bg-c-lite-green user-profile">
+                                            <div className="card-block text-center text-white">
+                                                <div className="m-b-25"><img className="iconaUtente"
+                                                                             src="https://img.icons8.com/bubbles/100/000000/under-computer.png"
+                                                                             className="img-radius"
+                                                                             alt="User-Profile-Image"></img></div>
+                                                <h6 className="f-w-600 text-uppercase">{this.props.obj.nome} {this.props.obj.cognome}</h6>
+                                                <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-8">
+                                            <div className="card-block">
+                                                <h5 className="m-b-20 p-b-5 b-b-default f-w-600">INFORMAZIONI
+                                                    PERSONALI</h5>
+                                                <div className="row">
+                                                    <div className="col-sm-6">
+                                                        <p className="m-b-10 f-w-600">Email:</p>
+                                                        <h6 className="text-muted f-w-400">{this.props.obj.email}</h6>
+                                                        <p className="m-b-10 f-w-600">Nome:</p>
+                                                        <h6 className="text-muted f-w-400">{this.props.obj.nome}</h6>
+                                                        <p className="m-b-10 f-w-600">Cognome:</p>
+                                                        <h6 className="text-muted f-w-400">{this.props.obj.cognome}</h6>
+                                                        <p className="m-b-10 f-w-600">Numero di telefono:</p>
+                                                        <h6 className="text-muted f-w-400">{this.props.obj.numeroTelefono}</h6>
+                                                        <p className="m-b-10 f-w-600">Data di nascita:</p>
+                                                        <h6 className="text-muted f-w-400">{this.props.obj.dataDiNascita}</h6>
+                                                    </div>
+
+                                                </div>
+                                                <Button type="submit" className="btn-block btn-primary" onClick={()=>this.rimozionePersonale(this.props.obj.email)} >Rimuovi</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    </div>
         )
     }
 }

@@ -10,6 +10,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
 
         this.state = {
             utente: [],
+            error:false,
             personale: null
         }
 
@@ -18,14 +19,20 @@ export default class VisualizzazioneListaPersonale extends React.Component {
     }
 
     componentDidMount() {
-        axios.post("http://localhost:8080/api/personale/viewLista",{ruolo: localStorage.getItem("ruolo")})
-            .then(response => {
-                console.log(response.data)
-                this.setState({utente: response.data})
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        if(!localStorage.getItem("email"))
+            this.setState({error:400})
+        else if(localStorage.getItem("ruolo")!="admin" && localStorage.getItem("ruolo")!="personale adisu")
+            this.setState({error:401})
+        else {
+            axios.post("http://localhost:8080/api/personale/viewLista", {ruolo: localStorage.getItem("ruolo")})
+                .then(response => {
+                    console.log(response.data)
+                    this.setState({utente: response.data})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 
 
@@ -46,7 +53,12 @@ export default class VisualizzazioneListaPersonale extends React.Component {
             //Invia il prop "obj" contente il personale da rimuovere
             return (<RimozionePersonale obj={this.state.personale}/>)
         }
+        if(this.state.error===400)
+            return <h1 className="erroreGenericoDiAccesso">Effettua il login per accedere a questa pagina</h1>
+        else if(this.state.error===401)
+            return <h1 className="erroreGenericoDiAccesso">Accesso negato</h1>
         return (
+            <div className="my-10">
             <Card className=" mx-auto col-xl-7 justify-content-center text-center">
                 <h1 className="h1">Lista Operatori</h1>
                 <ListGroup as="ul">
@@ -71,6 +83,7 @@ export default class VisualizzazioneListaPersonale extends React.Component {
                 <Button href="/gestionePersonale/InserimentoPersonale" className="btn-block btn-primary">Inserisci un nuovo
                     membro</Button>
             </Card>
+            </div>
         )
     }
 }
