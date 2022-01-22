@@ -49,7 +49,6 @@
 .closeButton {
     background: linear-gradient(350deg, #3f6fc2 0%, #1e3b70 64%) !important;
     border: none;
-    margin-top: 10%;
 }
 
 .closeButton:hover {
