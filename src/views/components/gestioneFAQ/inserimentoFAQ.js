@@ -4,6 +4,7 @@ import axios from "axios";
 import Popup from "../App/successPopUp";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import "../../styles/gestioneFAQ/faqCSS.css"
+import FailurePopUp from "../App/failurePopUp";
 
 
 export default class InserimentoFAQ extends React.Component {
@@ -16,6 +17,7 @@ export default class InserimentoFAQ extends React.Component {
             domanda:'',
             risposta:'',
             popUp: false,
+            failurePopUp:false,
             redirect:false,
             error:false
         }
@@ -26,8 +28,13 @@ export default class InserimentoFAQ extends React.Component {
         this.onChangeRisposta = this.onChangeRisposta.bind(this)
         this.errorHandler = this.errorHandler.bind(this)
         this.closePopUp = this.closePopUp.bind(this)
+        this.closeFailurePopUp= this.closeFailurePopUp.bind(this)
     }
 
+    closeFailurePopUp(){
+        this.setState({failurePopUp: false})
+        window.location.reload()
+    }
     componentDidMount() {
         if(!localStorage.getItem("email"))
             this.setState({error:400})
@@ -103,7 +110,7 @@ export default class InserimentoFAQ extends React.Component {
                     this.setState({popUp: true})
                 }
                 else if (response.data.message === false) {
-                    this.errorHandler({name:"errorFAQ",message:"Titolo della FAQ già presente"})
+                    this.setState({failurePopUp:true})
                 }
                 else if (response.data.message != true)
                     console.log(response.data.message)
@@ -129,7 +136,7 @@ export default class InserimentoFAQ extends React.Component {
             <div id="root">
                  {/* Se popUp (boolean) è true */}
                  {this.state.popUp && <Popup message="Inserimento avvenuto con successo!" handleClose={this.closePopUp}/>}
-
+                 {this.state.failurePopUp && <FailurePopUp message="Impossibile inserire la FAQ, è già presente nel database." handleClose={this.closeFailurePopUp}/>}
                 <Card className="inserisciFAQcontainer mx-auto col-xl-7 justify-content-center text-center">
                     <h1>Inserisci una nuova FAQ</h1>
                     <Form onSubmit={this.handleSubmit}>
@@ -148,10 +155,6 @@ export default class InserimentoFAQ extends React.Component {
                             <Button  className="submitButton" variant="primary" type="submit">
                                 INSERISCI
                             </Button>
-                        <Form.Group id="errorFAQ" as={Row}>
-                            <Form.Label></Form.Label>
-                            <Form.Label></Form.Label>
-                        </Form.Group>
                     </Form>
                 </Card>
             </div>
