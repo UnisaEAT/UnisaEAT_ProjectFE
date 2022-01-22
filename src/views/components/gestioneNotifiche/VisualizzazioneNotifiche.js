@@ -8,11 +8,10 @@ export default function VisualizzazioneNotifiche() {
     const [activeMenu, setActiveMenu] = useState('main');
 
     useEffect(() => {
-        axios.post('http://localhost:8080/api/notifiche/visualizzaLista', {reciverEmail: localStorage.getItem("email")})
+        axios.post('http://localhost:8080/api/notifiche/visualizzaLista', {email: localStorage.getItem("email")})
             .then(response => {
-
                 setNotifiche(response.data)
-                console.log("post" + notifiche)
+                console.log("post" + response.data)
             })
             .catch((error) => {
                 console.log(error);

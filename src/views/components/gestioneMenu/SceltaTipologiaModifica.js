@@ -33,7 +33,7 @@ export default class SceltaTipologiaModifica extends React.Component {
         return (
             <div id="root" className="rootContainer">
                 <h1 className="h1Style">Scegli la tipologia del Menu da modificare</h1>
-                <div className="tipologiaContainer">
+                <div className="tipologiaContainer mt-4">
                 <Form>
                     <Form.Select size="lg" onChange={e => this.setState({ value: e.target.value })} type="text">
                         <option value="pranzo">Pranzo</option>
