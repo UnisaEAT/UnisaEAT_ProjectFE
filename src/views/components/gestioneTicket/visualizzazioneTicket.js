@@ -66,6 +66,7 @@ export default class VisualizzazioneTicket extends React.Component {
             )
         }
        else if(localStorage.getItem("ruolo")==="admin"){ //se l'utente loggato è un admin può visualizzare i ticket(cambiare in ===)
+           if(this.state.ticket.length>0)
             return (
 
                 <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
@@ -98,8 +99,17 @@ export default class VisualizzazioneTicket extends React.Component {
                     <br></br>
                 </Card>
             )
+           else
+               return(
+                   <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
+                       <h1 className="h1">Lista Ticket</h1>
+                       <h3 className="mt-5">Nessun ticket disponibile</h3>
+                       <br></br>
+                   </Card>
+               )
         }
-        else return(
+        else if(this.state.ticket.length>0)
+            return(
            <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
                <h1 className="h1">Lista Ticket</h1>
                <table className="lo-table mt-4">
@@ -129,5 +139,13 @@ export default class VisualizzazioneTicket extends React.Component {
                <br></br>
            </Card>
         )
+        else
+            return(
+                <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
+                    <h1 className="h1">Lista Ticket</h1>
+                    <h3 className="mt-5">Nessun ticket inviato</h3>
+                    <br></br>
+                </Card>
+            )
     }
 }

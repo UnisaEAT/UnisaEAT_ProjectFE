@@ -14,11 +14,12 @@
 .loginContainer
 {
     margin-bottom: 10% !important;
+    margin-top: 5% !important;
 }
 
 .wrapper {
      max-width: 600px;
-     margin-top: 8% !important;
+     margin-top: 8% ;
      min-height: 250px;
      background-color: #ffffff27;
      border-top: 2px solid #ffffff6e;

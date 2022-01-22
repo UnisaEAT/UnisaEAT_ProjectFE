@@ -75,7 +75,7 @@ export function Footer() {
                         <img className="mx-3" src={instagramIcon} width="30px"/>
                         <img className="mx-3" src={facebookIcon} width="30px"/>
                         <img className="mx-3" src={twitterIcon} width="30px"/>
-                        <img className="mx-3" src={githubIcon} width="30px"/>
+                        <a href="https://github.com/UnisaEAT"><img className="mx-3" src={githubIcon} width="30px"/></a>
                     </span>
 
                 </div>

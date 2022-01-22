@@ -111,7 +111,7 @@ export default class SceltaPasti extends React.Component {
             let error = document.createElement('div')
             error.id="errore"
             error.textContent = errorText
-            error.style = "font-width:800;margin-top:80px;text-align:center;font-size:25px;margin-bottom:5%"
+            error.style = "font-width:800;margin-top:80px;text-align:center;font-size:25px;margin-bottom:10%"
 
             parent.appendChild(error)
         }
