@@ -75,7 +75,7 @@ export default function VisualizzazioneNotifiche() {
         return (
             <div className="dropdownMenu">
                 <div className="menu">
-                    <p className="nessunaNotifica">Nessuna notifica per te</p>
+                    <p className="nessunaNotifica">Nessuna notifica.</p>
                 </div>
             </div>
         )

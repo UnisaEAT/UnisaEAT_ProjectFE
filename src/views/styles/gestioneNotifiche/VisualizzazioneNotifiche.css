@@ -19,7 +19,9 @@
 }
 
 .nessunaNotifica{
+    text-transform: uppercase;
     text-align: center;
+    margin-bottom: 0;
 }
 .dropdownMenu {
     position: absolute;

@@ -1,13 +1,10 @@
 import React from 'react'
 import "../../styles/AppStyle/Footer.css"
 import logoUnisa from "../../assets/logo_unisa.png"
-import visaIcon from "../../assets/visa-icon.png"
-import masterCardIcon from "../../assets/mastercard-icon.png"
 import instagramIcon from "../../assets/instagram.png"
 import facebookIcon from "../../assets/facebook.png"
 import twitterIcon from "../../assets/twitter.png"
 import githubIcon from "../../assets/github.png"
-import {bg} from "timeago.js/lib/lang";
 export function Footer() {
     return (
         <footer className="bg-white">
@@ -57,10 +54,13 @@ export function Footer() {
                     <div className="mx-5 col-lg-2 col-md-6 mb-4 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Domande frequenti</h6>
                         <ul className="list-unstyled mb-0">
-                            <li className="text-grey"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come prenotare un pasto</a></li>
-                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come richiedere il tesserino</a></li>
-                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare ADISU</a></li>
-                            <li className="text-grey mt-3"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare un admin</a></li>
+                            <li className="text-grey"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come visualizzare il saldo del Tesserino</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come visualizzare il menù giornaliero</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come compilare un ticket</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come prenotare un pasto</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come richiedere il tesserino</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare un personale ADISU</a></li>
+                            <li className="text-grey mt-2"><a href="/gestioneFAQ/visualizzazioneFAQ" className="text-grey text-decoration-none">Come contattare un admin</a></li>
                         </ul>
                     </div>
 
