@@ -79,6 +79,7 @@ export class VisualizzazioneMenu extends React.Component {
                 <section className="menu-section">
                 <div>
                     <h1 className="home_title">Il Menu del giorno</h1>
+                    <h5 className="home_title_2">Scegli la tipologia del menù per visualizzarlo.</h5>
                     <div className="underLine"/>
                 </div>
                 <Categorie filterItems={this.filterItems} categorie={categorie}/>
