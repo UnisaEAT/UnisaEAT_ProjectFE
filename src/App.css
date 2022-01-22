@@ -88,3 +88,9 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.my-15
+{
+    margin-top: 10% !important;
+    margin-bottom: 15% !important;
+}

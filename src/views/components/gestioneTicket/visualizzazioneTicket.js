@@ -112,7 +112,7 @@ export default class VisualizzazioneTicket extends React.Component {
             return(
            <Card className="my-10 mx-auto col-xl-7 justify-content-center text-center ticketListContainer">
                <h1 className="h1">Lista Ticket</h1>
-               <table className="lo-table mt-4">
+               <table className="lo-table mt-5 mb-5">
                    <tbody>
                    <tr className="lo-rowInfo ticketTH">
                        <th>Titolo</th>
@@ -136,7 +136,6 @@ export default class VisualizzazioneTicket extends React.Component {
 
                    }})}
                </table>
-               <br></br>
            </Card>
         )
         else

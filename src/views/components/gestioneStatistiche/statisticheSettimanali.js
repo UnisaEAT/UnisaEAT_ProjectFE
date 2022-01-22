@@ -238,7 +238,7 @@ export default class StatisticheSettimanali extends React.Component {
             return (
                 <div className="ss-mainContainer">
                     <div className="ss-selectWeekContainer">
-                        <h5>Seleziona una settimana di cui visualizzare le statistiche </h5>
+                        <h5>Statistiche settimanali dei pasti acquistati</h5>
                         <FormSelect className="ss-selectInput" onChange={this.handleChangeWeek}>
                             {this.state.statistiche.map((statistica,i) => (
                                 <option key={i} value={JSON.stringify(statistica)}>{statistica.dataInizio}</option>
@@ -256,7 +256,7 @@ export default class StatisticheSettimanali extends React.Component {
                     )
         return (
             <div className="ss-selectWeekContainerStarting">
-                <h4>Seleziona una settimana di cui visualizzare le statistiche </h4>
+                <h4>Statistiche settimanali dei pasti acquistati </h4>
                 <FormSelect className="mt-4 ss-selectInput" onChange={this.handleChangeWeek} defaultValue="">
                     <option value="" disabled>
                         Seleziona una settimana
