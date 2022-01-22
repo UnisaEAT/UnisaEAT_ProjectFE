@@ -77,10 +77,8 @@ export class InserimentoMenu extends React.Component {
                 .then(response => {
                     console.log(response.data)
                     if (response.data.message === true) {
-                        console.log("GOOD")
                         this.setState({popUp: true})
                     } else {
-                        console.log("BAD")
                         this.setState({failurePopUp: true})
                     }
                 })

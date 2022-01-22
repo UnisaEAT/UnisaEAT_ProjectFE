@@ -67,9 +67,11 @@ export class ModificaMenu extends React.Component {
                 pasti: this.state.ritornoPasti
             })
                 .then(response => {
-                    if (response.data.message == true) {
+                    if (response.data.message === true) {
+                        console.log("ciao")
                         this.setState({popUp: true})
                     } else {
+                        console.log("ciaoMonello")
                         this.setState({failurePopUp: true})
                     }
                 })

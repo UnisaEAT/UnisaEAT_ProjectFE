@@ -30,7 +30,7 @@ function Notifiche(props) {
     const [notifiche, setNotifiche] =useState([])
     
     useEffect(() =>{
-        axios.post('http://localhost:8080/api/notifiche/visualizzaLista',{reciverEmail: localStorage.getItem("email")})
+        axios.post('http://localhost:8080/api/notifiche/visualizzaLista',{email: localStorage.getItem("email")})
             .then(response => {
 
                 setNotifiche(response.data)

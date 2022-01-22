@@ -26,9 +26,6 @@ function Homepage() {
                         height="50%"
                         alt="First slide"
                     />
-                    <Carousel.Caption>
-                        <h3>Vivi il campus</h3>
-                    </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className="carouselInnerContainer">
                     <Image
