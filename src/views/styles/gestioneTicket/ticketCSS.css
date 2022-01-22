@@ -38,6 +38,13 @@
     text-align: left!important;
 }
 
+.ticketTDTitolo
+{
+    width: 50%;
+    text-align: left!important;
+}
+
+
 .ticketButton
 {
     text-align: right!important;

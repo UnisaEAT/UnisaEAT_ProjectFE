@@ -2,6 +2,11 @@
 {
     position: fixed; bottom:0; left:0; right:0;
     z-index: 3;
+    pointer-events: none
+}
+.c-chatContainer *
+{
+    pointer-events: all
 }
 
 .c-showChatButton
@@ -16,6 +21,7 @@
     padding: 50p;
     margin: 20px;
     cursor: pointer;
+    pointer-events: all;
 }
 .c-upperContainer
 {

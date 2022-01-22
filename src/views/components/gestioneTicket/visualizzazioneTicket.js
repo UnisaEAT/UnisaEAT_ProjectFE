@@ -106,7 +106,6 @@ export default class VisualizzazioneTicket extends React.Component {
                    <tbody>
                    <tr className="lo-rowInfo ticketTH">
                        <th>Titolo</th>
-                       <th>Utente</th>
                        <th>Data</th>
                        <th></th>
                    </tr>
@@ -116,8 +115,7 @@ export default class VisualizzazioneTicket extends React.Component {
                        if(oggetto.email===localStorage.getItem("email")){
                            return(
                            <tr key={i} className="lo-rowData ">
-                               <td className="ticketTD">{oggetto.titolo}</td>
-                               <td className="ticketTD">{oggetto.email}</td>
+                               <td className="ticketTDTitolo">{oggetto.titolo}</td>
                                <td className="ticketTD">{moment(oggetto.date).format('DD MMM, YYYY')}</td>
                                <td className="gt-buttonTd">
                                    <Button className="lo-dettagliButton" onClick={(e) => {
