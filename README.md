@@ -25,25 +25,25 @@ eseguire correttamente il sistema.
 
 #### Clone UnisaEAT project ####
 1. Aprire il terminale
-2. Se necessario, eseguire il comando sudo apt install git
-3. Eseguire il comando: git clone https://github.com/UnisaEAT/UnisaEAT_ProjectBE
-4. Eseguire il comando: git clone https://github.com/UnisaEAT/UnisaEAT_ProjectFE
+2. Se necessario, eseguire il comando `sudo apt install git`
+3. Eseguire il comando: `git clone https://github.com/UnisaEAT/UnisaEAT_ProjectBE`
+4. Eseguire il comando: `git clone https://github.com/UnisaEAT/UnisaEAT_ProjectFE`
 
 
 #### MongoDB database creation: ####
 
 1. Aprire il terminale
 2. Spostarsi nella directory 'UnisaEAT_ProjectBE'.
-3. Eseguire il comando: source installdb.sh
+3. Eseguire il comando: `source installdb.sh`
 
 #### System package installation: ####
-1. Eseguire il comando: npm install nella directory 'UnisaEAT_ProjectBE'
-2. Eseguire il commando: npm install nella directory 'UnisaEAT_ProjectFE'
+1. Eseguire il comando: `npm install` nella directory 'UnisaEAT_ProjectBE'
+2. Eseguire il commando: `npm install` nella directory 'UnisaEAT_ProjectFE'
 
 #### Node.js server running: ####
 
-1. Eseguire il comando: npm start nella directory 'UnisaEAT_ProjectBE'
-2. Eseguire il commando: npm start nella directory 'UnisaEAT_ProjectFE'
+1. Eseguire il comando: `npm start` nella directory 'UnisaEAT_ProjectBE'
+2. Eseguire il commando: `npm start` nella directory 'UnisaEAT_ProjectFE'
 
 
 #### Web addresses to launch the software and to control system: ####
@@ -57,10 +57,10 @@ eseguire correttamente il sistema.
 
 ## Code Style: ##
 1. Spostarsi nella directory clonata del progetto 'UnisaEAT_ProjectBE'
-2. Eseguire i comandi: npm install standard –save-dev
-3. npm install -g npx
-4. npx standard pathFile
-5. Se si desidera formattare automaticamente il codice eseguire npx standard pathFile -fix. È possibile eseguire espressioni di percorso complesse, per maggiori informazioni consultare: https://github.com/standard/standard
+2. Eseguire i comandi: `npm install standard –save-dev`
+3. `npm install -g npx`
+4. `npx standard pathFile`
+5. Se si desidera formattare automaticamente il codice eseguire `npx standard pathFile -fix`. È possibile eseguire espressioni di percorso complesse, per maggiori informazioni consultare: https://github.com/standard/standard
 6. Ripetere le stesse operazioni spostandosi nella directory 'UnisaEAT_ProjectFE'
 
 ## Selenium Extension Install: ##
@@ -74,7 +74,7 @@ eseguire correttamente il sistema.
 
 1. Aprire il terminale
 2. Spostarsi nella directory 'UnisaEAT_ProjectBE'
-3. Eseguire il commando npm test 
+3. Eseguire il commando `npm test`
 
 ## System Testing: ##
 
