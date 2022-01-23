@@ -3,7 +3,7 @@ import '../../styles/gestioneMenu/InserimentoMenu.css'
 import axios from 'axios'
 import Categorie from './Categorie'
 import SuccessPopUp from '../App/successPopUp'
-import { Button } from 'react-bootstrap'
+import {Button, OverlayTrigger, Popover} from 'react-bootstrap'
 import FailurePopUp from '../App/failurePopUp'
 
 export class ModificaMenu extends React.Component {
@@ -82,6 +82,13 @@ export class ModificaMenu extends React.Component {
   imageNameTextTransform (nomePasto) {
     return nomePasto.split(' ').join('_').toLowerCase()
   }
+  onMouseEnterElement (e) {
+    if (document.getElementById(e).style.borderColor == 'black') { document.getElementById(e).style.borderColor = 'black' } else { document.getElementById(e).style = 'box-shadow: 0px 4px 16px rgb(0 0 0 / 30%);background:#F0F0F0' }
+  }
+
+  onMouseLeaveElement (e) {
+    if (!(document.getElementById(e).style.borderColor == 'black')) { document.getElementById(e).style = 'background:white' } else if (document.getElementById(e).style.borderColor == 'grey') { document.getElementById(e).style = 'background:white' }
+  }
 
   render () {
     const categorie = ['primo', 'secondo', 'contorno', 'extra']
@@ -100,8 +107,17 @@ export class ModificaMenu extends React.Component {
             {this.state.item.map((menuItem, i) => {
               return (
                 <article key={i} className='menu-item'>
-                  <img onClick={() => this.modificaPasto(menuItem)} src={'../immaginiPasti/' + this.imageNameTextTransform(menuItem.nome) + '.jpg'} alt={menuItem.categoria} className='photo cursor-pointer' />
-                  <div className='item-info'>
+                  <OverlayTrigger
+                      trigger="click" overlay={
+                    <Popover placement="top">
+                      <Popover.Header as="h3">Pasto scelto!</Popover.Header>
+                      <Popover.Body>
+                        Clicca su "Modifica menu" per modificare nel DB il menu.
+                      </Popover.Body>
+                    </Popover>}>
+                  <img id={i} onMouseEnter={()=>this.onMouseEnterElement(i)} onMouseLeave={()=>this.onMouseLeaveElement(i)} onClick={() => this.modificaPasto(menuItem)} src={'../immaginiPasti/' + this.imageNameTextTransform(menuItem.nome) + '.jpg'} alt={menuItem.categoria} className='photo cursor-pointer' />
+                  </OverlayTrigger>
+                    <div className='item-info'>
                     <header>
                       <h3 className='title'>{menuItem.nome}</h3>
                     </header>
