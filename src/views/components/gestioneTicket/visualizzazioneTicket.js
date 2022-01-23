@@ -73,18 +73,18 @@ export default class VisualizzazioneTicket extends React.Component {
               {this.state.ticket.map((oggetto, i) => {
                 return (
                   <tr key={i} className='lo-rowData '>
-             <td className='ticketTD'>{oggetto.titolo}</td>
-             <td className='ticketTD'>{oggetto.email}</td>
-             <td className='ticketTD'>{moment(oggetto.date).format('DD MMM, YYYY')}</td>
-             <td className='gt-buttonTd'>
-                    <Button
+                    <td className='ticketTD'>{oggetto.titolo}</td>
+                    <td className='ticketTD'>{oggetto.email}</td>
+                    <td className='ticketTD'>{moment(oggetto.date).format('DD MMM, YYYY')}</td>
+                    <td className='gt-buttonTd'>
+                      <Button
                         className='lo-dettagliButton' onClick={(e) => {
-                              this.handleRisoluzioneTicket(e, oggetto)
-                            }}
+                          this.handleRisoluzioneTicket(e, oggetto)
+                        }}
                       >Visualizza
                       </Button>
-                  </td>
-           </tr>
+                    </td>
+                  </tr>
                 )
               })}
             </table>
@@ -117,17 +117,17 @@ export default class VisualizzazioneTicket extends React.Component {
               if (oggetto.email === localStorage.getItem('email')) {
                 return (
                   <tr key={i} className='lo-rowData '>
-               <td className='ticketTDTitolo'>{oggetto.titolo}</td>
-               <td className='ticketTD'>{moment(oggetto.date).format('DD MMM, YYYY')}</td>
-               <td className='gt-buttonTd'>
-                    <Button
+                    <td className='ticketTDTitolo'>{oggetto.titolo}</td>
+                    <td className='ticketTD'>{moment(oggetto.date).format('DD MMM, YYYY')}</td>
+                    <td className='gt-buttonTd'>
+                      <Button
                         className='lo-dettagliButton' onClick={(e) => {
-                                this.handleRisoluzioneTicket(e, oggetto)
-                              }}
+                          this.handleRisoluzioneTicket(e, oggetto)
+                        }}
                       >Visualizza
                       </Button>
-                  </td>
-             </tr>
+                    </td>
+                  </tr>
                 )
               }
             })}

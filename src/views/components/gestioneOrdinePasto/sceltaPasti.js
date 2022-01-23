@@ -425,14 +425,14 @@ export default class SceltaPasti extends React.Component {
                                         <div className='sp-leftBlock'>
                                           <div className='sp-insideBlockElement'>
                                             <div className='sp-elementTitle'>
-           {pasto.nome}
-         </div>
+                                              {pasto.nome}
+                                            </div>
                                             <div className='sp-elementDescription'>
-           {pasto.descrizione}
-         </div>
+                                              {pasto.descrizione}
+                                            </div>
                                             <div className='sp-elementIngredients'>
-           {pasto.ingredienti}
-         </div>
+                                              {pasto.ingredienti}
+                                            </div>
                                           </div>
                                         </div>
                                         <div className='sp-rightBlock'>
@@ -455,14 +455,14 @@ export default class SceltaPasti extends React.Component {
                                         <div className='sp-leftBlock'>
                                           <div className='sp-insideBlockElement'>
                                             <div className='sp-elementTitle'>
-           {pasto.nome}
-         </div>
+                                              {pasto.nome}
+                                            </div>
                                             <div className='sp-elementDescription'>
-           {pasto.descrizione}
-         </div>
+                                              {pasto.descrizione}
+                                            </div>
                                             <div className='sp-elementIngredients'>
-           {pasto.ingredienti}
-         </div>
+                                              {pasto.ingredienti}
+                                            </div>
                                           </div>
                                         </div>
                                         <div className='sp-rightBlock'>
@@ -485,14 +485,14 @@ export default class SceltaPasti extends React.Component {
                                         <div className='sp-leftBlock'>
                                           <div className='sp-insideBlockElement'>
                                             <div className='sp-elementTitle'>
-           {pasto.nome}
-         </div>
+                                              {pasto.nome}
+                                            </div>
                                             <div className='sp-elementDescription'>
-           {pasto.descrizione}
-         </div>
+                                              {pasto.descrizione}
+                                            </div>
                                             <div className='sp-elementIngredients'>
-           {pasto.ingredienti}
-         </div>
+                                              {pasto.ingredienti}
+                                            </div>
                                           </div>
                                         </div>
                                         <div className='sp-rightBlock'>
@@ -515,14 +515,14 @@ export default class SceltaPasti extends React.Component {
                                         <div className='sp-leftBlock'>
                                           <div className='sp-insideBlockElement'>
                                             <div className='sp-elementTitle'>
-           {pasto.nome}
-         </div>
+                                              {pasto.nome}
+                                            </div>
                                             <div className='sp-elementDescription'>
-           {pasto.descrizione}
-         </div>
+                                              {pasto.descrizione}
+                                            </div>
                                             <div className='sp-elementIngredients'>
-           {pasto.ingredienti}
-         </div>
+                                              {pasto.ingredienti}
+                                            </div>
                                           </div>
                                         </div>
                                         <div className='sp-rightBlock'>

@@ -244,86 +244,86 @@ export default class RichiestaTesserino extends Component {
               <h3>Dati anagrafici</h3>
               <Row className='mb-3'>
                 <Form.Group id='nome' as={Col}>
-             <Form.Label>Nome</Form.Label>
-             <Form.Control type='text' id='nome' name='nome' onChange={this.onChangeNome} placeholder='Inserisci il tuo nome' />
-           </Form.Group>
+                  <Form.Label>Nome</Form.Label>
+                  <Form.Control type='text' id='nome' name='nome' onChange={this.onChangeNome} placeholder='Inserisci il tuo nome' />
+                </Form.Group>
 
                 <Form.Group id='cognome' as={Col}>
-             <Form.Label>Cognome</Form.Label>
-             <Form.Control type='text' id='cognome' name='cognome' onChange={this.onChangeCognome} placeholder='Inserisci il tuo cognome' />
-           </Form.Group>
+                  <Form.Label>Cognome</Form.Label>
+                  <Form.Control type='text' id='cognome' name='cognome' onChange={this.onChangeCognome} placeholder='Inserisci il tuo cognome' />
+                </Form.Group>
               </Row>
 
               <Row className='mb-3'>
                 <Form.Group id='dataDiNascita' as={Col}>
-             <Form.Label>Data di nascita</Form.Label>
-             <Form.Control type='text' id='dataDiNascita' name='dataDiNascita' onChange={this.onChangeDataDiNascita} placeholder='dd/mm/aaaa' />
-           </Form.Group>
+                  <Form.Label>Data di nascita</Form.Label>
+                  <Form.Control type='text' id='dataDiNascita' name='dataDiNascita' onChange={this.onChangeDataDiNascita} placeholder='dd/mm/aaaa' />
+                </Form.Group>
 
                 <Form.Group id='comuneDiNascita' as={Col}>
-             <Form.Label>Comune di nascita</Form.Label>
-             <Form.Control type='text' id='comuneDiNascita' name='comuneDiNascita' onChange={this.onChangeComuneDiNascita} />
-           </Form.Group>
+                  <Form.Label>Comune di nascita</Form.Label>
+                  <Form.Control type='text' id='comuneDiNascita' name='comuneDiNascita' onChange={this.onChangeComuneDiNascita} />
+                </Form.Group>
 
                 <Form.Group id='provinciaDiNascita' as={Col}>
-             <Form.Label>Provincia di nascita</Form.Label>
-             <Form.Control type='text' id='provinciaDiNascita' name='provinciaDiNascita' onChange={this.onChangeProvinciaDiNascita} />
-           </Form.Group>
+                  <Form.Label>Provincia di nascita</Form.Label>
+                  <Form.Control type='text' id='provinciaDiNascita' name='provinciaDiNascita' onChange={this.onChangeProvinciaDiNascita} />
+                </Form.Group>
 
                 <Form.Group id='cittadinanza' as={Col}>
-             <Form.Label>Cittadinanza</Form.Label>
-             <Form.Control type='text' id='cittadinanza' name='cittadinanza' onChange={this.onChangeCittadinanza} />
-           </Form.Group>
+                  <Form.Label>Cittadinanza</Form.Label>
+                  <Form.Control type='text' id='cittadinanza' name='cittadinanza' onChange={this.onChangeCittadinanza} />
+                </Form.Group>
 
               </Row>
               <br />
               <h3>Residenza</h3>
               <Row className='mb-3'>
                 <Form.Group id='indirizzo' as={Col}>
-             <Form.Label>Indirizzo</Form.Label>
-             <Form.Control type='text' id='indirizzo' name='indirizzo' onChange={this.onChangeIndirizzo} placeholder='Inserisci il tuo indirizzo' />
-           </Form.Group>
+                  <Form.Label>Indirizzo</Form.Label>
+                  <Form.Control type='text' id='indirizzo' name='indirizzo' onChange={this.onChangeIndirizzo} placeholder='Inserisci il tuo indirizzo' />
+                </Form.Group>
               </Row>
               <Row className='mb-3'>
                 <Form.Group id='provincia' as={Col}>
-             <Form.Label>Provincia</Form.Label>
-             <Form.Control type='text' id='provincia' name='provincia' onChange={this.onChangeProvincia} />
-           </Form.Group>
+                  <Form.Label>Provincia</Form.Label>
+                  <Form.Control type='text' id='provincia' name='provincia' onChange={this.onChangeProvincia} />
+                </Form.Group>
 
                 <Form.Group id='comune' as={Col}>
-             <Form.Label>Comune</Form.Label>
-             <Form.Control type='text' id='comune' name='comune' onChange={this.onChangeComune} />
-           </Form.Group>
+                  <Form.Label>Comune</Form.Label>
+                  <Form.Control type='text' id='comune' name='comune' onChange={this.onChangeComune} />
+                </Form.Group>
 
                 <Form.Group id='cap' as={Col}>
-             <Form.Label>CAP</Form.Label>
-             <Form.Control type='number' id='cap' name='cap' onChange={this.onChangeCap} />
-           </Form.Group>
+                  <Form.Label>CAP</Form.Label>
+                  <Form.Control type='number' id='cap' name='cap' onChange={this.onChangeCap} />
+                </Form.Group>
               </Row>
               <br />
               <h3>Recapiti</h3>
               <Row className='mb-3'>
                 <Form.Group id='telefono' as={Col}>
-             <Form.Label>Cellulare</Form.Label>
-             <Form.Control type='number' id='telefono' name='telefono' onChange={this.onChangeTelefono} placeholder='Inserisci il tuo numero di cellulare' />
-           </Form.Group>
+                  <Form.Label>Cellulare</Form.Label>
+                  <Form.Control type='number' id='telefono' name='telefono' onChange={this.onChangeTelefono} placeholder='Inserisci il tuo numero di cellulare' />
+                </Form.Group>
               </Row>
               <Row className='mb-3'>
                 <Form.Group id='email' as={Col}>
-             <Form.Label>Email</Form.Label>
-             <Form.Control type='text' id='email' name='email' onChange={this.onChangeEmail} placeholder='Inserisci la tua email' />
-           </Form.Group>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type='text' id='email' name='email' onChange={this.onChangeEmail} placeholder='Inserisci la tua email' />
+                </Form.Group>
               </Row>
               <Row className='mb-3'>
                 <Form.Group id='confermaEmail' as={Col}>
-             <Form.Label>Conferma email</Form.Label>
-             <Form.Control type='text' id='confermaEmail' name='confermaEmail' onChange={this.onChangeConfermaEmail} placeholder='Reinserisci la tua email' />
-           </Form.Group>
+                  <Form.Label>Conferma email</Form.Label>
+                  <Form.Control type='text' id='confermaEmail' name='confermaEmail' onChange={this.onChangeConfermaEmail} placeholder='Reinserisci la tua email' />
+                </Form.Group>
               </Row>
 
               <Button className='submitButton' variant='primary' type='submit'>
                 Richiedi tesserino
-                            </Button>
+              </Button>
             </Form>
           </div>
         </div>

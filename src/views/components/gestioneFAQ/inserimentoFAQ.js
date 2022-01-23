@@ -126,19 +126,19 @@ export default class InserimentoFAQ extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Row className='mb-3'>
                 <Form.Group id='domanda' as={Row}>
-             <Form.Label>Domanda</Form.Label>
-             <Form.Control type='text' id='domanda' name='domanda' onChange={this.onChangeDomanda} placeholder='Inserisci la domanda' />
-           </Form.Group>
+                  <Form.Label>Domanda</Form.Label>
+                  <Form.Control type='text' id='domanda' name='domanda' onChange={this.onChangeDomanda} placeholder='Inserisci la domanda' />
+                </Form.Group>
 
                 <Form.Group id='risposta' as={Row}>
-             <Form.Label>Risposta</Form.Label>
-             <Form.Control type='text' id='risposta' name='risposta' onChange={this.onChangeRisposta} placeholder='Inserisci la risposta' />
-           </Form.Group>
+                  <Form.Label>Risposta</Form.Label>
+                  <Form.Control type='text' id='risposta' name='risposta' onChange={this.onChangeRisposta} placeholder='Inserisci la risposta' />
+                </Form.Group>
               </Row>
 
               <Button className='submitButton' variant='primary' type='submit'>
                 INSERISCI
-                            </Button>
+              </Button>
             </Form>
           </Card>
         </div>

@@ -109,7 +109,7 @@ export class InserimentoMenu extends React.Component {
                   <div className='item-info'>
                     <header>
                       <h3 className='title'>{menuItem.nome}
-                          </h3>
+                      </h3>
                     </header>
                     <p className='item-text2'>{menuItem.descrizione}</p>
                     <p>Ingredienti:{menuItem.ingredienti}</p>
