@@ -102,9 +102,9 @@ export default class RisoluzioneTicket extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Row className='mb-3 mt-5'>
                 <Form.Group id='soluzione' as={Col}>
-             <Form.Label>Soluzione</Form.Label>
-             <Form.Control className='inputSoluzioneTicket' as='textarea' rows={4} id='soluzione' name='soluzione' onChange={this.onChangeSoluzione} placeholder='Inserisci una soluzione' />
-           </Form.Group>
+                  <Form.Label>Soluzione</Form.Label>
+                  <Form.Control className='inputSoluzioneTicket' as='textarea' rows={4} id='soluzione' name='soluzione' onChange={this.onChangeSoluzione} placeholder='Inserisci una soluzione' />
+                </Form.Group>
               </Row>
 
               <Button className='bottone' type='submit'>Risolvi</Button>

@@ -318,15 +318,15 @@ function Chat () {
             <div className='row rounded-lg overflow-hidden shadow'>
 
               <div className='col-5 px-0'>
-             <div className='bg-white'>
+                <div className='bg-white'>
 
-                <div className='bg-gray px-4 py-2 bg-light'>
+                  <div className='bg-gray px-4 py-2 bg-light'>
                     <p className='h5 mb-0 py-1'>Disponibili</p>
                   </div>
 
-                <div className='messages-box'>
+                  <div className='messages-box'>
                     <div className='list-group rounded-0'>
-                          {
+                      {
                                                 conversazioni.map((personale, i) => {
                                                   if (mittenteRuolo == 'personale adisu') {
                                                     return (
@@ -343,20 +343,19 @@ function Chat () {
                                                   }
                                                 })
                                             }
-                        </div>
+                    </div>
                   </div>
+                </div>
               </div>
-           </div>
-              {
-             <div className='col-7 px-0'>
+              <div className='col-7 px-0'>
                 <div className='c-upperContainer position-absolute bg-white'>
-                    <div className='c-upperContainerIn'>
-                          <span>{destinatarioName}</span>
-                          <img src={closeButton} onClick={onClickCloseChat} />
-                        </div>
+                  <div className='c-upperContainerIn'>
+                    <span>{destinatarioName}</span>
+                    <img src={closeButton} onClick={onClickCloseChat} />
                   </div>
+                </div>
                 <div id='testBox' className='px-4 py-5 chat-box bg-white'>
-                    {
+                  {
                                             messaggi.map((messaggio, i) => {
                                               if (conversazione === null || messaggio === '') {
                                                 const el = document.getElementById('containerInviaMessaggio')
@@ -398,23 +397,22 @@ function Chat () {
                                               }
                                             })
                                         }
-                  </div>
+                </div>
                 <form action='#' className='bg-light'>
-                    <div className='input-group' id='containerInviaMessaggio'>
-                          <input
-                              type='text' id='inputTextMessaggio' onChange={onChangeMessaggioDaInviare} placeholder='Type a message' aria-describedby='button-addon2'
-                              className='form-control rounded-0 border-0 py-2-2 bg-light'
-                            />
-                          <div className='input-group-append'>
-                              <i className='fa fa-paper-plane-o' />
-                              <button className='c-buttonSendMessage' id='button' type='submit' onClick={onSubmitInviaMessaggio}>
-                                  <img src={paperPlane} />
-                                </button>
-                            </div>
-                        </div>
-                  </form>
+                  <div className='input-group' id='containerInviaMessaggio'>
+                    <input
+                      type='text' id='inputTextMessaggio' onChange={onChangeMessaggioDaInviare} placeholder='Type a message' aria-describedby='button-addon2'
+                      className='form-control rounded-0 border-0 py-2-2 bg-light'
+                    />
+                    <div className='input-group-append'>
+                      <i className='fa fa-paper-plane-o' />
+                      <button className='c-buttonSendMessage' id='button' type='submit' onClick={onSubmitInviaMessaggio}>
+                        <img src={paperPlane} />
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-                            }
             </div>
           </div>
         </div>

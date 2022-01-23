@@ -45,7 +45,7 @@ export default class RimozionePersonale extends React.Component {
                     src='https://img.icons8.com/bubbles/100/000000/under-computer.png'
                     className='img-radius'
                     alt='User-Profile-Image'
-                                           />
+                                          />
                   </div>
                   <h6 className='f-w-600 text-uppercase'>{this.props.obj.nome} {this.props.obj.cognome}</h6>
                   <i className=' mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16' />

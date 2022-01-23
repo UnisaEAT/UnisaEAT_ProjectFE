@@ -55,16 +55,16 @@ export default class Profilo extends Component {
                       <div class='card-block'>
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI PERSONALI</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Email:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
-                                    <p class='m-b-10 f-w-600'>Nome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
-                                    <p class='m-b-10 f-w-600'>Cognome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
-                                  </div>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Email:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
+                            <p class='m-b-10 f-w-600'>Nome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
+                            <p class='m-b-10 f-w-600'>Cognome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
+                          </div>
 
-                              </div>
+                        </div>
                         <Button className='bottone' href='/gestioneProfilo/modificaPassword' type='submit'>Modifica Password</Button>
                       </div>
                     </div>
@@ -96,29 +96,29 @@ export default class Profilo extends Component {
                       <div class='card-block'>
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI ACCOUNT</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Email:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
-                                    <p class='m-b-10 f-w-600'>Nome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
-                                    <p class='m-b-10 f-w-600'>Cognome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Email:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
+                            <p class='m-b-10 f-w-600'>Nome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
+                            <p class='m-b-10 f-w-600'>Cognome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
 
-                                  </div>
+                          </div>
 
-                              </div><br />
+                        </div><br />
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI PERSONALI</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Data di nascita:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.dataDiNascita}</h6>
-                                    <p class='m-b-10 f-w-600'>Indirizzo:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.indirizzo}</h6>
-                                    <p class='m-b-10 f-w-600'>Numero di telefono:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.numeroTelefono}</h6>
-                                  </div>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Data di nascita:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.dataDiNascita}</h6>
+                            <p class='m-b-10 f-w-600'>Indirizzo:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.indirizzo}</h6>
+                            <p class='m-b-10 f-w-600'>Numero di telefono:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.numeroTelefono}</h6>
+                          </div>
 
-                              </div>
+                        </div>
                         <Button className='bottone' href='/gestioneProfilo/modificaPassword' type='submit'>Modifica Password</Button>
                       </div>
                     </div>
@@ -149,46 +149,46 @@ export default class Profilo extends Component {
                       <div class='card-block'>
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI ACCOUNT</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Email:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
-                                    <p class='m-b-10 f-w-600'>Nome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
-                                    <p class='m-b-10 f-w-600'>Cognome:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
-                                    <p class='m-b-10 f-w-600'>Numero di telefono:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.telefono}</h6>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Email:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.email}</h6>
+                            <p class='m-b-10 f-w-600'>Nome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.nome}</h6>
+                            <p class='m-b-10 f-w-600'>Cognome:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.cognome}</h6>
+                            <p class='m-b-10 f-w-600'>Numero di telefono:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.telefono}</h6>
 
-                                  </div>
+                          </div>
 
-                              </div><br />
+                        </div><br />
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI PERSONALI</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Data di nascita:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.dataDiNascita}</h6>
-                                    <p class='m-b-10 f-w-600'>Provincia di Nascita:</p>
-                                    <h6 class='text-muted f-w-400'> {oggetto.provinciaDiNascita}</h6>
-                                    <p class='m-b-10 f-w-600'>Cittadinanza:</p>
-                                    <h6 class='text-muted f-w-400'> {oggetto.cittadinanza}</h6>
-                                  </div>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Data di nascita:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.dataDiNascita}</h6>
+                            <p class='m-b-10 f-w-600'>Provincia di Nascita:</p>
+                            <h6 class='text-muted f-w-400'> {oggetto.provinciaDiNascita}</h6>
+                            <p class='m-b-10 f-w-600'>Cittadinanza:</p>
+                            <h6 class='text-muted f-w-400'> {oggetto.cittadinanza}</h6>
+                          </div>
 
-                              </div>
+                        </div>
                         <br />
                         <h5 class='m-b-20 p-b-5 b-b-default f-w-600'>INFORMAZIONI ABITATIVE</h5>
                         <div class='row'>
-                                <div class='col-sm-6'>
-                                    <p class='m-b-10 f-w-600'>Indirizzo:</p>
-                                    <h6 class='text-muted f-w-400'>{oggetto.indirizzo}</h6>
-                                    <p class='m-b-10 f-w-600'>Città:</p>
-                                    <h6 class='text-muted f-w-400'> {oggetto.citta}</h6>
-                                    <p class='m-b-10 f-w-600'>Provincia:</p>
-                                    <h6 class='text-muted f-w-400'> {oggetto.provincia}</h6>
-                                    <p class='m-b-10 f-w-600'>CAP:</p>
-                                    <h6 class='text-muted f-w-400'> {oggetto.cap}</h6>
-                                  </div>
+                          <div class='col-sm-6'>
+                            <p class='m-b-10 f-w-600'>Indirizzo:</p>
+                            <h6 class='text-muted f-w-400'>{oggetto.indirizzo}</h6>
+                            <p class='m-b-10 f-w-600'>Città:</p>
+                            <h6 class='text-muted f-w-400'> {oggetto.citta}</h6>
+                            <p class='m-b-10 f-w-600'>Provincia:</p>
+                            <h6 class='text-muted f-w-400'> {oggetto.provincia}</h6>
+                            <p class='m-b-10 f-w-600'>CAP:</p>
+                            <h6 class='text-muted f-w-400'> {oggetto.cap}</h6>
+                          </div>
 
-                              </div>
+                        </div>
                       </div>
                     </div>
                   </div>

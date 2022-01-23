@@ -85,25 +85,25 @@ export default class VisualizzazioneFAQ extends React.Component {
                       <div className='modificaFaqButtonContainer'>
                         <Button className='faqModificaButtons' onClick={() => this.rimozioneFAQ(oggetto)}>Rimuovi</Button>
                         <Button
-                                className='faqModificaButtons' onClick={(e) => {
-                                    this.handleModificaFAQ(e, oggetto)
-                                  }}
-                              >Modifica
-                              </Button>
+                          className='faqModificaButtons' onClick={(e) => {
+                            this.handleModificaFAQ(e, oggetto)
+                          }}
+                        >Modifica
+                        </Button>
                       </div>
                       <Row>
                         <div className='faqDomanda fw-bold'>
-                                <span className='FAQlabel'>Q.</span>
-                                <span className='FAQinfo'>{oggetto.domanda}
-                                  </span>
-                              </div>
+                          <span className='FAQlabel'>Q.</span>
+                          <span className='FAQinfo'>{oggetto.domanda}
+                          </span>
+                        </div>
                       </Row>
                       <Row>
                         <div className='faqRisposta fw-bold'>
-                                <span className='FAQlabel'>A.</span>
-                                <span className='FAQinfo'>{oggetto.risposta}
-                                  </span>
-                              </div>
+                          <span className='FAQlabel'>A.</span>
+                          <span className='FAQinfo'>{oggetto.risposta}
+                          </span>
+                        </div>
                       </Row>
 
                     </div>
@@ -126,24 +126,24 @@ export default class VisualizzazioneFAQ extends React.Component {
             {this.state.faq.map((oggetto, i) => {
               return (
                 <Col key={i} as='li' className='d-flex justify-content-between align-items-start itemStyle'>
-             <div className='sezioneFaq ms-2 me-auto'>
-                  <Row>
+                  <div className='sezioneFaq ms-2 me-auto'>
+                    <Row>
                       <div className='faqDomanda fw-bold'>
-                              <span className='FAQlabel'>Q.</span>
-                              <span className='FAQinfo'>{oggetto.domanda}
-                            </span>
-                            </div>
+                        <span className='FAQlabel'>Q.</span>
+                        <span className='FAQinfo'>{oggetto.domanda}
+                        </span>
+                      </div>
                     </Row>
-                  <Row>
+                    <Row>
                       <div className='faqRisposta fw-bold'>
-                              <span className='FAQlabel'>A.</span>
-                              <span className='FAQinfo'>{oggetto.risposta}
-                            </span>
-                            </div>
+                        <span className='FAQlabel'>A.</span>
+                        <span className='FAQinfo'>{oggetto.risposta}
+                        </span>
+                      </div>
                     </Row>
 
-                </div>
-           </Col>
+                  </div>
+                </Col>
               )
             })}
           </ListGroup>

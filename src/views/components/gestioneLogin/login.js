@@ -106,26 +106,26 @@ export default class Login extends Component {
               <Form className='test align-items-center' onSubmit={this.handleSubmit}>
                 <br />
                 <div className='form-group align-items-center' id='email'>
-             <div class='iconLogin'>
-                  <Image src={logoMail} width='30' />
+                  <div class='iconLogin'>
+                    <Image src={logoMail} width='30' />
+                  </div>
+                  <Form.Control
+                    id='email' className='form-control' type='text' name='email'
+                    onChange={this.onChangeEmail}
+                    placeholder='Inserisci la tua email'
+                  />
                 </div>
-             <Form.Control
-                  id='email' className='form-control' type='text' name='email'
-                  onChange={this.onChangeEmail}
-                  placeholder='Inserisci la tua email'
-                />
-           </div>
                 <div className='form-group align-items-center' id='password'>
-             <div class='iconLogin'> <Image src={logoPsw} width='30' /></div>
-             <Form.Control
-                  id='password' className='form-control' type='password'
-                  name='password' onChange={this.onChangePassword}
-                  placeholder='Inserisci la tua password'
-                />
-           </div>
+                  <div class='iconLogin'> <Image src={logoPsw} width='30' /></div>
+                  <Form.Control
+                    id='password' className='form-control' type='password'
+                    name='password' onChange={this.onChangePassword}
+                    placeholder='Inserisci la tua password'
+                  />
+                </div>
                 <Button className='bottoneLogin align-items-center' type='submit'>
-             LOGIN
-                                        </Button>
+                  LOGIN
+                </Button>
               </Form>
 
             </div>
