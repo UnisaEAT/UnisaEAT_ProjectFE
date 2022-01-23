@@ -6,7 +6,6 @@ import axios from 'axios'
 import FailurePopUp from '../App/failurePopUp'
 import SuccessPopUp from '../App/successPopUp'
 import {Button, ListGroup, OverlayTrigger, Popover} from 'react-bootstrap'
-import {AlertView} from "./AlertView";
 
 export class InserimentoMenu extends React.Component {
 
