@@ -1,3 +1,4 @@
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 # UnisaEAT Project
 Il sistema che si vuole realizzare ha come scopo la semplificazione e la velocizzazione delle funzionalità del servizio mensa UNISA, rendendole più agevoli sia per chi ci lavora sia per chi ne usufruisce. Il nostro obiettivo è stato la realizzazione di un sistema che permetta di avere una massima automazione per quanto riguarda l’intera gestione del tesserino mensa e dei pasti. Si vuole velocizzare la comunicazione tra Cliente e personale ADISU, ottimizzare la metodologia d’acquisto dei pasti, facilitare le mansioni dell’operatore Mensa nella distribuzione dei pasti e agevolare le funzioni gestionali dell’intero servizio. Il progetto UnisaEAT e suddiviso in due parti, la parte front-end e la parte back-end. La parte front-end è stata implementata utilizzando React, invece il back-end è stato implementato utilizzando Node.js e Express.js.
@@ -10,12 +11,12 @@ locale a scopo di sviluppo e test. Vedere la sezione “sviluppo” per sapere c
 
 ### Prerequisites
 Prima di tutto è necessario disporre di un computer con connessione a internet, per una corretta installazione del software.
-• Scaricare e installare il software di database “MongoDB”: https://bit.ly/2sOVMn8
-• Facoltativo - Scaricare e installare l'interfaccia grafica per Mongo “MongoDB Compass”:
+*	Scaricare e installare il software di database “MongoDB”: https://bit.ly/2sOVMn8
+*	Facoltativo - Scaricare e installare l'interfaccia grafica per Mongo “MongoDB Compass”:
 https://bit.ly/2PM0fzG
-• Scaricare e installare “Node.js”: https://nodejs.org/it/download
-• Si consiglia di scaricare l'IDE “Visual Studio Code”: https://bit.ly/34MfLQ 
-• Si consiglia di scaricare “Github Desktop”: https://desktop.github.com
+*	Scaricare e installare “Node.js”: https://nodejs.org/it/download
+*	Si consiglia di scaricare l'IDE “Visual Studio Code”: https://bit.ly/34MfLQ 
+*	Si consiglia di scaricare “Github Desktop”: https://desktop.github.com
 
 ### Installing
 
@@ -102,3 +103,5 @@ Team Members:
 
 
 ## License
+
+This project is totally open source and free to use.
