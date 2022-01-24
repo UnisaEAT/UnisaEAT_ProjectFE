@@ -118,7 +118,7 @@ export default class ModificaFAQ extends React.Component {
                   <Form.Control
                     type='text' id='newdomanda' name='newdomanda'
                     onChange={this.onChangeDomanda}
-                    placeholder='Inserisci la nuova domanda'
+                    placeholder='Inserisci la nuova domanda' autoComplete="off"
                   />
                 </Form.Group>
 
@@ -127,7 +127,7 @@ export default class ModificaFAQ extends React.Component {
                   <Form.Control
                     type='text' id='newrisposta' name='newrisposta'
                     onChange={this.onChangeRisposta}
-                    placeholder='Inserisci la nuova risposta'
+                    placeholder='Inserisci la nuova risposta' autoComplete="off"
                   />
                 </Form.Group>
               </Row>

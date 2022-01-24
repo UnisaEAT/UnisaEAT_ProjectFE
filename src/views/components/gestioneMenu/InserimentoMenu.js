@@ -99,7 +99,7 @@ export class InserimentoMenu extends React.Component {
   }
 
   render () {
-    const categorie = ['primo', 'secondo', 'contorno', 'extra']
+    const categorie = ['primo', 'secondo', 'contorno', 'frutta', 'extra']
 
     return (
       <div id='root'>
@@ -123,7 +123,7 @@ export class InserimentoMenu extends React.Component {
                   <Popover placement="top">
                     <Popover.Header as="h3">Pasto inserito!</Popover.Header>
                     <Popover.Body>
-                      Clicca su "Inserisci menu" per caricare nel DB i pasti scelti.
+                      Clicca su "Inserisci menù" per caricare nel menù i pasti scelti.
                     </Popover.Body>
                   </Popover>}>
                   <img id={i} onMouseEnter={()=>this.onMouseEnterElement(i)} onMouseLeave={()=>this.onMouseLeaveElement(i)} onClick={() => this.insertPasto(menuItem)} src={'../immaginiPasti/' + this.imageNameTextTransform(menuItem.nome) + '.jpg'} alt={menuItem.categoria} className='photo cursor-pointer sp-categoryBlockElement' />
@@ -143,7 +143,7 @@ export class InserimentoMenu extends React.Component {
           </div>
         </section>
         <Button variant='outline-primary' className='buttonInsert mt-5 mb-5' onClick={() => this.Inserimento()}>
-          Inserisci Menu
+          Inserisci Menù
         </Button>
       </div>
     )

@@ -402,7 +402,7 @@ function Chat () {
                   <div className='input-group' id='containerInviaMessaggio'>
                     <input
                       type='text' id='inputTextMessaggio' onChange={onChangeMessaggioDaInviare} placeholder='Type a message' aria-describedby='button-addon2'
-                      className='form-control rounded-0 border-0 py-2-2 bg-light'
+                      className='form-control rounded-0 border-0 py-2-2 bg-light' autoComplete="off"
                     />
                     <div className='input-group-append'>
                       <i className='fa fa-paper-plane-o' />

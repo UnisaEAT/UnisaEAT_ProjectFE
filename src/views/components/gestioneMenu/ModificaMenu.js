@@ -91,7 +91,7 @@ export class ModificaMenu extends React.Component {
   }
 
   render () {
-    const categorie = ['primo', 'secondo', 'contorno', 'extra']
+    const categorie = ['primo', 'secondo', 'contorno', 'frutta', 'extra']
     return (
       <div id='root'>
         {this.state.popUp && <SuccessPopUp message='Modifica Menu avvenuta con successo!' handleClose={this.closePopUp} />}
@@ -112,7 +112,7 @@ export class ModificaMenu extends React.Component {
                     <Popover placement="top">
                       <Popover.Header as="h3">Pasto scelto!</Popover.Header>
                       <Popover.Body>
-                        Clicca su "Modifica menu" per modificare nel DB il menu.
+                        Clicca su "Modifica menu" per modificare il pasto nel menù.
                       </Popover.Body>
                     </Popover>}>
                   <img id={i} onMouseEnter={()=>this.onMouseEnterElement(i)} onMouseLeave={()=>this.onMouseLeaveElement(i)} onClick={() => this.modificaPasto(menuItem)} src={'../immaginiPasti/' + this.imageNameTextTransform(menuItem.nome) + '.jpg'} alt={menuItem.categoria} className='photo cursor-pointer' />

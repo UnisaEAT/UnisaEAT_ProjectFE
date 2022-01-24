@@ -116,12 +116,12 @@ export default class CompilazioneTicket extends React.Component {
             <Row className='mb-3'>
               <Form.Group className='mt-3' id='titolo' as={Row}>
                 <Form.Label>Titolo</Form.Label>
-                <Form.Control type='text' id='titolo' name='titolo' onChange={this.onChangeTitolo} placeholder='Inserisci il titolo' />
+                <Form.Control type='text' id='titolo' name='titolo' onChange={this.onChangeTitolo} placeholder='Inserisci il titolo' autoComplete="off" />
               </Form.Group>
               <br />
               <Form.Group id='problema' as={Row}>
                 <Form.Label>Descrivici il problema riscontrato</Form.Label>
-                <Form.Control as='textarea' rows={5} id='problema' name='problema' onChange={this.onChangeProblema} placeholder='Inserisci il problema riscontrato...' />
+                <Form.Control as='textarea' rows={5} id='problema' name='problema' onChange={this.onChangeProblema} placeholder='Inserisci il problema riscontrato...' autoComplete="off" />
               </Form.Group>
             </Row>
             <Button className='bottone' variant='primary' type='submit'>INSERISCI</Button>

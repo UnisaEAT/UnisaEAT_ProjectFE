@@ -127,12 +127,12 @@ export default class InserimentoFAQ extends React.Component {
               <Row className='mb-3'>
                 <Form.Group id='domanda' as={Row}>
                   <Form.Label>Domanda</Form.Label>
-                  <Form.Control type='text' id='domanda' name='domanda' onChange={this.onChangeDomanda} placeholder='Inserisci la domanda' />
+                  <Form.Control type='text' id='domanda' name='domanda' onChange={this.onChangeDomanda} placeholder='Inserisci la domanda' autoComplete="off" />
                 </Form.Group>
 
                 <Form.Group id='risposta' as={Row}>
                   <Form.Label>Risposta</Form.Label>
-                  <Form.Control type='text' id='risposta' name='risposta' onChange={this.onChangeRisposta} placeholder='Inserisci la risposta' />
+                  <Form.Control type='text' id='risposta' name='risposta' onChange={this.onChangeRisposta} placeholder='Inserisci la risposta' autoComplete="off" />
                 </Form.Group>
               </Row>
 

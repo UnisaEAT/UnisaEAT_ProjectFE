@@ -217,7 +217,7 @@ export default class RicaricaTesserino extends Component {
                 <input
                   type='text' id='intestatario'
                   onChange={this.onChangeIntestatario} className='form-control'
-                  placeholder='Nome Cognome'
+                  placeholder='Nome Cognome' autocomplete="off"
                 />
               </div>
 
@@ -243,7 +243,7 @@ export default class RicaricaTesserino extends Component {
                     onChange={this.onChangeNumeroCarta}
                     className='card-no' step='4'
                     placeholder='1234 4567 5869 1234'
-                    pattern='^[0-9].{15,}'
+                    pattern='^[0-9].{15,}' autocomplete="off"
                   />
                 </div>
               </div>

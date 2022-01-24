@@ -268,7 +268,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type='text' id='nome' name='nome' onChange={this.onChangeNome}
-                  placeholder='Inserisci il tuo nome'
+                  placeholder='Inserisci il tuo nome' autocomplete="off"
                 />
               </Form.Group>
 
@@ -276,7 +276,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Cognome</Form.Label>
                 <Form.Control
                   type='text' id='cognome' name='cognome' onChange={this.onChangeCognome}
-                  placeholder='Inserisci il tuo cognome'
+                  placeholder='Inserisci il tuo cognome' autocomplete="off"
                 />
               </Form.Group>
             </Row>
@@ -286,7 +286,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Data di nascita</Form.Label>
                 <Form.Control
                   type='text' id='dataDiNascita' name='dataDiNascita'
-                  onChange={this.onChangeDataDiNascita}
+                  onChange={this.onChangeDataDiNascita} autocomplete="off"
                   placeholder='dd/mm/yyyy'
                 />
               </Form.Group>
@@ -295,7 +295,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Comune di nascita</Form.Label>
                 <Form.Control
                   type='text' id='comuneDiNascita' name='comuneDiNascita'
-                  onChange={this.onChangeComuneDiNascita}
+                  onChange={this.onChangeComuneDiNascita} autocomplete="off"
                 />
               </Form.Group>
 
@@ -303,7 +303,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Provincia di nascita</Form.Label>
                 <Form.Control
                   type='text' id='provinciaDiNascita' name='provinciaDiNascita'
-                  onChange={this.onChangeProvinciaDiNascita}
+                  onChange={this.onChangeProvinciaDiNascita} autocomplete="off"
                 />
               </Form.Group>
 
@@ -311,7 +311,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Cittadinanza</Form.Label>
                 <Form.Control
                   type='text' id='cittadinanza' name='cittadinanza'
-                  onChange={this.onChangeCittadinanza}
+                  onChange={this.onChangeCittadinanza} autocomplete="off"
                 />
               </Form.Group>
 
@@ -324,7 +324,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Control
                   type='text' id='indirizzo' name='indirizzo'
                   onChange={this.onChangeIndirizzo}
-                  placeholder='Inserisci il tuo indirizzo'
+                  placeholder='Inserisci il tuo indirizzo' autocomplete="off"
                 />
               </Form.Group>
             </Row>
@@ -333,18 +333,18 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Provincia</Form.Label>
                 <Form.Control
                   type='text' id='provincia' name='provincia'
-                  onChange={this.onChangeProvincia}
+                  onChange={this.onChangeProvincia} autocomplete="off"
                 />
               </Form.Group>
 
               <Form.Group id='comune' as={Col}>
                 <Form.Label>Comune</Form.Label>
-                <Form.Control type='text' id='comune' name='comune' onChange={this.onChangeComune} />
+                <Form.Control type='text' id='comune' name='comune' onChange={this.onChangeComune} autocomplete="off"/>
               </Form.Group>
 
               <Form.Group id='cap' as={Col}>
                 <Form.Label>CAP</Form.Label>
-                <Form.Control type='number' id='cap' name='cap' onChange={this.onChangeCap} />
+                <Form.Control type='number' id='cap' name='cap' onChange={this.onChangeCap} autocomplete="off"/>
               </Form.Group>
             </Row>
             <br />
@@ -355,7 +355,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Control
                   type='number' id='telefono' name='telefono'
                   onChange={this.onChangeTelefono}
-                  placeholder='Inserisci il tuo numero di cellulare'
+                  placeholder='Inserisci il tuo numero di cellulare' autocomplete="off"
                 />
               </Form.Group>
             </Row>
@@ -364,7 +364,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type='text' id='email' name='email' onChange={this.onChangeEmail}
-                  placeholder='Inserisci la tua email'
+                  placeholder='Inserisci la tua email' autocomplete="off"
                 />
               </Form.Group>
             </Row>
@@ -374,7 +374,7 @@ export default class RinnovoTesserino extends Component {
                 <Form.Control
                   type='text' id='confermaEmail' name='confermaEmail'
                   onChange={this.onChangeConfermaEmail}
-                  placeholder='Reinserisci la tua email'
+                  placeholder='Reinserisci la tua email' autocomplete="off"
                 />
               </Form.Group>
             </Row>

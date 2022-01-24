@@ -188,7 +188,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='text' id='nome' name='nome' onChange={this.onChangeNome}
-                  placeholder='Inserisci il nome'
+                  placeholder='Inserisci il nome' autoComplete="off"
                 />
               </div>
               <div className='form-group col-sm-6 flex-column d-flex' id='cognome' name='cognome'>
@@ -199,7 +199,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='text' id='cognome' name='cognome' onChange={this.onChangeCognome}
-                  placeholder='Inserisci il cognome'
+                  placeholder='Inserisci il cognome' autoComplete="off"
                 />
               </div>
             </div>
@@ -213,7 +213,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='text' id='indirizzo' name='indirizzo' onChange={this.onChangeIndirizzo}
-                  placeholder='Inserisci indirizzo'
+                  placeholder='Inserisci indirizzo' autoComplete="off"
                 />
               </div>
 
@@ -225,7 +225,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='text' id='numeroTelefono' name='numeroTelefono' onChange={this.onChangeNumeroTelefono}
-                  placeholder='Inserisci il numero di telefono'
+                  placeholder='Inserisci il numero di telefono' autoComplete="off"
                 />
               </div>
             </div>
@@ -239,7 +239,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='text' id='dataDiNascita' name='dataDiNascita' onChange={this.onChangeDataDiNascita}
-                  placeholder='Inserisci data di nascita'
+                  placeholder='Inserisci data di nascita' autoComplete="off"
                 />
               </div>
 
@@ -247,7 +247,7 @@ export default class InserimentoPersonale extends React.Component {
                 <label className='align-left mt-3 form-control-label'>Email<span className='text-danger'> *</span></label>
                 <input
                   type='text' id='email' name='email' onChange={this.onChangeEmail}
-                  placeholder='Inserisci una email '
+                  placeholder='Inserisci una email ' autoComplete="off"
                 />
               </div>
             </div>
@@ -261,7 +261,7 @@ export default class InserimentoPersonale extends React.Component {
                 </label>
                 <input
                   type='password' id='password' name='password' onChange={this.onChangePassword}
-                  placeholder='Inserisci una password '
+                  placeholder='Inserisci una password ' autoComplete="off"
                 />
               </div>
 
@@ -274,7 +274,7 @@ export default class InserimentoPersonale extends React.Component {
               </label>
                 <input
                   type='password' id='confermapassword' name='confermapassword' onChange={this.onChangeConfermaPassword}
-                  placeholder='Conferma la Password '
+                  placeholder='Conferma la Password ' autoComplete="off"
                 />
               </div>
             </div>

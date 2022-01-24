@@ -66,7 +66,7 @@ export class VisualizzazioneMenu extends React.Component {
   }
 
   render () {
-    const categorie = ['primo', 'secondo', 'contorno', 'extra']
+    const categorie = ['primo', 'secondo', 'contorno', 'frutta', 'extra']
     if (this.state.error === 400) { return <h1 className='erroreGenericoDiAccesso'>Effettua il login per accedere a questa pagina</h1> } else if (this.state.error === 401) { return <h1 className='erroreGenericoDiAccesso'>Accesso negato</h1> }
     return (
       <div>

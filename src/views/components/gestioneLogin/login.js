@@ -112,7 +112,7 @@ export default class Login extends Component {
                   <Form.Control
                     id='email' className='form-control' type='text' name='email'
                     onChange={this.onChangeEmail}
-                    placeholder='Inserisci la tua email'
+                    placeholder='Inserisci la tua email' autocomplete="off"
                   />
                 </div>
                 <div className='form-group align-items-center' id='password'>
@@ -120,7 +120,7 @@ export default class Login extends Component {
                   <Form.Control
                     id='password' className='form-control' type='password'
                     name='password' onChange={this.onChangePassword}
-                    placeholder='Inserisci la tua password'
+                    placeholder='Inserisci la tua password' autocomplete="off"
                   />
                 </div>
                 <Button className='bottoneLogin align-items-center' type='submit'>
